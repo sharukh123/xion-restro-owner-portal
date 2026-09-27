@@ -5,8 +5,8 @@
       "ownerName": "Restaurant Owner",
       "pin": "1234",
       "stores": {
-        "STORE_001": {
-          "storeId": "STORE_001",
+        "REST_JAIPUR_01": {
+          "storeId": "REST_JAIPUR_01",
           "storeName": "Main Branch (Raja Park)",
           "storePhone": "0141-2621111",
           "liveSummary": {
@@ -27,73 +27,44 @@
             "activeTablesCount": 0,
             "voidCount": 0,
             "totalVoidAmount": 0,
-            "lastUpdated": "2026-09-27T09:18:05.418Z"
+            "netCash": 0,
+            "netUpi": 0,
+            "netCard": 0,
+            "netDue": 0,
+            "netTotalCollection": 0,
+            "salesCash": 0,
+            "salesUpi": 0,
+            "salesCard": 0,
+            "salesDue": 0,
+            "salesTotalPaid": 0,
+            "totalSalesInvoices": 0,
+            "totalGrossSales": 0,
+            "totalSalesDiscount": 0,
+            "totalSalesTax": 0,
+            "totalNetSales": 0,
+            "totalReturnInvoices": 0,
+            "totalRefundAmount": 0,
+            "returnCash": 0,
+            "returnUpi": 0,
+            "returnCard": 0,
+            "returnDue": 0,
+            "restockedCount": 0,
+            "wastedCount": 0,
+            "totalInwardInvoices": 0,
+            "totalInwardGross": 0,
+            "totalInwardDiscount": 0,
+            "totalInwardPaid": 0,
+            "totalInwardDue": 0,
+            "totalSupplierVouchers": 0,
+            "totalSupplierPaid": 0,
+            "totalSupplierDiscount": 0,
+            "supplierCash": 0,
+            "supplierBank": 0,
+            "drawerCash": 0,
+            "netBusinessRevenue": 0,
+            "lastUpdated": "2026-09-27T10:00:00.000Z"
           },
           "bills": []
-        },
-        "REST_JAIPUR_01": {
-          "storeId": "REST_JAIPUR_01",
-          "storeName": "Main Branch (Raja Park)",
-          "storePhone": "",
-          "liveSummary": {
-            "eventType": "DAY_SUMMARY",
-            "totalBillsCount": 1,
-            "masterOwnerPhone": "9829012345",
-            "takeawaySales": 0,
-            "dineInSales": 1250,
-            "lastUpdated": "2026-09-27T14:48:40.6002091+05:30",
-            "storeName": "Main Branch (Raja Park)",
-            "totalSales": 1250,
-            "upiCollected": 1250,
-            "cashCollected": 0,
-            "storeId": "REST_JAIPUR_01",
-            "voidCount": 0,
-            "activeTablesCount": 3
-          },
-          "bills": [
-            {
-              "orderType": "DineIn",
-              "grandTotal": 1250,
-              "eventType": "BILL_SETTLED",
-              "masterOwnerPhone": "9829012345",
-              "paymentMode": "UPI",
-              "invoiceNo": "INV-101",
-              "storeName": "Main Branch (Raja Park)",
-              "upiAmount": 1250,
-              "items": [
-                {
-                  "itemName": "Paneer Butter Masala",
-                  "price": 320,
-                  "qty": 1,
-                  "lineTotal": 320
-                },
-                {
-                  "itemName": "Butter Naan",
-                  "price": 60,
-                  "qty": 4,
-                  "lineTotal": 240
-                },
-                {
-                  "itemName": "Dal Makhani",
-                  "price": 280,
-                  "qty": 1,
-                  "lineTotal": 280
-                },
-                {
-                  "itemName": "Cold Coffee",
-                  "price": 120,
-                  "qty": 2,
-                  "lineTotal": 240
-                }
-              ],
-              "tableName": "Table 4",
-              "storeId": "REST_JAIPUR_01",
-              "customerName": "Vikram Singh",
-              "cashAmount": 0,
-              "tokenNo": 12,
-              "settledDate": "2026-09-27T14:48:40.4733452+05:30"
-            }
-          ]
         }
       }
     }
