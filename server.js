@@ -415,6 +415,115 @@ function getMobileAppHtml() {
   </div>
 
   <!-- ========================================== -->
+  <!-- INVOICE DETAIL INSPECTOR MODAL             -->
+  <!-- ========================================== -->
+  <div id="invoiceModal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-lg bg-slate-900 border border-slate-800 rounded-t-3xl sm:rounded-3xl shadow-2xl max-h-[90vh] flex flex-col overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="px-5 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/90 sticky top-0 z-10">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Tax Invoice Details</span>
+            <span id="invModalStatus" class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">PAID</span>
+          </div>
+          <h3 id="invModalNo" class="text-xl font-black text-white font-mono mt-0.5">#INV000</h3>
+        </div>
+        <button onclick="closeInvoiceModal()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white transition">
+          ✕
+        </button>
+      </div>
+
+      <!-- Scrollable Body -->
+      <div class="px-5 py-4 space-y-4 overflow-y-auto flex-1">
+        
+        <!-- Metadata Grid (Cashier, Waiter, Table, Time, Customer) -->
+        <div class="grid grid-cols-2 gap-2.5 text-xs bg-slate-950/70 p-3.5 rounded-2xl border border-slate-800">
+          <div>
+            <span class="text-[10px] text-slate-400 uppercase font-bold">Billed By (Cashier)</span>
+            <div id="invModalCashier" class="font-bold text-emerald-400 mt-0.5 flex items-center space-x-1 text-sm">
+              <span>👤</span><span id="invModalCashierText">Admin</span>
+            </div>
+          </div>
+          <div>
+            <span class="text-[10px] text-slate-400 uppercase font-bold">Waiter</span>
+            <div id="invModalWaiter" class="font-bold text-slate-200 mt-0.5 text-sm">--</div>
+          </div>
+          <div class="pt-2 border-t border-slate-800/80">
+            <span class="text-[10px] text-slate-400 uppercase font-bold">Table / Order Type</span>
+            <div id="invModalTable" class="font-bold text-slate-200 mt-0.5">Table 1 (DineIn)</div>
+          </div>
+          <div class="pt-2 border-t border-slate-800/80">
+            <span class="text-[10px] text-slate-400 uppercase font-bold">Settled Date & Time</span>
+            <div id="invModalTime" class="font-mono text-slate-300 mt-0.5 text-[11px]">27-Sep-2026 15:58</div>
+          </div>
+          <div class="col-span-2 pt-2 border-t border-slate-800/80 flex justify-between items-center">
+            <div>
+              <span class="text-[10px] text-slate-400 uppercase font-bold">Customer</span>
+              <div id="invModalCustomer" class="font-bold text-slate-200">Walk-in</div>
+            </div>
+            <div class="text-right">
+              <span class="text-[10px] text-slate-400 uppercase font-bold">Token Number</span>
+              <div id="invModalToken" class="font-mono font-bold text-amber-400 text-sm">#1</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ordered Items Table -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-slate-400 px-1">
+            <span>Ordered Items Breakdown</span>
+            <span id="invModalItemCount" class="text-slate-500 font-mono">0 items</span>
+          </div>
+
+          <div id="invModalItemsList" class="space-y-2 max-h-56 overflow-y-auto pr-1">
+            <!-- Dynamically populated items -->
+          </div>
+        </div>
+
+        <!-- Financial Summary Breakdown -->
+        <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-slate-800 space-y-2 text-xs">
+          <div class="flex justify-between text-slate-400">
+            <span>Gross Subtotal</span>
+            <span id="invModalSubTotal" class="font-mono font-bold text-slate-200">₹0.00</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>Discount Applied</span>
+            <span id="invModalDiscount" class="font-mono font-bold text-rose-400">-₹0.00</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>Taxes & GST</span>
+            <span id="invModalTax" class="font-mono font-bold text-slate-200">₹0.00</span>
+          </div>
+          <div class="pt-2 border-t border-slate-800 flex justify-between items-baseline">
+            <span class="text-sm font-extrabold text-white uppercase tracking-wide">Net Grand Total</span>
+            <span id="invModalGrandTotal" class="text-2xl font-black font-mono text-emerald-400">₹0.00</span>
+          </div>
+        </div>
+
+        <!-- Payment Settlement Mode & Split Details -->
+        <div class="bg-emerald-950/30 border border-emerald-500/30 rounded-2xl p-3.5 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] uppercase font-bold text-emerald-400">Settled Payment Mode</span>
+            <div id="invModalPayMode" class="text-sm font-extrabold text-white mt-0.5">CASH</div>
+          </div>
+          <div id="invModalPaySplit" class="text-right text-xs font-mono text-slate-300">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-5 py-3 border-t border-slate-800 bg-slate-900 flex justify-end">
+        <button onclick="closeInvoiceModal()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs py-3 rounded-xl transition">
+          ✕ Close Invoice
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
   <!-- 2. TOP EXECUTIVE APP BAR                   -->
   <!-- ========================================== -->
   <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 px-4 py-3 shadow-lg">
@@ -1099,11 +1208,12 @@ function getMobileAppHtml() {
       }
 
       const sorted = [...bills].sort((a, b) => new Date(b.settledDate || 0) - new Date(a.settledDate || 0));
+      window.currentRenderedBills = sorted;
 
       container.innerHTML = sorted.map((b, idx) => {
         const timeStr = b.settledDate ? new Date(b.settledDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '--:--';
         const items = b.items || [];
-        const itemsPreview = items.map(i => \`\${i.qty}x \${i.itemName}\`).slice(0, 3).join(', ') + (items.length > 3 ? '...' : '');
+        const itemsPreview = items.map(i => `${i.qty}x ${i.itemName}`).slice(0, 3).join(', ') + (items.length > 3 ? '...' : '');
 
         let payBadgeColor = 'bg-slate-800 text-slate-300 border-slate-700';
         const pm = (b.paymentMode || '').toUpperCase();
@@ -1112,36 +1222,110 @@ function getMobileAppHtml() {
         else if (pm.includes('CARD')) payBadgeColor = 'bg-blue-500/10 text-blue-400 border-blue-500/30';
         else if (pm.includes('DUE')) payBadgeColor = 'bg-amber-500/10 text-amber-400 border-amber-500/30';
 
-        return \`
-          <div class="bg-slate-950/70 border border-slate-800 hover:border-slate-700 rounded-xl p-3 space-y-1.5 transition">
+        return `
+          <div onclick="viewBillDetails(${idx})" ondblclick="viewBillDetails(${idx})" class="kpi-card bg-slate-950/70 border border-slate-800 hover:border-slate-700 active:border-emerald-500/50 rounded-xl p-3.5 space-y-2 transition cursor-pointer select-none">
             <div class="flex items-center justify-between text-xs">
               <div class="flex items-center space-x-2">
-                <span class="font-extrabold text-white font-mono">#\${b.invoiceNo || b.orderId}</span>
-                <span class="text-[10px] px-1.5 py-0.5 rounded border font-bold \${payBadgeColor}">\${b.paymentMode || 'Cash'}</span>
-                <span class="text-[10px] text-slate-400 font-medium">\${b.orderType || 'DineIn'}</span>
+                <span class="font-extrabold text-white font-mono">#${b.invoiceNo || b.orderId}</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded border font-bold ${payBadgeColor}">${b.paymentMode || 'Cash'}</span>
+                <span class="text-[10px] text-slate-400 font-medium">${b.orderType || 'DineIn'}</span>
               </div>
               <div class="text-right">
-                <span class="text-sm font-extrabold font-mono text-emerald-400">₹\${fmt(b.grandTotal || b.subTotal || 0)}</span>
+                <span class="text-sm font-extrabold font-mono text-emerald-400">₹${fmt(b.grandTotal || b.subTotal || 0)}</span>
               </div>
             </div>
 
             <div class="flex items-center justify-between text-[11px] text-slate-400">
               <span class="flex items-center space-x-1">
-                <span>📍 \${b.tableName || 'Counter'}</span>
+                <span>📍 ${b.tableName || 'Counter'}</span>
                 <span>•</span>
-                <span>👤 \${b.customerName || 'Walk-in'}</span>
+                <span>👤 ${b.customerName || 'Walk-in'}</span>
               </span>
-              <span class="text-[10px] text-slate-500 font-mono">\${timeStr}</span>
+              <span class="text-[10px] text-slate-500 font-mono">${timeStr}</span>
             </div>
 
-            \${items.length > 0 ? \`
-              <div class="text-[10px] text-slate-400 bg-slate-900/60 rounded-lg px-2.5 py-1.5 border border-slate-800/80 truncate">
-                🍽️ \${itemsPreview}
+            ${items.length > 0 ? `
+              <div class="text-[10px] text-slate-400 bg-slate-900/60 rounded-lg px-2.5 py-1.5 border border-slate-800/80 truncate flex items-center justify-between">
+                <span class="truncate">🍽️ ${itemsPreview}</span>
+                <span class="text-[9px] text-brand-400 font-bold ml-1 shrink-0">Tap to inspect ➔</span>
               </div>
-            \` : ''}
+            ` : `
+              <div class="text-[9px] text-right text-brand-400 font-bold">
+                Tap to inspect details ➔
+              </div>
+            `}
           </div>
-        \`;
+        `;
       }).join('');
+    }
+
+    function viewBillDetails(idx) {
+      if (!window.currentRenderedBills || !window.currentRenderedBills[idx]) return;
+      const b = window.currentRenderedBills[idx];
+
+      document.getElementById('invModalNo').innerText = '#' + (b.invoiceNo || b.orderId);
+      document.getElementById('invModalStatus').innerText = (b.orderStatus || 'PAID').toUpperCase();
+      document.getElementById('invModalCashierText').innerText = b.cashierName || 'Admin';
+      document.getElementById('invModalWaiter').innerText = b.waiterName || 'Self / Counter';
+      document.getElementById('invModalTable').innerText = (b.tableName || 'Counter') + ' (' + (b.orderType || 'DineIn') + ')';
+
+      const d = b.settledDate ? new Date(b.settledDate) : new Date();
+      document.getElementById('invModalTime').innerText = d.toLocaleDateString('en-GB') + ' ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('invModalCustomer').innerText = (b.customerName || 'Walk-in') + (b.customerPhone ? ' (' + b.customerPhone + ')' : '');
+      document.getElementById('invModalToken').innerText = '#' + (b.tokenNo || '1');
+
+      // Items list
+      const items = b.items || [];
+      document.getElementById('invModalItemCount').innerText = items.length + ' item(s)';
+      const listContainer = document.getElementById('invModalItemsList');
+
+      if (items.length === 0) {
+        listContainer.innerHTML = '<div class="text-xs text-slate-500 p-3 bg-slate-950/40 rounded-xl text-center">No itemised details available for this invoice.</div>';
+      } else {
+        listContainer.innerHTML = items.map(item => `
+          <div class="p-2.5 bg-slate-950/60 rounded-xl border border-slate-800/90 flex items-center justify-between text-xs">
+            <div class="space-y-0.5">
+              <div class="font-bold text-slate-100">${item.itemName || 'Item'}</div>
+              <div class="text-[10px] text-slate-400 font-mono">
+                ${item.qty} × ₹${fmt(item.price)}
+                ${item.variantName ? '<span class="text-indigo-400 ml-1">(' + item.variantName + ')</span>' : ''}
+                ${item.categoryName ? '<span class="text-slate-500 ml-1">• ' + item.categoryName + '</span>' : ''}
+              </div>
+              ${item.notes ? '<div class="text-[9px] text-amber-400 italic">Note: ' + item.notes + '</div>' : ''}
+            </div>
+            <div class="text-right font-mono font-bold text-slate-200">
+              ₹${fmt(item.lineTotal || (item.qty * item.price))}
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Financials
+      const grandTotal = Number(b.grandTotal || b.netTotal || b.subTotal || 0);
+      const discount = Number(b.discountAmount || b.discount || 0);
+      const tax = Number(b.taxAmount || 0);
+      const subTotal = (b.subTotal && b.subTotal > 0) ? Number(b.subTotal) : (grandTotal + discount - tax);
+
+      document.getElementById('invModalSubTotal').innerText = '₹' + fmt(subTotal);
+      document.getElementById('invModalDiscount').innerText = discount > 0 ? '-₹' + fmt(discount) : '₹0.00';
+      document.getElementById('invModalTax').innerText = tax > 0 ? '₹' + fmt(tax) : '₹0.00';
+      document.getElementById('invModalGrandTotal').innerText = '₹' + fmt(grandTotal);
+
+      // Payment
+      document.getElementById('invModalPayMode').innerText = (b.paymentMode || 'Cash').toUpperCase();
+      let splitDetails = '';
+      if (b.cashAmount > 0) splitDetails += `Cash: ₹${fmt(b.cashAmount)} `;
+      if (b.upiAmount > 0) splitDetails += `UPI: ₹${fmt(b.upiAmount)} `;
+      if (b.cardAmount > 0) splitDetails += `Card: ₹${fmt(b.cardAmount)} `;
+      if (b.bankAmount > 0) splitDetails += `Bank: ₹${fmt(b.bankAmount)} `;
+      if (b.otherAmount > 0) splitDetails += `Due: ₹${fmt(b.otherAmount)} `;
+      document.getElementById('invModalPaySplit').innerText = splitDetails.trim() || ('100% ' + (b.paymentMode || 'Cash'));
+
+      document.getElementById('invoiceModal').classList.remove('hidden');
+    }
+
+    function closeInvoiceModal() {
+      document.getElementById('invoiceModal').classList.add('hidden');
     }
 
     function openPinModal() {
