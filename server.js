@@ -143,7 +143,7 @@ const server = http.createServer((req, res) => {
 
                 if (!cleanPhone || cleanPhone.length !== 10) {
                     res.writeHead(400, { 'Content-Type': 'application/json' });
-                    res.end(JSON.stringify({ success: false, error: 'Kripya 10-digit registered mobile number enter karein.' }));
+                    res.end(JSON.stringify({ success: false, error: 'Please enter a valid 10-digit registered mobile number.' }));
                     return;
                 }
 
@@ -152,7 +152,7 @@ const server = http.createServer((req, res) => {
                     res.writeHead(403, { 'Content-Type': 'application/json' });
                     res.end(JSON.stringify({ 
                         success: false, 
-                        error: 'Yeh mobile number registered nahi hai! Kripya desktop POS software me set kiya gaya registered owner number enter karein.' 
+                        error: 'Mobile number is not registered. Please enter the authorized owner mobile number configured in desktop POS.' 
                     }));
                     return;
                 }
@@ -162,7 +162,7 @@ const server = http.createServer((req, res) => {
                     res.writeHead(401, { 'Content-Type': 'application/json' });
                     res.end(JSON.stringify({ 
                         success: false, 
-                        error: 'Galat Security PIN! Kripya apna sahi 4-digit PIN enter karein.' 
+                        error: 'Incorrect Security PIN. Please enter your correct 4-digit PIN.' 
                     }));
                     return;
                 }
@@ -203,13 +203,13 @@ const server = http.createServer((req, res) => {
                 const expectedPin = (owner.pin || '1234').toString();
                 if (cleanOldPin !== expectedPin) {
                     res.writeHead(401, { 'Content-Type': 'application/json' });
-                    res.end(JSON.stringify({ success: false, error: 'Current PIN galat hai!' }));
+                    res.end(JSON.stringify({ success: false, error: 'Current PIN is incorrect.' }));
                     return;
                 }
 
                 if (!cleanNewPin || cleanNewPin.length !== 4) {
                     res.writeHead(400, { 'Content-Type': 'application/json' });
-                    res.end(JSON.stringify({ success: false, error: 'Naya PIN 4 digit ka hona chahiye.' }));
+                    res.end(JSON.stringify({ success: false, error: 'New PIN must be exactly 4 digits.' }));
                     return;
                 }
 
@@ -217,7 +217,7 @@ const server = http.createServer((req, res) => {
                 saveDb();
 
                 res.writeHead(200, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ success: true, message: 'PIN safaltapoorvak badal diya gaya hai!' }));
+                res.end(JSON.stringify({ success: true, message: 'Security PIN updated successfully.' }));
             } catch (err) {
                 res.writeHead(400, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ success: false, error: err.message }));
@@ -240,14 +240,14 @@ const server = http.createServer((req, res) => {
         const owner = db.owners[phone];
         if (!owner) {
             res.writeHead(403, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ success: false, error: 'Yeh mobile number registered nahi hai!' }));
+            res.end(JSON.stringify({ success: false, error: 'Mobile number is not registered.' }));
             return;
         }
 
         const expectedPin = (owner.pin || '1234').toString();
         if (pin && pin !== expectedPin) {
             res.writeHead(401, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ success: false, error: 'Galat PIN' }));
+            res.end(JSON.stringify({ success: false, error: 'Incorrect Security PIN.' }));
             return;
         }
 
@@ -902,11 +902,11 @@ function getMobileAppHtml() {
       const pin = document.getElementById('loginPin').value.trim();
 
       if (!phone || phone.length !== 10) {
-        showLoginError('Kripya 10-digit registered owner mobile number enter karein.');
+        showLoginError('Please enter a valid 10-digit registered owner mobile number.');
         return;
       }
       if (!pin || pin.length !== 4) {
-        showLoginError('Kripya 4-digit security PIN enter karein.');
+        showLoginError('Please enter your 4-digit security PIN.');
         return;
       }
 
@@ -939,7 +939,7 @@ function getMobileAppHtml() {
         await fetchData();
         startAutoRefresh();
       } catch (err) {
-        showLoginError('Connection Error: Server se connect nahi ho paya.');
+        showLoginError('Connection Error: Unable to connect to server. Please check your network.');
       } finally {
         btn.disabled = false;
         btn.innerHTML = '<span>🔐 Verify & View Dashboard</span>';
@@ -1386,9 +1386,9 @@ function getMobileAppHtml() {
       const newPin1 = document.getElementById('newPin1').value.trim();
       const newPin2 = document.getElementById('newPin2').value.trim();
 
-      if (!oldPin) { errEl.innerText = 'Current PIN daalein.'; errEl.classList.remove('hidden'); return; }
-      if (!newPin1 || newPin1.length !== 4) { errEl.innerText = 'Naya PIN 4 digit ka hona chahiye.'; errEl.classList.remove('hidden'); return; }
-      if (newPin1 !== newPin2) { errEl.innerText = 'Naya PIN dono fields me match nahi kar raha.'; errEl.classList.remove('hidden'); return; }
+      if (!oldPin) { errEl.innerText = 'Please enter your current PIN.'; errEl.classList.remove('hidden'); return; }
+      if (!newPin1 || newPin1.length !== 4) { errEl.innerText = 'New PIN must be exactly 4 digits.'; errEl.classList.remove('hidden'); return; }
+      if (newPin1 !== newPin2) { errEl.innerText = 'New PIN entries do not match.'; errEl.classList.remove('hidden'); return; }
 
       try {
         const res = await fetch('/api/v1/owner/change-pin', {
@@ -1398,17 +1398,17 @@ function getMobileAppHtml() {
         });
         const data = await res.json();
         if (!data.success) {
-          errEl.innerText = data.error || 'PIN badalne me asafalta.';
+          errEl.innerText = data.error || 'Failed to update PIN.';
           errEl.classList.remove('hidden');
           return;
         }
 
         currentOwnerPin = newPin1;
         sessionStorage.setItem('xion_owner_pin', newPin1);
-        alert('✅ PIN Safaltapoorvak badal diya gaya hai!');
+        alert('✅ Security PIN updated successfully.');
         closePinModal();
       } catch (err) {
-        errEl.innerText = 'Server error: PIN change nahi ho paaya.';
+        errEl.innerText = 'Server error: Unable to change PIN. Please try again.';
         errEl.classList.remove('hidden');
       }
     }
