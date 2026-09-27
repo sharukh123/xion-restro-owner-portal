@@ -310,6 +310,10 @@ function getMobileAppHtml() {
     }
   </script>
   <style>
+    html, body { 
+      overscroll-behavior-y: none; 
+      -webkit-overscroll-behavior-y: none; 
+    }
     body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
     .pulse-dot { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
@@ -523,24 +527,6 @@ function getMobileAppHtml() {
     </div>
   </div>
 
-  <!-- PULL TO REFRESH INDICATOR -->
-  <div id="ptrIndicator" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center pointer-events-none transition-transform duration-200 -translate-y-full">
-    <div class="bg-slate-800/95 backdrop-blur-md border border-slate-700 text-slate-200 text-xs font-semibold px-4 py-2 rounded-full shadow-2xl flex items-center space-x-2 mt-2">
-      <div id="ptrIcon" class="transition-transform duration-200">
-        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
-      </div>
-      <div id="ptrSpinner" class="hidden">
-        <svg class="w-4 h-4 text-emerald-400 animate-spin" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-        </svg>
-      </div>
-      <span id="ptrText" class="text-xs">Pull down to refresh</span>
-    </div>
-  </div>
-
   <!-- ========================================== -->
   <!-- 2. TOP EXECUTIVE APP BAR                   -->
   <!-- ========================================== -->
@@ -602,10 +588,28 @@ function getMobileAppHtml() {
     </div>
   </header>
 
+  <!-- PULL TO REFRESH CONTAINER (DIRECTLY UNDER STORE BANNER / HEADER) -->
+  <div id="ptrIndicator" style="height: 0px; opacity: 0; overflow: hidden;" class="transition-[height,opacity] duration-150 flex items-center justify-center bg-slate-950/90 border-b border-slate-800/60">
+    <div class="py-2.5 flex items-center space-x-2 text-xs font-semibold text-slate-200">
+      <div id="ptrIcon" class="transition-transform duration-200">
+        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </div>
+      <div id="ptrSpinner" class="hidden">
+        <svg class="w-4 h-4 text-emerald-400 animate-spin" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+        </svg>
+      </div>
+      <span id="ptrText" class="text-xs">Pull down to refresh</span>
+    </div>
+  </div>
+
   <!-- ========================================== -->
   <!-- 3. MAIN EXECUTIVE DASHBOARD                -->
   <!-- ========================================== -->
-  <main class="max-w-xl mx-auto px-3.5 pt-3.5 space-y-3.5">
+  <main id="mainContent" class="max-w-xl mx-auto px-3.5 pt-3.5 space-y-3.5">
 
     <!-- A. TOP SECTION: PAYMENT MODE COLLECTIONS (POWER BI CARDS) -->
     <section class="space-y-2">
@@ -1431,14 +1435,14 @@ function getMobileAppHtml() {
       }
     }
 
-    // --- PULL TO REFRESH ON MOBILE ---
+    // --- PULL TO REFRESH ON MOBILE (LOCATED DIRECTLY BENEATH STORE BANNER / HEADER) ---
     (function initPullToRefresh() {
       let startY = 0;
       let currentY = 0;
       let isPulling = false;
       let isRefreshing = false;
-      const threshold = 65;
-      const maxPull = 110;
+      const threshold = 44;
+      const maxPull = 54;
       const indicator = document.getElementById('ptrIndicator');
       const ptrText = document.getElementById('ptrText');
       const ptrIcon = document.getElementById('ptrIcon');
@@ -1447,7 +1451,7 @@ function getMobileAppHtml() {
       if (!indicator) return;
 
       window.addEventListener('touchstart', function(e) {
-        if (window.scrollY <= 0 && !isRefreshing && e.touches && e.touches.length === 1) {
+        if (window.scrollY <= 2 && !isRefreshing && e.touches && e.touches.length === 1) {
           startY = e.touches[0].pageY;
           isPulling = true;
         }
@@ -1458,9 +1462,13 @@ function getMobileAppHtml() {
         currentY = e.touches[0].pageY;
         const diff = currentY - startY;
 
-        if (diff > 0 && window.scrollY <= 0) {
-          const pullDist = Math.min(diff * 0.45, maxPull);
-          indicator.style.transform = 'translateY(' + pullDist + 'px)';
+        if (diff > 0 && window.scrollY <= 2) {
+          if (e.cancelable) {
+            e.preventDefault(); // Prevents mobile browser from dragging the entire page
+          }
+          const pullDist = Math.min(diff * 0.42, maxPull);
+          indicator.style.height = pullDist + 'px';
+          indicator.style.opacity = String(Math.min(pullDist / 20, 1));
 
           if (pullDist >= threshold) {
             ptrText.innerText = 'Release to refresh';
@@ -1470,17 +1478,18 @@ function getMobileAppHtml() {
             ptrIcon.style.transform = 'rotate(0deg)';
           }
         }
-      }, { passive: true });
+      }, { passive: false });
 
       window.addEventListener('touchend', async function() {
         if (!isPulling || isRefreshing) return;
         isPulling = false;
         const diff = currentY - startY;
-        const pullDist = Math.min(diff * 0.45, maxPull);
+        const pullDist = Math.min(diff * 0.42, maxPull);
 
-        if (pullDist >= threshold && window.scrollY <= 0) {
+        if (pullDist >= threshold && window.scrollY <= 2) {
           isRefreshing = true;
-          indicator.style.transform = 'translateY(55px)';
+          indicator.style.height = '46px';
+          indicator.style.opacity = '1';
           ptrIcon.classList.add('hidden');
           ptrSpinner.classList.remove('hidden');
           ptrText.innerText = 'Refreshing live data...';
@@ -1493,17 +1502,19 @@ function getMobileAppHtml() {
           }
 
           setTimeout(function() {
-            indicator.style.transform = 'translateY(-100%)';
+            indicator.style.height = '0px';
+            indicator.style.opacity = '0';
             setTimeout(function() {
               ptrIcon.classList.remove('hidden');
               ptrSpinner.classList.add('hidden');
               ptrIcon.style.transform = 'rotate(0deg)';
               ptrText.innerText = 'Pull down to refresh';
               isRefreshing = false;
-            }, 250);
-          }, 600);
+            }, 200);
+          }, 500);
         } else {
-          indicator.style.transform = 'translateY(-100%)';
+          indicator.style.height = '0px';
+          indicator.style.opacity = '0';
           ptrIcon.style.transform = 'rotate(0deg)';
         }
         startY = 0;
