@@ -20,7 +20,7 @@ let db = {
 // Load DB from file if exists
 try {
     if (fs.existsSync(DB_FILE)) {
-        const raw = fs.readFileSync(DB_FILE, 'utf8');
+        const raw = fs.readFileSync(DB_FILE, 'utf8').replace(/^\uFEFF/, '');
         db = JSON.parse(raw);
     }
 } catch (e) {
@@ -1084,15 +1084,19 @@ function getMobileAppHtml() {
           const s = stores[id];
           const sm = s.liveSummary || {};
 
+          const cardVal = Number(sm.netCard !== undefined ? sm.netCard : (sm.cardCollected || 0));
+          const bankVal = Number(sm.bankCollected || sm.salesBank || 0);
+          const dueVal = Number(sm.netDue !== undefined ? sm.netDue : (sm.otherCollected || 0));
+
           consolidated.netCash += (sm.netCash !== undefined ? Number(sm.netCash) : Number(sm.cashCollected || 0));
           consolidated.netUpi += (sm.netUpi !== undefined ? Number(sm.netUpi) : Number(sm.upiCollected || 0));
-          consolidated.netCard += (sm.netCard !== undefined ? Number(sm.netCard) : Number(sm.cardCollected || 0));
-          consolidated.netDue += (sm.netDue !== undefined ? Number(sm.netDue) : Number(sm.otherCollected || 0));
+          consolidated.netCard += (cardVal > 0 ? cardVal : bankVal);
+          consolidated.netDue += dueVal;
 
           consolidated.salesCash += Number(sm.salesCash || sm.cashCollected || 0);
           consolidated.salesUpi += Number(sm.salesUpi || sm.upiCollected || 0);
-          consolidated.salesCard += Number(sm.salesCard || sm.cardCollected || 0);
-          consolidated.salesDue += Number(sm.salesDue || sm.otherCollected || 0);
+          consolidated.salesCard += (Number(sm.salesCard || 0) > 0 ? Number(sm.salesCard) : bankVal);
+          consolidated.salesDue += Number(sm.salesDue || dueVal);
 
           consolidated.totalSalesInvoices += Number(sm.totalSalesInvoices || sm.totalBillsCount || 0);
           consolidated.totalGrossSales += Number(sm.totalGrossSales || sm.totalSales || 0);

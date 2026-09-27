@@ -1,800 +1,800 @@
-﻿{
-    "owners":  {
-                   "9723717248":  {
-                                      "pin":  "1234",
-                                      "ownerPhone":  "9723717248",
-                                      "stores":  {
-                                                     "STORE_JANTA_01":  {
-                                                                            "storePhone":  "9723717248",
-                                                                            "liveSummary":  {
-                                                                                                "totalGrossSales":  5213.7,
-                                                                                                "returnCard":  0,
-                                                                                                "takeawaySales":  0,
-                                                                                                "netCash":  4965.7,
-                                                                                                "voidCount":  0,
-                                                                                                "netTotalCollection":  5213.7,
-                                                                                                "salesDue":  0,
-                                                                                                "returnUpi":  0,
-                                                                                                "salesCash":  4965.7,
-                                                                                                "upiCollected":  0,
-                                                                                                "totalRefundAmount":  0,
-                                                                                                "otherCollected":  0,
-                                                                                                "drawerCash":  4965.7,
-                                                                                                "businessDate":  "2026-09-27",
-                                                                                                "totalDiscounts":  0,
-                                                                                                "netBusinessRevenue":  5213.7,
-                                                                                                "totalBillsCount":  7,
-                                                                                                "bankCollected":  248,
-                                                                                                "totalSalesDiscount":  0,
-                                                                                                "cardCollected":  0,
-                                                                                                "dineInSales":  5213.7,
-                                                                                                "totalNetSales":  5213.7,
-                                                                                                "lastUpdated":  "2026-09-27T20:58:30Z",
-                                                                                                "netDue":  0,
-                                                                                                "cashCollected":  4965.7,
-                                                                                                "totalTaxes":  679.92,
-                                                                                                "netCard":  0,
-                                                                                                "salesTotalPaid":  5213.7,
-                                                                                                "salesCard":  0,
-                                                                                                "totalTips":  0,
-                                                                                                "returnDue":  0,
-                                                                                                "totalSalesTax":  679.92,
-                                                                                                "netUpi":  0,
-                                                                                                "deliverySales":  0,
-                                                                                                "totalSalesInvoices":  7,
-                                                                                                "totalReturnInvoices":  0,
-                                                                                                "activeTablesCount":  0,
-                                                                                                "salesUpi":  0,
-                                                                                                "totalSales":  5213.7,
-                                                                                                "returnCash":  0,
-                                                                                                "totalVoidAmount":  0
-                                                                                            },
-                                                                            "storeName":  "JANTA RESTRO",
-                                                                            "storeId":  "STORE_JANTA_01",
-                                                                            "bills":  [
-                                                                                          {
-                                                                                              "discountAmount":  0,
-                                                                                              "items":  [
-                                                                                                            {
-                                                                                                                "qty":  8,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  229,
-                                                                                                                "lineTotal":  1832,
-                                                                                                                "itemName":  "Barbecue Chicken Kabab (Supreme)",
-                                                                                                                "categoryName":  "Chicken",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  144,
-                                                                                                                "lineTotal":  144,
-                                                                                                                "itemName":  "Barbecue Chocolate Shake (Supreme)",
-                                                                                                                "categoryName":  "Beverages",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  204,
-                                                                                                                "lineTotal":  204,
-                                                                                                                "itemName":  "Barbecue Chilli Paneer (Large)",
-                                                                                                                "categoryName":  "Chinese Snacks",
-                                                                                                                "notes":  ""
-                                                                                                            }
-                                                                                                        ],
-                                                                                              "paymentMode":  "Cash",
-                                                                                              "cashAmount":  2180,
-                                                                                              "waiterName":  "Self / Counter",
-                                                                                              "orderType":  "DineIn",
-                                                                                              "orderId":  120,
-                                                                                              "otherAmount":  0,
-                                                                                              "cashierName":  "Admin",
-                                                                                              "grandTotal":  2180,
-                                                                                              "settledDate":  "2026-09-27T16:33:15+05:30",
-                                                                                              "customerName":  "Walk-in",
-                                                                                              "upiAmount":  0,
-                                                                                              "subTotal":  2180,
-                                                                                              "taxAmount":  284.35,
-                                                                                              "cardAmount":  0,
-                                                                                              "bankAmount":  0,
-                                                                                              "customerPhone":  "",
-                                                                                              "invoiceNo":  "INV043",
-                                                                                              "tableName":  "Table 6"
-                                                                                          },
-                                                                                          {
-                                                                                              "discountAmount":  0,
-                                                                                              "items":  [
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  229,
-                                                                                                                "lineTotal":  229,
-                                                                                                                "itemName":  "Barbecue Chicken Kabab (Supreme)",
-                                                                                                                "categoryName":  "Chicken",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  144,
-                                                                                                                "lineTotal":  144,
-                                                                                                                "itemName":  "Barbecue Chocolate Shake (Supreme)",
-                                                                                                                "categoryName":  "Beverages",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  133,
-                                                                                                                "lineTotal":  133,
-                                                                                                                "itemName":  "Barbecue Fried Rice",
-                                                                                                                "categoryName":  "Chinese Snacks",
-                                                                                                                "notes":  ""
-                                                                                                            }
-                                                                                                        ],
-                                                                                              "paymentMode":  "Cash",
-                                                                                              "cashAmount":  506,
-                                                                                              "waiterName":  "Self / Counter",
-                                                                                              "orderType":  "DineIn",
-                                                                                              "orderId":  119,
-                                                                                              "otherAmount":  0,
-                                                                                              "cashierName":  "Admin",
-                                                                                              "grandTotal":  506,
-                                                                                              "settledDate":  "2026-09-27T16:32:54+05:30",
-                                                                                              "customerName":  "Walk-in",
-                                                                                              "upiAmount":  0,
-                                                                                              "subTotal":  506,
-                                                                                              "taxAmount":  66,
-                                                                                              "cardAmount":  0,
-                                                                                              "bankAmount":  0,
-                                                                                              "customerPhone":  "",
-                                                                                              "invoiceNo":  "INV042",
-                                                                                              "tableName":  "Table 6"
-                                                                                          },
-                                                                                          {
-                                                                                              "discountAmount":  0,
-                                                                                              "items":  [
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  123,
-                                                                                                                "lineTotal":  123,
-                                                                                                                "itemName":  "Barbecue Grilled Sandwich (Supreme)",
-                                                                                                                "categoryName":  "Burgers",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  125,
-                                                                                                                "lineTotal":  125,
-                                                                                                                "itemName":  "Barbecue Iced Tea Lemon (Deluxe)",
-                                                                                                                "categoryName":  "Beverages",
-                                                                                                                "notes":  ""
-                                                                                                            }
-                                                                                                        ],
-                                                                                              "paymentMode":  "Bank",
-                                                                                              "cashAmount":  0,
-                                                                                              "waiterName":  "Self / Counter",
-                                                                                              "orderType":  "DineIn",
-                                                                                              "orderId":  118,
-                                                                                              "otherAmount":  0,
-                                                                                              "cashierName":  "Admin",
-                                                                                              "grandTotal":  248,
-                                                                                              "settledDate":  "2026-09-27T16:22:04+05:30",
-                                                                                              "customerName":  "Walk-in",
-                                                                                              "upiAmount":  0,
-                                                                                              "subTotal":  248,
-                                                                                              "taxAmount":  32.35,
-                                                                                              "cardAmount":  0,
-                                                                                              "bankAmount":  248,
-                                                                                              "customerPhone":  "",
-                                                                                              "invoiceNo":  "INV041",
-                                                                                              "tableName":  "Table 6"
-                                                                                          },
-                                                                                          {
-                                                                                              "discountAmount":  0,
-                                                                                              "items":  [
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  229,
-                                                                                                                "lineTotal":  229,
-                                                                                                                "itemName":  "Barbecue Chicken Kabab (Supreme)",
-                                                                                                                "categoryName":  "Chicken",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "FULL",
-                                                                                                                "price":  79,
-                                                                                                                "lineTotal":  79,
-                                                                                                                "itemName":  "Aloo Tikki Burger",
-                                                                                                                "categoryName":  "Burgers",
-                                                                                                                "notes":  "?? Extra Spicy, ?? Extra Butter"
-                                                                                                            }
-                                                                                                        ],
-                                                                                              "paymentMode":  "Cash",
-                                                                                              "cashAmount":  319.85,
-                                                                                              "waiterName":  "Self / Counter",
-                                                                                              "orderType":  "DineIn",
-                                                                                              "orderId":  117,
-                                                                                              "otherAmount":  0,
-                                                                                              "cashierName":  "Admin",
-                                                                                              "grandTotal":  319.85,
-                                                                                              "settledDate":  "2026-09-27T16:21:42+05:30",
-                                                                                              "customerName":  "Walk-in",
-                                                                                              "upiAmount":  0,
-                                                                                              "subTotal":  308,
-                                                                                              "taxAmount":  41.72,
-                                                                                              "cardAmount":  0,
-                                                                                              "bankAmount":  0,
-                                                                                              "customerPhone":  "",
-                                                                                              "invoiceNo":  "INV040",
-                                                                                              "tableName":  "Table 6"
-                                                                                          },
-                                                                                          {
-                                                                                              "discountAmount":  0,
-                                                                                              "items":  [
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  220,
-                                                                                                                "lineTotal":  220,
-                                                                                                                "itemName":  "Barbecue Chilli Chicken (Deluxe)",
-                                                                                                                "categoryName":  "Chinese Snacks",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  209,
-                                                                                                                "lineTotal":  209,
-                                                                                                                "itemName":  "Barbecue Chicken Wings (Combo)",
-                                                                                                                "categoryName":  "Chicken",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  204,
-                                                                                                                "lineTotal":  204,
-                                                                                                                "itemName":  "Barbecue Chilli Paneer (Large)",
-                                                                                                                "categoryName":  "Chinese Snacks",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  144,
-                                                                                                                "lineTotal":  144,
-                                                                                                                "itemName":  "Barbecue Chocolate Shake (Supreme)",
-                                                                                                                "categoryName":  "Beverages",
-                                                                                                                "notes":  ""
-                                                                                                            }
-                                                                                                        ],
-                                                                                              "paymentMode":  "Cash",
-                                                                                              "cashAmount":  777,
-                                                                                              "waiterName":  "Self / Counter",
-                                                                                              "orderType":  "DineIn",
-                                                                                              "orderId":  116,
-                                                                                              "otherAmount":  0,
-                                                                                              "cashierName":  "Admin",
-                                                                                              "grandTotal":  777,
-                                                                                              "settledDate":  "2026-09-27T15:58:02+05:30",
-                                                                                              "customerName":  "Walk-in",
-                                                                                              "upiAmount":  0,
-                                                                                              "subTotal":  777,
-                                                                                              "taxAmount":  101.35,
-                                                                                              "cardAmount":  0,
-                                                                                              "bankAmount":  0,
-                                                                                              "customerPhone":  "",
-                                                                                              "invoiceNo":  "INV039",
-                                                                                              "tableName":  "Table 6"
-                                                                                          },
-                                                                                          {
-                                                                                              "discountAmount":  0,
-                                                                                              "items":  [
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  283,
-                                                                                                                "lineTotal":  283,
-                                                                                                                "itemName":  "Barbecue Butter Chicken (Special)",
-                                                                                                                "categoryName":  "Chicken",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  204,
-                                                                                                                "lineTotal":  204,
-                                                                                                                "itemName":  "Barbecue Chilli Paneer (Large)",
-                                                                                                                "categoryName":  "Chinese Snacks",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  144,
-                                                                                                                "lineTotal":  144,
-                                                                                                                "itemName":  "Barbecue Chocolate Shake (Supreme)",
-                                                                                                                "categoryName":  "Beverages",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "FULL",
-                                                                                                                "price":  79,
-                                                                                                                "lineTotal":  79,
-                                                                                                                "itemName":  "Aloo Tikki Burger",
-                                                                                                                "categoryName":  "Burgers",
-                                                                                                                "notes":  ""
-                                                                                                            }
-                                                                                                        ],
-                                                                                              "paymentMode":  "Cash",
-                                                                                              "cashAmount":  721.85,
-                                                                                              "waiterName":  "Self / Counter",
-                                                                                              "orderType":  "DineIn",
-                                                                                              "orderId":  115,
-                                                                                              "otherAmount":  0,
-                                                                                              "cashierName":  "Admin",
-                                                                                              "grandTotal":  721.85,
-                                                                                              "settledDate":  "2026-09-27T15:57:56+05:30",
-                                                                                              "customerName":  "Walk-in",
-                                                                                              "upiAmount":  0,
-                                                                                              "subTotal":  710,
-                                                                                              "taxAmount":  94.15,
-                                                                                              "cardAmount":  0,
-                                                                                              "bankAmount":  0,
-                                                                                              "customerPhone":  "",
-                                                                                              "invoiceNo":  "INV038",
-                                                                                              "tableName":  "Table 6"
-                                                                                          },
-                                                                                          {
-                                                                                              "discountAmount":  0,
-                                                                                              "items":  [
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  232,
-                                                                                                                "lineTotal":  232,
-                                                                                                                "itemName":  "Barbecue Chicken Kabab",
-                                                                                                                "categoryName":  "Chicken",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  229,
-                                                                                                                "lineTotal":  229,
-                                                                                                                "itemName":  "Barbecue Chicken Kabab (Supreme)",
-                                                                                                                "categoryName":  "Chicken",
-                                                                                                                "notes":  ""
-                                                                                                            }
-                                                                                                        ],
-                                                                                              "paymentMode":  "Cash",
-                                                                                              "cashAmount":  461,
-                                                                                              "waiterName":  "Self / Counter",
-                                                                                              "orderType":  "DineIn",
-                                                                                              "orderId":  114,
-                                                                                              "otherAmount":  0,
-                                                                                              "cashierName":  "Admin",
-                                                                                              "grandTotal":  461,
-                                                                                              "settledDate":  "2026-09-27T15:57:43+05:30",
-                                                                                              "customerName":  "Walk-in",
-                                                                                              "upiAmount":  0,
-                                                                                              "subTotal":  461,
-                                                                                              "taxAmount":  60.13,
-                                                                                              "cardAmount":  0,
-                                                                                              "bankAmount":  0,
-                                                                                              "customerPhone":  "",
-                                                                                              "invoiceNo":  "INV037",
-                                                                                              "tableName":  "Table 6"
-                                                                                          }
-                                                                                      ]
-                                                                        }
-                                                 },
-                                      "ownerName":  "JANTA RESTRO Owner"
-                                  },
-                   "9829012345":  {
-                                      "pin":  "1234",
-                                      "ownerPhone":  "9829012345",
-                                      "stores":  {
-                                                     "STORE_JANTA_01":  {
-                                                                            "storePhone":  "9723717248",
-                                                                            "liveSummary":  {
-                                                                                                "totalGrossSales":  5213.7,
-                                                                                                "returnCard":  0,
-                                                                                                "takeawaySales":  0,
-                                                                                                "netCash":  4965.7,
-                                                                                                "voidCount":  0,
-                                                                                                "netTotalCollection":  5213.7,
-                                                                                                "salesDue":  0,
-                                                                                                "returnUpi":  0,
-                                                                                                "salesCash":  4965.7,
-                                                                                                "upiCollected":  0,
-                                                                                                "totalRefundAmount":  0,
-                                                                                                "otherCollected":  0,
-                                                                                                "drawerCash":  4965.7,
-                                                                                                "businessDate":  "2026-09-27",
-                                                                                                "totalDiscounts":  0,
-                                                                                                "netBusinessRevenue":  5213.7,
-                                                                                                "totalBillsCount":  7,
-                                                                                                "bankCollected":  248,
-                                                                                                "totalSalesDiscount":  0,
-                                                                                                "cardCollected":  0,
-                                                                                                "dineInSales":  5213.7,
-                                                                                                "totalNetSales":  5213.7,
-                                                                                                "lastUpdated":  "2026-09-27T20:58:30Z",
-                                                                                                "netDue":  0,
-                                                                                                "cashCollected":  4965.7,
-                                                                                                "totalTaxes":  679.92,
-                                                                                                "netCard":  0,
-                                                                                                "salesTotalPaid":  5213.7,
-                                                                                                "salesCard":  0,
-                                                                                                "totalTips":  0,
-                                                                                                "returnDue":  0,
-                                                                                                "totalSalesTax":  679.92,
-                                                                                                "netUpi":  0,
-                                                                                                "deliverySales":  0,
-                                                                                                "totalSalesInvoices":  7,
-                                                                                                "totalReturnInvoices":  0,
-                                                                                                "activeTablesCount":  0,
-                                                                                                "salesUpi":  0,
-                                                                                                "totalSales":  5213.7,
-                                                                                                "returnCash":  0,
-                                                                                                "totalVoidAmount":  0
-                                                                                            },
-                                                                            "storeName":  "JANTA RESTRO",
-                                                                            "storeId":  "STORE_JANTA_01",
-                                                                            "bills":  [
-                                                                                          {
-                                                                                              "discountAmount":  0,
-                                                                                              "items":  [
-                                                                                                            {
-                                                                                                                "qty":  8,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  229,
-                                                                                                                "lineTotal":  1832,
-                                                                                                                "itemName":  "Barbecue Chicken Kabab (Supreme)",
-                                                                                                                "categoryName":  "Chicken",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  144,
-                                                                                                                "lineTotal":  144,
-                                                                                                                "itemName":  "Barbecue Chocolate Shake (Supreme)",
-                                                                                                                "categoryName":  "Beverages",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  204,
-                                                                                                                "lineTotal":  204,
-                                                                                                                "itemName":  "Barbecue Chilli Paneer (Large)",
-                                                                                                                "categoryName":  "Chinese Snacks",
-                                                                                                                "notes":  ""
-                                                                                                            }
-                                                                                                        ],
-                                                                                              "paymentMode":  "Cash",
-                                                                                              "cashAmount":  2180,
-                                                                                              "waiterName":  "Self / Counter",
-                                                                                              "orderType":  "DineIn",
-                                                                                              "orderId":  120,
-                                                                                              "otherAmount":  0,
-                                                                                              "cashierName":  "Admin",
-                                                                                              "grandTotal":  2180,
-                                                                                              "settledDate":  "2026-09-27T16:33:15+05:30",
-                                                                                              "customerName":  "Walk-in",
-                                                                                              "upiAmount":  0,
-                                                                                              "subTotal":  2180,
-                                                                                              "taxAmount":  284.35,
-                                                                                              "cardAmount":  0,
-                                                                                              "bankAmount":  0,
-                                                                                              "customerPhone":  "",
-                                                                                              "invoiceNo":  "INV043",
-                                                                                              "tableName":  "Table 6"
-                                                                                          },
-                                                                                          {
-                                                                                              "discountAmount":  0,
-                                                                                              "items":  [
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  229,
-                                                                                                                "lineTotal":  229,
-                                                                                                                "itemName":  "Barbecue Chicken Kabab (Supreme)",
-                                                                                                                "categoryName":  "Chicken",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  144,
-                                                                                                                "lineTotal":  144,
-                                                                                                                "itemName":  "Barbecue Chocolate Shake (Supreme)",
-                                                                                                                "categoryName":  "Beverages",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  133,
-                                                                                                                "lineTotal":  133,
-                                                                                                                "itemName":  "Barbecue Fried Rice",
-                                                                                                                "categoryName":  "Chinese Snacks",
-                                                                                                                "notes":  ""
-                                                                                                            }
-                                                                                                        ],
-                                                                                              "paymentMode":  "Cash",
-                                                                                              "cashAmount":  506,
-                                                                                              "waiterName":  "Self / Counter",
-                                                                                              "orderType":  "DineIn",
-                                                                                              "orderId":  119,
-                                                                                              "otherAmount":  0,
-                                                                                              "cashierName":  "Admin",
-                                                                                              "grandTotal":  506,
-                                                                                              "settledDate":  "2026-09-27T16:32:54+05:30",
-                                                                                              "customerName":  "Walk-in",
-                                                                                              "upiAmount":  0,
-                                                                                              "subTotal":  506,
-                                                                                              "taxAmount":  66,
-                                                                                              "cardAmount":  0,
-                                                                                              "bankAmount":  0,
-                                                                                              "customerPhone":  "",
-                                                                                              "invoiceNo":  "INV042",
-                                                                                              "tableName":  "Table 6"
-                                                                                          },
-                                                                                          {
-                                                                                              "discountAmount":  0,
-                                                                                              "items":  [
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  123,
-                                                                                                                "lineTotal":  123,
-                                                                                                                "itemName":  "Barbecue Grilled Sandwich (Supreme)",
-                                                                                                                "categoryName":  "Burgers",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  125,
-                                                                                                                "lineTotal":  125,
-                                                                                                                "itemName":  "Barbecue Iced Tea Lemon (Deluxe)",
-                                                                                                                "categoryName":  "Beverages",
-                                                                                                                "notes":  ""
-                                                                                                            }
-                                                                                                        ],
-                                                                                              "paymentMode":  "Bank",
-                                                                                              "cashAmount":  0,
-                                                                                              "waiterName":  "Self / Counter",
-                                                                                              "orderType":  "DineIn",
-                                                                                              "orderId":  118,
-                                                                                              "otherAmount":  0,
-                                                                                              "cashierName":  "Admin",
-                                                                                              "grandTotal":  248,
-                                                                                              "settledDate":  "2026-09-27T16:22:04+05:30",
-                                                                                              "customerName":  "Walk-in",
-                                                                                              "upiAmount":  0,
-                                                                                              "subTotal":  248,
-                                                                                              "taxAmount":  32.35,
-                                                                                              "cardAmount":  0,
-                                                                                              "bankAmount":  248,
-                                                                                              "customerPhone":  "",
-                                                                                              "invoiceNo":  "INV041",
-                                                                                              "tableName":  "Table 6"
-                                                                                          },
-                                                                                          {
-                                                                                              "discountAmount":  0,
-                                                                                              "items":  [
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  229,
-                                                                                                                "lineTotal":  229,
-                                                                                                                "itemName":  "Barbecue Chicken Kabab (Supreme)",
-                                                                                                                "categoryName":  "Chicken",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "FULL",
-                                                                                                                "price":  79,
-                                                                                                                "lineTotal":  79,
-                                                                                                                "itemName":  "Aloo Tikki Burger",
-                                                                                                                "categoryName":  "Burgers",
-                                                                                                                "notes":  "?? Extra Spicy, ?? Extra Butter"
-                                                                                                            }
-                                                                                                        ],
-                                                                                              "paymentMode":  "Cash",
-                                                                                              "cashAmount":  319.85,
-                                                                                              "waiterName":  "Self / Counter",
-                                                                                              "orderType":  "DineIn",
-                                                                                              "orderId":  117,
-                                                                                              "otherAmount":  0,
-                                                                                              "cashierName":  "Admin",
-                                                                                              "grandTotal":  319.85,
-                                                                                              "settledDate":  "2026-09-27T16:21:42+05:30",
-                                                                                              "customerName":  "Walk-in",
-                                                                                              "upiAmount":  0,
-                                                                                              "subTotal":  308,
-                                                                                              "taxAmount":  41.72,
-                                                                                              "cardAmount":  0,
-                                                                                              "bankAmount":  0,
-                                                                                              "customerPhone":  "",
-                                                                                              "invoiceNo":  "INV040",
-                                                                                              "tableName":  "Table 6"
-                                                                                          },
-                                                                                          {
-                                                                                              "discountAmount":  0,
-                                                                                              "items":  [
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  220,
-                                                                                                                "lineTotal":  220,
-                                                                                                                "itemName":  "Barbecue Chilli Chicken (Deluxe)",
-                                                                                                                "categoryName":  "Chinese Snacks",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  209,
-                                                                                                                "lineTotal":  209,
-                                                                                                                "itemName":  "Barbecue Chicken Wings (Combo)",
-                                                                                                                "categoryName":  "Chicken",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  204,
-                                                                                                                "lineTotal":  204,
-                                                                                                                "itemName":  "Barbecue Chilli Paneer (Large)",
-                                                                                                                "categoryName":  "Chinese Snacks",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  144,
-                                                                                                                "lineTotal":  144,
-                                                                                                                "itemName":  "Barbecue Chocolate Shake (Supreme)",
-                                                                                                                "categoryName":  "Beverages",
-                                                                                                                "notes":  ""
-                                                                                                            }
-                                                                                                        ],
-                                                                                              "paymentMode":  "Cash",
-                                                                                              "cashAmount":  777,
-                                                                                              "waiterName":  "Self / Counter",
-                                                                                              "orderType":  "DineIn",
-                                                                                              "orderId":  116,
-                                                                                              "otherAmount":  0,
-                                                                                              "cashierName":  "Admin",
-                                                                                              "grandTotal":  777,
-                                                                                              "settledDate":  "2026-09-27T15:58:02+05:30",
-                                                                                              "customerName":  "Walk-in",
-                                                                                              "upiAmount":  0,
-                                                                                              "subTotal":  777,
-                                                                                              "taxAmount":  101.35,
-                                                                                              "cardAmount":  0,
-                                                                                              "bankAmount":  0,
-                                                                                              "customerPhone":  "",
-                                                                                              "invoiceNo":  "INV039",
-                                                                                              "tableName":  "Table 6"
-                                                                                          },
-                                                                                          {
-                                                                                              "discountAmount":  0,
-                                                                                              "items":  [
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  283,
-                                                                                                                "lineTotal":  283,
-                                                                                                                "itemName":  "Barbecue Butter Chicken (Special)",
-                                                                                                                "categoryName":  "Chicken",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  204,
-                                                                                                                "lineTotal":  204,
-                                                                                                                "itemName":  "Barbecue Chilli Paneer (Large)",
-                                                                                                                "categoryName":  "Chinese Snacks",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  144,
-                                                                                                                "lineTotal":  144,
-                                                                                                                "itemName":  "Barbecue Chocolate Shake (Supreme)",
-                                                                                                                "categoryName":  "Beverages",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "FULL",
-                                                                                                                "price":  79,
-                                                                                                                "lineTotal":  79,
-                                                                                                                "itemName":  "Aloo Tikki Burger",
-                                                                                                                "categoryName":  "Burgers",
-                                                                                                                "notes":  ""
-                                                                                                            }
-                                                                                                        ],
-                                                                                              "paymentMode":  "Cash",
-                                                                                              "cashAmount":  721.85,
-                                                                                              "waiterName":  "Self / Counter",
-                                                                                              "orderType":  "DineIn",
-                                                                                              "orderId":  115,
-                                                                                              "otherAmount":  0,
-                                                                                              "cashierName":  "Admin",
-                                                                                              "grandTotal":  721.85,
-                                                                                              "settledDate":  "2026-09-27T15:57:56+05:30",
-                                                                                              "customerName":  "Walk-in",
-                                                                                              "upiAmount":  0,
-                                                                                              "subTotal":  710,
-                                                                                              "taxAmount":  94.15,
-                                                                                              "cardAmount":  0,
-                                                                                              "bankAmount":  0,
-                                                                                              "customerPhone":  "",
-                                                                                              "invoiceNo":  "INV038",
-                                                                                              "tableName":  "Table 6"
-                                                                                          },
-                                                                                          {
-                                                                                              "discountAmount":  0,
-                                                                                              "items":  [
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  232,
-                                                                                                                "lineTotal":  232,
-                                                                                                                "itemName":  "Barbecue Chicken Kabab",
-                                                                                                                "categoryName":  "Chicken",
-                                                                                                                "notes":  ""
-                                                                                                            },
-                                                                                                            {
-                                                                                                                "qty":  1,
-                                                                                                                "variantName":  "",
-                                                                                                                "price":  229,
-                                                                                                                "lineTotal":  229,
-                                                                                                                "itemName":  "Barbecue Chicken Kabab (Supreme)",
-                                                                                                                "categoryName":  "Chicken",
-                                                                                                                "notes":  ""
-                                                                                                            }
-                                                                                                        ],
-                                                                                              "paymentMode":  "Cash",
-                                                                                              "cashAmount":  461,
-                                                                                              "waiterName":  "Self / Counter",
-                                                                                              "orderType":  "DineIn",
-                                                                                              "orderId":  114,
-                                                                                              "otherAmount":  0,
-                                                                                              "cashierName":  "Admin",
-                                                                                              "grandTotal":  461,
-                                                                                              "settledDate":  "2026-09-27T15:57:43+05:30",
-                                                                                              "customerName":  "Walk-in",
-                                                                                              "upiAmount":  0,
-                                                                                              "subTotal":  461,
-                                                                                              "taxAmount":  60.13,
-                                                                                              "cardAmount":  0,
-                                                                                              "bankAmount":  0,
-                                                                                              "customerPhone":  "",
-                                                                                              "invoiceNo":  "INV037",
-                                                                                              "tableName":  "Table 6"
-                                                                                          }
-                                                                                      ]
-                                                                        }
-                                                 },
-                                      "ownerName":  "JANTA RESTRO Owner"
-                                  }
-               }
+{
+  "owners": {
+    "9723717248": {
+      "ownerPhone": "9723717248",
+      "ownerName": "JANTA RESTRO Owner",
+      "pin": "1234",
+      "stores": {
+        "STORE_JANTA_01": {
+          "storePhone": "9723717248",
+          "liveSummary": {
+            "totalGrossSales": 5213.7,
+            "returnCard": 0,
+            "takeawaySales": 0,
+            "netCash": 4965.7,
+            "voidCount": 0,
+            "netTotalCollection": 5213.7,
+            "salesDue": 0,
+            "returnUpi": 0,
+            "salesCash": 4965.7,
+            "upiCollected": 0,
+            "totalRefundAmount": 0,
+            "otherCollected": 0,
+            "drawerCash": 4965.7,
+            "businessDate": "2026-09-27",
+            "totalDiscounts": 0,
+            "netBusinessRevenue": 5213.7,
+            "totalBillsCount": 7,
+            "bankCollected": 248,
+            "totalSalesDiscount": 0,
+            "cardCollected": 0,
+            "dineInSales": 5213.7,
+            "totalNetSales": 5213.7,
+            "lastUpdated": "2026-09-27T20:58:30Z",
+            "netDue": 0,
+            "cashCollected": 4965.7,
+            "totalTaxes": 679.92,
+            "netCard": 248,
+            "salesTotalPaid": 5213.7,
+            "salesCard": 248,
+            "totalTips": 0,
+            "returnDue": 0,
+            "totalSalesTax": 679.92,
+            "netUpi": 0,
+            "deliverySales": 0,
+            "totalSalesInvoices": 7,
+            "totalReturnInvoices": 0,
+            "activeTablesCount": 0,
+            "salesUpi": 0,
+            "totalSales": 5213.7,
+            "returnCash": 0,
+            "totalVoidAmount": 0
+          },
+          "storeName": "JANTA RESTRO",
+          "storeId": "STORE_JANTA_01",
+          "bills": [
+            {
+              "discountAmount": 0,
+              "items": [
+                {
+                  "qty": 8,
+                  "variantName": "",
+                  "price": 229,
+                  "lineTotal": 1832,
+                  "itemName": "Barbecue Chicken Kabab (Supreme)",
+                  "categoryName": "Chicken",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 144,
+                  "lineTotal": 144,
+                  "itemName": "Barbecue Chocolate Shake (Supreme)",
+                  "categoryName": "Beverages",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 204,
+                  "lineTotal": 204,
+                  "itemName": "Barbecue Chilli Paneer (Large)",
+                  "categoryName": "Chinese Snacks",
+                  "notes": ""
+                }
+              ],
+              "paymentMode": "Cash",
+              "cashAmount": 2180,
+              "waiterName": "Self / Counter",
+              "orderType": "DineIn",
+              "orderId": 120,
+              "otherAmount": 0,
+              "cashierName": "Admin",
+              "grandTotal": 2180,
+              "settledDate": "2026-09-27T16:33:15+05:30",
+              "customerName": "Walk-in",
+              "upiAmount": 0,
+              "subTotal": 2180,
+              "taxAmount": 284.35,
+              "cardAmount": 0,
+              "bankAmount": 0,
+              "customerPhone": "",
+              "invoiceNo": "INV043",
+              "tableName": "Table 6"
+            },
+            {
+              "discountAmount": 0,
+              "items": [
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 229,
+                  "lineTotal": 229,
+                  "itemName": "Barbecue Chicken Kabab (Supreme)",
+                  "categoryName": "Chicken",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 144,
+                  "lineTotal": 144,
+                  "itemName": "Barbecue Chocolate Shake (Supreme)",
+                  "categoryName": "Beverages",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 133,
+                  "lineTotal": 133,
+                  "itemName": "Barbecue Fried Rice",
+                  "categoryName": "Chinese Snacks",
+                  "notes": ""
+                }
+              ],
+              "paymentMode": "Cash",
+              "cashAmount": 506,
+              "waiterName": "Self / Counter",
+              "orderType": "DineIn",
+              "orderId": 119,
+              "otherAmount": 0,
+              "cashierName": "Admin",
+              "grandTotal": 506,
+              "settledDate": "2026-09-27T16:32:54+05:30",
+              "customerName": "Walk-in",
+              "upiAmount": 0,
+              "subTotal": 506,
+              "taxAmount": 66,
+              "cardAmount": 0,
+              "bankAmount": 0,
+              "customerPhone": "",
+              "invoiceNo": "INV042",
+              "tableName": "Table 6"
+            },
+            {
+              "discountAmount": 0,
+              "items": [
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 123,
+                  "lineTotal": 123,
+                  "itemName": "Barbecue Grilled Sandwich (Supreme)",
+                  "categoryName": "Burgers",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 125,
+                  "lineTotal": 125,
+                  "itemName": "Barbecue Iced Tea Lemon (Deluxe)",
+                  "categoryName": "Beverages",
+                  "notes": ""
+                }
+              ],
+              "paymentMode": "Bank",
+              "cashAmount": 0,
+              "waiterName": "Self / Counter",
+              "orderType": "DineIn",
+              "orderId": 118,
+              "otherAmount": 0,
+              "cashierName": "Admin",
+              "grandTotal": 248,
+              "settledDate": "2026-09-27T16:22:04+05:30",
+              "customerName": "Walk-in",
+              "upiAmount": 0,
+              "subTotal": 248,
+              "taxAmount": 32.35,
+              "cardAmount": 0,
+              "bankAmount": 248,
+              "customerPhone": "",
+              "invoiceNo": "INV041",
+              "tableName": "Table 6"
+            },
+            {
+              "discountAmount": 0,
+              "items": [
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 229,
+                  "lineTotal": 229,
+                  "itemName": "Barbecue Chicken Kabab (Supreme)",
+                  "categoryName": "Chicken",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "FULL",
+                  "price": 79,
+                  "lineTotal": 79,
+                  "itemName": "Aloo Tikki Burger",
+                  "categoryName": "Burgers",
+                  "notes": "?? Extra Spicy, ?? Extra Butter"
+                }
+              ],
+              "paymentMode": "Cash",
+              "cashAmount": 319.85,
+              "waiterName": "Self / Counter",
+              "orderType": "DineIn",
+              "orderId": 117,
+              "otherAmount": 0,
+              "cashierName": "Admin",
+              "grandTotal": 319.85,
+              "settledDate": "2026-09-27T16:21:42+05:30",
+              "customerName": "Walk-in",
+              "upiAmount": 0,
+              "subTotal": 308,
+              "taxAmount": 41.72,
+              "cardAmount": 0,
+              "bankAmount": 0,
+              "customerPhone": "",
+              "invoiceNo": "INV040",
+              "tableName": "Table 6"
+            },
+            {
+              "discountAmount": 0,
+              "items": [
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 220,
+                  "lineTotal": 220,
+                  "itemName": "Barbecue Chilli Chicken (Deluxe)",
+                  "categoryName": "Chinese Snacks",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 209,
+                  "lineTotal": 209,
+                  "itemName": "Barbecue Chicken Wings (Combo)",
+                  "categoryName": "Chicken",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 204,
+                  "lineTotal": 204,
+                  "itemName": "Barbecue Chilli Paneer (Large)",
+                  "categoryName": "Chinese Snacks",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 144,
+                  "lineTotal": 144,
+                  "itemName": "Barbecue Chocolate Shake (Supreme)",
+                  "categoryName": "Beverages",
+                  "notes": ""
+                }
+              ],
+              "paymentMode": "Cash",
+              "cashAmount": 777,
+              "waiterName": "Self / Counter",
+              "orderType": "DineIn",
+              "orderId": 116,
+              "otherAmount": 0,
+              "cashierName": "Admin",
+              "grandTotal": 777,
+              "settledDate": "2026-09-27T15:58:02+05:30",
+              "customerName": "Walk-in",
+              "upiAmount": 0,
+              "subTotal": 777,
+              "taxAmount": 101.35,
+              "cardAmount": 0,
+              "bankAmount": 0,
+              "customerPhone": "",
+              "invoiceNo": "INV039",
+              "tableName": "Table 6"
+            },
+            {
+              "discountAmount": 0,
+              "items": [
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 283,
+                  "lineTotal": 283,
+                  "itemName": "Barbecue Butter Chicken (Special)",
+                  "categoryName": "Chicken",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 204,
+                  "lineTotal": 204,
+                  "itemName": "Barbecue Chilli Paneer (Large)",
+                  "categoryName": "Chinese Snacks",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 144,
+                  "lineTotal": 144,
+                  "itemName": "Barbecue Chocolate Shake (Supreme)",
+                  "categoryName": "Beverages",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "FULL",
+                  "price": 79,
+                  "lineTotal": 79,
+                  "itemName": "Aloo Tikki Burger",
+                  "categoryName": "Burgers",
+                  "notes": ""
+                }
+              ],
+              "paymentMode": "Cash",
+              "cashAmount": 721.85,
+              "waiterName": "Self / Counter",
+              "orderType": "DineIn",
+              "orderId": 115,
+              "otherAmount": 0,
+              "cashierName": "Admin",
+              "grandTotal": 721.85,
+              "settledDate": "2026-09-27T15:57:56+05:30",
+              "customerName": "Walk-in",
+              "upiAmount": 0,
+              "subTotal": 710,
+              "taxAmount": 94.15,
+              "cardAmount": 0,
+              "bankAmount": 0,
+              "customerPhone": "",
+              "invoiceNo": "INV038",
+              "tableName": "Table 6"
+            },
+            {
+              "discountAmount": 0,
+              "items": [
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 232,
+                  "lineTotal": 232,
+                  "itemName": "Barbecue Chicken Kabab",
+                  "categoryName": "Chicken",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 229,
+                  "lineTotal": 229,
+                  "itemName": "Barbecue Chicken Kabab (Supreme)",
+                  "categoryName": "Chicken",
+                  "notes": ""
+                }
+              ],
+              "paymentMode": "Cash",
+              "cashAmount": 461,
+              "waiterName": "Self / Counter",
+              "orderType": "DineIn",
+              "orderId": 114,
+              "otherAmount": 0,
+              "cashierName": "Admin",
+              "grandTotal": 461,
+              "settledDate": "2026-09-27T15:57:43+05:30",
+              "customerName": "Walk-in",
+              "upiAmount": 0,
+              "subTotal": 461,
+              "taxAmount": 60.13,
+              "cardAmount": 0,
+              "bankAmount": 0,
+              "customerPhone": "",
+              "invoiceNo": "INV037",
+              "tableName": "Table 6"
+            }
+          ]
+        }
+      }
+    },
+    "9829012345": {
+      "ownerPhone": "9829012345",
+      "ownerName": "JANTA RESTRO Owner",
+      "pin": "1234",
+      "stores": {
+        "STORE_JANTA_01": {
+          "storePhone": "9723717248",
+          "liveSummary": {
+            "totalGrossSales": 5213.7,
+            "returnCard": 0,
+            "takeawaySales": 0,
+            "netCash": 4965.7,
+            "voidCount": 0,
+            "netTotalCollection": 5213.7,
+            "salesDue": 0,
+            "returnUpi": 0,
+            "salesCash": 4965.7,
+            "upiCollected": 0,
+            "totalRefundAmount": 0,
+            "otherCollected": 0,
+            "drawerCash": 4965.7,
+            "businessDate": "2026-09-27",
+            "totalDiscounts": 0,
+            "netBusinessRevenue": 5213.7,
+            "totalBillsCount": 7,
+            "bankCollected": 248,
+            "totalSalesDiscount": 0,
+            "cardCollected": 0,
+            "dineInSales": 5213.7,
+            "totalNetSales": 5213.7,
+            "lastUpdated": "2026-09-27T20:58:30Z",
+            "netDue": 0,
+            "cashCollected": 4965.7,
+            "totalTaxes": 679.92,
+            "netCard": 248,
+            "salesTotalPaid": 5213.7,
+            "salesCard": 248,
+            "totalTips": 0,
+            "returnDue": 0,
+            "totalSalesTax": 679.92,
+            "netUpi": 0,
+            "deliverySales": 0,
+            "totalSalesInvoices": 7,
+            "totalReturnInvoices": 0,
+            "activeTablesCount": 0,
+            "salesUpi": 0,
+            "totalSales": 5213.7,
+            "returnCash": 0,
+            "totalVoidAmount": 0
+          },
+          "storeName": "JANTA RESTRO",
+          "storeId": "STORE_JANTA_01",
+          "bills": [
+            {
+              "discountAmount": 0,
+              "items": [
+                {
+                  "qty": 8,
+                  "variantName": "",
+                  "price": 229,
+                  "lineTotal": 1832,
+                  "itemName": "Barbecue Chicken Kabab (Supreme)",
+                  "categoryName": "Chicken",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 144,
+                  "lineTotal": 144,
+                  "itemName": "Barbecue Chocolate Shake (Supreme)",
+                  "categoryName": "Beverages",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 204,
+                  "lineTotal": 204,
+                  "itemName": "Barbecue Chilli Paneer (Large)",
+                  "categoryName": "Chinese Snacks",
+                  "notes": ""
+                }
+              ],
+              "paymentMode": "Cash",
+              "cashAmount": 2180,
+              "waiterName": "Self / Counter",
+              "orderType": "DineIn",
+              "orderId": 120,
+              "otherAmount": 0,
+              "cashierName": "Admin",
+              "grandTotal": 2180,
+              "settledDate": "2026-09-27T16:33:15+05:30",
+              "customerName": "Walk-in",
+              "upiAmount": 0,
+              "subTotal": 2180,
+              "taxAmount": 284.35,
+              "cardAmount": 0,
+              "bankAmount": 0,
+              "customerPhone": "",
+              "invoiceNo": "INV043",
+              "tableName": "Table 6"
+            },
+            {
+              "discountAmount": 0,
+              "items": [
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 229,
+                  "lineTotal": 229,
+                  "itemName": "Barbecue Chicken Kabab (Supreme)",
+                  "categoryName": "Chicken",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 144,
+                  "lineTotal": 144,
+                  "itemName": "Barbecue Chocolate Shake (Supreme)",
+                  "categoryName": "Beverages",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 133,
+                  "lineTotal": 133,
+                  "itemName": "Barbecue Fried Rice",
+                  "categoryName": "Chinese Snacks",
+                  "notes": ""
+                }
+              ],
+              "paymentMode": "Cash",
+              "cashAmount": 506,
+              "waiterName": "Self / Counter",
+              "orderType": "DineIn",
+              "orderId": 119,
+              "otherAmount": 0,
+              "cashierName": "Admin",
+              "grandTotal": 506,
+              "settledDate": "2026-09-27T16:32:54+05:30",
+              "customerName": "Walk-in",
+              "upiAmount": 0,
+              "subTotal": 506,
+              "taxAmount": 66,
+              "cardAmount": 0,
+              "bankAmount": 0,
+              "customerPhone": "",
+              "invoiceNo": "INV042",
+              "tableName": "Table 6"
+            },
+            {
+              "discountAmount": 0,
+              "items": [
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 123,
+                  "lineTotal": 123,
+                  "itemName": "Barbecue Grilled Sandwich (Supreme)",
+                  "categoryName": "Burgers",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 125,
+                  "lineTotal": 125,
+                  "itemName": "Barbecue Iced Tea Lemon (Deluxe)",
+                  "categoryName": "Beverages",
+                  "notes": ""
+                }
+              ],
+              "paymentMode": "Bank",
+              "cashAmount": 0,
+              "waiterName": "Self / Counter",
+              "orderType": "DineIn",
+              "orderId": 118,
+              "otherAmount": 0,
+              "cashierName": "Admin",
+              "grandTotal": 248,
+              "settledDate": "2026-09-27T16:22:04+05:30",
+              "customerName": "Walk-in",
+              "upiAmount": 0,
+              "subTotal": 248,
+              "taxAmount": 32.35,
+              "cardAmount": 0,
+              "bankAmount": 248,
+              "customerPhone": "",
+              "invoiceNo": "INV041",
+              "tableName": "Table 6"
+            },
+            {
+              "discountAmount": 0,
+              "items": [
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 229,
+                  "lineTotal": 229,
+                  "itemName": "Barbecue Chicken Kabab (Supreme)",
+                  "categoryName": "Chicken",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "FULL",
+                  "price": 79,
+                  "lineTotal": 79,
+                  "itemName": "Aloo Tikki Burger",
+                  "categoryName": "Burgers",
+                  "notes": "?? Extra Spicy, ?? Extra Butter"
+                }
+              ],
+              "paymentMode": "Cash",
+              "cashAmount": 319.85,
+              "waiterName": "Self / Counter",
+              "orderType": "DineIn",
+              "orderId": 117,
+              "otherAmount": 0,
+              "cashierName": "Admin",
+              "grandTotal": 319.85,
+              "settledDate": "2026-09-27T16:21:42+05:30",
+              "customerName": "Walk-in",
+              "upiAmount": 0,
+              "subTotal": 308,
+              "taxAmount": 41.72,
+              "cardAmount": 0,
+              "bankAmount": 0,
+              "customerPhone": "",
+              "invoiceNo": "INV040",
+              "tableName": "Table 6"
+            },
+            {
+              "discountAmount": 0,
+              "items": [
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 220,
+                  "lineTotal": 220,
+                  "itemName": "Barbecue Chilli Chicken (Deluxe)",
+                  "categoryName": "Chinese Snacks",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 209,
+                  "lineTotal": 209,
+                  "itemName": "Barbecue Chicken Wings (Combo)",
+                  "categoryName": "Chicken",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 204,
+                  "lineTotal": 204,
+                  "itemName": "Barbecue Chilli Paneer (Large)",
+                  "categoryName": "Chinese Snacks",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 144,
+                  "lineTotal": 144,
+                  "itemName": "Barbecue Chocolate Shake (Supreme)",
+                  "categoryName": "Beverages",
+                  "notes": ""
+                }
+              ],
+              "paymentMode": "Cash",
+              "cashAmount": 777,
+              "waiterName": "Self / Counter",
+              "orderType": "DineIn",
+              "orderId": 116,
+              "otherAmount": 0,
+              "cashierName": "Admin",
+              "grandTotal": 777,
+              "settledDate": "2026-09-27T15:58:02+05:30",
+              "customerName": "Walk-in",
+              "upiAmount": 0,
+              "subTotal": 777,
+              "taxAmount": 101.35,
+              "cardAmount": 0,
+              "bankAmount": 0,
+              "customerPhone": "",
+              "invoiceNo": "INV039",
+              "tableName": "Table 6"
+            },
+            {
+              "discountAmount": 0,
+              "items": [
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 283,
+                  "lineTotal": 283,
+                  "itemName": "Barbecue Butter Chicken (Special)",
+                  "categoryName": "Chicken",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 204,
+                  "lineTotal": 204,
+                  "itemName": "Barbecue Chilli Paneer (Large)",
+                  "categoryName": "Chinese Snacks",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 144,
+                  "lineTotal": 144,
+                  "itemName": "Barbecue Chocolate Shake (Supreme)",
+                  "categoryName": "Beverages",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "FULL",
+                  "price": 79,
+                  "lineTotal": 79,
+                  "itemName": "Aloo Tikki Burger",
+                  "categoryName": "Burgers",
+                  "notes": ""
+                }
+              ],
+              "paymentMode": "Cash",
+              "cashAmount": 721.85,
+              "waiterName": "Self / Counter",
+              "orderType": "DineIn",
+              "orderId": 115,
+              "otherAmount": 0,
+              "cashierName": "Admin",
+              "grandTotal": 721.85,
+              "settledDate": "2026-09-27T15:57:56+05:30",
+              "customerName": "Walk-in",
+              "upiAmount": 0,
+              "subTotal": 710,
+              "taxAmount": 94.15,
+              "cardAmount": 0,
+              "bankAmount": 0,
+              "customerPhone": "",
+              "invoiceNo": "INV038",
+              "tableName": "Table 6"
+            },
+            {
+              "discountAmount": 0,
+              "items": [
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 232,
+                  "lineTotal": 232,
+                  "itemName": "Barbecue Chicken Kabab",
+                  "categoryName": "Chicken",
+                  "notes": ""
+                },
+                {
+                  "qty": 1,
+                  "variantName": "",
+                  "price": 229,
+                  "lineTotal": 229,
+                  "itemName": "Barbecue Chicken Kabab (Supreme)",
+                  "categoryName": "Chicken",
+                  "notes": ""
+                }
+              ],
+              "paymentMode": "Cash",
+              "cashAmount": 461,
+              "waiterName": "Self / Counter",
+              "orderType": "DineIn",
+              "orderId": 114,
+              "otherAmount": 0,
+              "cashierName": "Admin",
+              "grandTotal": 461,
+              "settledDate": "2026-09-27T15:57:43+05:30",
+              "customerName": "Walk-in",
+              "upiAmount": 0,
+              "subTotal": 461,
+              "taxAmount": 60.13,
+              "cardAmount": 0,
+              "bankAmount": 0,
+              "customerPhone": "",
+              "invoiceNo": "INV037",
+              "tableName": "Table 6"
+            }
+          ]
+        }
+      }
+    }
+  }
 }
