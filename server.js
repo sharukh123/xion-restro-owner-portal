@@ -1213,7 +1213,7 @@ function getMobileAppHtml() {
       container.innerHTML = sorted.map((b, idx) => {
         const timeStr = b.settledDate ? new Date(b.settledDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '--:--';
         const items = b.items || [];
-        const itemsPreview = items.map(i => `${i.qty}x ${i.itemName}`).slice(0, 3).join(', ') + (items.length > 3 ? '...' : '');
+        const itemsPreview = items.map(i => i.qty + 'x ' + i.itemName).slice(0, 3).join(', ') + (items.length > 3 ? '...' : '');
 
         let payBadgeColor = 'bg-slate-800 text-slate-300 border-slate-700';
         const pm = (b.paymentMode || '').toUpperCase();
@@ -1222,40 +1222,40 @@ function getMobileAppHtml() {
         else if (pm.includes('CARD')) payBadgeColor = 'bg-blue-500/10 text-blue-400 border-blue-500/30';
         else if (pm.includes('DUE')) payBadgeColor = 'bg-amber-500/10 text-amber-400 border-amber-500/30';
 
-        return `
-          <div onclick="viewBillDetails(${idx})" ondblclick="viewBillDetails(${idx})" class="kpi-card bg-slate-950/70 border border-slate-800 hover:border-slate-700 active:border-emerald-500/50 rounded-xl p-3.5 space-y-2 transition cursor-pointer select-none">
+        return \`
+          <div onclick="viewBillDetails(\${idx})" ondblclick="viewBillDetails(\${idx})" class="kpi-card bg-slate-950/70 border border-slate-800 hover:border-slate-700 active:border-emerald-500/50 rounded-xl p-3.5 space-y-2 transition cursor-pointer select-none">
             <div class="flex items-center justify-between text-xs">
               <div class="flex items-center space-x-2">
-                <span class="font-extrabold text-white font-mono">#${b.invoiceNo || b.orderId}</span>
-                <span class="text-[10px] px-1.5 py-0.5 rounded border font-bold ${payBadgeColor}">${b.paymentMode || 'Cash'}</span>
-                <span class="text-[10px] text-slate-400 font-medium">${b.orderType || 'DineIn'}</span>
+                <span class="font-extrabold text-white font-mono">#\${b.invoiceNo || b.orderId}</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded border font-bold \${payBadgeColor}">\${b.paymentMode || 'Cash'}</span>
+                <span class="text-[10px] text-slate-400 font-medium">\${b.orderType || 'DineIn'}</span>
               </div>
               <div class="text-right">
-                <span class="text-sm font-extrabold font-mono text-emerald-400">₹${fmt(b.grandTotal || b.subTotal || 0)}</span>
+                <span class="text-sm font-extrabold font-mono text-emerald-400">₹\${fmt(b.grandTotal || b.subTotal || 0)}</span>
               </div>
             </div>
 
             <div class="flex items-center justify-between text-[11px] text-slate-400">
               <span class="flex items-center space-x-1">
-                <span>📍 ${b.tableName || 'Counter'}</span>
+                <span>📍 \${b.tableName || 'Counter'}</span>
                 <span>•</span>
-                <span>👤 ${b.customerName || 'Walk-in'}</span>
+                <span>👤 \${b.customerName || 'Walk-in'}</span>
               </span>
-              <span class="text-[10px] text-slate-500 font-mono">${timeStr}</span>
+              <span class="text-[10px] text-slate-500 font-mono">\${timeStr}</span>
             </div>
 
-            ${items.length > 0 ? `
+            \${items.length > 0 ? \`
               <div class="text-[10px] text-slate-400 bg-slate-900/60 rounded-lg px-2.5 py-1.5 border border-slate-800/80 truncate flex items-center justify-between">
-                <span class="truncate">🍽️ ${itemsPreview}</span>
+                <span class="truncate">🍽️ \${itemsPreview}</span>
                 <span class="text-[9px] text-brand-400 font-bold ml-1 shrink-0">Tap to inspect ➔</span>
               </div>
-            ` : `
+            \` : \`
               <div class="text-[9px] text-right text-brand-400 font-bold">
                 Tap to inspect details ➔
               </div>
-            `}
+            \`}
           </div>
-        `;
+        \`;
       }).join('');
     }
 
@@ -1282,22 +1282,21 @@ function getMobileAppHtml() {
       if (items.length === 0) {
         listContainer.innerHTML = '<div class="text-xs text-slate-500 p-3 bg-slate-950/40 rounded-xl text-center">No itemised details available for this invoice.</div>';
       } else {
-        listContainer.innerHTML = items.map(item => `
-          <div class="p-2.5 bg-slate-950/60 rounded-xl border border-slate-800/90 flex items-center justify-between text-xs">
-            <div class="space-y-0.5">
-              <div class="font-bold text-slate-100">${item.itemName || 'Item'}</div>
-              <div class="text-[10px] text-slate-400 font-mono">
-                ${item.qty} × ₹${fmt(item.price)}
-                ${item.variantName ? '<span class="text-indigo-400 ml-1">(' + item.variantName + ')</span>' : ''}
-                ${item.categoryName ? '<span class="text-slate-500 ml-1">• ' + item.categoryName + '</span>' : ''}
-              </div>
-              ${item.notes ? '<div class="text-[9px] text-amber-400 italic">Note: ' + item.notes + '</div>' : ''}
-            </div>
-            <div class="text-right font-mono font-bold text-slate-200">
-              ₹${fmt(item.lineTotal || (item.qty * item.price))}
-            </div>
-          </div>
-        `).join('');
+        listContainer.innerHTML = items.map(function(item) {
+          var variant = item.variantName ? '<span class="text-indigo-400 ml-1">(' + item.variantName + ')</span>' : '';
+          var category = item.categoryName ? '<span class="text-slate-500 ml-1">• ' + item.categoryName + '</span>' : '';
+          var note = item.notes ? '<div class="text-[9px] text-amber-400 italic">Note: ' + item.notes + '</div>' : '';
+          var lineTotal = item.lineTotal || (item.qty * item.price);
+
+          return '<div class="p-2.5 bg-slate-950/60 rounded-xl border border-slate-800/90 flex items-center justify-between text-xs">' +
+            '<div class="space-y-0.5">' +
+              '<div class="font-bold text-slate-100">' + (item.itemName || 'Item') + '</div>' +
+              '<div class="text-[10px] text-slate-400 font-mono">' + item.qty + ' × ₹' + fmt(item.price) + variant + category + '</div>' +
+              note +
+            '</div>' +
+            '<div class="text-right font-mono font-bold text-slate-200">₹' + fmt(lineTotal) + '</div>' +
+          '</div>';
+        }).join('');
       }
 
       // Financials
@@ -1314,11 +1313,11 @@ function getMobileAppHtml() {
       // Payment
       document.getElementById('invModalPayMode').innerText = (b.paymentMode || 'Cash').toUpperCase();
       let splitDetails = '';
-      if (b.cashAmount > 0) splitDetails += `Cash: ₹${fmt(b.cashAmount)} `;
-      if (b.upiAmount > 0) splitDetails += `UPI: ₹${fmt(b.upiAmount)} `;
-      if (b.cardAmount > 0) splitDetails += `Card: ₹${fmt(b.cardAmount)} `;
-      if (b.bankAmount > 0) splitDetails += `Bank: ₹${fmt(b.bankAmount)} `;
-      if (b.otherAmount > 0) splitDetails += `Due: ₹${fmt(b.otherAmount)} `;
+      if (b.cashAmount > 0) splitDetails += 'Cash: ₹' + fmt(b.cashAmount) + ' ';
+      if (b.upiAmount > 0) splitDetails += 'UPI: ₹' + fmt(b.upiAmount) + ' ';
+      if (b.cardAmount > 0) splitDetails += 'Card: ₹' + fmt(b.cardAmount) + ' ';
+      if (b.bankAmount > 0) splitDetails += 'Bank: ₹' + fmt(b.bankAmount) + ' ';
+      if (b.otherAmount > 0) splitDetails += 'Due: ₹' + fmt(b.otherAmount) + ' ';
       document.getElementById('invModalPaySplit').innerText = splitDetails.trim() || ('100% ' + (b.paymentMode || 'Cash'));
 
       document.getElementById('invoiceModal').classList.remove('hidden');
