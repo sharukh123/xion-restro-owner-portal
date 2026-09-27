@@ -559,11 +559,28 @@ function getMobileAppHtml() {
       </div>
     </div>
 
-    <!-- OUTLET / BRANCH SELECTOR -->
-    <div id="branchSelectorContainer" class="mt-2.5">
+    <!-- OUTLET / STORE BANNER (SINGLE OUTLET MODE) -->
+    <div id="singleBranchContainer" class="mt-2.5 flex items-center justify-between text-xs bg-slate-800/80 rounded-xl px-3 py-2 border border-slate-700/80">
+      <div class="flex items-center space-x-2">
+        <span class="text-base">🏪</span>
+        <div>
+          <div id="singleBranchName" class="font-extrabold text-white text-xs">JANTA RESTRO</div>
+          <div class="text-[10px] text-slate-400">Live Counter Stream</div>
+        </div>
+      </div>
+      <div class="text-right">
+        <span class="text-[9px] font-extrabold text-emerald-400 bg-emerald-950/80 border border-emerald-800/60 px-2 py-0.5 rounded">
+          ● ONLINE
+        </span>
+        <div id="outletLastUpdated" class="text-[10px] text-slate-500 font-mono mt-0.5">--</div>
+      </div>
+    </div>
+
+    <!-- OUTLET / BRANCH SELECTOR (MULTI-BRANCH MODE ONLY) -->
+    <div id="branchSelectorContainer" class="mt-2.5 hidden">
       <div class="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
-        <span>Selected Branch</span>
-        <span id="outletLastUpdated" class="text-slate-500 font-mono">--</span>
+        <span>Select Branch</span>
+        <span id="multiOutletLastUpdated" class="text-slate-500 font-mono text-[10px]">--</span>
       </div>
       <select id="branchSelect" onchange="renderDashboard()" class="w-full bg-slate-800/90 text-white text-xs font-bold rounded-lg px-3 py-2 border border-slate-700 focus:outline-none focus:border-brand-500 transition">
         <option value="ALL">🏢 All Outlets (Consolidated Total)</option>
@@ -956,7 +973,26 @@ function getMobileAppHtml() {
     function updateBranchDropdown() {
       if (!currentStoreData || !currentStoreData.stores) return;
       const select = document.getElementById('branchSelect');
+      const container = document.getElementById('branchSelectorContainer');
+      const singleContainer = document.getElementById('singleBranchContainer');
       const storeIds = Object.keys(currentStoreData.stores);
+
+      if (storeIds.length <= 1) {
+        // Single store mode: Hide multi-branch dropdown completely!
+        if (container) container.classList.add('hidden');
+        if (singleContainer) {
+          singleContainer.classList.remove('hidden');
+          const s = storeIds.length === 1 ? currentStoreData.stores[storeIds[0]] : null;
+          const nameEl = document.getElementById('singleBranchName');
+          if (nameEl && s && s.storeName) nameEl.innerText = s.storeName;
+        }
+        selectedStoreId = storeIds.length === 1 ? storeIds[0] : 'ALL';
+        return;
+      }
+
+      // Multi-branch mode: Show dropdown
+      if (container) container.classList.remove('hidden');
+      if (singleContainer) singleContainer.classList.add('hidden');
 
       const prevVal = select.value;
       select.innerHTML = '<option value="ALL">🏢 All Outlets (Consolidated Total)</option>';
@@ -969,17 +1005,20 @@ function getMobileAppHtml() {
         select.appendChild(opt);
       });
 
-      if (storeIds.length === 1) {
-        select.value = storeIds[0];
-        selectedStoreId = storeIds[0];
-      } else if (prevVal && (prevVal === 'ALL' || storeIds.includes(prevVal))) {
+      if (prevVal && (prevVal === 'ALL' || storeIds.includes(prevVal))) {
         select.value = prevVal;
         selectedStoreId = prevVal;
       }
     }
 
     function renderDashboard() {
-      selectedStoreId = document.getElementById('branchSelect').value;
+      const select = document.getElementById('branchSelect');
+      const storeIds = currentStoreData && currentStoreData.stores ? Object.keys(currentStoreData.stores) : [];
+      if (storeIds.length === 1) {
+        selectedStoreId = storeIds[0];
+      } else if (select) {
+        selectedStoreId = select.value || 'ALL';
+      }
       if (!currentStoreData || !currentStoreData.stores) return;
 
       const stores = currentStoreData.stores;
