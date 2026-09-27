@@ -39,7 +39,7 @@ const server = http.createServer((req, res) => {
     // Enable CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Store-Id, X-Master-Owner-Phone, X-Store-Phone, X-Payload-Type, X-Sync-Key');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Store-Id, X-Master-Owner-Phone, X-Store-Phone, X-Payload-Type, X-Sync-Key, X-Owner-Pin');
 
     if (req.method === 'OPTIONS') {
         res.writeHead(204);
@@ -128,29 +128,139 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    // 2. GET OWNER DATA FOR MOBILE APP (GET /api/v1/owner/data?phone=...)
+    // 2. OWNER LOGIN AUTHENTICATION (POST /api/v1/owner/login)
+    if (pathname === '/api/v1/owner/login' && req.method === 'POST') {
+        let body = '';
+        req.on('data', chunk => { body += chunk; });
+        req.on('end', () => {
+            try {
+                const { phone, pin } = JSON.parse(body || '{}');
+                const cleanPhone = (phone || '').trim();
+                const cleanPin = (pin || '').trim();
+
+                if (!cleanPhone || cleanPhone.length !== 10) {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ success: false, error: 'Kripya 10-digit registered mobile number enter karein.' }));
+                    return;
+                }
+
+                const owner = db.owners[cleanPhone];
+                if (!owner) {
+                    res.writeHead(403, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ 
+                        success: false, 
+                        error: 'Yeh mobile number registered nahi hai! Kripya desktop POS software me set kiya gaya registered owner number enter karein.' 
+                    }));
+                    return;
+                }
+
+                const expectedPin = (owner.pin || '1234').toString();
+                if (cleanPin !== expectedPin) {
+                    res.writeHead(401, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ 
+                        success: false, 
+                        error: 'Galat Security PIN! Kripya apna sahi 4-digit PIN enter karein.' 
+                    }));
+                    return;
+                }
+
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ 
+                    success: true, 
+                    message: 'Login successful', 
+                    ownerPhone: cleanPhone,
+                    ownerName: owner.ownerName 
+                }));
+            } catch (err) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: false, error: err.message }));
+            }
+        });
+        return;
+    }
+
+    // 3. CHANGE OWNER PIN (POST /api/v1/owner/change-pin)
+    if (pathname === '/api/v1/owner/change-pin' && req.method === 'POST') {
+        let body = '';
+        req.on('data', chunk => { body += chunk; });
+        req.on('end', () => {
+            try {
+                const { phone, oldPin, newPin } = JSON.parse(body || '{}');
+                const cleanPhone = (phone || '').trim();
+                const cleanOldPin = (oldPin || '').trim();
+                const cleanNewPin = (newPin || '').trim();
+
+                const owner = db.owners[cleanPhone];
+                if (!owner) {
+                    res.writeHead(403, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ success: false, error: 'Owner account not found' }));
+                    return;
+                }
+
+                const expectedPin = (owner.pin || '1234').toString();
+                if (cleanOldPin !== expectedPin) {
+                    res.writeHead(401, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ success: false, error: 'Current PIN galat hai!' }));
+                    return;
+                }
+
+                if (!cleanNewPin || cleanNewPin.length !== 4) {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ success: false, error: 'Naya PIN 4 digit ka hona chahiye.' }));
+                    return;
+                }
+
+                owner.pin = cleanNewPin;
+                saveDb();
+
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: true, message: 'PIN safaltapoorvak badal diya gaya hai!' }));
+            } catch (err) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: false, error: err.message }));
+            }
+        });
+        return;
+    }
+
+    // 4. GET OWNER DATA FOR MOBILE APP (GET /api/v1/owner/data?phone=...&pin=...)
     if (pathname === '/api/v1/owner/data' && req.method === 'GET') {
         const phone = (parsedUrl.query.phone || '').trim();
+        const pin = (parsedUrl.query.pin || req.headers['x-owner-pin'] || '').trim();
+
         if (!phone) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ success: false, error: 'Phone parameter required' }));
             return;
         }
 
-        const ownerData = db.owners[phone] || { ownerPhone: phone, ownerName: 'New Restaurant', pin: '1234', stores: {} };
+        const owner = db.owners[phone];
+        if (!owner) {
+            res.writeHead(403, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ success: false, error: 'Yeh mobile number registered nahi hai!' }));
+            return;
+        }
+
+        const expectedPin = (owner.pin || '1234').toString();
+        if (pin && pin !== expectedPin) {
+            res.writeHead(401, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ success: false, error: 'Galat PIN' }));
+            return;
+        }
+
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ success: true, data: ownerData }));
+        res.end(JSON.stringify({ success: true, data: owner }));
         return;
     }
 
-    // 3. PING HEALTH CHECK (GET /api/v1/ping)
+    // 5. PING HEALTH CHECK (GET /api/v1/ping)
     if (pathname === '/api/v1/ping') {
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ status: 'ONLINE', server: 'XioN Restro Central Multi-Tenant Cloud Gateway v3.0', timestamp: new Date().toISOString() }));
+        res.end(JSON.stringify({ status: 'ONLINE', server: 'XioN Restro Central Multi-Tenant Cloud Gateway v3.1', timestamp: new Date().toISOString() }));
         return;
     }
 
-    // 4. SERVE MOBILE WEB APPLICATION (GET /)
+    // 6. SERVE MOBILE WEB APPLICATION (GET /)
     if (pathname === '/' || pathname === '/index.html') {
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         res.end(getMobileAppHtml());
@@ -190,12 +300,7 @@ function getMobileAppHtml() {
             mono: ['"JetBrains Mono"', 'monospace']
           },
           colors: {
-            brand: { 50: '#ecfdf5', 500: '#10b981', 600: '#059669', 700: '#047857' },
-            payCash: '#10b981',
-            payUpi: '#8b5cf6',
-            payCard: '#3b82f6',
-            payDue: '#f59e0b',
-            payTotal: '#0f172a'
+            brand: { 50: '#ecfdf5', 500: '#10b981', 600: '#059669', 700: '#047857' }
           }
         }
       }
@@ -231,7 +336,7 @@ function getMobileAppHtml() {
 <body class="bg-slate-950 text-slate-100 min-h-screen pb-24 select-none">
 
   <!-- ========================================== -->
-  <!-- 1. LOGIN / PIN LOCK SCREEN                 -->
+  <!-- 1. STRICT LOGIN / PIN LOCK SCREEN          -->
   <!-- ========================================== -->
   <div id="loginScreen" class="fixed inset-0 z-50 bg-slate-950/98 backdrop-blur-xl flex items-center justify-center p-4">
     <div class="w-full max-w-sm bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-5">
@@ -243,7 +348,11 @@ function getMobileAppHtml() {
         <p class="text-xs text-slate-400 font-medium">Power BI Executive Financial Portal</p>
       </div>
 
-      <div class="space-y-4 pt-2">
+      <!-- ERROR MESSAGE BANNER -->
+      <div id="loginError" class="hidden p-3 rounded-xl bg-rose-950/80 border border-rose-500/50 text-rose-300 text-xs font-semibold text-center space-y-1">
+      </div>
+
+      <div class="space-y-4 pt-1">
         <div>
           <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">Registered Owner Mobile Number</label>
           <div class="relative">
@@ -254,12 +363,12 @@ function getMobileAppHtml() {
 
         <div>
           <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">4-Digit Security PIN</label>
-          <input id="loginPin" type="password" maxlength="4" placeholder="••••" value="1234" class="w-full bg-slate-800 text-white font-semibold text-center text-xl tracking-widest rounded-xl px-4 py-3 border border-slate-700 focus:outline-none focus:border-brand-500 transition">
+          <input id="loginPin" type="password" maxlength="4" placeholder="••••" class="w-full bg-slate-800 text-white font-semibold text-center text-xl tracking-widest rounded-xl px-4 py-3 border border-slate-700 focus:outline-none focus:border-brand-500 transition">
           <p class="text-[10px] text-slate-500 mt-1">Default PIN: 1234</p>
         </div>
 
-        <button onclick="handleLogin()" class="w-full bg-brand-500 hover:bg-brand-600 active:scale-[0.98] text-white font-bold text-sm py-3.5 rounded-xl shadow-lg shadow-brand-500/25 transition flex items-center justify-center space-x-2">
-          <span>🔐 View Live Executive Dashboard</span>
+        <button id="btnLogin" onclick="handleLogin()" class="w-full bg-brand-500 hover:bg-brand-600 active:scale-[0.98] text-white font-bold text-sm py-3.5 rounded-xl shadow-lg shadow-brand-500/25 transition flex items-center justify-center space-x-2">
+          <span>🔐 Verify & View Dashboard</span>
         </button>
 
         <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-800 text-center">
@@ -268,9 +377,37 @@ function getMobileAppHtml() {
         </div>
 
         <p class="text-[10px] text-center text-slate-500 pt-1">
-          App auto-locks upon closing tab/browser for maximum owner privacy
+          Auto-locks on closing tab/browser for maximum owner privacy
         </p>
       </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- PIN CHANGE MODAL                           -->
+  <!-- ========================================== -->
+  <div id="pinModal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="w-full max-w-sm bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-sm font-bold text-white">🔑 Change Security PIN</h3>
+        <button onclick="closePinModal()" class="text-slate-400 hover:text-white">✕</button>
+      </div>
+      <div id="pinModalError" class="hidden text-xs text-rose-400 bg-rose-950/60 p-2.5 rounded-lg border border-rose-800/50"></div>
+      <div>
+        <label class="text-[11px] font-bold text-slate-400 block mb-1">Current PIN</label>
+        <input id="currPin" type="password" maxlength="4" class="w-full bg-slate-800 text-white text-center text-lg rounded-xl py-2 border border-slate-700">
+      </div>
+      <div>
+        <label class="text-[11px] font-bold text-slate-400 block mb-1">New 4-Digit PIN</label>
+        <input id="newPin1" type="password" maxlength="4" class="w-full bg-slate-800 text-white text-center text-lg rounded-xl py-2 border border-slate-700">
+      </div>
+      <div>
+        <label class="text-[11px] font-bold text-slate-400 block mb-1">Confirm New PIN</label>
+        <input id="newPin2" type="password" maxlength="4" class="w-full bg-slate-800 text-white text-center text-lg rounded-xl py-2 border border-slate-700">
+      </div>
+      <button onclick="submitChangePin()" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs py-3 rounded-xl transition">
+        Update PIN Now
+      </button>
     </div>
   </div>
 
@@ -295,8 +432,11 @@ function getMobileAppHtml() {
         </div>
       </div>
 
-      <!-- Actions: Refresh & Lock -->
+      <!-- Actions: PIN, Refresh & Lock -->
       <div class="flex items-center space-x-2">
+        <button onclick="openPinModal()" title="Change Security PIN" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition active:scale-95 text-xs">
+          🔑
+        </button>
         <button onclick="fetchData()" title="Force Refresh Data" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition active:scale-95">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
         </button>
@@ -564,61 +704,117 @@ function getMobileAppHtml() {
   <!-- ========================================== -->
   <script>
     let currentOwnerPhone = '';
+    let currentOwnerPin = '';
     let currentStoreData = null;
     let selectedStoreId = 'ALL';
     let activePaymentFilter = null;
     let autoRefreshTimer = null;
 
     // --- AUTO-LOGOUT & SESSION LIFECYCLE ---
-    // Strict requirement: App close karne par automatically logout hona chahiye
-    // Using sessionStorage so closing tab/browser clears session instantly
-    window.addEventListener('load', () => {
+    window.addEventListener('load', async () => {
       const savedPhone = sessionStorage.getItem('xion_owner_phone');
       const savedPin = sessionStorage.getItem('xion_owner_pin');
       if (savedPhone && savedPin) {
-        currentOwnerPhone = savedPhone;
-        document.getElementById('loginScreen').classList.add('hidden');
-        fetchData();
-        startAutoRefresh();
-      } else {
-        document.getElementById('loginScreen').classList.remove('hidden');
+        // Verify with server before auto-unlocking
+        const ok = await verifyCredentials(savedPhone, savedPin);
+        if (ok) {
+          currentOwnerPhone = savedPhone;
+          currentOwnerPin = savedPin;
+          document.getElementById('loginScreen').classList.add('hidden');
+          fetchData();
+          startAutoRefresh();
+          return;
+        }
       }
+      sessionStorage.clear();
+      document.getElementById('loginScreen').classList.remove('hidden');
     });
 
-    // Clear on beforeunload / pagehide if desired
-    window.addEventListener('pagehide', () => {
-      // sessionStorage naturally clears when tab/window is closed
-    });
+    async function verifyCredentials(phone, pin) {
+      try {
+        const res = await fetch('/api/v1/owner/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone, pin })
+        });
+        const data = await res.json();
+        return data.success === true;
+      } catch (e) {
+        return false;
+      }
+    }
 
     function lockApp() {
       sessionStorage.clear();
       currentOwnerPhone = '';
+      currentOwnerPin = '';
       currentStoreData = null;
       if (autoRefreshTimer) clearInterval(autoRefreshTimer);
       document.getElementById('loginScreen').classList.remove('hidden');
       document.getElementById('loginPin').value = '';
+      hideLoginError();
+    }
+
+    function showLoginError(msg) {
+      const errBox = document.getElementById('loginError');
+      errBox.innerHTML = '⚠️ ' + msg;
+      errBox.classList.remove('hidden');
+    }
+
+    function hideLoginError() {
+      const errBox = document.getElementById('loginError');
+      errBox.innerText = '';
+      errBox.classList.add('hidden');
     }
 
     async function handleLogin() {
+      hideLoginError();
       const phone = document.getElementById('loginPhone').value.trim();
       const pin = document.getElementById('loginPin').value.trim();
 
       if (!phone || phone.length !== 10) {
-        alert('Please enter a valid 10-digit registered owner mobile number');
+        showLoginError('Kripya 10-digit registered owner mobile number enter karein.');
         return;
       }
-      if (!pin) {
-        alert('Please enter your 4-digit PIN');
+      if (!pin || pin.length !== 4) {
+        showLoginError('Kripya 4-digit security PIN enter karein.');
         return;
       }
 
-      currentOwnerPhone = phone;
-      sessionStorage.setItem('xion_owner_phone', phone);
-      sessionStorage.setItem('xion_owner_pin', pin);
+      const btn = document.getElementById('btnLogin');
+      btn.disabled = true;
+      btn.innerHTML = '<span>⏳ Verifying Credentials...</span>';
 
-      document.getElementById('loginScreen').classList.add('hidden');
-      await fetchData();
-      startAutoRefresh();
+      try {
+        const res = await fetch('/api/v1/owner/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone, pin })
+        });
+        const data = await res.json();
+
+        if (!data.success) {
+          showLoginError(data.error || 'Authentication Failed');
+          document.getElementById('loginPin').value = '';
+          btn.disabled = false;
+          btn.innerHTML = '<span>🔐 Verify & View Dashboard</span>';
+          return;
+        }
+
+        currentOwnerPhone = phone;
+        currentOwnerPin = pin;
+        sessionStorage.setItem('xion_owner_phone', phone);
+        sessionStorage.setItem('xion_owner_pin', pin);
+
+        document.getElementById('loginScreen').classList.add('hidden');
+        await fetchData();
+        startAutoRefresh();
+      } catch (err) {
+        showLoginError('Connection Error: Server se connect nahi ho paya.');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span>🔐 Verify & View Dashboard</span>';
+      }
     }
 
     function startAutoRefresh() {
@@ -627,15 +823,17 @@ function getMobileAppHtml() {
     }
 
     async function fetchData() {
-      if (!currentOwnerPhone) return;
+      if (!currentOwnerPhone || !currentOwnerPin) return;
       try {
-        const res = await fetch('/api/v1/owner/data?phone=' + encodeURIComponent(currentOwnerPhone));
+        const res = await fetch('/api/v1/owner/data?phone=' + encodeURIComponent(currentOwnerPhone) + '&pin=' + encodeURIComponent(currentOwnerPin));
         const json = await res.json();
         if (json.success && json.data) {
           currentStoreData = json.data;
           updateBranchDropdown();
           renderDashboard();
           document.getElementById('headerSyncStatus').innerText = 'Synced ' + new Date().toLocaleTimeString();
+        } else if (res.status === 401 || res.status === 403) {
+          lockApp();
         }
       } catch (e) {
         console.error('Fetch error:', e);
@@ -674,7 +872,6 @@ function getMobileAppHtml() {
 
       const stores = currentStoreData.stores;
       let consolidated = {
-        // Reconciled Payment Mode Collections
         netCash: 0,
         netUpi: 0,
         netCard: 0,
@@ -685,35 +882,29 @@ function getMobileAppHtml() {
         salesCard: 0,
         salesDue: 0,
         salesTotalPaid: 0,
-        // Sales Summary
         totalSalesInvoices: 0,
         totalGrossSales: 0,
         totalSalesDiscount: 0,
         totalSalesTax: 0,
         totalNetSales: 0,
-        // Returns Summary
         totalReturnInvoices: 0,
         totalRefundAmount: 0,
         returnCash: 0,
         returnUpi: 0,
         returnCard: 0,
         returnDue: 0,
-        // Inward Purchases
         totalInwardInvoices: 0,
         totalInwardGross: 0,
         totalInwardDiscount: 0,
         totalInwardPaid: 0,
         totalInwardDue: 0,
-        // Supplier Payments
         totalSupplierVouchers: 0,
         totalSupplierPaid: 0,
         totalSupplierDiscount: 0,
         supplierCash: 0,
         supplierBank: 0,
-        // Cash Drawer & Tally
         drawerCash: 0,
         netBusinessRevenue: 0,
-        // Operational Vitals
         dineInSales: 0,
         takeawaySales: 0,
         activeTablesCount: 0,
@@ -728,7 +919,6 @@ function getMobileAppHtml() {
           const s = stores[id];
           const sm = s.liveSummary || {};
 
-          // Aggregations
           consolidated.netCash += (sm.netCash !== undefined ? Number(sm.netCash) : Number(sm.cashCollected || 0));
           consolidated.netUpi += (sm.netUpi !== undefined ? Number(sm.netUpi) : Number(sm.upiCollected || 0));
           consolidated.netCard += (sm.netCard !== undefined ? Number(sm.netCard) : Number(sm.cardCollected || 0));
@@ -776,7 +966,6 @@ function getMobileAppHtml() {
         }
       });
 
-      // Net Total Reconciled Collection
       consolidated.netTotalCollection = consolidated.netCash + consolidated.netUpi + consolidated.netCard + consolidated.netDue;
 
       // Populate DOM Elements
@@ -786,14 +975,12 @@ function getMobileAppHtml() {
       document.getElementById('valPayDue').innerText = fmt(consolidated.netDue);
       document.getElementById('valPayTotal').innerText = fmt(consolidated.netTotalCollection);
 
-      // Sub percentages
       const tot = consolidated.netTotalCollection;
       document.getElementById('subPayCash').innerText = tot > 0 ? (consolidated.netCash / tot * 100).toFixed(1) + '% of total' : '0.0% of total';
       document.getElementById('subPayUpi').innerText = tot > 0 ? (consolidated.netUpi / tot * 100).toFixed(1) + '% of total' : '0.0% of total';
       document.getElementById('subPayCard').innerText = tot > 0 ? (consolidated.netCard / tot * 100).toFixed(1) + '% of total' : '0.0% of total';
       document.getElementById('subPayDue').innerText = tot > 0 ? (consolidated.netDue / tot * 100).toFixed(1) + '% of total' : '0.0% of total';
 
-      // 4 Summary Cards
       document.getElementById('valSalesInv').innerText = consolidated.totalSalesInvoices;
       document.getElementById('valSalesGross').innerText = fmt(consolidated.totalGrossSales);
       document.getElementById('valSalesDisc').innerText = fmt(consolidated.totalSalesDiscount);
@@ -814,7 +1001,6 @@ function getMobileAppHtml() {
       document.getElementById('valSupplierCash').innerText = fmt(consolidated.supplierCash);
       document.getElementById('valSupplierBank').innerText = fmt(consolidated.supplierBank);
 
-      // Dark Master Drawer Bar
       document.getElementById('tallySalesCash').innerText = fmt(consolidated.salesCash);
       document.getElementById('tallyReturnCash').innerText = fmt(consolidated.returnCash);
       document.getElementById('tallySupplierCash').innerText = fmt(consolidated.supplierCash);
@@ -823,7 +1009,6 @@ function getMobileAppHtml() {
       document.getElementById('tallyExpectedCash').innerText = fmt(drawerCashVal);
       document.getElementById('tallyNetRevenue').innerText = fmt(consolidated.netBusinessRevenue);
 
-      // Vitals
       document.getElementById('vitalTables').innerText = consolidated.activeTablesCount;
       document.getElementById('vitalDine').innerText = Math.round(consolidated.dineInSales);
       document.getElementById('vitalTake').innerText = Math.round(consolidated.takeawaySales);
@@ -843,7 +1028,6 @@ function getMobileAppHtml() {
       }
       activePaymentFilter = mode;
       
-      // Update UI cards styling
       ['Cash', 'Upi', 'Card', 'Due'].forEach(m => {
         const el = document.getElementById('cardPay' + m);
         if (m.toLowerCase() === mode.toLowerCase()) {
@@ -882,12 +1066,10 @@ function getMobileAppHtml() {
         }
       });
 
-      // Filter by payment mode if active
       if (activePaymentFilter) {
         bills = bills.filter(b => (b.paymentMode || '').toLowerCase().includes(activePaymentFilter.toLowerCase()));
       }
 
-      // Filter by search string
       if (search) {
         bills = bills.filter(b => 
           (b.invoiceNo || '').toLowerCase().includes(search) ||
@@ -913,7 +1095,6 @@ function getMobileAppHtml() {
         return;
       }
 
-      // Sort newest first
       const sorted = [...bills].sort((a, b) => new Date(b.settledDate || 0) - new Date(a.settledDate || 0));
 
       container.innerHTML = sorted.map((b, idx) => {
@@ -958,6 +1139,53 @@ function getMobileAppHtml() {
           </div>
         \`;
       }).join('');
+    }
+
+    function openPinModal() {
+      document.getElementById('pinModal').classList.remove('hidden');
+      document.getElementById('pinModalError').classList.add('hidden');
+      document.getElementById('currPin').value = '';
+      document.getElementById('newPin1').value = '';
+      document.getElementById('newPin2').value = '';
+    }
+
+    function closePinModal() {
+      document.getElementById('pinModal').classList.add('hidden');
+    }
+
+    async function submitChangePin() {
+      const errEl = document.getElementById('pinModalError');
+      errEl.classList.add('hidden');
+
+      const oldPin = document.getElementById('currPin').value.trim();
+      const newPin1 = document.getElementById('newPin1').value.trim();
+      const newPin2 = document.getElementById('newPin2').value.trim();
+
+      if (!oldPin) { errEl.innerText = 'Current PIN daalein.'; errEl.classList.remove('hidden'); return; }
+      if (!newPin1 || newPin1.length !== 4) { errEl.innerText = 'Naya PIN 4 digit ka hona chahiye.'; errEl.classList.remove('hidden'); return; }
+      if (newPin1 !== newPin2) { errEl.innerText = 'Naya PIN dono fields me match nahi kar raha.'; errEl.classList.remove('hidden'); return; }
+
+      try {
+        const res = await fetch('/api/v1/owner/change-pin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone: currentOwnerPhone, oldPin, newPin: newPin1 })
+        });
+        const data = await res.json();
+        if (!data.success) {
+          errEl.innerText = data.error || 'PIN badalne me asafalta.';
+          errEl.classList.remove('hidden');
+          return;
+        }
+
+        currentOwnerPin = newPin1;
+        sessionStorage.setItem('xion_owner_pin', newPin1);
+        alert('✅ PIN Safaltapoorvak badal diya gaya hai!');
+        closePinModal();
+      } catch (err) {
+        errEl.innerText = 'Server error: PIN change nahi ho paaya.';
+        errEl.classList.remove('hidden');
+      }
     }
 
     function fmt(num) {
