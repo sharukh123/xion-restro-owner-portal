@@ -1,0 +1,21 @@
+{
+  "name": "xion-restro-owner-portal",
+  "version": "1.0.0",
+  "description": "Multi-Tenant Central Cloud Portal for XioN Restaurant Owners",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "pos",
+    "restaurant",
+    "cloud-sync",
+    "multi-tenant",
+    "xion"
+  ],
+  "author": "Afzal-xion",
+  "license": "ISC"
+}
