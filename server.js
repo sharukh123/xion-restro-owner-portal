@@ -523,6 +523,24 @@ function getMobileAppHtml() {
     </div>
   </div>
 
+  <!-- PULL TO REFRESH INDICATOR -->
+  <div id="ptrIndicator" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center pointer-events-none transition-transform duration-200 -translate-y-full">
+    <div class="bg-slate-800/95 backdrop-blur-md border border-slate-700 text-slate-200 text-xs font-semibold px-4 py-2 rounded-full shadow-2xl flex items-center space-x-2 mt-2">
+      <div id="ptrIcon" class="transition-transform duration-200">
+        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </div>
+      <div id="ptrSpinner" class="hidden">
+        <svg class="w-4 h-4 text-emerald-400 animate-spin" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+        </svg>
+      </div>
+      <span id="ptrText" class="text-xs">Pull down to refresh</span>
+    </div>
+  </div>
+
   <!-- ========================================== -->
   <!-- 2. TOP EXECUTIVE APP BAR                   -->
   <!-- ========================================== -->
@@ -544,17 +562,13 @@ function getMobileAppHtml() {
         </div>
       </div>
 
-      <!-- Actions: PIN, Refresh & Lock -->
+      <!-- Actions: PIN & Refresh (Lock removed as requested) -->
       <div class="flex items-center space-x-2">
         <button onclick="openPinModal()" title="Change Security PIN" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition active:scale-95 text-xs">
           🔑
         </button>
         <button onclick="fetchData()" title="Force Refresh Data" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition active:scale-95">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-        </button>
-        <button onclick="lockApp()" title="Lock / Auto Logout" class="px-2.5 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-bold transition flex items-center space-x-1 active:scale-95">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-          <span>Lock</span>
         </button>
       </div>
     </div>
@@ -1412,6 +1426,86 @@ function getMobileAppHtml() {
         errEl.classList.remove('hidden');
       }
     }
+
+    // --- PULL TO REFRESH ON MOBILE ---
+    (function initPullToRefresh() {
+      let startY = 0;
+      let currentY = 0;
+      let isPulling = false;
+      let isRefreshing = false;
+      const threshold = 65;
+      const maxPull = 110;
+      const indicator = document.getElementById('ptrIndicator');
+      const ptrText = document.getElementById('ptrText');
+      const ptrIcon = document.getElementById('ptrIcon');
+      const ptrSpinner = document.getElementById('ptrSpinner');
+
+      if (!indicator) return;
+
+      window.addEventListener('touchstart', function(e) {
+        if (window.scrollY <= 0 && !isRefreshing && e.touches && e.touches.length === 1) {
+          startY = e.touches[0].pageY;
+          isPulling = true;
+        }
+      }, { passive: true });
+
+      window.addEventListener('touchmove', function(e) {
+        if (!isPulling || isRefreshing || !e.touches || e.touches.length !== 1) return;
+        currentY = e.touches[0].pageY;
+        const diff = currentY - startY;
+
+        if (diff > 0 && window.scrollY <= 0) {
+          const pullDist = Math.min(diff * 0.45, maxPull);
+          indicator.style.transform = 'translateY(' + pullDist + 'px)';
+
+          if (pullDist >= threshold) {
+            ptrText.innerText = 'Release to refresh';
+            ptrIcon.style.transform = 'rotate(180deg)';
+          } else {
+            ptrText.innerText = 'Pull down to refresh';
+            ptrIcon.style.transform = 'rotate(0deg)';
+          }
+        }
+      }, { passive: true });
+
+      window.addEventListener('touchend', async function() {
+        if (!isPulling || isRefreshing) return;
+        isPulling = false;
+        const diff = currentY - startY;
+        const pullDist = Math.min(diff * 0.45, maxPull);
+
+        if (pullDist >= threshold && window.scrollY <= 0) {
+          isRefreshing = true;
+          indicator.style.transform = 'translateY(55px)';
+          ptrIcon.classList.add('hidden');
+          ptrSpinner.classList.remove('hidden');
+          ptrText.innerText = 'Refreshing live data...';
+
+          try {
+            await fetchData();
+            ptrText.innerText = 'Updated!';
+          } catch (e) {
+            ptrText.innerText = 'Update failed';
+          }
+
+          setTimeout(function() {
+            indicator.style.transform = 'translateY(-100%)';
+            setTimeout(function() {
+              ptrIcon.classList.remove('hidden');
+              ptrSpinner.classList.add('hidden');
+              ptrIcon.style.transform = 'rotate(0deg)';
+              ptrText.innerText = 'Pull down to refresh';
+              isRefreshing = false;
+            }, 250);
+          }, 600);
+        } else {
+          indicator.style.transform = 'translateY(-100%)';
+          ptrIcon.style.transform = 'rotate(0deg)';
+        }
+        startY = 0;
+        currentY = 0;
+      }, { passive: true });
+    })();
 
     function fmt(num) {
       const n = Number(num || 0);
