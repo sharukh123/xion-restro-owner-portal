@@ -98,7 +98,10 @@ const server = http.createServer((req, res) => {
                 if (!store.suppliers) store.suppliers = [];
 
                 // Handle Bill
-                if (payloadType === 'BILL' || payload.eventType === 'BILL_SETTLED') {
+                const isBill = (payloadType === 'BILL' || payloadType === 'BILL_SETTLED' || (payload.eventType && payload.eventType.indexOf('BILL') >= 0));
+                const isSummary = (payloadType === 'SUMMARY' || payloadType === 'DAY_SUMMARY' || (payload.eventType && payload.eventType.indexOf('SUMMARY') >= 0));
+
+                if (isBill) {
                     const existsIndex = store.bills.findIndex(b => b.invoiceNo === payload.invoiceNo);
                     if (existsIndex >= 0) {
                         store.bills[existsIndex] = payload;
@@ -108,7 +111,7 @@ const server = http.createServer((req, res) => {
                     if (store.bills.length > 500) store.bills.pop();
                 }
                 // Handle Summary
-                else if (payloadType === 'SUMMARY' || payload.eventType === 'DAY_SUMMARY') {
+                else if (isSummary) {
                     store.liveSummary = payload;
                 }
                 // Handle Ping
