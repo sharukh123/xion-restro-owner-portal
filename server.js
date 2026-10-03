@@ -1,7 +1,7 @@
 // ============================================================================
-// XioN Restro Central Multi-Tenant Cloud Portal & Power BI Executive Gateway
-// 100% Free Lifetime Cloud Hosting on Render.com
-// Strict Rule: Zero external branding, 100% Independent XioN Restro Architecture
+// XRestro Central Multi-Tenant Cloud Portal & Smart Executive Owner Suite
+// 100% Free Lifetime Cloud Gateway & Reconciled Tally Engine
+// App Brand: XRestro
 // ============================================================================
 
 const http = require('http');
@@ -35,6 +35,92 @@ function saveDb() {
     }
 }
 
+// ============================================================================
+// LUXURY APP ICON (VECTOR SVG - CRISP RETINA ON ALL IPHONES & ANDROID DEVICES)
+// ============================================================================
+const ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="40%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="50%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <radialGradient id="glowRad" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#020617" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background Squircle -->
+  <rect x="12" y="12" width="488" height="488" rx="112" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="7"/>
+  <rect x="22" y="22" width="468" height="468" rx="102" fill="none" stroke="url(#emeraldGrad)" stroke-width="3" opacity="0.6"/>
+  <circle cx="256" cy="210" r="170" fill="url(#glowRad)"/>
+
+  <!-- Gourmet Cloche / Dome -->
+  <path d="M 186 150 C 186 90, 326 90, 326 150 Z" fill="none" stroke="url(#goldGrad)" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="256" cy="90" r="14" fill="url(#goldGrad)" filter="url(#neonGlow)"/>
+  <line x1="166" y1="158" x2="346" y2="158" stroke="url(#goldGrad)" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Monogram XR -->
+  <text x="256" y="320" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="142" font-weight="900" fill="url(#emeraldGrad)" text-anchor="middle" filter="url(#neonGlow)" letter-spacing="-3">XR</text>
+
+  <!-- Golden Stars -->
+  <text x="256" y="362" font-size="18" fill="url(#goldGrad)" text-anchor="middle" letter-spacing="8">★ ★ ★</text>
+
+  <!-- Brand Typography -->
+  <text x="256" y="415" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="36" font-weight="900" fill="url(#goldGrad)" text-anchor="middle" letter-spacing="6">XRESTRO</text>
+  <text x="256" y="445" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#94a3b8" text-anchor="middle" letter-spacing="5">EXECUTIVE SUITE</text>
+</svg>`;
+
+// ============================================================================
+// PWA WEB APP MANIFEST (Saves directly to home screen as "XRestro")
+// ============================================================================
+const PWA_MANIFEST = JSON.stringify({
+  name: "XRestro - Smart Owner Portal",
+  short_name: "XRestro",
+  description: "Real-Time Executive Analytics, Cash Tally, and Fraud Auditing for XRestro Owners",
+  start_url: "/",
+  id: "/",
+  display: "standalone",
+  background_color: "#020617",
+  theme_color: "#020617",
+  orientation: "portrait-primary",
+  icons: [
+    {
+      src: "/icon.svg",
+      sizes: "any",
+      type: "image/svg+xml",
+      purpose: "any maskable"
+    },
+    {
+      src: "/icon.svg",
+      sizes: "192x192",
+      type: "image/svg+xml",
+      purpose: "any maskable"
+    },
+    {
+      src: "/icon.svg",
+      sizes: "512x512",
+      type: "image/svg+xml",
+      purpose: "any maskable"
+    }
+  ]
+}, null, 2);
+
 const server = http.createServer((req, res) => {
     // Enable CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -50,7 +136,25 @@ const server = http.createServer((req, res) => {
     const parsedUrl = url.parse(req.url, true);
     const pathname = parsedUrl.pathname;
 
-    // 1. RECEIVE SYNC PAYLOAD FROM DESKTOP POS (POST /api/v1/sync)
+    // 1. PWA MANIFEST & ICONS
+    if (pathname === '/manifest.json') {
+        res.writeHead(200, {
+            'Content-Type': 'application/manifest+json; charset=utf-8',
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
+        });
+        res.end(PWA_MANIFEST);
+        return;
+    }
+
+    if (pathname === '/icon.svg' || pathname === '/icon.png' || pathname === '/apple-touch-icon.png' || pathname === '/favicon.ico' || pathname === '/favicon.svg') {
+        res.writeHead(200, { 'Content-Type': 'image/svg+xml; charset=utf-8', 'Cache-Control': 'public, max-age=86400' });
+        res.end(ICON_SVG);
+        return;
+    }
+
+    // 2. RECEIVE SYNC PAYLOAD FROM DESKTOP POS (POST /api/v1/sync)
     if (pathname === '/api/v1/sync' && req.method === 'POST') {
         let body = '';
         req.on('data', chunk => { body += chunk; });
@@ -71,7 +175,7 @@ const server = http.createServer((req, res) => {
                 if (!db.owners[ownerPhone]) {
                     db.owners[ownerPhone] = {
                         ownerPhone: ownerPhone,
-                        ownerName: payload.storeName || 'Restaurant Owner',
+                        ownerName: payload.storeName || 'XRestro Owner',
                         pin: '1234',
                         stores: {}
                     };
@@ -100,6 +204,9 @@ const server = http.createServer((req, res) => {
                 // Handle Bill
                 const isBill = (payloadType === 'BILL' || payloadType === 'BILL_SETTLED' || (payload.eventType && payload.eventType.indexOf('BILL') >= 0));
                 const isSummary = (payloadType === 'SUMMARY' || payloadType === 'DAY_SUMMARY' || (payload.eventType && payload.eventType.indexOf('SUMMARY') >= 0));
+                const isReturn = (payloadType === 'RETURN' || (payload.eventType && payload.eventType.indexOf('RETURN') >= 0));
+                const isInward = (payloadType === 'INWARD' || (payload.eventType && payload.eventType.indexOf('INWARD') >= 0));
+                const isSupplier = (payloadType === 'SUPPLIER_PAYMENT' || (payload.eventType && payload.eventType.indexOf('SUPPLIER') >= 0));
 
                 if (isBill) {
                     const existsIndex = store.bills.findIndex(b => b.invoiceNo === payload.invoiceNo);
@@ -109,13 +216,18 @@ const server = http.createServer((req, res) => {
                         store.bills.unshift(payload); // Newest first
                     }
                     if (store.bills.length > 500) store.bills.pop();
-                }
-                // Handle Summary
-                else if (isSummary) {
+                } else if (isReturn) {
+                    store.returns.unshift(payload);
+                    if (store.returns.length > 100) store.returns.pop();
+                } else if (isInward) {
+                    store.inwards.unshift(payload);
+                    if (store.inwards.length > 100) store.inwards.pop();
+                } else if (isSupplier) {
+                    store.suppliers.unshift(payload);
+                    if (store.suppliers.length > 100) store.suppliers.pop();
+                } else if (isSummary) {
                     store.liveSummary = payload;
-                }
-                // Handle Ping
-                else if (payloadType === 'PING') {
+                } else if (payloadType === 'PING') {
                     store.lastPing = new Date().toISOString();
                 }
 
@@ -131,7 +243,7 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    // 2. OWNER LOGIN AUTHENTICATION (POST /api/v1/owner/login)
+    // 3. OWNER LOGIN AUTHENTICATION (POST /api/v1/owner/login)
     if (pathname === '/api/v1/owner/login' && req.method === 'POST') {
         let body = '';
         req.on('data', chunk => { body += chunk; });
@@ -182,7 +294,7 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    // 3. CHANGE OWNER PIN (POST /api/v1/owner/change-pin)
+    // 4. CHANGE OWNER PIN (POST /api/v1/owner/change-pin)
     if (pathname === '/api/v1/owner/change-pin' && req.method === 'POST') {
         let body = '';
         req.on('data', chunk => { body += chunk; });
@@ -226,7 +338,7 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    // 4. GET OWNER DATA FOR MOBILE APP (GET /api/v1/owner/data?phone=...&pin=...)
+    // 5. GET OWNER DATA FOR MOBILE APP (GET /api/v1/owner/data?phone=...&pin=...)
     if (pathname === '/api/v1/owner/data' && req.method === 'GET') {
         const phone = (parsedUrl.query.phone || '').trim();
         const pin = (parsedUrl.query.pin || req.headers['x-owner-pin'] || '').trim();
@@ -256,16 +368,21 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    // 5. PING HEALTH CHECK (GET /api/v1/ping)
+    // 6. PING HEALTH CHECK (GET /api/v1/ping)
     if (pathname === '/api/v1/ping') {
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ status: 'ONLINE', server: 'XioN Restro Central Multi-Tenant Cloud Gateway v3.1', timestamp: new Date().toISOString() }));
+        res.end(JSON.stringify({ status: 'ONLINE', server: 'XRestro Executive Cloud Gateway v4.0', timestamp: new Date().toISOString() }));
         return;
     }
 
-    // 6. SERVE MOBILE WEB APPLICATION (GET /)
+    // 7. SERVE MOBILE WEB APPLICATION (GET /)
     if (pathname === '/' || pathname === '/index.html') {
-        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        res.writeHead(200, {
+            'Content-Type': 'text/html; charset=utf-8',
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
+        });
         res.end(getMobileAppHtml());
         return;
     }
@@ -276,10 +393,13 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, '0.0.0.0', () => {
     console.log('===============================================================');
-    console.log(`🚀 XioN Restro Central Multi-Tenant Cloud Portal running on port ${PORT}!`);
+    console.log(`🚀 XRestro Executive Cloud Portal running on port ${PORT}!`);
     console.log('===============================================================');
 });
 
+// ============================================================================
+// MOBILE PWA HTML INTERFACE (ULTRA-ADVANCED, ACCURATE, RECONCILED)
+// ============================================================================
 function getMobileAppHtml() {
     return `<!DOCTYPE html>
 <html lang="en">
@@ -288,12 +408,21 @@ function getMobileAppHtml() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="XioN Restro">
+  <meta name="apple-mobile-web-app-title" content="XRestro">
+  <meta name="application-name" content="XRestro">
   <meta name="theme-color" content="#020617">
-  <title>XioN Restro - Power BI Executive Portal</title>
+  
+  <title>XRestro - Smart Executive Suite</title>
+  
+  <!-- PWA Manifest & Luxury Icons -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <link rel="apple-touch-icon" href="/icon.svg">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  
   <script>
     tailwind.config = {
       theme: {
@@ -309,6 +438,7 @@ function getMobileAppHtml() {
       }
     }
   </script>
+
   <style>
     html, body { 
       overscroll-behavior-y: none; 
@@ -333,11 +463,17 @@ function getMobileAppHtml() {
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
+      height: 3.5px;
       background: var(--card-color);
     }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .gold-shimmer {
+      background: linear-gradient(90deg, rgba(250, 204, 21, 0.1) 0%, rgba(250, 204, 21, 0.3) 50%, rgba(250, 204, 21, 0.1) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 3s infinite linear;
+    }
+    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen pb-24 select-none">
@@ -348,11 +484,14 @@ function getMobileAppHtml() {
   <div id="loginScreen" class="fixed inset-0 z-50 bg-slate-950/98 backdrop-blur-xl flex items-center justify-center p-4">
     <div class="w-full max-w-sm bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-5">
       <div class="text-center space-y-2">
-        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-600 to-emerald-400 mx-auto flex items-center justify-center font-extrabold text-white text-3xl shadow-xl shadow-emerald-900/50">
-          X
+        <div class="w-20 h-20 rounded-3xl bg-slate-950 border border-emerald-500/30 mx-auto flex items-center justify-center shadow-xl shadow-emerald-950/60 p-1">
+          <img src="/icon.svg" alt="XRestro Logo" class="w-full h-full object-contain">
         </div>
-        <h2 class="text-xl font-extrabold text-white tracking-tight">XioN Restro</h2>
-        <p class="text-xs text-slate-400 font-medium">Power BI Executive Financial Portal</p>
+        <h2 class="text-2xl font-black text-white tracking-tight flex items-center justify-center space-x-1">
+          <span>XRestro</span>
+          <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-extrabold border border-emerald-500/40">PRO</span>
+        </h2>
+        <p class="text-xs text-slate-400 font-medium">Smart Executive Financial & Audit Suite</p>
       </div>
 
       <!-- ERROR MESSAGE BANNER -->
@@ -361,7 +500,7 @@ function getMobileAppHtml() {
 
       <div class="space-y-4 pt-1">
         <div>
-          <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">Registered Owner Mobile Number</label>
+          <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">Registered Owner Mobile</label>
           <div class="relative">
             <span class="absolute left-3.5 top-3.5 text-slate-500 font-semibold text-sm">+91</span>
             <input id="loginPhone" type="tel" maxlength="10" placeholder="98290XXXXX" class="w-full bg-slate-800 text-white font-semibold text-sm rounded-xl pl-12 pr-4 py-3 border border-slate-700 focus:outline-none focus:border-brand-500 transition">
@@ -375,17 +514,13 @@ function getMobileAppHtml() {
         </div>
 
         <button id="btnLogin" onclick="handleLogin()" class="w-full bg-brand-500 hover:bg-brand-600 active:scale-[0.98] text-white font-bold text-sm py-3.5 rounded-xl shadow-lg shadow-brand-500/25 transition flex items-center justify-center space-x-2">
-          <span>🔐 Verify & View Dashboard</span>
+          <span>🔐 Verify & Launch XRestro</span>
         </button>
 
         <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-800 text-center">
-          <p class="text-[11px] text-emerald-400 font-semibold">🔒 Reconciled Data Guarantee</p>
-          <p class="text-[10px] text-slate-400 mt-0.5">Desktop POS & Mobile Portal always stay 100% in tally</p>
+          <p class="text-[11px] text-emerald-400 font-semibold">🔒 100% Reconciled Tally Guarantee</p>
+          <p class="text-[10px] text-slate-400 mt-0.5">Desktop POS & Mobile App stay in instant mathematical balance</p>
         </div>
-
-        <p class="text-[10px] text-center text-slate-500 pt-1">
-          Auto-locks on closing tab/browser for maximum owner privacy
-        </p>
       </div>
     </div>
   </div>
@@ -441,7 +576,7 @@ function getMobileAppHtml() {
       <!-- Scrollable Body -->
       <div class="px-5 py-4 space-y-4 overflow-y-auto flex-1">
         
-        <!-- Metadata Grid (Cashier, Waiter, Table, Time, Customer) -->
+        <!-- Metadata Grid -->
         <div class="grid grid-cols-2 gap-2.5 text-xs bg-slate-950/70 p-3.5 rounded-2xl border border-slate-800">
           <div>
             <span class="text-[10px] text-slate-400 uppercase font-bold">Billed By (Cashier)</span>
@@ -450,393 +585,335 @@ function getMobileAppHtml() {
             </div>
           </div>
           <div>
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Waiter</span>
-            <div id="invModalWaiter" class="font-bold text-slate-200 mt-0.5 text-sm">--</div>
+            <span class="text-[10px] text-slate-400 uppercase font-bold">Steward / Waiter</span>
+            <div id="invModalWaiter" class="font-bold text-white mt-0.5 text-sm">--</div>
           </div>
-          <div class="pt-2 border-t border-slate-800/80">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Table / Order Type</span>
-            <div id="invModalTable" class="font-bold text-slate-200 mt-0.5">Table 1 (DineIn)</div>
+          <div>
+            <span class="text-[10px] text-slate-400 uppercase font-bold">Table / Type</span>
+            <div id="invModalTable" class="font-bold text-amber-400 mt-0.5 text-sm">Table 01 (DineIn)</div>
           </div>
-          <div class="pt-2 border-t border-slate-800/80">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Settled Date & Time</span>
-            <div id="invModalTime" class="font-mono text-slate-300 mt-0.5 text-[11px]">27-Sep-2026 15:58</div>
+          <div>
+            <span class="text-[10px] text-slate-400 uppercase font-bold">Settled Time</span>
+            <div id="invModalTime" class="font-mono text-slate-300 mt-0.5 text-xs">--:--</div>
           </div>
-          <div class="col-span-2 pt-2 border-t border-slate-800/80 flex justify-between items-center">
+          <div class="col-span-2 pt-1 border-t border-slate-800/80 flex items-center justify-between">
             <div>
               <span class="text-[10px] text-slate-400 uppercase font-bold">Customer</span>
-              <div id="invModalCustomer" class="font-bold text-slate-200">Walk-in</div>
+              <div id="invModalCustomer" class="font-semibold text-white">Walk-in Guest</div>
             </div>
             <div class="text-right">
-              <span class="text-[10px] text-slate-400 uppercase font-bold">Token Number</span>
-              <div id="invModalToken" class="font-mono font-bold text-amber-400 text-sm">#1</div>
+              <span class="text-[10px] text-slate-400 uppercase font-bold">Token #</span>
+              <div id="invModalToken" class="font-mono font-bold text-brand-400">#1</div>
             </div>
           </div>
         </div>
 
-        <!-- Ordered Items Table -->
-        <div class="space-y-2">
-          <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-slate-400 px-1">
-            <span>Ordered Items Breakdown</span>
-            <span id="invModalItemCount" class="text-slate-500 font-mono">0 items</span>
+        <!-- Itemized Order Details -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Items Ordered</span>
+            <span id="invModalItemCount" class="text-[10px] text-slate-500 font-mono">0 items</span>
           </div>
-
-          <div id="invModalItemsList" class="space-y-2 max-h-56 overflow-y-auto pr-1">
-            <!-- Dynamically populated items -->
-          </div>
+          <div id="invModalItemsList" class="space-y-1.5 max-h-56 overflow-y-auto pr-1"></div>
         </div>
 
-        <!-- Financial Summary Breakdown -->
+        <!-- Bill Financial Breakdown -->
         <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-slate-800 space-y-2 text-xs">
           <div class="flex justify-between text-slate-400">
-            <span>Gross Subtotal</span>
-            <span id="invModalSubTotal" class="font-mono font-bold text-slate-200">₹0.00</span>
+            <span>Subtotal (Items Net)</span>
+            <span class="font-mono font-bold text-white">₹<span id="invModalSubtotal">0.00</span></span>
           </div>
-          <div class="flex justify-between text-slate-400">
+          <div id="invModalDiscRow" class="flex justify-between text-rose-400">
             <span>Discount Applied</span>
-            <span id="invModalDiscount" class="font-mono font-bold text-rose-400">-₹0.00</span>
+            <span class="font-mono font-bold">-₹<span id="invModalDiscount">0.00</span></span>
           </div>
           <div class="flex justify-between text-slate-400">
-            <span>Taxes & GST</span>
-            <span id="invModalTax" class="font-mono font-bold text-slate-200">₹0.00</span>
+            <span>GST / Taxes</span>
+            <span class="font-mono font-bold text-white">₹<span id="invModalTax">0.00</span></span>
           </div>
-          <div class="pt-2 border-t border-slate-800 flex justify-between items-baseline">
-            <span class="text-sm font-extrabold text-white uppercase tracking-wide">Net Grand Total</span>
-            <span id="invModalGrandTotal" class="text-2xl font-black font-mono text-emerald-400">₹0.00</span>
+          <div class="flex justify-between text-sm font-extrabold border-t border-slate-800 pt-2 text-white">
+            <span>Grand Total</span>
+            <span class="font-mono text-emerald-400">₹<span id="invModalGrandTotal">0.00</span></span>
           </div>
-        </div>
-
-        <!-- Payment Settlement Mode & Split Details -->
-        <div class="bg-emerald-950/30 border border-emerald-500/30 rounded-2xl p-3.5 flex items-center justify-between">
-          <div>
-            <span class="text-[10px] uppercase font-bold text-emerald-400">Settled Payment Mode</span>
-            <div id="invModalPayMode" class="text-sm font-extrabold text-white mt-0.5">CASH</div>
-          </div>
-          <div id="invModalPaySplit" class="text-right text-xs font-mono text-slate-300">
+          <div class="flex justify-between items-center pt-1 border-t border-slate-800/80 text-[11px]">
+            <span class="text-slate-400 font-bold uppercase">Payment Mode</span>
+            <span id="invModalPayMode" class="font-bold font-mono px-2 py-0.5 rounded bg-slate-800 text-brand-400 border border-slate-700">CASH</span>
           </div>
         </div>
 
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="px-5 py-3 border-t border-slate-800 bg-slate-900 flex justify-end">
-        <button onclick="closeInvoiceModal()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs py-3 rounded-xl transition">
-          ✕ Close Invoice
+        <!-- Quick Share Action -->
+        <button id="btnShareWa" onclick="shareBillOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-3 rounded-xl transition flex items-center justify-center space-x-2">
+          <span>📲 Share Bill Copy via WhatsApp</span>
         </button>
-      </div>
 
+      </div>
     </div>
   </div>
 
   <!-- ========================================== -->
-  <!-- 2. TOP EXECUTIVE APP BAR                   -->
+  <!-- SMART INSTALL PROMPT (PWA HOME SCREEN)     -->
   <!-- ========================================== -->
-  <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 px-4 py-3 shadow-lg">
-    <div class="flex items-center justify-between">
+  <div id="pwaBanner" class="hidden max-w-xl mx-auto px-3.5 pt-2">
+    <div class="bg-gradient-to-r from-emerald-950/90 to-slate-900 border border-emerald-500/40 rounded-2xl p-3 flex items-center justify-between shadow-lg">
       <div class="flex items-center space-x-2.5">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center font-extrabold text-white text-lg shadow-md shadow-emerald-900/40">
-          X
+        <img src="/icon.svg" class="w-8 h-8 rounded-xl object-contain">
+        <div>
+          <div class="text-xs font-black text-white">Install XRestro App</div>
+          <div class="text-[10px] text-slate-400">Tap Share ➔ "Add to Home Screen" for instant 1-tap app launch</div>
+        </div>
+      </div>
+      <button onclick="dismissPwaBanner()" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+        ✕
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 2. STICKY EXECUTIVE HEADER BAR             -->
+  <!-- ========================================== -->
+  <header class="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-md border-b border-slate-800 px-4 py-3 shadow-md">
+    <div class="max-w-xl mx-auto flex items-center justify-between">
+      
+      <!-- Brand & Status -->
+      <div class="flex items-center space-x-2.5">
+        <div class="w-9 h-9 rounded-xl bg-slate-900 border border-emerald-500/40 flex items-center justify-center p-0.5 shadow-md shadow-emerald-950/40">
+          <img src="/icon.svg" alt="XRestro" class="w-full h-full object-contain">
         </div>
         <div>
           <div class="flex items-center space-x-1.5">
-            <h1 class="text-sm font-extrabold tracking-tight text-white leading-none">XioN Restro</h1>
-            <span class="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">EXECUTIVE TALLY</span>
+            <h1 class="font-black text-white text-base tracking-tight leading-none">XRestro</h1>
+            <span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-extrabold border border-emerald-500/30">LIVE</span>
           </div>
-          <span class="text-[11px] text-slate-400 flex items-center mt-1">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block mr-1.5 pulse-dot"></span>
-            <span id="headerSyncStatus">Real-time Cloud Sync</span>
-          </span>
+          <div class="flex items-center space-x-1.5 mt-0.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></span>
+            <span id="headerSyncStatus" class="text-[10px] text-slate-400 font-medium">Connecting...</span>
+          </div>
         </div>
       </div>
 
-      <!-- Actions: PIN & Refresh (Lock removed as requested) -->
-      <div class="flex items-center space-x-2">
-        <button onclick="openPinModal()" title="Change Security PIN" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition active:scale-95 text-xs">
-          🔑
+      <!-- Action Buttons -->
+      <div class="flex items-center space-x-1.5">
+        <button onclick="openPinModal()" title="Change PIN" class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition">
+          <span class="text-xs">🔑</span>
         </button>
-        <button onclick="fetchData()" title="Force Refresh Data" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition active:scale-95">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+        <button onclick="fetchData()" title="Manual Refresh" class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-brand-400 transition">
+          <span class="text-xs">🔄</span>
+        </button>
+        <button onclick="lockApp()" title="Lock App" class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-rose-400 transition">
+          <span class="text-xs">🔒</span>
         </button>
       </div>
+
     </div>
 
-    <!-- OUTLET / STORE BANNER (SINGLE OUTLET MODE) -->
-    <div id="singleBranchContainer" class="mt-2.5 flex items-center justify-between text-xs bg-slate-800/80 rounded-xl px-3 py-2 border border-slate-700/80">
+    <!-- Outlet Name Indicator -->
+    <div id="singleBranchContainer" class="max-w-xl mx-auto mt-2 flex items-center justify-between text-xs bg-slate-900/80 rounded-xl px-3 py-1.5 border border-slate-800">
       <div class="flex items-center space-x-2">
-        <span class="text-base">🏪</span>
-        <div>
-          <div id="singleBranchName" class="font-extrabold text-white text-xs">JANTA RESTRO</div>
-          <div class="text-[10px] text-slate-400">Live Counter Stream</div>
-        </div>
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <div id="singleBranchName" class="font-extrabold text-white text-xs">JANTA RESTRO</div>
       </div>
-      <div class="text-right">
-        <span class="text-[9px] font-extrabold text-emerald-400 bg-emerald-950/80 border border-emerald-800/60 px-2 py-0.5 rounded">
-          ● ONLINE
-        </span>
-        <div id="outletLastUpdated" class="text-[10px] text-slate-500 font-mono mt-0.5">--</div>
-      </div>
+      <div class="text-[10px] text-slate-400 font-mono">100% Balanced With POS</div>
     </div>
 
-    <!-- OUTLET / BRANCH SELECTOR (MULTI-BRANCH MODE ONLY) -->
-    <div id="branchSelectorContainer" class="mt-2.5 hidden">
-      <div class="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
-        <span>Select Branch</span>
-        <span id="multiOutletLastUpdated" class="text-slate-500 font-mono text-[10px]">--</span>
-      </div>
-      <select id="branchSelect" onchange="renderDashboard()" class="w-full bg-slate-800/90 text-white text-xs font-bold rounded-lg px-3 py-2 border border-slate-700 focus:outline-none focus:border-brand-500 transition">
-        <option value="ALL">🏢 All Outlets (Consolidated Total)</option>
+    <!-- Multi-Branch Selector (if multiple outlets exist) -->
+    <div id="branchSelectorContainer" class="max-w-xl mx-auto mt-2 hidden">
+      <select id="branchSelect" onchange="renderDashboard()" class="w-full bg-slate-900 text-white text-xs font-bold rounded-lg px-3 py-2 border border-slate-700 focus:outline-none focus:border-brand-500 transition">
+        <option value="ALL">🏢 All Outlets (Consolidated)</option>
       </select>
     </div>
   </header>
 
-  <!-- PULL TO REFRESH CONTAINER (DIRECTLY UNDER STORE BANNER / HEADER) -->
+  <!-- PULL-TO-REFRESH INDICATOR -->
   <div id="ptrIndicator" style="height: 0px; opacity: 0; overflow: hidden;" class="transition-[height,opacity] duration-150 flex items-center justify-center bg-slate-950/90 border-b border-slate-800/60">
-    <div class="py-2.5 flex items-center space-x-2 text-xs font-semibold text-slate-200">
-      <div id="ptrIcon" class="transition-transform duration-200">
-        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
-      </div>
+    <div class="flex items-center space-x-2 text-slate-400 text-xs py-1">
+      <div id="ptrIcon" class="transition-transform duration-200">↓</div>
       <div id="ptrSpinner" class="hidden">
-        <svg class="w-4 h-4 text-emerald-400 animate-spin" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-        </svg>
+        <svg class="animate-spin h-3.5 w-3.5 text-brand-500" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
       </div>
       <span id="ptrText" class="text-xs">Pull down to refresh</span>
     </div>
   </div>
 
   <!-- ========================================== -->
-  <!-- 3. MAIN EXECUTIVE DASHBOARD                -->
+  <!-- 3. MAIN DASHBOARD CONTENT (ULTRA-ADVANCED) -->
   <!-- ========================================== -->
   <main id="mainContent" class="max-w-xl mx-auto px-3.5 pt-3.5 space-y-3.5">
 
-    <!-- A. TOP SECTION: PAYMENT MODE COLLECTIONS (POWER BI CARDS) -->
+    <!-- A. MASTER RECONCILED CASH DRAWER (EXACT POS MATCH) -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-4 shadow-2xl relative overflow-hidden">
+      <div class="absolute -right-8 -top-8 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800/80">
+        <div>
+          <span class="text-[10px] font-black uppercase tracking-wider text-slate-400 block">Reconciled Cash In Drawer</span>
+          <div class="text-3xl font-black font-mono text-emerald-400 mt-0.5">
+            ₹<span id="tallyExpectedCash">0.00</span>
+          </div>
+        </div>
+        <div class="text-right">
+          <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500 block">Total Net Collection</span>
+          <div class="text-base font-extrabold font-mono text-white mt-0.5">
+            ₹<span id="valPayTotal">0.00</span>
+          </div>
+          <span class="text-[9px] text-emerald-400 font-bold">🔒 100% Balanced</span>
+        </div>
+      </div>
+
+      <!-- Tally Pipeline Breakdown (Exact POS Match) -->
+      <div class="grid grid-cols-3 gap-2 text-center text-xs pt-3">
+        <div class="bg-slate-950/60 p-2.5 rounded-xl border border-slate-800">
+          <div class="text-[9px] text-emerald-400 uppercase font-bold">(+) Sales Cash</div>
+          <div class="font-mono font-extrabold text-white mt-0.5">₹<span id="tallySalesCash">0.00</span></div>
+        </div>
+        <div class="bg-slate-950/60 p-2.5 rounded-xl border border-slate-800">
+          <div class="text-[9px] text-rose-400 uppercase font-bold">(-) Return Cash</div>
+          <div class="font-mono font-extrabold text-white mt-0.5">₹<span id="tallyReturnCash">0.00</span></div>
+        </div>
+        <div class="bg-slate-950/60 p-2.5 rounded-xl border border-slate-800">
+          <div class="text-[9px] text-amber-400 uppercase font-bold">(-) Vendor Cash</div>
+          <div class="font-mono font-extrabold text-white mt-0.5">₹<span id="tallySupplierCash">0.00</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- B. MULTI-PAYMENT CARDS (1-TAP CROSS-FILTER) -->
     <section class="space-y-2">
-      <div class="flex items-center justify-between">
-        <h2 class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 flex items-center space-x-1.5">
-          <span>Payment Mode Collections</span>
-          <span class="text-[9px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded font-mono">Split Included</span>
-        </h2>
+      <div class="flex items-center justify-between text-xs font-bold text-slate-400 px-1">
+        <span>Payment Collections</span>
         <span id="activeFilterBadge" class="hidden text-[10px] font-bold bg-brand-500/20 text-brand-400 border border-brand-500/30 px-2 py-0.5 rounded cursor-pointer" onclick="clearCrossFilter()">
           ✕ Reset Filter
         </span>
       </div>
 
-      <!-- 4 Cards Grid + Total Net Collection -->
-      <div class="grid grid-cols-2 gap-2">
-        <!-- CASH INFLOW -->
-        <div onclick="applyPaymentFilter('Cash')" id="cardPayCash" style="--card-color: #10b981;" class="kpi-card bg-slate-900 border border-slate-800 rounded-xl p-3 cursor-pointer">
+      <div class="grid grid-cols-2 gap-2.5">
+        <!-- Cash -->
+        <div onclick="applyPaymentFilter('Cash')" id="cardPayCash" style="--card-color: #10b981;" class="kpi-card bg-slate-900 border border-slate-800 rounded-2xl p-3 cursor-pointer">
           <div class="kpi-stripe"></div>
-          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
-            <span>Cash Inflow</span>
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <div class="flex items-center justify-between text-xs text-slate-400">
+            <span class="font-bold flex items-center space-x-1"><span>💵</span><span>Cash</span></span>
+            <span class="text-[10px] font-mono text-emerald-400" id="pctPayCash">0%</span>
           </div>
-          <div class="mt-1 text-xl font-extrabold font-mono text-emerald-400 tracking-tight">
-            ₹<span id="valPayCash">0.00</span>
-          </div>
-          <div id="subPayCash" class="mt-1 text-[10px] text-slate-400 truncate">
-            0.0% of total
-          </div>
+          <div class="text-xl font-black font-mono text-emerald-400 mt-1">₹<span id="valPayCash">0.00</span></div>
+          <div id="subPayCash" class="mt-1 text-[10px] text-slate-400 truncate">0 Bills</div>
         </div>
 
-        <!-- UPI / QR ONLINE -->
-        <div onclick="applyPaymentFilter('UPI')" id="cardPayUpi" style="--card-color: #8b5cf6;" class="kpi-card bg-slate-900 border border-slate-800 rounded-xl p-3 cursor-pointer">
+        <!-- UPI -->
+        <div onclick="applyPaymentFilter('UPI')" id="cardPayUpi" style="--card-color: #8b5cf6;" class="kpi-card bg-slate-900 border border-slate-800 rounded-2xl p-3 cursor-pointer">
           <div class="kpi-stripe"></div>
-          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
-            <span>UPI / QR Online</span>
-            <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+          <div class="flex items-center justify-between text-xs text-slate-400">
+            <span class="font-bold flex items-center space-x-1"><span>📱</span><span>UPI / QR</span></span>
+            <span class="text-[10px] font-mono text-purple-400" id="pctPayUpi">0%</span>
           </div>
-          <div class="mt-1 text-xl font-extrabold font-mono text-purple-400 tracking-tight">
-            ₹<span id="valPayUpi">0.00</span>
-          </div>
-          <div id="subPayUpi" class="mt-1 text-[10px] text-slate-400 truncate">
-            0.0% of total
-          </div>
+          <div class="text-xl font-black font-mono text-purple-400 mt-1">₹<span id="valPayUpi">0.00</span></div>
+          <div id="subPayUpi" class="mt-1 text-[10px] text-slate-400 truncate">0 Bills</div>
         </div>
 
-        <!-- DEBIT / CREDIT CARD -->
-        <div onclick="applyPaymentFilter('Card')" id="cardPayCard" style="--card-color: #3b82f6;" class="kpi-card bg-slate-900 border border-slate-800 rounded-xl p-3 cursor-pointer">
+        <!-- Card -->
+        <div onclick="applyPaymentFilter('Card')" id="cardPayCard" style="--card-color: #3b82f6;" class="kpi-card bg-slate-900 border border-slate-800 rounded-2xl p-3 cursor-pointer">
           <div class="kpi-stripe"></div>
-          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
-            <span>Card / Bank</span>
-            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+          <div class="flex items-center justify-between text-xs text-slate-400">
+            <span class="font-bold flex items-center space-x-1"><span>💳</span><span>Card / EDC</span></span>
+            <span class="text-[10px] font-mono text-blue-400" id="pctPayCard">0%</span>
           </div>
-          <div class="mt-1 text-xl font-extrabold font-mono text-blue-400 tracking-tight">
-            ₹<span id="valPayCard">0.00</span>
-          </div>
-          <div id="subPayCard" class="mt-1 text-[10px] text-slate-400 truncate">
-            0.0% of total
-          </div>
+          <div class="text-xl font-black font-mono text-blue-400 mt-1">₹<span id="valPayCard">0.00</span></div>
+          <div id="subPayCard" class="mt-1 text-[10px] text-slate-400 truncate">0 Bills</div>
         </div>
 
-        <!-- DUE / CREDIT SALES -->
-        <div onclick="applyPaymentFilter('Due')" id="cardPayDue" style="--card-color: #f59e0b;" class="kpi-card bg-slate-900 border border-slate-800 rounded-xl p-3 cursor-pointer">
+        <!-- Due -->
+        <div onclick="applyPaymentFilter('Due')" id="cardPayDue" style="--card-color: #f59e0b;" class="kpi-card bg-slate-900 border border-slate-800 rounded-2xl p-3 cursor-pointer">
           <div class="kpi-stripe"></div>
-          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
-            <span>Due / Credit</span>
-            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+          <div class="flex items-center justify-between text-xs text-slate-400">
+            <span class="font-bold flex items-center space-x-1"><span>⏳</span><span>Credit / Due</span></span>
+            <span class="text-[10px] font-mono text-amber-400" id="pctPayDue">0%</span>
           </div>
-          <div class="mt-1 text-xl font-extrabold font-mono text-amber-400 tracking-tight">
-            ₹<span id="valPayDue">0.00</span>
-          </div>
-          <div id="subPayDue" class="mt-1 text-[10px] text-slate-400 truncate">
-            0.0% of total
-          </div>
-        </div>
-      </div>
-
-      <!-- TOTAL NET COLLECTION (Full-width Reconciled Card) -->
-      <div onclick="clearCrossFilter()" style="--card-color: #38bdf8;" class="kpi-card bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-700/80 rounded-xl p-3.5 cursor-pointer shadow-lg">
-        <div class="kpi-stripe"></div>
-        <div class="flex items-center justify-between">
-          <div>
-            <div class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Total Net Collection</div>
-            <div class="text-2xl font-extrabold font-mono text-white tracking-tight mt-0.5">
-              ₹<span id="valPayTotal">0.00</span>
-            </div>
-          </div>
-          <div class="text-right">
-            <span class="text-[10px] font-extrabold text-emerald-400 bg-emerald-950/80 border border-emerald-800/60 px-2 py-0.5 rounded">
-              100% RECONCILED
-            </span>
-            <div id="subPayTotal" class="text-[10px] text-slate-400 mt-1 font-mono">Tally Verified</div>
-          </div>
+          <div class="text-xl font-black font-mono text-amber-400 mt-1">₹<span id="valPayDue">0.00</span></div>
+          <div id="subPayDue" class="mt-1 text-[10px] text-slate-400 truncate">0 Bills</div>
         </div>
       </div>
     </section>
 
-    <!-- B. SECONDARY SUMMARY CARDS (POWER BI AUDITED 4 CARDS) -->
-    <section class="grid grid-cols-2 gap-2">
-      <!-- 1. Total Sales -->
-      <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 space-y-1">
-        <div class="text-[10px] font-bold uppercase tracking-wider text-emerald-400 flex justify-between">
-          <span>Total Sales</span>
-          <span class="font-mono text-slate-300">Inv: <b id="valSalesInv" class="text-white">0</b></span>
-        </div>
-        <div class="text-lg font-bold font-mono text-white">₹<span id="valSalesGross">0.00</span></div>
-        <div class="text-[10px] text-slate-400 border-t border-slate-800 pt-1 flex justify-between">
-          <span>Disc: ₹<span id="valSalesDisc">0.00</span></span>
-          <span>Tax: ₹<span id="valSalesTax">0.00</span></span>
-        </div>
-      </div>
-
-      <!-- 2. Total Sales Returns -->
-      <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 space-y-1">
-        <div class="text-[10px] font-bold uppercase tracking-wider text-rose-400 flex justify-between">
-          <span>Sales Returns</span>
-          <span class="font-mono text-slate-300">Ret: <b id="valReturnInv" class="text-white">0</b></span>
-        </div>
-        <div class="text-lg font-bold font-mono text-rose-300">₹<span id="valReturnAmt">0.00</span></div>
-        <div class="text-[10px] text-slate-400 border-t border-slate-800 pt-1 truncate">
-          Cash: ₹<span id="valReturnCash">0.00</span> | UPI: ₹<span id="valReturnUpi">0.00</span>
-        </div>
-      </div>
-
-      <!-- 3. Total Inward Purchases -->
-      <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 space-y-1">
-        <div class="text-[10px] font-bold uppercase tracking-wider text-indigo-400 flex justify-between">
-          <span>Inward Inv</span>
-          <span class="font-mono text-slate-300">Inv: <b id="valInwardInv" class="text-white">0</b></span>
-        </div>
-        <div class="text-lg font-bold font-mono text-white">₹<span id="valInwardGross">0.00</span></div>
-        <div class="text-[10px] text-slate-400 border-t border-slate-800 pt-1 flex justify-between">
-          <span>Paid: ₹<span id="valInwardPaid">0.00</span></span>
-          <span class="text-amber-400">Due: ₹<span id="valInwardDue">0.00</span></span>
-        </div>
-      </div>
-
-      <!-- 4. Total Supplier Payment -->
-      <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 space-y-1">
-        <div class="text-[10px] font-bold uppercase tracking-wider text-amber-400 flex justify-between">
-          <span>Supplier Pay</span>
-          <span class="font-mono text-slate-300">Vouch: <b id="valSupplierVouch" class="text-white">0</b></span>
-        </div>
-        <div class="text-lg font-bold font-mono text-white">₹<span id="valSupplierPaid">0.00</span></div>
-        <div class="text-[10px] text-slate-400 border-t border-slate-800 pt-1 flex justify-between">
-          <span>Cash: ₹<span id="valSupplierCash">0.00</span></span>
-          <span>Bank: ₹<span id="valSupplierBank">0.00</span></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- C. MASTER CASH DRAWER & BUSINESS TALLY (DARK BAR - EXACT PC MATCH) -->
-    <section class="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-700/80 rounded-2xl p-4 shadow-xl space-y-3">
-      <div class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 flex items-center justify-between border-b border-slate-800 pb-2">
-        <span>Cash Drawer & Business Tally</span>
-        <span class="text-emerald-400 font-bold">● Active Drawer Math</span>
-      </div>
-
-      <!-- Formula Line -->
-      <div class="grid grid-cols-3 gap-2 text-center text-xs">
-        <div class="bg-slate-800/60 p-2 rounded-lg border border-slate-700/40">
-          <div class="text-[9px] text-emerald-400 uppercase font-bold">(+) Sales Cash</div>
-          <div class="font-mono font-bold text-white mt-0.5">₹<span id="tallySalesCash">0.00</span></div>
-        </div>
-        <div class="bg-slate-800/60 p-2 rounded-lg border border-slate-700/40">
-          <div class="text-[9px] text-rose-400 uppercase font-bold">(-) Return Cash</div>
-          <div class="font-mono font-bold text-white mt-0.5">₹<span id="tallyReturnCash">0.00</span></div>
-        </div>
-        <div class="bg-slate-800/60 p-2 rounded-lg border border-slate-700/40">
-          <div class="text-[9px] text-amber-400 uppercase font-bold">(-) Supplier Cash</div>
-          <div class="font-mono font-bold text-white mt-0.5">₹<span id="tallySupplierCash">0.00</span></div>
-        </div>
-      </div>
-
-      <!-- Result Bar -->
-      <div class="bg-slate-950/90 border border-emerald-500/30 rounded-xl p-3 flex items-center justify-between">
-        <div>
-          <div class="text-[10px] text-slate-400 uppercase font-bold">Current Drawer Cash</div>
-          <div class="text-2xl font-extrabold font-mono text-emerald-400 mt-0.5">
-            (=) Drawer Cash: ₹<span id="tallyExpectedCash">0.00</span>
-          </div>
-        </div>
-        <div class="text-right">
-          <div class="text-[9px] text-slate-500 uppercase font-bold">Net Revenue</div>
-          <div class="text-sm font-bold font-mono text-slate-200 mt-0.5">
-            ₹<span id="tallyNetRevenue">0.00</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- D. OPERATIONAL VITALS (DineIn/Takeaway, Active Tables, Cancelled/Void) -->
+    <!-- C. OPERATIONAL VITALS (Active Tables, Dine vs Takeaway, Voids) -->
     <section class="grid grid-cols-3 gap-2 text-center">
-      <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl">
+      <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl">
         <div class="text-[9px] font-bold uppercase text-slate-400">Active Tables</div>
-        <div id="vitalTables" class="text-lg font-extrabold text-amber-400 font-mono mt-0.5">0</div>
+        <div id="vitalTables" class="text-xl font-black text-amber-400 font-mono mt-0.5">0</div>
+        <div class="text-[9px] text-slate-500 mt-0.5">Occupied Now</div>
       </div>
-      <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl">
+      <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl">
         <div class="text-[9px] font-bold uppercase text-slate-400">Dine vs Takeaway</div>
         <div class="text-xs font-bold text-slate-200 mt-1 font-mono">
           D:₹<span id="vitalDine">0</span> | T:₹<span id="vitalTake">0</span>
         </div>
+        <div class="text-[9px] text-slate-500 mt-0.5">Channel Sales</div>
       </div>
-      <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl">
-        <div class="text-[9px] font-bold uppercase text-rose-400">Void / Cancelled</div>
-        <div id="vitalVoid" class="text-lg font-extrabold text-rose-400 font-mono mt-0.5">0</div>
+      <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl">
+        <div class="text-[9px] font-bold uppercase text-rose-400">Void / Lost</div>
+        <div id="vitalVoid" class="text-xl font-black text-rose-400 font-mono mt-0.5">0</div>
+        <div class="text-[9px] text-slate-500 mt-0.5">Cancelled Items</div>
       </div>
     </section>
 
-    <!-- E. POWER BI INTERACTIVE TABS & AUDIT FEED -->
-    <section class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-3">
-      <!-- Tab Header Buttons -->
-      <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
-        <div class="flex items-center space-x-1 overflow-x-auto no-scrollbar">
-          <button id="tabBtnBills" onclick="switchTab('bills')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-white border border-slate-700">
-            Sales Bills (<span id="tabCountBills">0</span>)
-          </button>
+    <!-- D. HOURLY PEAK RUSH HEATMAP (SMART ANALYTICS) -->
+    <section class="bg-slate-900 border border-slate-800 rounded-3xl p-4 shadow-xl space-y-3">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-xs font-black uppercase tracking-wider text-white flex items-center space-x-1.5">
+            <span>📊 Hourly Peak Rush Heatmap</span>
+          </h3>
+          <p class="text-[10px] text-slate-400">Order traffic & rush distribution throughout the day</p>
+        </div>
+        <span id="peakHourBadge" class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">
+          🔥 Peak: --
+        </span>
+      </div>
+
+      <!-- Hourly Bars Container -->
+      <div id="hourlyChartContainer" class="flex items-end justify-between h-28 pt-4 pb-1 px-1 border-b border-slate-800">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="flex justify-between text-[9px] text-slate-500 font-mono px-1">
+        <span>10 AM</span>
+        <span>1 PM</span>
+        <span>4 PM</span>
+        <span>7 PM</span>
+        <span>10 PM</span>
+      </div>
+    </section>
+
+    <!-- E. TOP 5 BESTSELLER DISHES TODAY -->
+    <section class="bg-slate-900 border border-slate-800 rounded-3xl p-4 shadow-xl space-y-3">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-xs font-black uppercase tracking-wider text-white flex items-center space-x-1.5">
+            <span>🏆 Top 5 Bestsellers Today</span>
+          </h3>
+          <p class="text-[10px] text-slate-400">Highest revenue & volume dish ranking</p>
+        </div>
+        <span class="text-[10px] text-brand-400 font-bold">Live POS Ranking</span>
+      </div>
+
+      <div id="topDishesList" class="space-y-2">
+        <div class="text-center text-slate-500 text-xs py-4">No dish items recorded yet today.</div>
+      </div>
+    </section>
+
+    <!-- F. LIVE BILLS FEED & SEARCH EXPLORER -->
+    <section class="bg-slate-900 border border-slate-800 rounded-3xl p-4 shadow-xl space-y-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="text-xs font-black uppercase tracking-wider text-white">Live Invoices</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-mono font-bold" id="tabCountBills">0</span>
         </div>
         
         <!-- Search Box -->
-        <div class="relative w-36">
-          <input id="searchInput" oninput="filterBillsList()" type="text" placeholder="Search bill / table..." class="w-full bg-slate-800 text-white text-xs rounded-lg pl-6 pr-2 py-1.5 border border-slate-700 focus:outline-none focus:border-brand-500">
-          <svg class="w-3.5 h-3.5 absolute left-1.5 top-2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <div class="relative w-40">
+          <input id="searchInput" oninput="filterBillsList()" type="text" placeholder="Search bill / table..." class="w-full bg-slate-800 text-white text-xs rounded-xl pl-6 pr-2.5 py-1.5 border border-slate-700 focus:outline-none focus:border-brand-500 transition">
+          <svg class="w-3.5 h-3.5 absolute left-2 top-2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
         </div>
       </div>
 
       <!-- Feed Container -->
-      <div id="billsList" class="space-y-2 max-h-[380px] overflow-y-auto pr-1">
+      <div id="billsList" class="space-y-2 max-h-[420px] overflow-y-auto pr-1">
         <div class="py-10 text-center text-slate-500 text-xs">
           Waiting for bills from POS...<br>
           <span class="text-[10px] text-slate-600 mt-1 block">Bills settled in POS will appear here live</span>
@@ -857,12 +934,16 @@ function getMobileAppHtml() {
     let activePaymentFilter = null;
     let autoRefreshTimer = null;
 
-    // --- AUTO-LOGOUT & SESSION LIFECYCLE ---
+    // Check PWA Install Mode
     window.addEventListener('load', async () => {
+      const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+      if (!isStandalone && !localStorage.getItem('xrestro_pwa_dismissed')) {
+        document.getElementById('pwaBanner').classList.remove('hidden');
+      }
+
       const savedPhone = sessionStorage.getItem('xion_owner_phone');
       const savedPin = sessionStorage.getItem('xion_owner_pin');
       if (savedPhone && savedPin) {
-        // Verify with server before auto-unlocking
         const ok = await verifyCredentials(savedPhone, savedPin);
         if (ok) {
           currentOwnerPhone = savedPhone;
@@ -876,6 +957,11 @@ function getMobileAppHtml() {
       sessionStorage.clear();
       document.getElementById('loginScreen').classList.remove('hidden');
     });
+
+    function dismissPwaBanner() {
+      document.getElementById('pwaBanner').classList.add('hidden');
+      localStorage.setItem('xrestro_pwa_dismissed', 'true');
+    }
 
     async function verifyCredentials(phone, pin) {
       try {
@@ -944,7 +1030,7 @@ function getMobileAppHtml() {
           showLoginError(data.error || 'Authentication Failed');
           document.getElementById('loginPin').value = '';
           btn.disabled = false;
-          btn.innerHTML = '<span>🔐 Verify & View Dashboard</span>';
+          btn.innerHTML = '<span>🔐 Verify & Launch XRestro</span>';
           return;
         }
 
@@ -960,7 +1046,7 @@ function getMobileAppHtml() {
         showLoginError('Connection Error: Unable to connect to server. Please check your network.');
       } finally {
         btn.disabled = false;
-        btn.innerHTML = '<span>🔐 Verify & View Dashboard</span>';
+        btn.innerHTML = '<span>🔐 Verify & Launch XRestro</span>';
       }
     }
 
@@ -996,7 +1082,6 @@ function getMobileAppHtml() {
       const storeIds = Object.keys(currentStoreData.stores);
 
       if (storeIds.length <= 1) {
-        // Single store mode: Hide multi-branch dropdown completely!
         if (container) container.classList.add('hidden');
         if (singleContainer) {
           singleContainer.classList.remove('hidden');
@@ -1008,12 +1093,11 @@ function getMobileAppHtml() {
         return;
       }
 
-      // Multi-branch mode: Show dropdown
       if (container) container.classList.remove('hidden');
       if (singleContainer) singleContainer.classList.add('hidden');
 
       const prevVal = select.value;
-      select.innerHTML = '<option value="ALL">🏢 All Outlets (Consolidated Total)</option>';
+      select.innerHTML = '<option value="ALL">🏢 All Outlets (Consolidated)</option>';
 
       storeIds.forEach(id => {
         const s = currentStoreData.stores[id];
@@ -1062,26 +1146,16 @@ function getMobileAppHtml() {
         returnUpi: 0,
         returnCard: 0,
         returnDue: 0,
-        totalInwardInvoices: 0,
-        totalInwardGross: 0,
-        totalInwardDiscount: 0,
         totalInwardPaid: 0,
-        totalInwardDue: 0,
-        totalSupplierVouchers: 0,
         totalSupplierPaid: 0,
-        totalSupplierDiscount: 0,
         supplierCash: 0,
-        supplierBank: 0,
         drawerCash: 0,
-        netBusinessRevenue: 0,
         dineInSales: 0,
         takeawaySales: 0,
         activeTablesCount: 0,
         voidCount: 0,
         bills: []
       };
-
-      let lastUpdatedTime = null;
 
       Object.keys(stores).forEach(id => {
         if (selectedStoreId === 'ALL' || selectedStoreId === id) {
@@ -1099,33 +1173,25 @@ function getMobileAppHtml() {
 
           consolidated.salesCash += Number(sm.salesCash || sm.cashCollected || 0);
           consolidated.salesUpi += Number(sm.salesUpi || sm.upiCollected || 0);
-          consolidated.salesCard += (Number(sm.salesCard || 0) > 0 ? Number(sm.salesCard) : bankVal);
-          consolidated.salesDue += Number(sm.salesDue || dueVal);
+          consolidated.salesCard += Number(sm.salesCard || cardVal || bankVal || 0);
+          consolidated.salesDue += Number(sm.salesDue || dueVal || 0);
+          consolidated.salesTotalPaid += Number(sm.salesTotalPaid || sm.totalGrossSales || 0);
 
           consolidated.totalSalesInvoices += Number(sm.totalSalesInvoices || sm.totalBillsCount || 0);
-          consolidated.totalGrossSales += Number(sm.totalGrossSales || sm.totalSales || 0);
+          consolidated.totalGrossSales += Number(sm.totalGrossSales || 0);
           consolidated.totalSalesDiscount += Number(sm.totalSalesDiscount || sm.totalDiscounts || 0);
           consolidated.totalSalesTax += Number(sm.totalSalesTax || sm.totalTaxes || 0);
-          consolidated.totalNetSales += Number(sm.totalNetSales || sm.totalSales || 0);
+          consolidated.totalNetSales += Number(sm.totalNetSales || sm.netBusinessRevenue || sm.totalGrossSales || 0);
 
           consolidated.totalReturnInvoices += Number(sm.totalReturnInvoices || 0);
           consolidated.totalRefundAmount += Number(sm.totalRefundAmount || 0);
           consolidated.returnCash += Number(sm.returnCash || 0);
           consolidated.returnUpi += Number(sm.returnUpi || 0);
           consolidated.returnCard += Number(sm.returnCard || 0);
+          consolidated.returnDue += Number(sm.returnDue || 0);
 
-          consolidated.totalInwardInvoices += Number(sm.totalInwardInvoices || 0);
-          consolidated.totalInwardGross += Number(sm.totalInwardGross || 0);
-          consolidated.totalInwardPaid += Number(sm.totalInwardPaid || 0);
-          consolidated.totalInwardDue += Number(sm.totalInwardDue || 0);
-
-          consolidated.totalSupplierVouchers += Number(sm.totalSupplierVouchers || 0);
-          consolidated.totalSupplierPaid += Number(sm.totalSupplierPaid || 0);
           consolidated.supplierCash += Number(sm.supplierCash || 0);
-          consolidated.supplierBank += Number(sm.supplierBank || 0);
-
-          consolidated.drawerCash += Number(sm.drawerCash || (sm.cashCollected || 0));
-          consolidated.netBusinessRevenue += Number(sm.netBusinessRevenue || sm.totalSales || 0);
+          consolidated.drawerCash += (sm.drawerCash !== undefined ? Number(sm.drawerCash) : (consolidated.salesCash - consolidated.returnCash - consolidated.supplierCash));
 
           consolidated.dineInSales += Number(sm.dineInSales || 0);
           consolidated.takeawaySales += Number(sm.takeawaySales || 0);
@@ -1135,65 +1201,159 @@ function getMobileAppHtml() {
           if (Array.isArray(s.bills)) {
             consolidated.bills.push(...s.bills);
           }
-          if (sm.lastUpdated) lastUpdatedTime = sm.lastUpdated;
         }
       });
 
       consolidated.netTotalCollection = consolidated.netCash + consolidated.netUpi + consolidated.netCard + consolidated.netDue;
 
-      // Populate DOM Elements
+      // Update Tally Section (100% Accurate)
+      document.getElementById('tallySalesCash').innerText = fmt(consolidated.salesCash);
+      document.getElementById('tallyReturnCash').innerText = fmt(consolidated.returnCash);
+      document.getElementById('tallySupplierCash').innerText = fmt(consolidated.supplierCash);
+      document.getElementById('tallyExpectedCash').innerText = fmt(consolidated.drawerCash > 0 ? consolidated.drawerCash : consolidated.netCash);
+      document.getElementById('valPayTotal').innerText = fmt(consolidated.netTotalCollection > 0 ? consolidated.netTotalCollection : consolidated.totalNetSales);
+
+      // Payment Cards
       document.getElementById('valPayCash').innerText = fmt(consolidated.netCash);
       document.getElementById('valPayUpi').innerText = fmt(consolidated.netUpi);
       document.getElementById('valPayCard').innerText = fmt(consolidated.netCard);
       document.getElementById('valPayDue').innerText = fmt(consolidated.netDue);
-      document.getElementById('valPayTotal').innerText = fmt(consolidated.netTotalCollection);
 
-      const tot = consolidated.netTotalCollection;
-      document.getElementById('subPayCash').innerText = tot > 0 ? (consolidated.netCash / tot * 100).toFixed(1) + '% of total' : '0.0% of total';
-      document.getElementById('subPayUpi').innerText = tot > 0 ? (consolidated.netUpi / tot * 100).toFixed(1) + '% of total' : '0.0% of total';
-      document.getElementById('subPayCard').innerText = tot > 0 ? (consolidated.netCard / tot * 100).toFixed(1) + '% of total' : '0.0% of total';
-      document.getElementById('subPayDue').innerText = tot > 0 ? (consolidated.netDue / tot * 100).toFixed(1) + '% of total' : '0.0% of total';
+      const totColl = consolidated.netTotalCollection || 1;
+      document.getElementById('pctPayCash').innerText = Math.round((consolidated.netCash / totColl) * 100) + '%';
+      document.getElementById('pctPayUpi').innerText = Math.round((consolidated.netUpi / totColl) * 100) + '%';
+      document.getElementById('pctPayCard').innerText = Math.round((consolidated.netCard / totColl) * 100) + '%';
+      document.getElementById('pctPayDue').innerText = Math.round((consolidated.netDue / totColl) * 100) + '%';
 
-      document.getElementById('valSalesInv').innerText = consolidated.totalSalesInvoices;
-      document.getElementById('valSalesGross').innerText = fmt(consolidated.totalGrossSales);
-      document.getElementById('valSalesDisc').innerText = fmt(consolidated.totalSalesDiscount);
-      document.getElementById('valSalesTax').innerText = fmt(consolidated.totalSalesTax);
+      // Count bills per mode
+      const bills = consolidated.bills;
+      const cashCount = bills.filter(b => (b.paymentMode || '').toUpperCase().includes('CASH')).length;
+      const upiCount = bills.filter(b => (b.paymentMode || '').toUpperCase().includes('UPI')).length;
+      const cardCount = bills.filter(b => (b.paymentMode || '').toUpperCase().includes('CARD')).length;
+      const dueCount = bills.filter(b => (b.paymentMode || '').toUpperCase().includes('DUE')).length;
 
-      document.getElementById('valReturnInv').innerText = consolidated.totalReturnInvoices;
-      document.getElementById('valReturnAmt').innerText = fmt(consolidated.totalRefundAmount);
-      document.getElementById('valReturnCash').innerText = fmt(consolidated.returnCash);
-      document.getElementById('valReturnUpi').innerText = fmt(consolidated.returnUpi);
+      document.getElementById('subPayCash').innerText = cashCount + ' Invoices';
+      document.getElementById('subPayUpi').innerText = upiCount + ' Invoices';
+      document.getElementById('subPayCard').innerText = cardCount + ' Invoices';
+      document.getElementById('subPayDue').innerText = dueCount + ' Invoices';
 
-      document.getElementById('valInwardInv').innerText = consolidated.totalInwardInvoices;
-      document.getElementById('valInwardGross').innerText = fmt(consolidated.totalInwardGross);
-      document.getElementById('valInwardPaid').innerText = fmt(consolidated.totalInwardPaid);
-      document.getElementById('valInwardDue').innerText = fmt(consolidated.totalInwardDue);
-
-      document.getElementById('valSupplierVouch').innerText = consolidated.totalSupplierVouchers;
-      document.getElementById('valSupplierPaid').innerText = fmt(consolidated.totalSupplierPaid);
-      document.getElementById('valSupplierCash').innerText = fmt(consolidated.supplierCash);
-      document.getElementById('valSupplierBank').innerText = fmt(consolidated.supplierBank);
-
-      document.getElementById('tallySalesCash').innerText = fmt(consolidated.salesCash);
-      document.getElementById('tallyReturnCash').innerText = fmt(consolidated.returnCash);
-      document.getElementById('tallySupplierCash').innerText = fmt(consolidated.supplierCash);
-      
-      const drawerCashVal = consolidated.salesCash - consolidated.returnCash - consolidated.supplierCash;
-      document.getElementById('tallyExpectedCash').innerText = fmt(drawerCashVal);
-      document.getElementById('tallyNetRevenue').innerText = fmt(consolidated.netBusinessRevenue);
-
+      // Operational Vitals
       document.getElementById('vitalTables').innerText = consolidated.activeTablesCount;
-      document.getElementById('vitalDine').innerText = Math.round(consolidated.dineInSales);
-      document.getElementById('vitalTake').innerText = Math.round(consolidated.takeawaySales);
+      document.getElementById('vitalDine').innerText = fmt(consolidated.dineInSales);
+      document.getElementById('vitalTake').innerText = fmt(consolidated.takeawaySales);
       document.getElementById('vitalVoid').innerText = consolidated.voidCount;
 
-      if (lastUpdatedTime) {
-        document.getElementById('outletLastUpdated').innerText = new Date(lastUpdatedTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      }
+      // Smart Hourly Rush Chart & Top Dishes
+      renderHourlyChart(bills);
+      renderTopDishes(bills);
 
-      renderBillsList(consolidated.bills);
+      filterBillsList();
     }
 
+    // ==========================================
+    // HOURLY PEAK RUSH HEATMAP LOGIC
+    // ==========================================
+    function renderHourlyChart(bills) {
+      const container = document.getElementById('hourlyChartContainer');
+      const hours = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+      const hourSales = {};
+      hours.forEach(h => hourSales[h] = 0);
+
+      bills.forEach(b => {
+        if (b.settledDate) {
+          const d = new Date(b.settledDate);
+          const h = d.getHours();
+          if (hourSales[h] !== undefined) {
+            hourSales[h] += Number(b.grandTotal || b.subTotal || 0);
+          }
+        }
+      });
+
+      const maxSales = Math.max(...Object.values(hourSales), 1);
+      let peakHour = 13;
+      let maxVal = 0;
+
+      hours.forEach(h => {
+        if (hourSales[h] > maxVal) {
+          maxVal = hourSales[h];
+          peakHour = h;
+        }
+      });
+
+      const peakBadge = document.getElementById('peakHourBadge');
+      if (maxVal > 0) {
+        const hFmt = peakHour > 12 ? (peakHour - 12) + ' PM' : (peakHour === 12 ? '12 PM' : peakHour + ' AM');
+        peakBadge.innerText = '🔥 Peak: ' + hFmt + ' (₹' + fmt(maxVal) + ')';
+      } else {
+        peakBadge.innerText = '🔥 Peak: Normal';
+      }
+
+      container.innerHTML = hours.map(h => {
+        const val = hourSales[h];
+        const pct = Math.max(8, Math.round((val / maxSales) * 100));
+        const isPeak = (h === peakHour && val > 0);
+        const barColor = isPeak ? 'bg-gradient-to-t from-amber-500 to-yellow-400 shadow-md shadow-amber-500/30' : (val > 0 ? 'bg-brand-500' : 'bg-slate-800');
+        const hLabel = h > 12 ? (h - 12) + 'p' : h + 'a';
+
+        return \`
+          <div class="flex-1 flex flex-col items-center justify-end h-full group cursor-pointer" title="\${hLabel.toUpperCase()}: ₹\${fmt(val)}">
+            <div style="height: \${pct}%;" class="w-full max-w-[14px] \${barColor} rounded-t-sm transition-all duration-300"></div>
+          </div>
+        \`;
+      }).join('');
+    }
+
+    // ==========================================
+    // TOP 5 BESTSELLER DISHES LOGIC
+    // ==========================================
+    function renderTopDishes(bills) {
+      const container = document.getElementById('topDishesList');
+      const itemMap = {};
+
+      bills.forEach(b => {
+        if (Array.isArray(b.items)) {
+          b.items.forEach(i => {
+            const name = i.itemName || 'Special Dish';
+            if (!itemMap[name]) {
+              itemMap[name] = { name: name, qty: 0, revenue: 0, isVeg: i.isVeg !== false };
+            }
+            itemMap[name].qty += Number(i.qty || 1);
+            itemMap[name].revenue += Number(i.lineTotal || (i.qty * i.price) || 0);
+          });
+        }
+      });
+
+      const topItems = Object.values(itemMap).sort((a, b) => b.qty - a.qty).slice(0, 5);
+
+      if (topItems.length === 0) {
+        container.innerHTML = '<div class="text-center text-slate-500 text-xs py-4">No dish items recorded yet today.</div>';
+        return;
+      }
+
+      container.innerHTML = topItems.map((item, idx) => {
+        const medalColors = ['text-yellow-400 bg-yellow-400/10 border-yellow-400/30', 'text-slate-300 bg-slate-300/10 border-slate-300/30', 'text-amber-600 bg-amber-600/10 border-amber-600/30', 'text-slate-400 bg-slate-800 border-slate-700', 'text-slate-400 bg-slate-800 border-slate-700'];
+        const vegDot = item.isVeg ? '<span class="w-2 h-2 rounded-full bg-emerald-500 inline-block mr-1"></span>' : '<span class="w-2 h-2 rounded-full bg-rose-500 inline-block mr-1"></span>';
+
+        return \`
+          <div class="flex items-center justify-between text-xs bg-slate-950/70 p-2.5 rounded-xl border border-slate-800/80">
+            <div class="flex items-center space-x-2">
+              <span class="w-5 h-5 rounded-lg border font-mono font-black text-[10px] flex items-center justify-center \${medalColors[idx]}">#\${idx + 1}</span>
+              <div>
+                <div class="font-bold text-white flex items-center">\${vegDot}\${item.name}</div>
+                <div class="text-[10px] text-slate-400">\${item.qty} units sold</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="font-mono font-extrabold text-emerald-400">₹\${fmt(item.revenue)}</span>
+            </div>
+          </div>
+        \`;
+      }).join('');
+    }
+
+    // ==========================================
+    // 1-TAP PAYMENT CROSS FILTER
+    // ==========================================
     function applyPaymentFilter(mode) {
       if (activePaymentFilter === mode) {
         clearCrossFilter();
@@ -1212,7 +1372,7 @@ function getMobileAppHtml() {
 
       const badge = document.getElementById('activeFilterBadge');
       badge.classList.remove('hidden');
-      badge.innerText = '✕ Filtered by ' + mode + ' (Click to reset)';
+      badge.innerText = '✕ Filter: ' + mode;
 
       filterBillsList();
     }
@@ -1284,15 +1444,15 @@ function getMobileAppHtml() {
         else if (pm.includes('DUE')) payBadgeColor = 'bg-amber-500/10 text-amber-400 border-amber-500/30';
 
         return \`
-          <div onclick="viewBillDetails(\${idx})" ondblclick="viewBillDetails(\${idx})" class="kpi-card bg-slate-950/70 border border-slate-800 hover:border-slate-700 active:border-emerald-500/50 rounded-xl p-3.5 space-y-2 transition cursor-pointer select-none">
+          <div onclick="viewBillDetails(\${idx})" class="kpi-card bg-slate-950/70 border border-slate-800 hover:border-slate-700 active:border-emerald-500/50 rounded-2xl p-3.5 space-y-2 transition cursor-pointer select-none">
             <div class="flex items-center justify-between text-xs">
               <div class="flex items-center space-x-2">
-                <span class="font-extrabold text-white font-mono">#\${b.invoiceNo || b.orderId}</span>
-                <span class="text-[10px] px-1.5 py-0.5 rounded border font-bold \${payBadgeColor}">\${b.paymentMode || 'Cash'}</span>
+                <span class="font-black text-white font-mono">#\${b.invoiceNo || b.orderId}</span>
+                <span class="text-[10px] px-2 py-0.5 rounded border font-bold \${payBadgeColor}">\${b.paymentMode || 'Cash'}</span>
                 <span class="text-[10px] text-slate-400 font-medium">\${b.orderType || 'DineIn'}</span>
               </div>
               <div class="text-right">
-                <span class="text-sm font-extrabold font-mono text-emerald-400">₹\${fmt(b.grandTotal || b.subTotal || 0)}</span>
+                <span class="text-sm font-black font-mono text-emerald-400">₹\${fmt(b.grandTotal || b.subTotal || 0)}</span>
               </div>
             </div>
 
@@ -1306,23 +1466,22 @@ function getMobileAppHtml() {
             </div>
 
             \${items.length > 0 ? \`
-              <div class="text-[10px] text-slate-400 bg-slate-900/60 rounded-lg px-2.5 py-1.5 border border-slate-800/80 truncate flex items-center justify-between">
+              <div class="text-[10px] text-slate-400 bg-slate-900/60 rounded-xl px-2.5 py-1.5 border border-slate-800/80 truncate flex items-center justify-between">
                 <span class="truncate">🍽️ \${itemsPreview}</span>
-                <span class="text-[9px] text-brand-400 font-bold ml-1 shrink-0">Tap to inspect ➔</span>
+                <span class="text-[9px] text-brand-400 font-bold ml-1 shrink-0">Inspect ➔</span>
               </div>
-            \` : \`
-              <div class="text-[9px] text-right text-brand-400 font-bold">
-                Tap to inspect details ➔
-              </div>
-            \`}
+            \` : ''}
           </div>
         \`;
       }).join('');
     }
 
+    let activeInspectedBill = null;
+
     function viewBillDetails(idx) {
       if (!window.currentRenderedBills || !window.currentRenderedBills[idx]) return;
       const b = window.currentRenderedBills[idx];
+      activeInspectedBill = b;
 
       document.getElementById('invModalNo').innerText = '#' + (b.invoiceNo || b.orderId);
       document.getElementById('invModalStatus').innerText = (b.orderStatus || 'PAID').toUpperCase();
@@ -1346,54 +1505,54 @@ function getMobileAppHtml() {
         listContainer.innerHTML = items.map(function(item) {
           var variant = item.variantName ? '<span class="text-indigo-400 ml-1">(' + item.variantName + ')</span>' : '';
           var category = item.categoryName ? '<span class="text-slate-500 ml-1">• ' + item.categoryName + '</span>' : '';
-          var note = item.notes ? '<div class="text-[9px] text-amber-400 italic">Note: ' + item.notes + '</div>' : '';
           var lineTotal = item.lineTotal || (item.qty * item.price);
-
-          return '<div class="p-2.5 bg-slate-950/60 rounded-xl border border-slate-800/90 flex items-center justify-between text-xs">' +
-            '<div class="space-y-0.5">' +
-              '<div class="font-bold text-slate-100">' + (item.itemName || 'Item') + '</div>' +
-              '<div class="text-[10px] text-slate-400 font-mono">' + item.qty + ' × ₹' + fmt(item.price) + variant + category + '</div>' +
-              note +
-            '</div>' +
-            '<div class="text-right font-mono font-bold text-slate-200">₹' + fmt(lineTotal) + '</div>' +
-          '</div>';
+          return \`
+            <div class="flex items-center justify-between text-xs py-1.5 border-b border-slate-800/60 last:border-0">
+              <div class="flex-1 pr-2">
+                <div class="font-bold text-white">\${item.qty}x \${item.itemName} \${variant}</div>
+                <div class="text-[10px] text-slate-500 font-mono">₹\${fmt(item.price)} each \${category}</div>
+              </div>
+              <div class="font-mono font-bold text-slate-200">
+                ₹\${fmt(lineTotal)}
+              </div>
+            </div>\`;
         }).join('');
       }
 
-      // Financials
-      const grandTotal = Number(b.grandTotal || b.netTotal || b.subTotal || 0);
-      const discount = Number(b.discountAmount || b.discount || 0);
+      // Amounts
+      const sub = Number(b.subTotal || 0);
+      const disc = Number(b.discountAmount || 0);
       const tax = Number(b.taxAmount || 0);
-      const subTotal = (b.subTotal && b.subTotal > 0) ? Number(b.subTotal) : (grandTotal + discount - tax);
+      const grand = Number(b.grandTotal || (sub - disc + tax));
 
-      document.getElementById('invModalSubTotal').innerText = '₹' + fmt(subTotal);
-      document.getElementById('invModalDiscount').innerText = discount > 0 ? '-₹' + fmt(discount) : '₹0.00';
-      document.getElementById('invModalTax').innerText = tax > 0 ? '₹' + fmt(tax) : '₹0.00';
-      document.getElementById('invModalGrandTotal').innerText = '₹' + fmt(grandTotal);
-
-      // Payment
-      document.getElementById('invModalPayMode').innerText = (b.paymentMode || 'Cash').toUpperCase();
-      let splitDetails = '';
-      if (b.cashAmount > 0) splitDetails += 'Cash: ₹' + fmt(b.cashAmount) + ' ';
-      if (b.upiAmount > 0) splitDetails += 'UPI: ₹' + fmt(b.upiAmount) + ' ';
-      if (b.cardAmount > 0) splitDetails += 'Card: ₹' + fmt(b.cardAmount) + ' ';
-      if (b.bankAmount > 0) splitDetails += 'Bank: ₹' + fmt(b.bankAmount) + ' ';
-      if (b.otherAmount > 0) splitDetails += 'Due: ₹' + fmt(b.otherAmount) + ' ';
-      document.getElementById('invModalPaySplit').innerText = splitDetails.trim() || ('100% ' + (b.paymentMode || 'Cash'));
+      document.getElementById('invModalSubtotal').innerText = fmt(sub > 0 ? sub : (grand + disc - tax));
+      document.getElementById('invModalDiscount').innerText = fmt(disc);
+      document.getElementById('invModalTax').innerText = fmt(tax);
+      document.getElementById('invModalGrandTotal').innerText = fmt(grand);
+      document.getElementById('invModalPayMode').innerText = (b.paymentMode || 'CASH').toUpperCase();
 
       document.getElementById('invoiceModal').classList.remove('hidden');
     }
 
     function closeInvoiceModal() {
       document.getElementById('invoiceModal').classList.add('hidden');
+      activeInspectedBill = null;
+    }
+
+    function shareBillOnWhatsApp() {
+      if (!activeInspectedBill) return;
+      const b = activeInspectedBill;
+      const items = (b.items || []).map(i => i.qty + 'x ' + i.itemName + ' - ₹' + fmt(i.lineTotal || (i.qty * i.price))).join('%0A');
+      const text = \`🧾 *XRestro Bill Receipt*%0AInvoice: #\${b.invoiceNo || b.orderId}%0ATable: \${b.tableName || 'Counter'}%0ADate: \${new Date(b.settledDate || Date.now()).toLocaleDateString('en-GB')}%0A----------------------------%0A\${items}%0A----------------------------%0A*Grand Total: ₹\${fmt(b.grandTotal || b.subTotal || 0)}*%0APaid Via: \${b.paymentMode || 'Cash'}%0AThank you! Visit again.\`;
+      window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
     }
 
     function openPinModal() {
       document.getElementById('pinModal').classList.remove('hidden');
-      document.getElementById('pinModalError').classList.add('hidden');
       document.getElementById('currPin').value = '';
       document.getElementById('newPin1').value = '';
       document.getElementById('newPin2').value = '';
+      document.getElementById('pinModalError').classList.add('hidden');
     }
 
     function closePinModal() {
@@ -1401,52 +1560,62 @@ function getMobileAppHtml() {
     }
 
     async function submitChangePin() {
-      const errEl = document.getElementById('pinModalError');
-      errEl.classList.add('hidden');
-
       const oldPin = document.getElementById('currPin').value.trim();
-      const newPin1 = document.getElementById('newPin1').value.trim();
-      const newPin2 = document.getElementById('newPin2').value.trim();
+      const newPin = document.getElementById('newPin1').value.trim();
+      const confirmPin = document.getElementById('newPin2').value.trim();
+      const errBox = document.getElementById('pinModalError');
 
-      if (!oldPin) { errEl.innerText = 'Please enter your current PIN.'; errEl.classList.remove('hidden'); return; }
-      if (!newPin1 || newPin1.length !== 4) { errEl.innerText = 'New PIN must be exactly 4 digits.'; errEl.classList.remove('hidden'); return; }
-      if (newPin1 !== newPin2) { errEl.innerText = 'New PIN entries do not match.'; errEl.classList.remove('hidden'); return; }
+      if (!oldPin || !newPin || !confirmPin) {
+        errBox.innerText = 'Please fill all PIN fields.';
+        errBox.classList.remove('hidden');
+        return;
+      }
+      if (newPin !== confirmPin) {
+        errBox.innerText = 'New PIN and Confirm PIN do not match.';
+        errBox.classList.remove('hidden');
+        return;
+      }
+      if (newPin.length !== 4) {
+        errBox.innerText = 'New PIN must be exactly 4 digits.';
+        errBox.classList.remove('hidden');
+        return;
+      }
 
       try {
         const res = await fetch('/api/v1/owner/change-pin', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ phone: currentOwnerPhone, oldPin, newPin: newPin1 })
+          body: JSON.stringify({ phone: currentOwnerPhone, oldPin, newPin })
         });
         const data = await res.json();
-        if (!data.success) {
-          errEl.innerText = data.error || 'Failed to update PIN.';
-          errEl.classList.remove('hidden');
-          return;
+        if (data.success) {
+          currentOwnerPin = newPin;
+          sessionStorage.setItem('xion_owner_pin', newPin);
+          alert('Security PIN updated successfully!');
+          closePinModal();
+        } else {
+          errBox.innerText = data.error || 'Failed to update PIN';
+          errBox.classList.remove('hidden');
         }
-
-        currentOwnerPin = newPin1;
-        sessionStorage.setItem('xion_owner_pin', newPin1);
-        alert('✅ Security PIN updated successfully.');
-        closePinModal();
-      } catch (err) {
-        errEl.innerText = 'Server error: Unable to change PIN. Please try again.';
-        errEl.classList.remove('hidden');
+      } catch (e) {
+        errBox.innerText = 'Network error while changing PIN';
+        errBox.classList.remove('hidden');
       }
     }
 
-    // --- PULL TO REFRESH ON MOBILE (LOCATED DIRECTLY BENEATH STORE BANNER / HEADER) ---
+    // PULL TO REFRESH GESTURE ENGINE
     (function initPullToRefresh() {
       let startY = 0;
       let currentY = 0;
       let isPulling = false;
       let isRefreshing = false;
-      const threshold = 44;
-      const maxPull = 54;
+      const threshold = 65;
+      const maxPull = 90;
+
       const indicator = document.getElementById('ptrIndicator');
       const ptrText = document.getElementById('ptrText');
-      const ptrIcon = document.getElementById('ptrIcon');
       const ptrSpinner = document.getElementById('ptrSpinner');
+      const ptrIcon = document.getElementById('ptrIcon');
 
       if (!indicator) return;
 
@@ -1463,9 +1632,7 @@ function getMobileAppHtml() {
         const diff = currentY - startY;
 
         if (diff > 0 && window.scrollY <= 2) {
-          if (e.cancelable) {
-            e.preventDefault(); // Prevents mobile browser from dragging the entire page
-          }
+          if (e.cancelable) e.preventDefault();
           const pullDist = Math.min(diff * 0.42, maxPull);
           indicator.style.height = pullDist + 'px';
           indicator.style.opacity = String(Math.min(pullDist / 20, 1));
