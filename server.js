@@ -94,6 +94,16 @@ function detectCurrencyByPhone(phone) {
     return '$';                                                    // Default International
 }
 
+function detectDefaultTaxByPhone(phone) {
+    const p = normalizePhone(phone);
+    if (p.startsWith('27') || p.startsWith('07') || p.startsWith('08')) return 'VAT';
+    if (p.startsWith('91')) return 'GST';
+    if (p.startsWith('971')) return 'VAT';
+    if (p.startsWith('44')) return 'VAT';
+    if (p.startsWith('1')) return 'Sales Tax';
+    return 'Tax';
+}
+
 // Brand SVG Icon
 const ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
@@ -244,6 +254,7 @@ const server = http.createServer((req, res) => {
                         storeName: payload.storeName || 'My Restaurant',
                         storePhone: storePhone,
                         currency: db.owners[ownerKey].currency || detectCurrencyByPhone(ownerPhone),
+                        taxName: payload.taxName || detectDefaultTaxByPhone(ownerPhone),
                         liveSummary: {},
                         bills: [],
                         returns: [],
@@ -255,6 +266,8 @@ const server = http.createServer((req, res) => {
                 const store = db.owners[ownerKey].stores[storeId];
                 if (payload.storeName) store.storeName = payload.storeName;
                 if (storePhone) store.storePhone = storePhone;
+                if (payload.taxName) store.taxName = payload.taxName;
+                if (payload.taxRate !== undefined && payload.taxRate !== null) store.taxRate = Number(payload.taxRate);
                 if (!store.returns) store.returns = [];
                 if (!store.inwards) store.inwards = [];
                 if (!store.suppliers) store.suppliers = [];
@@ -345,6 +358,7 @@ const server = http.createServer((req, res) => {
                                 storeName: 'My Restaurant',
                                 storePhone: targetKey,
                                 currency: autoCurr,
+                                taxName: detectDefaultTaxByPhone(cleanCountry || cleanPhone),
                                 liveSummary: {
                                     totalGrossSales: 0, salesCash: 0, salesCard: 0, salesUpi: 0, salesDue: 0,
                                     netCash: 0, netCard: 0, netUpi: 0, netDue: 0, netTotalCollection: 0,

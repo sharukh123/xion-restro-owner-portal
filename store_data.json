@@ -6,6 +6,7 @@
       "pin": "1234",
       "stores": {
         "STORE_JANTA_01": {
+          "taxName": "GST",
           "storePhone": "9723717248",
           "liveSummary": {
             "totalGrossSales": 5213.7,
@@ -806,6 +807,7 @@
           "storeId": "STORE_SALT_PEPPER",
           "storeName": "SALT 'N PEPPER TAKE AWAY",
           "storePhone": "0792153627",
+          "taxName": "VAT",
           "currency": "R",
           "liveSummary": {
             "totalGrossSales": 0,

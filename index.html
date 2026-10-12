@@ -413,7 +413,7 @@
         <button onclick="switchReportTab('drawer')" id="repTabDrawer" class="report-tab-pill flex-1 py-2 px-3 rounded-2xl text-xs font-bold text-center text-slate-400 shrink-0 transition active:scale-95">💵 Cash Drawer</button>
         <button onclick="switchReportTab('dishes')" id="repTabDishes" class="report-tab-pill flex-1 py-2 px-3 rounded-2xl text-xs font-bold text-center text-slate-400 shrink-0 transition active:scale-95">🍽️ Dishes</button>
         <button onclick="switchReportTab('categories')" id="repTabCategories" class="report-tab-pill flex-1 py-2 px-3 rounded-2xl text-xs font-bold text-center text-slate-400 shrink-0 transition active:scale-95">🏷️ Categories</button>
-        <button onclick="switchReportTab('taxes')" id="repTabTaxes" class="report-tab-pill flex-1 py-2 px-3 rounded-2xl text-xs font-bold text-center text-slate-400 shrink-0 transition active:scale-95">📋 Tax & GST</button>
+        <button onclick="switchReportTab('taxes')" id="repTabTaxes" class="report-tab-pill flex-1 py-2 px-3 rounded-2xl text-xs font-bold text-center text-slate-400 shrink-0 transition active:scale-95">📋 <span id="repTabTaxText">Tax</span></button>
       </div>
 
       <!-- REPORT 1: SALES & REVENUE AUDIT -->
@@ -440,7 +440,7 @@
               <div class="text-lg font-black font-mono text-white mt-0.5" id="repNetSales">0.00</div>
             </div>
             <div class="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
-              <span class="text-[10px] text-slate-400 uppercase font-bold">Tax Collected</span>
+              <span class="text-[10px] text-slate-400 uppercase font-bold" id="repTaxCardLabel">Tax Collected</span>
               <div class="text-lg font-black font-mono text-purple-400 mt-0.5" id="repTax">0.00</div>
             </div>
           </div>
@@ -521,11 +521,11 @@
         </div>
       </div>
 
-      <!-- REPORT 5: TAX & GST AUDIT -->
+      <!-- REPORT 5: DYNAMIC TAX AUDIT -->
       <div id="reportViewTaxes" class="hidden space-y-3.5">
         <div class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
           <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-            <span class="text-xs font-black uppercase text-white">Tax & VAT Ledger</span>
+            <span class="text-xs font-black uppercase text-white" id="repTaxLedgerTitle">Tax Ledger</span>
             <span class="text-[10px] text-emerald-400 font-bold">Compliance Ready</span>
           </div>
           <div class="space-y-2 text-xs">
@@ -534,7 +534,7 @@
               <span class="font-mono font-bold text-white" id="repTaxableTurnover">0.00</span>
             </div>
             <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span class="text-slate-400">Total Tax / VAT Collected</span>
+              <span class="text-slate-400" id="repTaxCollectedLabel">Total Tax Collected</span>
               <span class="font-mono font-bold text-purple-400" id="repTaxCollected">0.00</span>
             </div>
             <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
@@ -711,7 +711,7 @@
           <span class="font-mono font-bold">-<span id="invModalDiscount">0.00</span></span>
         </div>
         <div class="flex justify-between text-purple-400">
-          <span>Taxes / VAT</span>
+          <span id="invModalTaxLabel">Tax</span>
           <span class="font-mono font-bold">+<span id="invModalTax">0.00</span></span>
         </div>
         <div class="flex justify-between text-base font-black text-white pt-2 border-t border-slate-800">
@@ -832,6 +832,22 @@
     let activeDateFilter = 'TODAY';
     let customDateSelected = null;
     let deferredInstallPrompt = null;
+    let currentActiveTaxName = 'Tax';
+
+    function applyTaxLabels(taxName) {
+      const t = (taxName || '').trim() || 'Tax';
+      currentActiveTaxName = t;
+      const tabEl = document.getElementById('repTabTaxText');
+      if (tabEl) tabEl.innerText = t;
+      const cardEl = document.getElementById('repTaxCardLabel');
+      if (cardEl) cardEl.innerText = t + ' Collected';
+      const titleEl = document.getElementById('repTaxLedgerTitle');
+      if (titleEl) titleEl.innerText = t + ' Ledger';
+      const rowEl = document.getElementById('repTaxCollectedLabel');
+      if (rowEl) rowEl.innerText = 'Total ' + t + ' Collected';
+      const modalEl = document.getElementById('invModalTaxLabel');
+      if (modalEl) modalEl.innerText = t;
+    }
 
     // Register Service Worker for PWA
     if ('serviceWorker' in navigator) {
@@ -1180,16 +1196,30 @@
 
       let allStoreBills = [];
       let activeStoreName = 'My Restaurant';
+      let activeTaxName = '';
 
       storeIds.forEach(id => {
         if (selectedStoreId === 'ALL' || selectedStoreId === id) {
           const s = stores[id];
           if (s.storeName) activeStoreName = s.storeName;
+          if (s.taxName) activeTaxName = s.taxName;
           if (Array.isArray(s.bills)) {
             allStoreBills.push(...s.bills);
           }
         }
       });
+
+      if (!activeTaxName && allStoreBills.length > 0) {
+        const bTax = allStoreBills.find(b => b.taxName);
+        if (bTax && bTax.taxName) activeTaxName = bTax.taxName;
+      }
+      if (!activeTaxName) {
+        const p = currentOwnerPhone || '';
+        activeTaxName = (p.startsWith('91') || p.startsWith('+91')) ? 'GST' 
+                      : ((p.startsWith('27') || p.startsWith('+27') || p.startsWith('07') || p.startsWith('08')) ? 'VAT' : 'Tax');
+      }
+
+      applyTaxLabels(activeTaxName);
 
       document.getElementById('singleBranchName').innerText = activeStoreName;
       document.getElementById('settingStoreName').value = activeStoreName;
@@ -1686,6 +1716,9 @@
       document.getElementById('invModalSubtotal').innerText = fmt(sub > 0 ? sub : (grand + disc - tax));
       document.getElementById('invModalDiscount').innerText = fmt(disc);
       document.getElementById('invModalTax').innerText = fmt(tax);
+      const modalTaxName = b.taxName || currentActiveTaxName || 'Tax';
+      const modalTaxEl = document.getElementById('invModalTaxLabel');
+      if (modalTaxEl) modalTaxEl.innerText = modalTaxName;
       document.getElementById('invModalGrandTotal').innerText = fmt(grand);
 
       document.getElementById('invoiceModal').classList.remove('hidden');
