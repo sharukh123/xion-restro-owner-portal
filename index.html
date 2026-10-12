@@ -57,7 +57,7 @@
     .kpi-stripe {
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 3px;
+      height: 3.5px;
       background: var(--card-color, #10b981);
     }
     .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -81,12 +81,6 @@
       color: #020617 !important;
       font-weight: 800 !important;
     }
-    .gold-shimmer {
-      background: linear-gradient(90deg, rgba(250, 204, 21, 0.1) 0%, rgba(250, 204, 21, 0.3) 50%, rgba(250, 204, 21, 0.1) 100%);
-      background-size: 200% 100%;
-      animation: shimmer 3s infinite linear;
-    }
-    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
   </style>
 </head>
 <body class="min-h-screen pb-28">
@@ -149,7 +143,7 @@
       <!-- 1-Tap Install App on Login Screen -->
       <button type="button" onclick="triggerInstallApp()" class="btn-install-app w-full py-2.5 px-3 rounded-2xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center space-x-2 transition">
         <span>📲</span>
-        <span>Install App on iPhone / Android</span>
+        <span>Install App on Phone</span>
       </button>
     </div>
   </div>
@@ -179,16 +173,11 @@
       </div>
 
       <!-- Action Buttons -->
-      <div class="flex items-center space-x-1.5 shrink-0">
+      <div class="flex items-center space-x-2 shrink-0">
         <!-- 📲 Install App Pill -->
-        <button type="button" onclick="triggerInstallApp()" class="btn-install-app flex items-center space-x-1 px-2.5 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[11px] font-extrabold active:scale-95 transition" title="Install App to Mobile Home Screen">
+        <button type="button" onclick="triggerInstallApp()" class="btn-install-app flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[11px] font-extrabold active:scale-95 transition" title="Install App">
           <span>📲</span>
           <span>Install</span>
-        </button>
-
-        <!-- 🌐 Quick Currency Switcher -->
-        <button type="button" onclick="openCurrencyModal()" class="px-2.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white text-[11px] font-mono font-bold active:scale-95 transition" title="Switch Currency">
-          <span class="cur-sym">$</span>
         </button>
 
         <!-- 🔒 Lock App -->
@@ -207,33 +196,33 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- UNIVERSAL DATE FILTER PILL BAR             -->
+    <!-- CLEAN DATE FILTER PILL BAR                 -->
     <!-- ========================================== -->
     <div class="max-w-md mx-auto mt-2.5">
       <div class="flex items-center space-x-1.5 overflow-x-auto no-scrollbar py-0.5" id="dateFilterBar">
-        <button onclick="setDateFilter('TODAY')" id="filterBtnToday" class="date-pill px-3 py-1 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">Today</button>
-        <button onclick="setDateFilter('YESTERDAY')" id="filterBtnYesterday" class="date-pill px-3 py-1 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">Yesterday</button>
-        <button onclick="setDateFilter('7DAYS')" id="filterBtn7Days" class="date-pill px-3 py-1 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">7 Days</button>
-        <button onclick="setDateFilter('MONTH')" id="filterBtnMonth" class="date-pill px-3 py-1 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">This Month</button>
-        <button onclick="setDateFilter('ALL')" id="filterBtnAll" class="date-pill active px-3 py-1 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">All Time</button>
-        <button onclick="openCustomDateModal()" id="filterBtnCustom" class="date-pill px-3 py-1 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">📅 Custom</button>
+        <button onclick="setDateFilter('TODAY')" id="filterBtnToday" class="date-pill active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">Today</button>
+        <button onclick="setDateFilter('YESTERDAY')" id="filterBtnYesterday" class="date-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">Yesterday</button>
+        <button onclick="setDateFilter('7DAYS')" id="filterBtn7Days" class="date-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">7 Days</button>
+        <button onclick="setDateFilter('MONTH')" id="filterBtnMonth" class="date-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">This Month</button>
+        <button onclick="setDateFilter('ALL')" id="filterBtnAll" class="date-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">All Time</button>
+        <button onclick="openCustomDateModal()" id="filterBtnCustom" class="date-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">📅 Custom</button>
       </div>
 
-      <!-- Active Date Indicator Sub-Banner -->
-      <div class="flex items-center justify-between text-[11px] bg-slate-900/60 rounded-xl px-2.5 py-1 mt-1.5 border border-slate-800/80">
+      <!-- Active Period Summary Bar -->
+      <div class="flex items-center justify-between text-[11px] bg-slate-900/60 rounded-xl px-3 py-1.5 mt-1.5 border border-slate-800/80">
         <div class="flex items-center space-x-1.5 text-slate-300 truncate">
           <span>📅</span>
-          <span id="dateFilterStatus" class="font-bold truncate">All Time (All Transactions)</span>
+          <span id="dateFilterStatus" class="font-bold truncate">Today's Transactions</span>
         </div>
         <div class="flex items-center space-x-1 shrink-0 text-emerald-400 font-bold text-[10px]">
-          <span>🔒 Balanced</span>
+          <span>🔒 100% Balanced</span>
         </div>
       </div>
 
       <!-- Smart Date Alert (when 0 bills in selected period) -->
       <div id="dateFilterAlert" class="hidden mt-1.5 p-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] flex items-center justify-between">
         <span id="dateAlertText">No transactions for this date.</span>
-        <button onclick="jumpToActiveDate()" class="px-2 py-0.5 rounded-lg bg-amber-400 text-slate-950 font-black text-[10px] shrink-0 active:scale-95 ml-2">⚡ View Available Data</button>
+        <button onclick="jumpToActiveDate()" class="px-2.5 py-0.5 rounded-lg bg-amber-400 text-slate-950 font-black text-[10px] shrink-0 active:scale-95 ml-2">⚡ View All Time Sales</button>
       </div>
     </div>
   </header>
@@ -259,127 +248,102 @@
     <!-- ======================================== -->
     <div id="tabHome" class="space-y-3.5">
       
-      <!-- ✨ AI EXECUTIVE INTELLIGENCE CARD (Matching User Image Screen 1 & 3) -->
-      <section class="bg-gradient-to-br from-indigo-950/40 via-slate-900 to-slate-900 border border-indigo-500/30 rounded-[28px] p-4 shadow-xl relative overflow-hidden">
-        <div class="flex items-center justify-between pb-2 border-b border-indigo-500/20">
-          <div class="flex items-center space-x-2">
-            <span class="w-6 h-6 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-black">✨</span>
-            <span class="text-xs font-black uppercase tracking-wider text-indigo-300">Executive AI Insights</span>
-          </div>
-          <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-extrabold border border-emerald-500/30">Live Active</span>
-        </div>
-        <p id="aiSummaryText" class="text-xs text-slate-300 font-medium leading-relaxed pt-2.5">
-          Analyzing business performance for selected period...
-        </p>
-      </section>
-
-      <!-- MASTER RECONCILED CASH DRAWER (100% Balanced) -->
-      <section class="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-slate-800 rounded-[28px] p-4 shadow-2xl relative overflow-hidden">
+      <!-- HERO SALES OVERVIEW CARD (Clean Big Bold Amount - No Currency Symbol) -->
+      <section class="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-slate-800 rounded-[28px] p-5 shadow-2xl relative overflow-hidden">
         <div class="flex items-center justify-between pb-3 border-b border-slate-800/80">
           <div>
-            <span class="text-[10px] font-black uppercase tracking-wider text-slate-400 block">Reconciled Cash In Drawer</span>
-            <div class="text-3xl font-black font-mono text-emerald-400 mt-0.5">
-              <span class="cur-sym">$</span><span id="tallyExpectedCash">0.00</span>
+            <span class="text-[10px] font-black uppercase tracking-wider text-slate-400 block">Total Net Collection</span>
+            <div class="text-3xl font-black font-mono text-emerald-400 mt-1" id="valPayTotal">
+              0.00
+            </div>
+            <div class="text-[11px] text-slate-400 mt-0.5">
+              <span id="heroInvoicesCount" class="font-bold text-white">0</span> Invoices Settled
             </div>
           </div>
           <div class="text-right">
-            <span class="text-[9px] font-bold uppercase tracking-wider text-slate-500 block">Total Net Collection</span>
-            <div class="text-base font-extrabold font-mono text-white mt-0.5">
-              <span class="cur-sym">$</span><span id="valPayTotal">0.00</span>
+            <span class="text-[10px] font-black uppercase tracking-wider text-slate-400 block">Drawer Cash</span>
+            <div class="text-xl font-black font-mono text-white mt-1" id="tallyExpectedCash">
+              0.00
             </div>
-            <span class="text-[9px] text-emerald-400 font-bold">🔒 100% Balanced</span>
+            <span class="text-[10px] text-emerald-400 font-bold block mt-0.5">🔒 100% Balanced</span>
           </div>
         </div>
 
-        <!-- Tally Pipeline Breakdown -->
+        <!-- Quick 3-Pill Breakdown -->
         <div class="grid grid-cols-3 gap-2 text-center text-xs pt-3">
           <div class="bg-slate-950/60 p-2.5 rounded-2xl border border-slate-800">
             <div class="text-[9px] text-emerald-400 uppercase font-bold">(+) Sales Cash</div>
-            <div class="font-mono font-extrabold text-white mt-0.5"><span class="cur-sym">$</span><span id="tallySalesCash">0.00</span></div>
+            <div class="font-mono font-extrabold text-white mt-0.5" id="tallySalesCash">0.00</div>
           </div>
           <div class="bg-slate-950/60 p-2.5 rounded-2xl border border-slate-800">
             <div class="text-[9px] text-rose-400 uppercase font-bold">(-) Return Cash</div>
-            <div class="font-mono font-extrabold text-white mt-0.5"><span class="cur-sym">$</span><span id="tallyReturnCash">0.00</span></div>
+            <div class="font-mono font-extrabold text-white mt-0.5" id="tallyReturnCash">0.00</div>
           </div>
           <div class="bg-slate-950/60 p-2.5 rounded-2xl border border-slate-800">
             <div class="text-[9px] text-amber-400 uppercase font-bold">(-) Vendor Cash</div>
-            <div class="font-mono font-extrabold text-white mt-0.5"><span class="cur-sym">$</span><span id="tallySupplierCash">0.00</span></div>
+            <div class="font-mono font-extrabold text-white mt-0.5" id="tallySupplierCash">0.00</div>
           </div>
         </div>
       </section>
 
-      <!-- PAYMENT COLLECTIONS (1-Tap Cross-Filter) -->
+      <!-- 3 LARGE PAYMENT CARDS (Directly Matching the 3 Cards in User's Reference Photo) -->
       <section class="space-y-2">
         <div class="flex items-center justify-between text-xs font-bold text-slate-400 px-1">
-          <span>Payment Collections</span>
+          <span>Payment Breakdown</span>
           <span id="activeFilterBadge" class="hidden text-[10px] font-bold bg-brand-500/20 text-brand-400 border border-brand-500/30 px-2 py-0.5 rounded-lg cursor-pointer" onclick="clearCrossFilter()">
             ✕ Reset Filter
           </span>
         </div>
 
-        <div class="grid grid-cols-2 gap-2.5">
-          <!-- Cash -->
-          <div onclick="applyPaymentFilter('Cash')" id="cardPayCash" style="--card-color: #10b981;" class="kpi-card bg-slate-900 border border-slate-800 rounded-3xl p-3.5 cursor-pointer">
+        <div class="grid grid-cols-3 gap-2.5">
+          <!-- 1. Cash Card -->
+          <div onclick="applyPaymentFilter('Cash')" id="cardPayCash" style="--card-color: #10b981;" class="kpi-card bg-slate-900 border border-slate-800 rounded-3xl p-3.5 text-center cursor-pointer">
             <div class="kpi-stripe"></div>
-            <div class="flex items-center justify-between text-xs text-slate-400">
-              <span class="font-bold flex items-center space-x-1"><span>💵</span><span>Cash</span></span>
-              <span class="text-[10px] font-mono text-emerald-400 font-bold" id="pctPayCash">0%</span>
-            </div>
-            <div class="text-xl font-black font-mono text-emerald-400 mt-1"><span class="cur-sym">$</span><span id="valPayCash">0.00</span></div>
-            <div id="subPayCash" class="mt-1 text-[10px] text-slate-400 truncate">0 Invoices</div>
+            <div class="text-xl">💵</div>
+            <div class="text-[10px] font-bold text-slate-400 uppercase mt-1">Cash</div>
+            <div class="text-base font-black font-mono text-emerald-400 mt-0.5" id="valPayCash">0.00</div>
+            <div class="text-[10px] font-bold text-slate-400 mt-1" id="subPayCash">0 Bills</div>
+            <div class="text-[9px] font-mono text-emerald-400/90 font-bold" id="pctPayCash">0%</div>
           </div>
 
-          <!-- Card / Bank -->
-          <div onclick="applyPaymentFilter('Card')" id="cardPayCard" style="--card-color: #3b82f6;" class="kpi-card bg-slate-900 border border-slate-800 rounded-3xl p-3.5 cursor-pointer">
+          <!-- 2. Card / Bank Card -->
+          <div onclick="applyPaymentFilter('Card')" id="cardPayCard" style="--card-color: #3b82f6;" class="kpi-card bg-slate-900 border border-slate-800 rounded-3xl p-3.5 text-center cursor-pointer">
             <div class="kpi-stripe"></div>
-            <div class="flex items-center justify-between text-xs text-slate-400">
-              <span class="font-bold flex items-center space-x-1"><span>💳</span><span>Card / Bank</span></span>
-              <span class="text-[10px] font-mono text-blue-400 font-bold" id="pctPayCard">0%</span>
-            </div>
-            <div class="text-xl font-black font-mono text-blue-400 mt-1"><span class="cur-sym">$</span><span id="valPayCard">0.00</span></div>
-            <div id="subPayCard" class="mt-1 text-[10px] text-slate-400 truncate">0 Invoices</div>
+            <div class="text-xl">💳</div>
+            <div class="text-[10px] font-bold text-slate-400 uppercase mt-1">Card / Bank</div>
+            <div class="text-base font-black font-mono text-blue-400 mt-0.5" id="valPayCard">0.00</div>
+            <div class="text-[10px] font-bold text-slate-400 mt-1" id="subPayCard">0 Bills</div>
+            <div class="text-[9px] font-mono text-blue-400/90 font-bold" id="pctPayCard">0%</div>
           </div>
 
-          <!-- UPI / Online -->
-          <div onclick="applyPaymentFilter('UPI')" id="cardPayUpi" style="--card-color: #8b5cf6;" class="kpi-card bg-slate-900 border border-slate-800 rounded-3xl p-3.5 cursor-pointer">
+          <!-- 3. UPI / Online Card -->
+          <div onclick="applyPaymentFilter('UPI')" id="cardPayUpi" style="--card-color: #8b5cf6;" class="kpi-card bg-slate-900 border border-slate-800 rounded-3xl p-3.5 text-center cursor-pointer">
             <div class="kpi-stripe"></div>
-            <div class="flex items-center justify-between text-xs text-slate-400">
-              <span class="font-bold flex items-center space-x-1"><span>📱</span><span>UPI / QR</span></span>
-              <span class="text-[10px] font-mono text-purple-400 font-bold" id="pctPayUpi">0%</span>
-            </div>
-            <div class="text-xl font-black font-mono text-purple-400 mt-1"><span class="cur-sym">$</span><span id="valPayUpi">0.00</span></div>
-            <div id="subPayUpi" class="mt-1 text-[10px] text-slate-400 truncate">0 Invoices</div>
-          </div>
-
-          <!-- Credit / Due -->
-          <div onclick="applyPaymentFilter('Due')" id="cardPayDue" style="--card-color: #f59e0b;" class="kpi-card bg-slate-900 border border-slate-800 rounded-3xl p-3.5 cursor-pointer">
-            <div class="kpi-stripe"></div>
-            <div class="flex items-center justify-between text-xs text-slate-400">
-              <span class="font-bold flex items-center space-x-1"><span>⏳</span><span>Credit / Due</span></span>
-              <span class="text-[10px] font-mono text-amber-400 font-bold" id="pctPayDue">0%</span>
-            </div>
-            <div class="text-xl font-black font-mono text-amber-400 mt-1"><span class="cur-sym">$</span><span id="valPayDue">0.00</span></div>
-            <div id="subPayDue" class="mt-1 text-[10px] text-slate-400 truncate">0 Invoices</div>
+            <div class="text-xl">📱</div>
+            <div class="text-[10px] font-bold text-slate-400 uppercase mt-1">UPI / Due</div>
+            <div class="text-base font-black font-mono text-purple-400 mt-0.5" id="valPayUpi">0.00</div>
+            <div class="text-[10px] font-bold text-slate-400 mt-1" id="subPayUpi">0 Bills</div>
+            <div class="text-[9px] font-mono text-purple-400/90 font-bold" id="pctPayUpi">0%</div>
           </div>
         </div>
       </section>
 
-      <!-- CHANNEL & DINING VITALS (Matching User Image Screen 2) -->
+      <!-- CHANNEL & DINING VITALS (Directly Matching Circular Donut Status in User's Reference Photo) -->
       <section class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-black uppercase tracking-wider text-white">Channel & Dining Vitals</span>
-          <span class="text-[10px] text-emerald-400 font-bold">POS Audited</span>
+          <span class="text-xs font-black uppercase tracking-wider text-white">Channel Status</span>
+          <span class="text-[10px] text-emerald-400 font-bold">Live Breakdown</span>
         </div>
 
         <div class="grid grid-cols-3 gap-2 text-center">
           <div class="bg-slate-950/70 border border-slate-800 p-2.5 rounded-2xl">
             <div class="text-[9px] font-bold uppercase text-slate-400">Dine-In</div>
-            <div class="text-sm font-black text-emerald-400 font-mono mt-0.5"><span class="cur-sym">$</span><span id="vitalDine">0.00</span></div>
+            <div class="text-sm font-black text-emerald-400 font-mono mt-0.5" id="vitalDine">0.00</div>
             <div class="text-[9px] text-slate-500 mt-0.5" id="vitalDineCount">0 Orders</div>
           </div>
           <div class="bg-slate-950/70 border border-slate-800 p-2.5 rounded-2xl">
             <div class="text-[9px] font-bold uppercase text-slate-400">Takeaway</div>
-            <div class="text-sm font-black text-blue-400 font-mono mt-0.5"><span class="cur-sym">$</span><span id="vitalTake">0.00</span></div>
+            <div class="text-sm font-black text-blue-400 font-mono mt-0.5" id="vitalTake">0.00</div>
             <div class="text-[9px] text-slate-500 mt-0.5" id="vitalTakeCount">0 Orders</div>
           </div>
           <div class="bg-slate-950/70 border border-slate-800 p-2.5 rounded-2xl">
@@ -390,12 +354,12 @@
         </div>
       </section>
 
-      <!-- HOURLY RUSH TRAFFIC CURVE (Matching User Image Screen 3) -->
+      <!-- HOURLY SALES TRAFFIC HEATMAP (Directly Matching the Curve in User's Reference Photo) -->
       <section class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
         <div class="flex items-center justify-between">
           <div>
             <h3 class="text-xs font-black uppercase tracking-wider text-white">Hourly Sales Traffic</h3>
-            <p class="text-[10px] text-slate-400">Peak rush distribution across operating hours</p>
+            <p class="text-[10px] text-slate-400">Rush & volume distribution throughout the day</p>
           </div>
           <span id="peakHourBadge" class="text-[10px] font-extrabold px-2.5 py-1 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30">
             🔥 Peak: --
@@ -417,14 +381,14 @@
         <div class="flex items-center justify-between">
           <div>
             <h3 class="text-xs font-black uppercase tracking-wider text-white">Top 5 Bestsellers</h3>
-            <p class="text-[10px] text-slate-400">Highest volume & revenue dishes</p>
+            <p class="text-[10px] text-slate-400">Highest volume dishes</p>
           </div>
           <button onclick="switchTab('reports'); switchReportTab('dishes');" class="text-[10px] text-brand-400 hover:underline font-bold">View All ➔</button>
         </div>
         <div id="topDishesList" class="space-y-2"></div>
       </section>
 
-      <!-- QUICK RECENT INVOICES PREVIEW -->
+      <!-- RECENT TRANSACTIONS PREVIEW (Directly Matching the List in User's Reference Photo) -->
       <section class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-2">
@@ -465,19 +429,19 @@
           <div class="grid grid-cols-2 gap-2.5">
             <div class="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
               <span class="text-[10px] text-slate-400 uppercase font-bold">Gross Turnover</span>
-              <div class="text-lg font-black font-mono text-emerald-400 mt-0.5"><span class="cur-sym">$</span><span id="repGrossSales">0.00</span></div>
+              <div class="text-lg font-black font-mono text-emerald-400 mt-0.5" id="repGrossSales">0.00</div>
             </div>
             <div class="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
               <span class="text-[10px] text-slate-400 uppercase font-bold">Discounts Given</span>
-              <div class="text-lg font-black font-mono text-rose-400 mt-0.5"><span class="cur-sym">$</span><span id="repDiscounts">0.00</span></div>
+              <div class="text-lg font-black font-mono text-rose-400 mt-0.5" id="repDiscounts">0.00</div>
             </div>
             <div class="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
               <span class="text-[10px] text-slate-400 uppercase font-bold">Net Sales</span>
-              <div class="text-lg font-black font-mono text-white mt-0.5"><span class="cur-sym">$</span><span id="repNetSales">0.00</span></div>
+              <div class="text-lg font-black font-mono text-white mt-0.5" id="repNetSales">0.00</div>
             </div>
             <div class="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
               <span class="text-[10px] text-slate-400 uppercase font-bold">Tax Collected</span>
-              <div class="text-lg font-black font-mono text-purple-400 mt-0.5"><span class="cur-sym">$</span><span id="repTax">0.00</span></div>
+              <div class="text-lg font-black font-mono text-purple-400 mt-0.5" id="repTax">0.00</div>
             </div>
           </div>
 
@@ -488,7 +452,7 @@
             </div>
             <div class="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
               <span class="text-[10px] text-slate-400 uppercase font-bold">Avg Order Value (AOV)</span>
-              <div class="text-lg font-black font-mono text-amber-400 mt-0.5"><span class="cur-sym">$</span><span id="repAov">0.00</span></div>
+              <div class="text-lg font-black font-mono text-amber-400 mt-0.5" id="repAov">0.00</div>
             </div>
           </div>
         </div>
@@ -505,31 +469,31 @@
           <div class="space-y-2 text-xs">
             <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
               <span class="text-slate-400">(+) Sales Cash Collected</span>
-              <span class="font-mono font-bold text-emerald-400"><span class="cur-sym">$</span><span id="repDrawerSalesCash">0.00</span></span>
+              <span class="font-mono font-bold text-emerald-400" id="repDrawerSalesCash">0.00</span>
             </div>
             <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
               <span class="text-slate-400">(-) Customer Cash Refunds</span>
-              <span class="font-mono font-bold text-rose-400"><span class="cur-sym">$</span><span id="repDrawerReturnCash">0.00</span></span>
+              <span class="font-mono font-bold text-rose-400" id="repDrawerReturnCash">0.00</span>
             </div>
             <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
               <span class="text-slate-400">(-) Supplier / Vendor Cash Payouts</span>
-              <span class="font-mono font-bold text-amber-400"><span class="cur-sym">$</span><span id="repDrawerSupplierCash">0.00</span></span>
+              <span class="font-mono font-bold text-amber-400" id="repDrawerSupplierCash">0.00</span>
             </div>
             <div class="flex justify-between p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-sm">
               <span class="font-black text-emerald-400">(=) Expected Cash In Drawer</span>
-              <span class="font-mono font-black text-emerald-400"><span class="cur-sym">$</span><span id="repDrawerExpectedCash">0.00</span></span>
+              <span class="font-mono font-black text-emerald-400" id="repDrawerExpectedCash">0.00</span>
             </div>
             <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
               <span class="text-slate-400">(+) Card / Bank Settlement</span>
-              <span class="font-mono font-bold text-blue-400"><span class="cur-sym">$</span><span id="repDrawerCard">0.00</span></span>
+              <span class="font-mono font-bold text-blue-400" id="repDrawerCard">0.00</span>
             </div>
             <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
               <span class="text-slate-400">(+) UPI / Digital Settlement</span>
-              <span class="font-mono font-bold text-purple-400"><span class="cur-sym">$</span><span id="repDrawerUpi">0.00</span></span>
+              <span class="font-mono font-bold text-purple-400" id="repDrawerUpi">0.00</span>
             </div>
             <div class="flex justify-between p-3 rounded-2xl bg-slate-950 border border-slate-700 text-sm">
               <span class="font-black text-white">(=) Total Net Settled Collection</span>
-              <span class="font-mono font-black text-white"><span class="cur-sym">$</span><span id="repDrawerTotalSettled">0.00</span></span>
+              <span class="font-mono font-black text-white" id="repDrawerTotalSettled">0.00</span>
             </div>
           </div>
         </div>
@@ -567,11 +531,11 @@
           <div class="space-y-2 text-xs">
             <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
               <span class="text-slate-400">Taxable Turnover</span>
-              <span class="font-mono font-bold text-white"><span class="cur-sym">$</span><span id="repTaxableTurnover">0.00</span></span>
+              <span class="font-mono font-bold text-white" id="repTaxableTurnover">0.00</span>
             </div>
             <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
               <span class="text-slate-400">Total Tax / VAT Collected</span>
-              <span class="font-mono font-bold text-purple-400"><span class="cur-sym">$</span><span id="repTaxCollected">0.00</span></span>
+              <span class="font-mono font-bold text-purple-400" id="repTaxCollected">0.00</span>
             </div>
             <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
               <span class="text-slate-400">Effective Tax Rate</span>
@@ -639,31 +603,12 @@
           <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg">📲</div>
           <div>
             <h4 class="text-xs font-black text-white">Install XRestro App</h4>
-            <p class="text-[10px] text-slate-400">Launch directly from your iPhone or Android home screen</p>
+            <p class="text-[10px] text-slate-400">Launch directly from your phone home screen</p>
           </div>
         </div>
         <button onclick="triggerInstallApp()" class="w-full py-2.5 rounded-2xl bg-slate-800 hover:bg-slate-750 border border-slate-700 text-emerald-400 font-bold text-xs active:scale-95 transition">
           📲 Add App to Home Screen
         </button>
-      </section>
-
-      <!-- 🌐 Multi-Currency Selector -->
-      <section class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
-        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-          <span class="text-xs font-black uppercase text-white">Currency Symbol</span>
-          <span class="text-[10px] text-brand-400 font-bold">Instant Worldwide Switch</span>
-        </div>
-        
-        <div class="grid grid-cols-4 gap-2 text-center text-xs font-bold">
-          <button onclick="changeCurrency('$')" class="btn-curr py-2.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-brand-500 text-white active:scale-95">$ (USD)</button>
-          <button onclick="changeCurrency('R')" class="btn-curr py-2.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-brand-500 text-white active:scale-95">R (ZAR)</button>
-          <button onclick="changeCurrency('KSh')" class="btn-curr py-2.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-brand-500 text-white active:scale-95">KSh</button>
-          <button onclick="changeCurrency('AED')" class="btn-curr py-2.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-brand-500 text-white active:scale-95">AED</button>
-          <button onclick="changeCurrency('₹')" class="btn-curr py-2.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-brand-500 text-white active:scale-95">₹ (INR)</button>
-          <button onclick="changeCurrency('£')" class="btn-curr py-2.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-brand-500 text-white active:scale-95">£ (GBP)</button>
-          <button onclick="changeCurrency('€')" class="btn-curr py-2.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-brand-500 text-white active:scale-95">€ (EUR)</button>
-          <button onclick="changeCurrency('₦')" class="btn-curr py-2.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-brand-500 text-white active:scale-95">₦ (NGN)</button>
-        </div>
       </section>
 
       <!-- Security PIN & App Controls -->
@@ -759,19 +704,19 @@
       <div class="space-y-1.5 pt-2 border-t border-slate-800 text-xs">
         <div class="flex justify-between text-slate-400">
           <span>Subtotal</span>
-          <span class="font-mono font-bold text-white"><span class="cur-sym">$</span><span id="invModalSubtotal">0.00</span></span>
+          <span class="font-mono font-bold text-white" id="invModalSubtotal">0.00</span>
         </div>
         <div class="flex justify-between text-rose-400">
           <span>Discount</span>
-          <span class="font-mono font-bold">-<span class="cur-sym">$</span><span id="invModalDiscount">0.00</span></span>
+          <span class="font-mono font-bold">-<span id="invModalDiscount">0.00</span></span>
         </div>
         <div class="flex justify-between text-purple-400">
           <span>Taxes / VAT</span>
-          <span class="font-mono font-bold">+<span class="cur-sym">$</span><span id="invModalTax">0.00</span></span>
+          <span class="font-mono font-bold">+<span id="invModalTax">0.00</span></span>
         </div>
         <div class="flex justify-between text-base font-black text-white pt-2 border-t border-slate-800">
           <span class="text-emerald-400">Grand Total</span>
-          <span class="font-mono text-emerald-400"><span class="cur-sym">$</span><span id="invModalGrandTotal">0.00</span></span>
+          <span class="font-mono text-emerald-400" id="invModalGrandTotal">0.00</span>
         </div>
       </div>
 
@@ -884,9 +829,8 @@
     let currentStoreData = null;
     let selectedStoreId = 'ALL';
     let activePaymentFilter = null;
-    let activeDateFilter = 'ALL';
+    let activeDateFilter = 'TODAY';
     let customDateSelected = null;
-    let currentCurrencySymbol = '$';
     let deferredInstallPrompt = null;
 
     // Register Service Worker for PWA
@@ -935,26 +879,26 @@
     // World Countries Registry
     const WORLD_COUNTRIES = [
       { name: "Direct Manual Entry", code: "", flag: "🌐", manual: true },
-      { name: "South Africa", code: "+27", flag: "🇿🇦", currency: "R", popular: true },
-      { name: "Kenya", code: "+254", flag: "🇰🇪", currency: "KSh", popular: true },
-      { name: "United Arab Emirates", code: "+971", flag: "🇦🇪", currency: "AED", popular: true },
-      { name: "Saudi Arabia", code: "+966", flag: "🇸🇦", currency: "SAR", popular: true },
-      { name: "United States", code: "+1", flag: "🇺🇸", currency: "$", popular: true },
-      { name: "United Kingdom", code: "+44", flag: "🇬🇧", currency: "£", popular: true },
-      { name: "India", code: "+91", flag: "🇮🇳", currency: "₹", popular: true },
-      { name: "Canada", code: "+1", flag: "🇨🇦", currency: "$" },
-      { name: "Australia", code: "+61", flag: "🇦🇺", currency: "$" },
-      { name: "Nigeria", code: "+234", flag: "🇳🇬", currency: "₦" },
-      { name: "Tanzania", code: "+255", flag: "🇹🇿", currency: "TSh" },
-      { name: "Uganda", code: "+256", flag: "🇺🇬", currency: "USh" },
-      { name: "Ghana", code: "+233", flag: "🇬🇭", currency: "GH₵" },
-      { name: "Germany", code: "+49", flag: "🇩🇪", currency: "€" },
-      { name: "France", code: "+33", flag: "🇫🇷", currency: "€" },
-      { name: "Oman", code: "+968", flag: "🇴🇲", currency: "OMR" },
-      { name: "Qatar", code: "+974", flag: "🇶🇦", currency: "QAR" },
-      { name: "Kuwait", code: "+965", flag: "🇰🇼", currency: "KWD" },
-      { name: "Bahrain", code: "+973", flag: "🇧🇭", currency: "BHD" },
-      { name: "Singapore", code: "+65", flag: "🇸🇬", currency: "$" }
+      { name: "South Africa", code: "+27", flag: "🇿🇦", popular: true },
+      { name: "Kenya", code: "+254", flag: "🇰🇪", popular: true },
+      { name: "United Arab Emirates", code: "+971", flag: "🇦🇪", popular: true },
+      { name: "Saudi Arabia", code: "+966", flag: "🇸🇦", popular: true },
+      { name: "United States", code: "+1", flag: "🇺🇸", popular: true },
+      { name: "United Kingdom", code: "+44", flag: "🇬🇧", popular: true },
+      { name: "India", code: "+91", flag: "🇮🇳", popular: true },
+      { name: "Canada", code: "+1", flag: "🇨🇦" },
+      { name: "Australia", code: "+61", flag: "🇦🇺" },
+      { name: "Nigeria", code: "+234", flag: "🇳🇬" },
+      { name: "Tanzania", code: "+255", flag: "🇹🇿" },
+      { name: "Uganda", code: "+256", flag: "🇺🇬" },
+      { name: "Ghana", code: "+233", flag: "🇬🇭" },
+      { name: "Germany", code: "+49", flag: "🇩🇪" },
+      { name: "France", code: "+33", flag: "🇫🇷" },
+      { name: "Oman", code: "+968", flag: "🇴🇲" },
+      { name: "Qatar", code: "+974", flag: "🇶🇦" },
+      { name: "Kuwait", code: "+965", flag: "🇰🇼" },
+      { name: "Bahrain", code: "+973", flag: "🇧🇭" },
+      { name: "Singapore", code: "+65", flag: "🇸🇬" }
     ];
 
     let selectedCountry = WORLD_COUNTRIES[0];
@@ -969,7 +913,7 @@
     function renderCountriesList(list) {
       const container = document.getElementById('countryList');
       container.innerHTML = list.map(c => `
-        <div onclick="selectCountry('${c.code}', '${c.flag}', '${c.name}', '${c.currency || '$'}')" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-800 active:bg-slate-750 cursor-pointer border border-transparent hover:border-slate-700">
+        <div onclick="selectCountry('${c.code}', '${c.flag}', '${c.name}')" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-800 active:bg-slate-750 cursor-pointer border border-transparent hover:border-slate-700">
           <div class="flex items-center space-x-2.5">
             <span class="text-xl">${c.flag}</span>
             <span class="text-xs font-bold text-white">${c.name}</span>
@@ -983,12 +927,11 @@
       const filtered = WORLD_COUNTRIES.filter(c => c.name.toLowerCase().includes(q) || c.code.includes(q));
       renderCountriesList(filtered);
     }
-    function selectCountry(code, flag, name, cur) {
-      selectedCountry = { code, flag, name, currency: cur };
+    function selectCountry(code, flag, name) {
+      selectedCountry = { code, flag, name };
       document.getElementById('selectedCountryFlag').innerText = flag;
       document.getElementById('selectedCountryCode').innerText = code || '+';
       document.getElementById('countrySelectedName').innerText = name;
-      if (cur) changeCurrency(cur);
       closeCountryModal();
     }
 
@@ -1004,25 +947,10 @@
       }
     }
 
-    // Number Formatting (Standard International en-US)
+    // Number Formatting (Standard International en-US, No Currency Symbol)
     function fmt(num) {
       const n = Number(num || 0);
       return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
-
-    function updateCurrencySymbols() {
-      document.querySelectorAll('.cur-sym').forEach(el => el.innerText = currentCurrencySymbol);
-    }
-
-    function changeCurrency(sym) {
-      currentCurrencySymbol = sym;
-      localStorage.setItem('xion_currency', sym);
-      updateCurrencySymbols();
-      if (currentStoreData) renderDashboard();
-    }
-
-    function openCurrencyModal() {
-      switchTab('settings');
     }
 
     // Navigation Tabs Switcher
@@ -1161,11 +1089,6 @@
         const data = await res.json();
         if (data.success) {
           currentStoreData = data;
-          if (data.currency) {
-            currentCurrencySymbol = data.currency;
-            localStorage.setItem('xion_currency', currentCurrencySymbol);
-          }
-          updateCurrencySymbols();
           renderBranchSelector();
           renderDashboard();
         }
@@ -1255,7 +1178,6 @@
         selectedStoreId = storeIds[0];
       }
 
-      // Collect Bills according to store & date filter
       let allStoreBills = [];
       let activeStoreName = 'My Restaurant';
 
@@ -1272,6 +1194,14 @@
       document.getElementById('singleBranchName').innerText = activeStoreName;
       document.getElementById('settingStoreName').value = activeStoreName;
       document.getElementById('settingOwnerPhone').value = currentOwnerPhone;
+
+      // Smart Default: If TODAY has 0 bills but previous bills exist, auto-switch to ALL TIME so user never sees empty screen
+      const todayBillsCount = allStoreBills.filter(b => billMatchesDate(b, 'TODAY')).length;
+      if (activeDateFilter === 'TODAY' && todayBillsCount === 0 && allStoreBills.length > 0) {
+        activeDateFilter = 'ALL';
+        document.querySelectorAll('.date-pill').forEach(el => el.classList.remove('active'));
+        document.getElementById('filterBtnAll').classList.add('active');
+      }
 
       // Filter bills by active date
       const filteredBills = allStoreBills.filter(b => billMatchesDate(b, activeDateFilter, customDateSelected));
@@ -1311,7 +1241,6 @@
         const uAmt = Number(b.upiAmount || 0);
         const oAmt = Number(b.otherAmount || 0);
 
-        // Accurate Payment Allocation
         if (cAmt > 0 || pm.includes('CASH')) {
           cashSales += (cAmt > 0 ? cAmt : gTotal);
           cashBillCount++;
@@ -1329,7 +1258,6 @@
           dueBillCount++;
         }
 
-        // Channels
         const oType = (b.orderType || '').toUpperCase();
         if (oType.includes('TAKE') || oType.includes('PARCEL')) {
           takeawaySales += gTotal;
@@ -1362,7 +1290,7 @@
         'YESTERDAY': 'Yesterday',
         '7DAYS': 'Last 7 Days',
         'MONTH': 'This Month',
-        'ALL': 'All Time',
+        'ALL': 'All Time Sales',
         'CUSTOM': 'Custom: ' + (customDateSelected || '')
       };
       dateStatus.innerText = (filterNames[activeDateFilter] || activeDateFilter) + ' • ' + filteredBills.length + ' Invoices';
@@ -1374,44 +1302,33 @@
         dateAlert.classList.add('hidden');
       }
 
-      // Update Reconciled Drawer Card
-      document.getElementById('tallyExpectedCash').innerText = fmt(drawerCash);
+      // Update Hero Sales Card
       document.getElementById('valPayTotal').innerText = fmt(totalSettled > 0 ? totalSettled : grossSales);
+      document.getElementById('heroInvoicesCount').innerText = filteredBills.length;
+      document.getElementById('tallyExpectedCash').innerText = fmt(drawerCash);
       document.getElementById('tallySalesCash').innerText = fmt(cashSales);
       document.getElementById('tallyReturnCash').innerText = fmt(returnCash);
       document.getElementById('tallySupplierCash').innerText = fmt(supplierCash);
 
-      // Update Payment Breakdown Cards
+      // Update 3 Payment Breakdown Cards
       document.getElementById('valPayCash').innerText = fmt(cashSales);
       document.getElementById('valPayCard').innerText = fmt(cardSales);
-      document.getElementById('valPayUpi').innerText = fmt(upiSales);
-      document.getElementById('valPayDue').innerText = fmt(dueSales);
+      document.getElementById('valPayUpi').innerText = fmt(upiSales + dueSales);
 
       const totColl = totalSettled || 1;
       document.getElementById('pctPayCash').innerText = Math.round((cashSales / totColl) * 100) + '%';
       document.getElementById('pctPayCard').innerText = Math.round((cardSales / totColl) * 100) + '%';
-      document.getElementById('pctPayUpi').innerText = Math.round((upiSales / totColl) * 100) + '%';
-      document.getElementById('pctPayDue').innerText = Math.round((dueSales / totColl) * 100) + '%';
+      document.getElementById('pctPayUpi').innerText = Math.round(((upiSales + dueSales) / totColl) * 100) + '%';
 
       document.getElementById('subPayCash').innerText = cashBillCount + ' Invoices';
       document.getElementById('subPayCard').innerText = cardBillCount + ' Invoices';
-      document.getElementById('subPayUpi').innerText = upiBillCount + ' Invoices';
-      document.getElementById('subPayDue').innerText = dueBillCount + ' Invoices';
+      document.getElementById('subPayUpi').innerText = (upiBillCount + dueBillCount) + ' Invoices';
 
       // Update Channel Vitals
       document.getElementById('vitalDine').innerText = fmt(dineInSales);
       document.getElementById('vitalTake').innerText = fmt(takeawaySales);
       document.getElementById('vitalDineCount').innerText = dineCount + ' Orders';
       document.getElementById('vitalTakeCount').innerText = takeCount + ' Orders';
-
-      // AI Executive Summary
-      const aiEl = document.getElementById('aiSummaryText');
-      if (filteredBills.length > 0) {
-        const topPay = cashSales >= cardSales ? 'Cash (' + Math.round((cashSales/totColl)*100) + '%)' : 'Card (' + Math.round((cardSales/totColl)*100) + '%)';
-        aiEl.innerHTML = '✨ <b>' + filteredBills.length + ' settled invoices</b> processed with total revenue of <b>' + currentCurrencySymbol + fmt(grossSales) + '</b>. Primary payment mode is <b>' + topPay + '</b>. Cash drawer is 100% reconciled and balanced with POS.';
-      } else {
-        aiEl.innerHTML = 'ℹ️ No transactions recorded for this period. Live POS bills will automatically appear and reconcile here.';
-      }
 
       // Render Charts & Dishes
       renderHourlyChart(filteredBills);
@@ -1424,7 +1341,7 @@
       filterBillsList();
     }
 
-    // Reports Hub Dynamic Audit Calculations
+    // Reports Hub Dynamic Audit Calculations (Plain Numbers - No Currency Symbol)
     function renderReportsHub(bills, gross, disc, tax, cash, card, upi, supp, ret, drawer, settled) {
       document.getElementById('repGrossSales').innerText = fmt(gross);
       document.getElementById('repDiscounts').innerText = fmt(disc);
@@ -1487,7 +1404,7 @@
               </div>
             </div>
             <div class="text-right shrink-0 font-mono font-bold text-emerald-400">
-              ${currentCurrencySymbol}${fmt(d.revenue)}
+              ${fmt(d.revenue)}
             </div>
           </div>
         `).join('');
@@ -1505,7 +1422,7 @@
             <div class="space-y-1">
               <div class="flex justify-between text-xs">
                 <span class="font-bold text-white">${c.cat}</span>
-                <span class="font-mono font-bold text-emerald-400">${currentCurrencySymbol}${fmt(c.revenue)} (${pct}%)</span>
+                <span class="font-mono font-bold text-emerald-400">${fmt(c.revenue)} (${pct}%)</span>
               </div>
               <div class="w-full h-2 rounded-full bg-slate-950 overflow-hidden border border-slate-800">
                 <div style="width: ${pct}%;" class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full"></div>
@@ -1546,7 +1463,7 @@
       const peakBadge = document.getElementById('peakHourBadge');
       if (maxVal > 0) {
         const hFmt = peakHour > 12 ? (peakHour - 12) + ' PM' : (peakHour === 12 ? '12 PM' : peakHour + ' AM');
-        peakBadge.innerText = '🔥 Peak: ' + hFmt + ' (' + currentCurrencySymbol + fmt(maxVal) + ')';
+        peakBadge.innerText = '🔥 Peak: ' + hFmt + ' (' + fmt(maxVal) + ')';
       } else {
         peakBadge.innerText = '🔥 Peak: Normal';
       }
@@ -1558,7 +1475,7 @@
         const barColor = isPeak ? 'bg-gradient-to-t from-amber-500 to-yellow-400 shadow-md shadow-amber-500/30' : (val > 0 ? 'bg-brand-500' : 'bg-slate-800');
         const hLabel = h > 12 ? (h - 12) + 'p' : h + 'a';
         return `
-          <div class="flex-1 flex flex-col items-center justify-end h-full group cursor-pointer" title="${hLabel.toUpperCase()}: ${currentCurrencySymbol}${fmt(val)}">
+          <div class="flex-1 flex flex-col items-center justify-end h-full group cursor-pointer" title="${hLabel.toUpperCase()}: ${fmt(val)}">
             <div style="height: ${pct}%;" class="w-full max-w-[14px] ${barColor} rounded-t-sm transition-all duration-300"></div>
           </div>
         `;
@@ -1599,7 +1516,7 @@
             </div>
           </div>
           <div class="font-mono font-extrabold text-emerald-400">
-            ${currentCurrencySymbol}${fmt(d.revenue)}
+            ${fmt(d.revenue)}
           </div>
         </div>
       `).join('');
@@ -1630,7 +1547,6 @@
           if (activePaymentFilter === 'Cash') return pm.includes('CASH') || b.cashAmount > 0;
           if (activePaymentFilter === 'Card') return pm.includes('CARD') || pm.includes('BANK') || b.cardAmount > 0 || b.bankAmount > 0;
           if (activePaymentFilter === 'UPI') return pm.includes('UPI') || pm.includes('QR') || b.upiAmount > 0;
-          if (activePaymentFilter === 'Due') return pm.includes('DUE') || pm.includes('CREDIT') || b.otherAmount > 0;
           return true;
         });
       }
@@ -1657,7 +1573,7 @@
         const emptyHtml = `
           <div class="py-8 text-center text-slate-500 text-xs">
             No transactions found for this period.<br>
-            <span class="text-[10px] text-slate-600 mt-1 block">Live transactions from POS will instantly stream here</span>
+            <span class="text-[10px] text-slate-600 mt-1 block">Live transactions from POS will stream here</span>
           </div>`;
         container.innerHTML = emptyHtml;
         if (homeContainer) homeContainer.innerHTML = emptyHtml;
@@ -1677,7 +1593,6 @@
         if (pm.includes('CASH')) payBadgeColor = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30';
         else if (pm.includes('CARD') || pm.includes('BANK')) payBadgeColor = 'bg-blue-500/10 text-blue-400 border-blue-500/30';
         else if (pm.includes('UPI')) payBadgeColor = 'bg-purple-500/10 text-purple-400 border-purple-500/30';
-        else if (pm.includes('DUE')) payBadgeColor = 'bg-amber-500/10 text-amber-400 border-amber-500/30';
 
         return `
           <div onclick="viewBillDetails(${idx})" class="kpi-card bg-slate-950/70 border border-slate-800 hover:border-slate-700 active:border-emerald-500/50 rounded-2xl p-3.5 space-y-2 transition cursor-pointer select-none">
@@ -1688,7 +1603,7 @@
                 <span class="text-[10px] text-slate-400 font-medium">${b.orderType || 'DineIn'}</span>
               </div>
               <div class="text-right">
-                <span class="text-sm font-black font-mono text-emerald-400">${currentCurrencySymbol}${fmt(b.grandTotal || b.subTotal || 0)}</span>
+                <span class="text-sm font-black font-mono text-emerald-400">${fmt(b.grandTotal || b.subTotal || 0)}</span>
               </div>
             </div>
 
@@ -1720,7 +1635,7 @@
               <div class="text-[10px] text-slate-400">${b.paymentMode || 'Cash'} • ${b.items ? b.items.length : 0} items</div>
             </div>
             <div class="font-mono font-black text-emerald-400">
-              ${currentCurrencySymbol}${fmt(b.grandTotal || b.subTotal || 0)}
+              ${fmt(b.grandTotal || b.subTotal || 0)}
             </div>
           </div>
         `;
@@ -1755,9 +1670,9 @@
             <div class="flex items-center justify-between text-xs py-1.5 border-b border-slate-800/60 last:border-0">
               <div>
                 <div class="font-bold text-white">${i.qty}x ${i.itemName}</div>
-                <div class="text-[10px] text-slate-500 font-mono">${currentCurrencySymbol}${fmt(i.price)} each</div>
+                <div class="text-[10px] text-slate-500 font-mono">${fmt(i.price)} each</div>
               </div>
-              <div class="font-mono font-bold text-slate-200">${currentCurrencySymbol}${fmt(lTotal)}</div>
+              <div class="font-mono font-bold text-slate-200">${fmt(lTotal)}</div>
             </div>
           `;
         }).join('');
@@ -1783,15 +1698,15 @@
     function shareBillOnWhatsApp() {
       if (!activeInspectedBill) return;
       const b = activeInspectedBill;
-      const items = (b.items || []).map(i => i.qty + 'x ' + i.itemName + ' - ' + currentCurrencySymbol + fmt(i.lineTotal || (i.qty * i.price))).join('%0A');
-      const text = `🧾 *XRestro Bill Receipt*%0AInvoice: #${b.invoiceNo || b.orderId}%0ATable: ${b.tableName || 'Counter'}%0ADate: ${new Date(b.settledDate || Date.now()).toLocaleDateString('en-GB')}%0A----------------------------%0A${items}%0A----------------------------%0A*Grand Total: ${currentCurrencySymbol}${fmt(b.grandTotal || b.subTotal || 0)}*%0APaid Via: ${b.paymentMode || 'Cash'}%0AThank you! Visit again.`;
+      const items = (b.items || []).map(i => i.qty + 'x ' + i.itemName + ' - ' + fmt(i.lineTotal || (i.qty * i.price))).join('%0A');
+      const text = `🧾 *XRestro Bill Receipt*%0AInvoice: #${b.invoiceNo || b.orderId}%0ATable: ${b.tableName || 'Counter'}%0ADate: ${new Date(b.settledDate || Date.now()).toLocaleDateString('en-GB')}%0A----------------------------%0A${items}%0A----------------------------%0A*Grand Total: ${fmt(b.grandTotal || b.subTotal || 0)}*%0APaid Via: ${b.paymentMode || 'Cash'}%0AThank you! Visit again.`;
       window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
     }
 
     function shareReportWhatsApp(type) {
       const gross = document.getElementById('repGrossSales').innerText;
       const invoices = document.getElementById('repInvoicesCount').innerText;
-      const text = `📊 *XRestro Financial Report Summary*%0AStore: ${document.getElementById('singleBranchName').innerText}%0APeriod: ${document.getElementById('dateFilterStatus').innerText}%0A----------------------------%0AGross Sales: ${currentCurrencySymbol}${gross}%0AInvoices: ${invoices}%0AStatus: 🔒 100% Balanced with POS Cash Drawer`;
+      const text = `📊 *XRestro Financial Report Summary*%0AStore: ${document.getElementById('singleBranchName').innerText}%0APeriod: ${document.getElementById('dateFilterStatus').innerText}%0A----------------------------%0AGross Sales: ${gross}%0AInvoices: ${invoices}%0AStatus: 🔒 100% Balanced with POS Cash Drawer`;
       window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
     }
 
@@ -1806,8 +1721,7 @@
           body: JSON.stringify({
             phone: currentOwnerPhone,
             storeId: selectedStoreId,
-            storeName: name,
-            currency: currentCurrencySymbol
+            storeName: name
           })
         });
         const data = await res.json();
@@ -1885,7 +1799,7 @@
         return;
       }
       activePaymentFilter = mode;
-      ['Cash', 'Upi', 'Card', 'Due'].forEach(m => {
+      ['Cash', 'Card', 'Upi'].forEach(m => {
         const el = document.getElementById('cardPay' + m);
         if (m.toLowerCase() === mode.toLowerCase()) el.classList.add('ring-2', 'ring-brand-500');
         else el.classList.remove('ring-2', 'ring-brand-500');
@@ -1897,8 +1811,9 @@
 
     function clearCrossFilter() {
       activePaymentFilter = null;
-      ['Cash', 'Upi', 'Card', 'Due'].forEach(m => {
-        document.getElementById('cardPay' + m).classList.remove('ring-2', 'ring-brand-500');
+      ['Cash', 'Card', 'Upi'].forEach(m => {
+        const el = document.getElementById('cardPay' + m);
+        if (el) el.classList.remove('ring-2', 'ring-brand-500');
       });
       document.getElementById('activeFilterBadge').classList.add('hidden');
       filterBillsList();
@@ -1910,10 +1825,6 @@
         const el = document.getElementById('headerClock');
         if (el) el.innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       }, 1000);
-
-      const savedCurrency = localStorage.getItem('xion_currency');
-      if (savedCurrency) currentCurrencySymbol = savedCurrency;
-      updateCurrencySymbols();
 
       const savedPhone = sessionStorage.getItem('xion_owner_phone') || localStorage.getItem('xion_owner_phone');
       const savedPin = sessionStorage.getItem('xion_owner_pin') || localStorage.getItem('xion_owner_pin');
