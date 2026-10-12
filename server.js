@@ -36,6 +36,52 @@ function saveDb() {
 }
 
 // ============================================================================
+// MULTINATIONAL PHONE NORMALIZER & SMART MATCHER
+// ============================================================================
+function normalizePhone(p) {
+    if (!p) return '';
+    return p.toString().replace(/[^0-9]/g, '');
+}
+
+function findOwnerEntry(inputPhone) {
+    const rawInput = (inputPhone || '').toString().trim();
+    if (!rawInput) return null;
+
+    // 1. Direct exact key match
+    if (db.owners[rawInput]) {
+        return { key: rawInput, owner: db.owners[rawInput] };
+    }
+
+    const inputDigits = normalizePhone(rawInput);
+    if (!inputDigits) return null;
+
+    // 2. Exact normalized digits match
+    for (const key of Object.keys(db.owners)) {
+        const keyDigits = normalizePhone(key);
+        if (keyDigits && keyDigits === inputDigits) {
+            return { key, owner: db.owners[key] };
+        }
+    }
+
+    // 3. Suffix & International core match (handles country codes +91, +971, +44, +1, 00, and local 0 trunk prefix)
+    const cleanInputCore = inputDigits.replace(/^0+/, '');
+    if (cleanInputCore.length >= 7) {
+        for (const key of Object.keys(db.owners)) {
+            const cleanKeyCore = normalizePhone(key).replace(/^0+/, '');
+            if (cleanKeyCore.length >= 7) {
+                if (cleanKeyCore === cleanInputCore ||
+                    cleanKeyCore.endsWith(cleanInputCore) ||
+                    cleanInputCore.endsWith(cleanKeyCore)) {
+                    return { key, owner: db.owners[key] };
+                }
+            }
+        }
+    }
+
+    return null;
+}
+
+// ============================================================================
 // LUXURY APP ICON (VECTOR SVG - CRISP RETINA ON ALL IPHONES & ANDROID DEVICES)
 // ============================================================================
 const ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
@@ -172,8 +218,11 @@ const server = http.createServer((req, res) => {
                     return;
                 }
 
-                if (!db.owners[ownerPhone]) {
-                    db.owners[ownerPhone] = {
+                const existingOwnerEntry = findOwnerEntry(ownerPhone);
+                const ownerKey = existingOwnerEntry ? existingOwnerEntry.key : ownerPhone;
+
+                if (!db.owners[ownerKey]) {
+                    db.owners[ownerKey] = {
                         ownerPhone: ownerPhone,
                         ownerName: payload.storeName || 'XRestro Owner',
                         pin: '1234',
@@ -181,8 +230,8 @@ const server = http.createServer((req, res) => {
                     };
                 }
 
-                if (!db.owners[ownerPhone].stores[storeId]) {
-                    db.owners[ownerPhone].stores[storeId] = {
+                if (!db.owners[ownerKey].stores[storeId]) {
+                    db.owners[ownerKey].stores[storeId] = {
                         storeId: storeId,
                         storeName: payload.storeName || storeId,
                         storePhone: storePhone,
@@ -194,7 +243,7 @@ const server = http.createServer((req, res) => {
                     };
                 }
 
-                const store = db.owners[ownerPhone].stores[storeId];
+                const store = db.owners[ownerKey].stores[storeId];
                 if (payload.storeName) store.storeName = payload.storeName;
                 if (storePhone) store.storePhone = storePhone;
                 if (!store.returns) store.returns = [];
@@ -249,26 +298,46 @@ const server = http.createServer((req, res) => {
         req.on('data', chunk => { body += chunk; });
         req.on('end', () => {
             try {
-                const { phone, pin } = JSON.parse(body || '{}');
-                const cleanPhone = (phone || '').trim();
-                const cleanPin = (pin || '').trim();
+                const { phone, pin, countryCode } = JSON.parse(body || '{}');
+                const cleanPhone = (phone || '').toString().trim();
+                const cleanPin = (pin || '').toString().trim();
+                const cleanCountry = (countryCode || '').toString().trim();
 
-                if (!cleanPhone || cleanPhone.length !== 10) {
+                const cleanDigits = normalizePhone(cleanPhone);
+                if (!cleanDigits || cleanDigits.length < 5 || cleanDigits.length > 18) {
                     res.writeHead(400, { 'Content-Type': 'application/json' });
-                    res.end(JSON.stringify({ success: false, error: 'Please enter a valid 10-digit registered mobile number.' }));
-                    return;
-                }
-
-                const owner = db.owners[cleanPhone];
-                if (!owner) {
-                    res.writeHead(403, { 'Content-Type': 'application/json' });
                     res.end(JSON.stringify({ 
                         success: false, 
-                        error: 'Mobile number is not registered. Please enter the authorized owner mobile number configured in desktop POS.' 
+                        error: 'Please enter a valid mobile number (min 5 digits).' 
                     }));
                     return;
                 }
 
+                // Multi-Country Resilient Matcher:
+                // 1. Direct or normalized match with provided phone
+                let ownerEntry = findOwnerEntry(cleanPhone);
+
+                // 2. If country code specified and phone doesn't start with it, test combined
+                if (!ownerEntry && cleanCountry) {
+                    const stripped = cleanPhone.replace(/^0+/, '');
+                    ownerEntry = findOwnerEntry(cleanCountry + stripped);
+                }
+
+                // 3. Fallback without leading trunk zeros
+                if (!ownerEntry) {
+                    ownerEntry = findOwnerEntry(cleanPhone.replace(/^0+/, ''));
+                }
+
+                if (!ownerEntry) {
+                    res.writeHead(403, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ 
+                        success: false, 
+                        error: 'Mobile number not found. Please enter the authorized owner mobile number configured in desktop POS.' 
+                    }));
+                    return;
+                }
+
+                const owner = ownerEntry.owner;
                 const expectedPin = (owner.pin || '1234').toString();
                 if (cleanPin !== expectedPin) {
                     res.writeHead(401, { 'Content-Type': 'application/json' });
@@ -283,7 +352,7 @@ const server = http.createServer((req, res) => {
                 res.end(JSON.stringify({ 
                     success: true, 
                     message: 'Login successful', 
-                    ownerPhone: cleanPhone,
+                    ownerPhone: ownerEntry.key,
                     ownerName: owner.ownerName 
                 }));
             } catch (err) {
@@ -301,17 +370,18 @@ const server = http.createServer((req, res) => {
         req.on('end', () => {
             try {
                 const { phone, oldPin, newPin } = JSON.parse(body || '{}');
-                const cleanPhone = (phone || '').trim();
-                const cleanOldPin = (oldPin || '').trim();
-                const cleanNewPin = (newPin || '').trim();
+                const cleanPhone = (phone || '').toString().trim();
+                const cleanOldPin = (oldPin || '').toString().trim();
+                const cleanNewPin = (newPin || '').toString().trim();
 
-                const owner = db.owners[cleanPhone];
-                if (!owner) {
+                const ownerEntry = findOwnerEntry(cleanPhone);
+                if (!ownerEntry) {
                     res.writeHead(403, { 'Content-Type': 'application/json' });
                     res.end(JSON.stringify({ success: false, error: 'Owner account not found' }));
                     return;
                 }
 
+                const owner = ownerEntry.owner;
                 const expectedPin = (owner.pin || '1234').toString();
                 if (cleanOldPin !== expectedPin) {
                     res.writeHead(401, { 'Content-Type': 'application/json' });
@@ -340,8 +410,8 @@ const server = http.createServer((req, res) => {
 
     // 5. GET OWNER DATA FOR MOBILE APP (GET /api/v1/owner/data?phone=...&pin=...)
     if (pathname === '/api/v1/owner/data' && req.method === 'GET') {
-        const phone = (parsedUrl.query.phone || '').trim();
-        const pin = (parsedUrl.query.pin || req.headers['x-owner-pin'] || '').trim();
+        const phone = (parsedUrl.query.phone || '').toString().trim();
+        const pin = (parsedUrl.query.pin || req.headers['x-owner-pin'] || '').toString().trim();
 
         if (!phone) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -349,13 +419,14 @@ const server = http.createServer((req, res) => {
             return;
         }
 
-        const owner = db.owners[phone];
-        if (!owner) {
+        const ownerEntry = findOwnerEntry(phone);
+        if (!ownerEntry) {
             res.writeHead(403, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ success: false, error: 'Mobile number is not registered.' }));
             return;
         }
 
+        const owner = ownerEntry.owner;
         const expectedPin = (owner.pin || '1234').toString();
         if (pin && pin !== expectedPin) {
             res.writeHead(401, { 'Content-Type': 'application/json' });
@@ -364,7 +435,7 @@ const server = http.createServer((req, res) => {
         }
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ success: true, data: owner }));
+        res.end(JSON.stringify({ success: true, data: owner, canonicalPhone: ownerEntry.key }));
         return;
     }
 
@@ -498,22 +569,42 @@ function getMobileAppHtml() {
       <div id="loginError" class="hidden p-3 rounded-xl bg-rose-950/80 border border-rose-500/50 text-rose-300 text-xs font-semibold text-center space-y-1">
       </div>
 
-      <div class="space-y-4 pt-1">
+      <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();" class="space-y-4 pt-1">
         <div>
-          <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">Registered Owner Mobile</label>
-          <div class="relative">
-            <span class="absolute left-3.5 top-3.5 text-slate-500 font-semibold text-sm">+91</span>
-            <input id="loginPhone" type="tel" maxlength="10" placeholder="98290XXXXX" class="w-full bg-slate-800 text-white font-semibold text-sm rounded-xl pl-12 pr-4 py-3 border border-slate-700 focus:outline-none focus:border-brand-500 transition">
+          <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5 flex items-center justify-between">
+            <span>Registered Owner Mobile</span>
+            <span class="text-[10px] text-emerald-400 font-bold flex items-center space-x-1">
+              <span>🌍</span><span>World Access</span>
+            </span>
+          </label>
+          <div class="flex items-center space-x-2">
+            <!-- Country Selector Button -->
+            <button type="button" id="btnCountrySelect" onclick="openCountryModal()" title="Select Country Code" class="flex items-center space-x-1.5 bg-slate-800 hover:bg-slate-750 active:scale-95 text-white font-bold text-xs rounded-xl px-2.5 py-3 border border-slate-700 hover:border-slate-600 focus:outline-none focus:border-brand-500 transition shrink-0 shadow-inner">
+              <span id="selectedCountryFlag" class="text-base leading-none">🌐</span>
+              <span id="selectedCountryCode" class="font-mono text-emerald-400 text-xs font-bold leading-none">+</span>
+              <span class="text-[8px] text-slate-400 leading-none">▼</span>
+            </button>
+            <!-- Mobile Number Input -->
+            <div class="relative flex-1">
+              <input id="loginPhone" type="tel" maxlength="20" placeholder="Enter mobile number" autocomplete="username tel" class="w-full bg-slate-800 text-white font-semibold text-sm rounded-xl px-3.5 py-3 border border-slate-700 focus:outline-none focus:border-brand-500 transition placeholder:text-slate-500">
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1">
+            <span>Tap flag to change country or type code</span>
+            <span id="countrySelectedName" class="text-emerald-400 font-medium truncate max-w-[160px]">Manual Entry</span>
           </div>
         </div>
 
         <div>
-          <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">4-Digit Security PIN</label>
-          <input id="loginPin" type="password" maxlength="4" placeholder="••••" class="w-full bg-slate-800 text-white font-semibold text-center text-xl tracking-widest rounded-xl px-4 py-3 border border-slate-700 focus:outline-none focus:border-brand-500 transition">
-          <p class="text-[10px] text-slate-500 mt-1">Default PIN: 1234</p>
+          <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5 flex items-center justify-between">
+            <span>4-Digit Security PIN</span>
+            <button type="button" id="btnTogglePin" onclick="togglePinVisibility()" class="text-[10px] text-brand-400 hover:text-brand-300 font-bold uppercase">Show PIN</button>
+          </label>
+          <input id="loginPin" type="password" maxlength="4" placeholder="••••" autocomplete="current-password" class="w-full bg-slate-800 text-white font-semibold text-center text-xl tracking-widest rounded-xl px-4 py-3 border border-slate-700 focus:outline-none focus:border-brand-500 transition">
+          <p class="text-[10px] text-slate-500 mt-1">Default Security PIN: 1234</p>
         </div>
 
-        <button id="btnLogin" onclick="handleLogin()" class="w-full bg-brand-500 hover:bg-brand-600 active:scale-[0.98] text-white font-bold text-sm py-3.5 rounded-xl shadow-lg shadow-brand-500/25 transition flex items-center justify-center space-x-2">
+        <button id="btnLogin" type="submit" class="w-full bg-brand-500 hover:bg-brand-600 active:scale-[0.98] text-white font-bold text-sm py-3.5 rounded-xl shadow-lg shadow-brand-500/25 transition flex items-center justify-center space-x-2">
           <span>🔐 Verify & Launch XRestro</span>
         </button>
 
@@ -521,7 +612,38 @@ function getMobileAppHtml() {
           <p class="text-[11px] text-emerald-400 font-semibold">🔒 100% Reconciled Tally Guarantee</p>
           <p class="text-[10px] text-slate-400 mt-0.5">Desktop POS & Mobile App stay in instant mathematical balance</p>
         </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- WORLD COUNTRY PICKER MODAL (ALL NATIONS)   -->
+  <!-- ========================================== -->
+  <div id="countryModal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="w-full max-w-sm bg-slate-900 border border-slate-800 rounded-3xl p-4 shadow-2xl flex flex-col max-h-[85vh] space-y-3">
+      
+      <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+        <div class="flex items-center space-x-2">
+          <span class="text-lg">🌍</span>
+          <div>
+            <h3 class="text-sm font-extrabold text-white">Select Country Code</h3>
+            <p class="text-[10px] text-slate-400">Choose country code or enter manually</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeCountryModal()" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">✕</button>
       </div>
+
+      <!-- Search Box -->
+      <div class="relative">
+        <span class="absolute left-3 top-2.5 text-xs text-slate-400">🔍</span>
+        <input id="searchCountry" type="text" oninput="filterCountryList()" placeholder="Search country or code (e.g. UAE, 971, UK, +1)..." class="w-full bg-slate-800/90 text-white text-xs rounded-xl pl-8 pr-3 py-2.5 border border-slate-700 focus:outline-none focus:border-brand-500">
+      </div>
+
+      <!-- Countries List Container -->
+      <div id="countryListContainer" class="flex-1 overflow-y-auto space-y-1 pr-1 max-h-[350px]">
+        <!-- Dynamic Country Rows -->
+      </div>
+
     </div>
   </div>
 
@@ -934,15 +1056,240 @@ function getMobileAppHtml() {
     let activePaymentFilter = null;
     let autoRefreshTimer = null;
 
-    // Check PWA Install Mode
+    // ==========================================
+    // 🌍 WORLD-WIDE MULTI-COUNTRY REGISTRY
+    // ==========================================
+    const WORLD_COUNTRIES = [
+      { name: "Direct Manual Entry", code: "", flag: "🌐", manual: true },
+      { name: "United Arab Emirates", code: "+971", flag: "🇦🇪", popular: true },
+      { name: "Saudi Arabia", code: "+966", flag: "🇸🇦", popular: true },
+      { name: "India", code: "+91", flag: "🇮🇳", popular: true },
+      { name: "United States", code: "+1", flag: "🇺🇸", popular: true },
+      { name: "United Kingdom", code: "+44", flag: "🇬🇧", popular: true },
+      { name: "Canada", code: "+1", flag: "🇨🇦", popular: true },
+      { name: "Oman", code: "+968", flag: "🇴🇲", popular: true },
+      { name: "Qatar", code: "+974", flag: "🇶🇦", popular: true },
+      { name: "Kuwait", code: "+965", flag: "🇰🇼", popular: true },
+      { name: "Bahrain", code: "+973", flag: "🇧🇭", popular: true },
+      { name: "Australia", code: "+61", flag: "🇦🇺", popular: true },
+      { name: "Singapore", code: "+65", flag: "🇸🇬", popular: true },
+      { name: "Germany", code: "+49", flag: "🇩🇪" },
+      { name: "France", code: "+33", flag: "🇫🇷" },
+      { name: "Italy", code: "+39", flag: "🇮🇹" },
+      { name: "Spain", code: "+34", flag: "🇪🇸" },
+      { name: "Netherlands", code: "+31", flag: "🇳🇱" },
+      { name: "Switzerland", code: "+41", flag: "🇨🇭" },
+      { name: "Sweden", code: "+46", flag: "🇸🇪" },
+      { name: "Norway", code: "+47", flag: "🇳🇴" },
+      { name: "Ireland", code: "+353", flag: "🇮🇪" },
+      { name: "New Zealand", code: "+64", flag: "🇳🇿" },
+      { name: "South Africa", code: "+27", flag: "🇿🇦" },
+      { name: "Malaysia", code: "+60", flag: "🇲🇾" },
+      { name: "Indonesia", code: "+62", flag: "🇮🇩" },
+      { name: "Thailand", code: "+66", flag: "🇹🇭" },
+      { name: "Philippines", code: "+63", flag: "🇵🇭" },
+      { name: "Vietnam", code: "+84", flag: "🇻🇳" },
+      { name: "Japan", code: "+81", flag: "🇯🇵" },
+      { name: "South Korea", code: "+82", flag: "🇰🇷" },
+      { name: "China", code: "+86", flag: "🇨🇳" },
+      { name: "Hong Kong", code: "+852", flag: "🇭🇰" },
+      { name: "Bangladesh", code: "+880", flag: "🇧🇩" },
+      { name: "Pakistan", code: "+92", flag: "🇵🇰" },
+      { name: "Nepal", code: "+977", flag: "🇳🇵" },
+      { name: "Sri Lanka", code: "+94", flag: "🇱🇰" },
+      { name: "Egypt", code: "+20", flag: "🇪🇬" },
+      { name: "Turkey", code: "+90", flag: "🇹🇷" },
+      { name: "Jordan", code: "+962", flag: "🇯🇴" },
+      { name: "Lebanon", code: "+961", flag: "🇱🇧" },
+      { name: "Iraq", code: "+964", flag: "🇮🇶" },
+      { name: "Nigeria", code: "+234", flag: "🇳🇬" },
+      { name: "Kenya", code: "+254", flag: "🇰🇪" },
+      { name: "Tanzania", code: "+255", flag: "🇹🇿" },
+      { name: "Uganda", code: "+256", flag: "🇺🇬" },
+      { name: "Ghana", code: "+233", flag: "🇬🇭" },
+      { name: "Brazil", code: "+55", flag: "🇧🇷" },
+      { name: "Mexico", code: "+52", flag: "🇲🇽" },
+      { name: "Argentina", code: "+54", flag: "🇦🇷" },
+      { name: "Colombia", code: "+57", flag: "🇨🇴" },
+      { name: "Chile", code: "+56", flag: "🇨🇱" },
+      { name: "Peru", code: "+51", flag: "🇵🇪" },
+      { name: "Poland", code: "+48", flag: "🇵🇱" },
+      { name: "Portugal", code: "+351", flag: "🇵🇹" },
+      { name: "Greece", code: "+30", flag: "🇬🇷" },
+      { name: "Belgium", code: "+32", flag: "🇧🇪" },
+      { name: "Austria", code: "+43", flag: "🇦🇹" },
+      { name: "Denmark", code: "+45", flag: "🇩🇰" },
+      { name: "Finland", code: "+358", flag: "🇫🇮" },
+      { name: "Czech Republic", code: "+420", flag: "🇨🇿" },
+      { name: "Romania", code: "+40", flag: "🇷🇴" },
+      { name: "Hungary", code: "+36", flag: "🇭🇺" },
+      { name: "Russia", code: "+7", flag: "🇷🇺" },
+      { name: "Kazakhstan", code: "+7", flag: "🇰🇿" },
+      { name: "Ukraine", code: "+380", flag: "🇺🇦" },
+      { name: "Uzbekistan", code: "+998", flag: "🇺🇿" },
+      { name: "Azerbaijan", code: "+994", flag: "🇦🇿" },
+      { name: "Georgia", code: "+995", flag: "🇬🇪" },
+      { name: "Mauritius", code: "+230", flag: "🇲🇺" },
+      { name: "Maldives", code: "+960", flag: "🇲🇻" },
+      { name: "Fiji", code: "+679", flag: "🇫🇯" }
+    ];
+
+    let selectedCountry = WORLD_COUNTRIES[0]; // default: Direct Manual
+
+    function initCountrySelector() {
+      try {
+        const saved = localStorage.getItem('xrestro_selected_country');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          const found = WORLD_COUNTRIES.find(c => c.name === parsed.name || (c.code && c.code === parsed.code));
+          if (found) {
+            selectCountry(found, false);
+            return;
+          }
+        }
+      } catch (e) {}
+      selectCountry(WORLD_COUNTRIES[0], false);
+    }
+
+    function selectCountry(country, focusInput = true) {
+      if (!country) return;
+      selectedCountry = country;
+      const flagEl = document.getElementById('selectedCountryFlag');
+      const codeEl = document.getElementById('selectedCountryCode');
+      const nameEl = document.getElementById('countrySelectedName');
+      if (flagEl) flagEl.innerText = country.flag;
+      if (codeEl) codeEl.innerText = country.code || '+';
+      if (nameEl) nameEl.innerText = country.manual ? 'Manual Entry' : (country.name + ' (' + country.code + ')');
+
+      try {
+        localStorage.setItem('xrestro_selected_country', JSON.stringify({
+          name: country.name,
+          code: country.code,
+          flag: country.flag
+        }));
+      } catch (e) {}
+
+      closeCountryModal();
+      if (focusInput) {
+        const phoneInput = document.getElementById('loginPhone');
+        if (phoneInput) phoneInput.focus();
+      }
+    }
+
+    function openCountryModal() {
+      const modal = document.getElementById('countryModal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      const search = document.getElementById('searchCountry');
+      if (search) {
+        search.value = '';
+        setTimeout(() => search.focus(), 100);
+      }
+      renderCountryList('');
+    }
+
+    function closeCountryModal() {
+      const modal = document.getElementById('countryModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function filterCountryList() {
+      const search = document.getElementById('searchCountry');
+      const query = search ? (search.value || '').trim() : '';
+      renderCountryList(query);
+    }
+
+    function renderCountryList(filterText) {
+      const container = document.getElementById('countryListContainer');
+      if (!container) return;
+      const query = (filterText || '').toLowerCase();
+
+      const filtered = WORLD_COUNTRIES.filter(c => {
+        if (!query) return true;
+        return c.name.toLowerCase().includes(query) ||
+               (c.code && c.code.toLowerCase().includes(query)) ||
+               (c.code && c.code.replace('+', '').includes(query));
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div class="p-6 text-center text-xs text-slate-500">No matching country found.<br><button type="button" onclick="selectCountry(WORLD_COUNTRIES[0])" class="mt-2 text-emerald-400 font-bold hover:underline">Use Manual Entry (+)</button></div>';
+        return;
+      }
+
+      currentFilteredCountries = filtered;
+      container.innerHTML = filtered.map(function(c, idx) {
+        var isSelected = selectedCountry && selectedCountry.name === c.name;
+        var codeDisplay = c.code || 'Manual';
+        var selectedClass = isSelected ? 'bg-emerald-950/40 border border-emerald-500/30' : 'border border-transparent';
+        var textClass = isSelected ? 'text-emerald-400' : 'text-white';
+        var codeClass = isSelected ? 'text-emerald-400' : 'text-slate-400';
+        return '<div onclick="selectCountryByIndex(' + idx + ')" class="flex items-center justify-between p-2.5 rounded-xl cursor-pointer hover:bg-slate-800 transition ' + selectedClass + '">' +
+          '<div class="flex items-center space-x-2.5">' +
+            '<span class="text-xl">' + c.flag + '</span>' +
+            '<span class="text-xs font-semibold ' + textClass + '">' + c.name + '</span>' +
+          '</div>' +
+          '<span class="font-mono text-xs font-bold ' + codeClass + '">' + codeDisplay + '</span>' +
+        '</div>';
+      }).join('');
+    }
+
+    let currentFilteredCountries = [];
+    function selectCountryByIndex(idx) {
+      if (currentFilteredCountries && currentFilteredCountries[idx]) {
+        selectCountry(currentFilteredCountries[idx]);
+      }
+    }
+
+    // Check PWA Install Mode & Silent Auto-Login
     window.addEventListener('load', async () => {
+      initCountrySelector();
+
       const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
       if (!isStandalone && !localStorage.getItem('xrestro_pwa_dismissed')) {
         document.getElementById('pwaBanner').classList.remove('hidden');
       }
 
-      const savedPhone = sessionStorage.getItem('xion_owner_phone');
-      const savedPin = sessionStorage.getItem('xion_owner_pin');
+      // Keyboard & UX smoothness handlers
+      const phoneInput = document.getElementById('loginPhone');
+      const pinInput = document.getElementById('loginPin');
+
+      if (phoneInput && pinInput) {
+        phoneInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            pinInput.focus();
+          }
+        });
+
+        // Dynamic country detection when user types or pastes with + (e.g. +971 or +44 or +1)
+        phoneInput.addEventListener('input', (e) => {
+          const val = e.target.value.trim();
+          if (val.startsWith('+')) {
+            for (let len = 5; len >= 2; len--) {
+              const prefix = val.slice(0, len);
+              const found = WORLD_COUNTRIES.find(c => c.code === prefix);
+              if (found && (!selectedCountry || selectedCountry.name !== found.name)) {
+                selectCountry(found, false);
+                break;
+              }
+            }
+          }
+        });
+
+        pinInput.addEventListener('input', (e) => {
+          if (e.target.value.length === 4) {
+            handleLogin();
+          }
+        });
+      }
+
+      const savedPhone = localStorage.getItem('xion_owner_phone') || sessionStorage.getItem('xion_owner_phone');
+      const savedPin = localStorage.getItem('xion_owner_pin') || sessionStorage.getItem('xion_owner_pin');
+
+      if (savedPhone) {
+        phoneInput.value = savedPhone;
+      }
+
       if (savedPhone && savedPin) {
         const ok = await verifyCredentials(savedPhone, savedPin);
         if (ok) {
@@ -954,13 +1301,32 @@ function getMobileAppHtml() {
           return;
         }
       }
-      sessionStorage.clear();
+
+      // If phone exists but PIN needed, focus PIN; else focus phone
       document.getElementById('loginScreen').classList.remove('hidden');
+      if (savedPhone) {
+        pinInput.focus();
+      } else {
+        phoneInput.focus();
+      }
     });
 
     function dismissPwaBanner() {
       document.getElementById('pwaBanner').classList.add('hidden');
       localStorage.setItem('xrestro_pwa_dismissed', 'true');
+    }
+
+    function togglePinVisibility() {
+      const pinInput = document.getElementById('loginPin');
+      const toggleBtn = document.getElementById('btnTogglePin');
+      if (!pinInput || !toggleBtn) return;
+      if (pinInput.type === 'password') {
+        pinInput.type = 'text';
+        toggleBtn.innerText = 'Hide PIN';
+      } else {
+        pinInput.type = 'password';
+        toggleBtn.innerText = 'Show PIN';
+      }
     }
 
     async function verifyCredentials(phone, pin) {
@@ -978,14 +1344,23 @@ function getMobileAppHtml() {
     }
 
     function lockApp() {
-      sessionStorage.clear();
-      currentOwnerPhone = '';
+      sessionStorage.removeItem('xion_owner_pin');
+      localStorage.removeItem('xion_owner_pin'); // Keep phone remembered for fast PIN-only unlock
       currentOwnerPin = '';
       currentStoreData = null;
       if (autoRefreshTimer) clearInterval(autoRefreshTimer);
-      document.getElementById('loginScreen').classList.remove('hidden');
+
+      const savedPhone = localStorage.getItem('xion_owner_phone') || sessionStorage.getItem('xion_owner_phone') || currentOwnerPhone;
+      if (savedPhone) {
+        document.getElementById('loginPhone').value = savedPhone;
+      }
       document.getElementById('loginPin').value = '';
       hideLoginError();
+      document.getElementById('loginScreen').classList.remove('hidden');
+      setTimeout(() => {
+        const pinInput = document.getElementById('loginPin');
+        if (pinInput) pinInput.focus();
+      }, 150);
     }
 
     function showLoginError(msg) {
@@ -1002,16 +1377,34 @@ function getMobileAppHtml() {
 
     async function handleLogin() {
       hideLoginError();
-      const phone = document.getElementById('loginPhone').value.trim();
-      const pin = document.getElementById('loginPin').value.trim();
+      const phoneInput = document.getElementById('loginPhone');
+      const pinInput = document.getElementById('loginPin');
+      const rawPhone = phoneInput.value.trim();
+      const pin = pinInput.value.trim();
 
-      if (!phone || phone.length !== 10) {
-        showLoginError('Please enter a valid 10-digit registered owner mobile number.');
+      const digitsOnly = rawPhone.replace(/[^0-9]/g, '');
+      if (!digitsOnly || digitsOnly.length < 5 || digitsOnly.length > 18) {
+        showLoginError('Please enter a valid owner mobile number (min 5 digits).');
+        phoneInput.focus();
         return;
       }
       if (!pin || pin.length !== 4) {
         showLoginError('Please enter your 4-digit security PIN.');
+        pinInput.focus();
         return;
+      }
+
+      // Combine with Country Code if selected
+      let finalPhone = rawPhone;
+      const countryCode = selectedCountry && selectedCountry.code ? selectedCountry.code : '';
+      if (countryCode && !rawPhone.startsWith('+')) {
+        const cleanCodeDigits = countryCode.replace(/[^0-9]/g, '');
+        if (!digitsOnly.startsWith(cleanCodeDigits)) {
+          const stripped = digitsOnly.replace(/^0+/, '');
+          finalPhone = countryCode + stripped;
+        } else {
+          finalPhone = '+' + digitsOnly;
+        }
       }
 
       const btn = document.getElementById('btnLogin');
@@ -1022,21 +1415,32 @@ function getMobileAppHtml() {
         const res = await fetch('/api/v1/owner/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ phone, pin })
+          body: JSON.stringify({ 
+            phone: finalPhone, 
+            rawPhone: rawPhone,
+            countryCode: countryCode, 
+            pin: pin 
+          })
         });
         const data = await res.json();
 
         if (!data.success) {
           showLoginError(data.error || 'Authentication Failed');
-          document.getElementById('loginPin').value = '';
+          pinInput.value = '';
+          pinInput.focus();
           btn.disabled = false;
           btn.innerHTML = '<span>🔐 Verify & Launch XRestro</span>';
           return;
         }
 
-        currentOwnerPhone = phone;
+        const canonicalPhone = data.ownerPhone || finalPhone;
+        currentOwnerPhone = canonicalPhone;
         currentOwnerPin = pin;
-        sessionStorage.setItem('xion_owner_phone', phone);
+
+        // Save in both localStorage and sessionStorage for persistent smooth experience
+        localStorage.setItem('xion_owner_phone', canonicalPhone);
+        localStorage.setItem('xion_owner_pin', pin);
+        sessionStorage.setItem('xion_owner_phone', canonicalPhone);
         sessionStorage.setItem('xion_owner_pin', pin);
 
         document.getElementById('loginScreen').classList.add('hidden');
@@ -1591,6 +1995,7 @@ function getMobileAppHtml() {
         if (data.success) {
           currentOwnerPin = newPin;
           sessionStorage.setItem('xion_owner_pin', newPin);
+          localStorage.setItem('xion_owner_pin', newPin);
           alert('Security PIN updated successfully!');
           closePinModal();
         } else {
