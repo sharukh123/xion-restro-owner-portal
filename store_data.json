@@ -810,27 +810,5824 @@
           "taxName": "VAT",
           "currency": "R",
           "liveSummary": {
-            "totalGrossSales": 0,
-            "salesCash": 0,
-            "salesCard": 0,
+            "totalGrossSales": 9852.059999999976,
+            "salesCash": 6467.769999999986,
+            "salesCard": 3384.2799999999984,
             "salesUpi": 0,
             "salesDue": 0,
-            "netCash": 0,
-            "netCard": 0,
+            "netCash": 6467.769999999986,
+            "netCard": 3384.2799999999984,
             "netUpi": 0,
             "netDue": 0,
-            "netTotalCollection": 0,
-            "drawerCash": 0,
-            "totalBillsCount": 0,
-            "totalSalesInvoices": 0,
-            "dineInSales": 0,
-            "takeawaySales": 0,
+            "netTotalCollection": 9852.059999999976,
+            "drawerCash": 6467.769999999986,
+            "totalBillsCount": 200,
+            "totalSalesInvoices": 200,
+            "dineInSales": 459.96,
+            "takeawaySales": 9392.099999999977,
             "totalDiscounts": 0,
             "totalTaxes": 0,
-            "businessDate": "2026-10-12",
-            "lastUpdated": "2026-10-12T10:26:30.910Z"
+            "businessDate": "2026-10-10",
+            "lastUpdated": "2026-10-12T10:48:34.609Z"
           },
-          "bills": [],
+          "bills": [
+            {
+              "orderId": 11516,
+              "invoiceNo": "INV5791",
+              "orderType": "DineIn",
+              "tableName": "Table 01",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "Admin",
+              "subTotal": 459.96,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 459.96,
+              "paymentMode": "Cash",
+              "cashAmount": 459.96,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-10T22:16:45.693+02:00",
+              "items": [
+                {
+                  "itemName": "1PC CHICKEN",
+                  "qty": 1,
+                  "price": 15,
+                  "lineTotal": 15,
+                  "categoryName": "CHICKEN"
+                },
+                {
+                  "itemName": "4PCS CRISPY CHICKEN MEAL",
+                  "qty": 1,
+                  "price": 59.99,
+                  "lineTotal": 59.99,
+                  "categoryName": "CHICKEN"
+                },
+                {
+                  "itemName": "6PCS CRISPY CHICKEN",
+                  "qty": 1,
+                  "price": 74.99,
+                  "lineTotal": 74.99,
+                  "categoryName": "CHICKEN"
+                },
+                {
+                  "itemName": "8PCS CRISPY CHICKEN MEAL",
+                  "qty": 1,
+                  "price": 119.99,
+                  "lineTotal": 119.99,
+                  "categoryName": "CHICKEN"
+                },
+                {
+                  "itemName": "8PCS CRISPY CHICKEN",
+                  "qty": 1,
+                  "price": 99.99,
+                  "lineTotal": 99.99,
+                  "categoryName": "CHICKEN"
+                },
+                {
+                  "itemName": "ANGEL FISH HALF",
+                  "qty": 1,
+                  "price": 50,
+                  "lineTotal": 50,
+                  "categoryName": "FISH"
+                },
+                {
+                  "itemName": "AQUELLE GRANADILLA DRINK 500ML",
+                  "qty": 1,
+                  "price": 10,
+                  "lineTotal": 10,
+                  "categoryName": "COLD DRINK"
+                },
+                {
+                  "itemName": "AQUELLE HONEY MALON DRINK 500ML",
+                  "qty": 1,
+                  "price": 10,
+                  "lineTotal": 10,
+                  "categoryName": "COLD DRINK"
+                },
+                {
+                  "itemName": "AQUELLE LITCHI DRINK 500ML",
+                  "qty": 1,
+                  "price": 10,
+                  "lineTotal": 10,
+                  "categoryName": "COLD DRINK"
+                },
+                {
+                  "itemName": "AQUELLE PINEAPPLE DRINK 500ML",
+                  "qty": 1,
+                  "price": 10,
+                  "lineTotal": 10,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11515,
+              "invoiceNo": "INV5790",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 10,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 10,
+              "paymentMode": "Cash",
+              "cashAmount": 10,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T19:09:19.550+02:00",
+              "items": [
+                {
+                  "itemName": "AQUELLE HONEY MALON DRINK 500ML",
+                  "qty": 1,
+                  "price": 10,
+                  "lineTotal": 10,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11514,
+              "invoiceNo": "INV5789",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 12,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 12,
+              "paymentMode": "Cash",
+              "cashAmount": 12,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T19:06:49.183+02:00",
+              "items": [
+                {
+                  "itemName": "SPARLETTA CREAM SODA CAN 500ML",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11513,
+              "invoiceNo": "INV5788",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 12,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 12,
+              "paymentMode": "Cash",
+              "cashAmount": 12,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T19:06:13.513+02:00",
+              "items": [
+                {
+                  "itemName": "SPARLETTA CREAM SODA CAN 500ML",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11512,
+              "invoiceNo": "INV5787",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 149.95,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 149.95,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 149.95,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T19:05:10.250+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN ZINGER BURGER",
+                  "qty": 5,
+                  "price": 29.99,
+                  "lineTotal": 149.95,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11511,
+              "invoiceNo": "INV5786",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T19:03:33.207+02:00",
+              "items": [
+                {
+                  "itemName": "CRISPY CHICKEN ZINGER WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11510,
+              "invoiceNo": "INV5785",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 149.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 149.98,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 149.98,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:59:06.320+02:00",
+              "items": [
+                {
+                  "itemName": "6PCS CRISPY CHICKEN",
+                  "qty": 2,
+                  "price": 74.99,
+                  "lineTotal": 149.98,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11509,
+              "invoiceNo": "INV5784",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 24.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 24.99,
+              "paymentMode": "Cash",
+              "cashAmount": 24.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:57:59.127+02:00",
+              "items": [
+                {
+                  "itemName": "CHIPS SMALL",
+                  "qty": 1,
+                  "price": 24.99,
+                  "lineTotal": 24.99,
+                  "categoryName": "CHIPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11508,
+              "invoiceNo": "INV5783",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 12,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 12,
+              "paymentMode": "Cash",
+              "cashAmount": 12,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:55:48.933+02:00",
+              "items": [
+                {
+                  "itemName": "SCORE ENERGY DRINK ORG 500ML",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11507,
+              "invoiceNo": "INV5782",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:55:32.120+02:00",
+              "items": [
+                {
+                  "itemName": "BABY HAKE FILLETS SMALL",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "FISH"
+                }
+              ]
+            },
+            {
+              "orderId": 11506,
+              "invoiceNo": "INV5781",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 54.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 54.99,
+              "paymentMode": "Cash",
+              "cashAmount": 54.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:54:43.623+02:00",
+              "items": [
+                {
+                  "itemName": "CRISPY BBQ BURGER MEAL",
+                  "qty": 1,
+                  "price": 54.99,
+                  "lineTotal": 54.99,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11505,
+              "invoiceNo": "INV5780",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:52:41.117+02:00",
+              "items": [
+                {
+                  "itemName": "CRISPY CHICKEN ZINGER WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11504,
+              "invoiceNo": "INV5779",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 23,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 23,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 23,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:48:06.803+02:00",
+              "items": [
+                {
+                  "itemName": "SCHWEEPES DRY LEMON CAM 300ML",
+                  "qty": 1,
+                  "price": 15,
+                  "lineTotal": 15,
+                  "categoryName": "COLD DRINK"
+                },
+                {
+                  "itemName": "AQUELLE SPARKLING WATER 500ML",
+                  "qty": 1,
+                  "price": 8,
+                  "lineTotal": 8,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11503,
+              "invoiceNo": "INV5778",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 89.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 89.98,
+              "paymentMode": "Cash",
+              "cashAmount": 89.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:37:59.837+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN ZINGER BURGER MEAL",
+                  "qty": 2,
+                  "price": 44.99,
+                  "lineTotal": 89.98,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11502,
+              "invoiceNo": "INV5777",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 6,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 6,
+              "paymentMode": "Cash",
+              "cashAmount": 6,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:32:27.967+02:00",
+              "items": [
+                {
+                  "itemName": "COCA COLA DRINK 250ML",
+                  "qty": 1,
+                  "price": 6,
+                  "lineTotal": 6,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11501,
+              "invoiceNo": "INV5776",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:31:40.107+02:00",
+              "items": [
+                {
+                  "itemName": "CRISPY CHICKEN ZINGER WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11500,
+              "invoiceNo": "INV5775",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 12,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 12,
+              "paymentMode": "Cash",
+              "cashAmount": 12,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:20:20.697+02:00",
+              "items": [
+                {
+                  "itemName": "OASIS STILL WATER 1.5L",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11499,
+              "invoiceNo": "INV5774",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 34,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 34,
+              "paymentMode": "Cash",
+              "cashAmount": 34,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:18:13.050+02:00",
+              "items": [
+                {
+                  "itemName": "REBOOST ENERGY DRINK 500ML",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "COLD DRINK"
+                },
+                {
+                  "itemName": "AQUELLE PINEAPPLE DRINK 500ML",
+                  "qty": 1,
+                  "price": 10,
+                  "lineTotal": 10,
+                  "categoryName": "COLD DRINK"
+                },
+                {
+                  "itemName": "OASIS STILL WATER 1.5L",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11498,
+              "invoiceNo": "INV5773",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:16:52.490+02:00",
+              "items": [
+                {
+                  "itemName": "CRISPY CHICKEN ZINGER WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11497,
+              "invoiceNo": "INV5772",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 44.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 44.99,
+              "paymentMode": "Cash",
+              "cashAmount": 44.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:16:05.063+02:00",
+              "items": [
+                {
+                  "itemName": "MIGHTY BURGER MEAL",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11496,
+              "invoiceNo": "INV5771",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 24.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 24.99,
+              "paymentMode": "Cash",
+              "cashAmount": 24.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:15:33.870+02:00",
+              "items": [
+                {
+                  "itemName": "BEEF PATTY BURGER",
+                  "qty": 1,
+                  "price": 24.99,
+                  "lineTotal": 24.99,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11495,
+              "invoiceNo": "INV5770",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 42.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 42.99,
+              "paymentMode": "Cash",
+              "cashAmount": 42.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:14:25.603+02:00",
+              "items": [
+                {
+                  "itemName": "SUNBAKE BREAD",
+                  "qty": 1,
+                  "price": 18,
+                  "lineTotal": 18,
+                  "categoryName": "BREAD"
+                },
+                {
+                  "itemName": "CHIPS SMALL",
+                  "qty": 1,
+                  "price": 24.99,
+                  "lineTotal": 24.99,
+                  "categoryName": "CHIPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11494,
+              "invoiceNo": "INV5769",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 39.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 39.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 39.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:13:09.020+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN TEMPURA NUGGETS 8pc",
+                  "qty": 1,
+                  "price": 39.99,
+                  "lineTotal": 39.99,
+                  "categoryName": "SNACKS"
+                }
+              ]
+            },
+            {
+              "orderId": 11493,
+              "invoiceNo": "INV5768",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 149.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 149.98,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 149.98,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:12:14.560+02:00",
+              "items": [
+                {
+                  "itemName": "6PCS CRISPY CHICKEN",
+                  "qty": 2,
+                  "price": 74.99,
+                  "lineTotal": 149.98,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11492,
+              "invoiceNo": "INV5767",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 89.97,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 89.97,
+              "paymentMode": "Cash",
+              "cashAmount": 89.97,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:09:12.623+02:00",
+              "items": [
+                {
+                  "itemName": "CRISPY CHICKEN ZINGER WRAP",
+                  "qty": 3,
+                  "price": 29.99,
+                  "lineTotal": 89.97,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11491,
+              "invoiceNo": "INV5766",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 54.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 54.98,
+              "paymentMode": "Cash",
+              "cashAmount": 54.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:08:26.293+02:00",
+              "items": [
+                {
+                  "itemName": "CRISPY CHICKEN ZINGER WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                },
+                {
+                  "itemName": "CHIPS SMALL",
+                  "qty": 1,
+                  "price": 24.99,
+                  "lineTotal": 24.99,
+                  "categoryName": "CHIPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11490,
+              "invoiceNo": "INV5765",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 59.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 59.98,
+              "paymentMode": "Cash",
+              "cashAmount": 59.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:08:05.967+02:00",
+              "items": [
+                {
+                  "itemName": "CRISPY CHICKEN ZINGER WRAP",
+                  "qty": 2,
+                  "price": 29.99,
+                  "lineTotal": 59.98,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11489,
+              "invoiceNo": "INV5764",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 44.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 44.99,
+              "paymentMode": "Cash",
+              "cashAmount": 44.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:07:24.253+02:00",
+              "items": [
+                {
+                  "itemName": "LARGE CHIPS",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "CHIPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11488,
+              "invoiceNo": "INV5763",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 18,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 18,
+              "paymentMode": "Cash",
+              "cashAmount": 18,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:03:00.377+02:00",
+              "items": [
+                {
+                  "itemName": "SUNBAKE BREAD",
+                  "qty": 1,
+                  "price": 18,
+                  "lineTotal": 18,
+                  "categoryName": "BREAD"
+                }
+              ]
+            },
+            {
+              "orderId": 11487,
+              "invoiceNo": "INV5762",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 29.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T18:02:23.480+02:00",
+              "items": [
+                {
+                  "itemName": "CRISPY CHICKEN ZINGER WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11486,
+              "invoiceNo": "INV5761",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 34.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 34.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 34.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:59:55.927+02:00",
+              "items": [
+                {
+                  "itemName": "MEDIUM CHIPS",
+                  "qty": 1,
+                  "price": 34.99,
+                  "lineTotal": 34.99,
+                  "categoryName": "CHIPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11485,
+              "invoiceNo": "INV5760",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 74.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 74.99,
+              "paymentMode": "Cash",
+              "cashAmount": 74.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:56:47.500+02:00",
+              "items": [
+                {
+                  "itemName": "6PCS CRISPY CHICKEN",
+                  "qty": 1,
+                  "price": 74.99,
+                  "lineTotal": 74.99,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11484,
+              "invoiceNo": "INV5759",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:52:23.033+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN GRILL WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11483,
+              "invoiceNo": "INV5758",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 29.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:51:42.030+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN GRILL WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11482,
+              "invoiceNo": "INV5757",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 34.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 34.99,
+              "paymentMode": "Cash",
+              "cashAmount": 34.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:51:14.650+02:00",
+              "items": [
+                {
+                  "itemName": "MEDIUM CHIPS",
+                  "qty": 1,
+                  "price": 34.99,
+                  "lineTotal": 34.99,
+                  "categoryName": "CHIPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11481,
+              "invoiceNo": "INV5756",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 24.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 24.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 24.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:50:04.203+02:00",
+              "items": [
+                {
+                  "itemName": "CHIPS SMALL",
+                  "qty": 1,
+                  "price": 24.99,
+                  "lineTotal": 24.99,
+                  "categoryName": "CHIPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11480,
+              "invoiceNo": "INV5755",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 187.96,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 187.96,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 187.96,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:45:34.253+02:00",
+              "items": [
+                {
+                  "itemName": "POWERADE SPRINGBOK DRINK 500ML",
+                  "qty": 2,
+                  "price": 15,
+                  "lineTotal": 30,
+                  "categoryName": "COLD DRINK"
+                },
+                {
+                  "itemName": "MIGHTY CHICKEN BURGER",
+                  "qty": 4,
+                  "price": 34.99,
+                  "lineTotal": 139.96,
+                  "categoryName": "BURGERS"
+                },
+                {
+                  "itemName": "THRISTI LIME SPORTS WATER 500ML",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "COLD DRINK"
+                },
+                {
+                  "itemName": "THRISTI STILL WATER 500ML",
+                  "qty": 1,
+                  "price": 6,
+                  "lineTotal": 6,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11479,
+              "invoiceNo": "INV5754",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 34.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 34.99,
+              "paymentMode": "Cash",
+              "cashAmount": 34.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:43:54.117+02:00",
+              "items": [
+                {
+                  "itemName": "MEDIUM CHIPS",
+                  "qty": 1,
+                  "price": 34.99,
+                  "lineTotal": 34.99,
+                  "categoryName": "CHIPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11478,
+              "invoiceNo": "INV5753",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 45.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 45.99,
+              "paymentMode": "Cash",
+              "cashAmount": 45.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:39:43.013+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN ZINGER BURGER",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "BURGERS"
+                },
+                {
+                  "itemName": "LIQUI FRUIT CRANBERRY JUICE 300ML",
+                  "qty": 1,
+                  "price": 16,
+                  "lineTotal": 16,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11477,
+              "invoiceNo": "INV5752",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 29.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:36:35.433+02:00",
+              "items": [
+                {
+                  "itemName": "MOZZARELLA CHEESE STICKS 6'S",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11476,
+              "invoiceNo": "INV5751",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 59.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 59.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 59.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:27:58.390+02:00",
+              "items": [
+                {
+                  "itemName": "4PCS CRISPY CHICKEN MEAL",
+                  "qty": 1,
+                  "price": 59.99,
+                  "lineTotal": 59.99,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11475,
+              "invoiceNo": "INV5750",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:23:14.230+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN GRILL WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11474,
+              "invoiceNo": "INV5749",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 129.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 129.99,
+              "paymentMode": "Cash",
+              "cashAmount": 129.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:20:30.237+02:00",
+              "items": [
+                {
+                  "itemName": "HOT WINGS 20PC",
+                  "qty": 1,
+                  "price": 129.99,
+                  "lineTotal": 129.99,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11473,
+              "invoiceNo": "INV5748",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 40,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 40,
+              "paymentMode": "Cash",
+              "cashAmount": 40,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:17:56.890+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN PATTY BURGER",
+                  "qty": 2,
+                  "price": 20,
+                  "lineTotal": 40,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11472,
+              "invoiceNo": "INV5747",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 32,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 32,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 32,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:17:42.187+02:00",
+              "items": [
+                {
+                  "itemName": "THRISTI LIME SPORTS WATER 500ML",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "COLD DRINK"
+                },
+                {
+                  "itemName": "MONSTER ENERGY DRINK 500ML",
+                  "qty": 1,
+                  "price": 20,
+                  "lineTotal": 20,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11471,
+              "invoiceNo": "INV5746",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 59.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 59.98,
+              "paymentMode": "Cash",
+              "cashAmount": 59.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:16:55.863+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN ZINGER BURGER",
+                  "qty": 2,
+                  "price": 29.99,
+                  "lineTotal": 59.98,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11470,
+              "invoiceNo": "INV5745",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 109.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 109.98,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 109.98,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:16:25.460+02:00",
+              "items": [
+                {
+                  "itemName": "CRISPY BBQ BURGER MEAL",
+                  "qty": 2,
+                  "price": 54.99,
+                  "lineTotal": 109.98,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11469,
+              "invoiceNo": "INV5744",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 59.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 59.98,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 59.98,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:12:22.630+02:00",
+              "items": [
+                {
+                  "itemName": "CRISPY CHICKEN ZINGER WRAP",
+                  "qty": 2,
+                  "price": 29.99,
+                  "lineTotal": 59.98,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11468,
+              "invoiceNo": "INV5743",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 44.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 44.99,
+              "paymentMode": "Cash",
+              "cashAmount": 44.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:07:54.150+02:00",
+              "items": [
+                {
+                  "itemName": "LARGE CHIPS",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "CHIPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11467,
+              "invoiceNo": "INV5742",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 26,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 26,
+              "paymentMode": "Cash",
+              "cashAmount": 26,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T17:01:22.180+02:00",
+              "items": [
+                {
+                  "itemName": "COCA COLA DRINK 440ML",
+                  "qty": 2,
+                  "price": 13,
+                  "lineTotal": 26,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11466,
+              "invoiceNo": "INV5741",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 119.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 119.98,
+              "paymentMode": "Cash",
+              "cashAmount": 119.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:58:19.163+02:00",
+              "items": [
+                {
+                  "itemName": "ZINGER MEAL 2",
+                  "qty": 2,
+                  "price": 59.99,
+                  "lineTotal": 119.98,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11465,
+              "invoiceNo": "INV5740",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 10,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 10,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 10,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:56:29.427+02:00",
+              "items": [
+                {
+                  "itemName": "dip",
+                  "qty": 2,
+                  "price": 5,
+                  "lineTotal": 10,
+                  "categoryName": "sauces"
+                }
+              ]
+            },
+            {
+              "orderId": 11464,
+              "invoiceNo": "INV5739",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 59.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 59.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 59.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:54:33.723+02:00",
+              "items": [
+                {
+                  "itemName": "ZINGER MEAL",
+                  "qty": 1,
+                  "price": 59.99,
+                  "lineTotal": 59.99,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11463,
+              "invoiceNo": "INV5738",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:53:53.890+02:00",
+              "items": [
+                {
+                  "itemName": "MOZZARELLA CHEESE STICKS 6'S",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11462,
+              "invoiceNo": "INV5737",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 19.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 19.99,
+              "paymentMode": "Cash",
+              "cashAmount": 19.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:53:24.557+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN TENDER POPS",
+                  "qty": 1,
+                  "price": 19.99,
+                  "lineTotal": 19.99,
+                  "categoryName": "SNACKS"
+                }
+              ]
+            },
+            {
+              "orderId": 11461,
+              "invoiceNo": "INV5736",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 16,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 16,
+              "paymentMode": "Cash",
+              "cashAmount": 16,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:49:36.307+02:00",
+              "items": [
+                {
+                  "itemName": "LIQUI FRUIT BERRY GLAZE JUICE 300ML",
+                  "qty": 1,
+                  "price": 16,
+                  "lineTotal": 16,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11460,
+              "invoiceNo": "INV5735",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 89.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 89.98,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 89.98,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:48:09.447+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN ZINGER BURGER MEAL",
+                  "qty": 2,
+                  "price": 44.99,
+                  "lineTotal": 89.98,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11459,
+              "invoiceNo": "INV5734",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 12,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 12,
+              "paymentMode": "Cash",
+              "cashAmount": 12,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:46:13.950+02:00",
+              "items": [
+                {
+                  "itemName": "PEPSI SOFT DRINK 500ML",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11458,
+              "invoiceNo": "INV5733",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 10,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 10,
+              "paymentMode": "Cash",
+              "cashAmount": 10,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:45:19.443+02:00",
+              "items": [
+                {
+                  "itemName": "AQUELLE MARULA DRINK 500ML",
+                  "qty": 1,
+                  "price": 10,
+                  "lineTotal": 10,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11457,
+              "invoiceNo": "INV5732",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 169.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 169.98,
+              "paymentMode": "Cash",
+              "cashAmount": 169.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:44:58.280+02:00",
+              "items": [
+                {
+                  "itemName": "8PCS CRISPY CHICKEN MEAL",
+                  "qty": 1,
+                  "price": 119.99,
+                  "lineTotal": 119.99,
+                  "categoryName": "CHICKEN"
+                },
+                {
+                  "itemName": "4PCS CRISPY CHICKEN",
+                  "qty": 1,
+                  "price": 49.99,
+                  "lineTotal": 49.99,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11456,
+              "invoiceNo": "INV5731",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 109.96,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 109.96,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 109.96,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:42:45.667+02:00",
+              "items": [
+                {
+                  "itemName": "BEEF PATTY BURGER",
+                  "qty": 2,
+                  "price": 24.99,
+                  "lineTotal": 49.98,
+                  "categoryName": "BURGERS"
+                },
+                {
+                  "itemName": "CRISPY CHICKEN ZINGER WRAP",
+                  "qty": 2,
+                  "price": 29.99,
+                  "lineTotal": 59.98,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11455,
+              "invoiceNo": "INV5730",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 49.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 49.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 49.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:35:46.580+02:00",
+              "items": [
+                {
+                  "itemName": "COMBO DEAL",
+                  "qty": 1,
+                  "price": 49.99,
+                  "lineTotal": 49.99,
+                  "categoryName": "FISH"
+                }
+              ]
+            },
+            {
+              "orderId": 11454,
+              "invoiceNo": "INV5729",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 89.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 89.98,
+              "paymentMode": "Cash",
+              "cashAmount": 89.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:35:06.520+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN GRILL WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                },
+                {
+                  "itemName": "MEGA KRIZMA CHICKEN BURGER MEAL",
+                  "qty": 1,
+                  "price": 59.99,
+                  "lineTotal": 59.99,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11453,
+              "invoiceNo": "INV5728",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 119.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 119.99,
+              "paymentMode": "Cash",
+              "cashAmount": 119.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:34:01.703+02:00",
+              "items": [
+                {
+                  "itemName": "8PCS CRISPY CHICKEN MEAL",
+                  "qty": 1,
+                  "price": 119.99,
+                  "lineTotal": 119.99,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11452,
+              "invoiceNo": "INV5727",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 137.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 137.98,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 137.98,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:32:35.160+02:00",
+              "items": [
+                {
+                  "itemName": "MEGA KRIZMA CHICKEN BURGER MEAL",
+                  "qty": 1,
+                  "price": 59.99,
+                  "lineTotal": 59.99,
+                  "categoryName": "BURGERS"
+                },
+                {
+                  "itemName": "COMBO DEAL",
+                  "qty": 1,
+                  "price": 49.99,
+                  "lineTotal": 49.99,
+                  "categoryName": "FISH"
+                },
+                {
+                  "itemName": "ALBANY BUNS",
+                  "qty": 1,
+                  "price": 28,
+                  "lineTotal": 28,
+                  "categoryName": "BREAD"
+                }
+              ]
+            },
+            {
+              "orderId": 11451,
+              "invoiceNo": "INV5726",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 49.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 49.99,
+              "paymentMode": "Cash",
+              "cashAmount": 49.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:20:52.013+02:00",
+              "items": [
+                {
+                  "itemName": "4PCS CRISPY CHICKEN",
+                  "qty": 1,
+                  "price": 49.99,
+                  "lineTotal": 49.99,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11450,
+              "invoiceNo": "INV5725",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:18:57.333+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN GRILL WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11449,
+              "invoiceNo": "INV5724",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 49.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 49.99,
+              "paymentMode": "Cash",
+              "cashAmount": 49.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:18:31.820+02:00",
+              "items": [
+                {
+                  "itemName": "COMBO DEAL",
+                  "qty": 1,
+                  "price": 49.99,
+                  "lineTotal": 49.99,
+                  "categoryName": "FISH"
+                }
+              ]
+            },
+            {
+              "orderId": 11448,
+              "invoiceNo": "INV5723",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 22,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 22,
+              "paymentMode": "Cash",
+              "cashAmount": 22,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:13:26.417+02:00",
+              "items": [
+                {
+                  "itemName": "REDBULL ENERGY DRINK 250ML",
+                  "qty": 1,
+                  "price": 22,
+                  "lineTotal": 22,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11447,
+              "invoiceNo": "INV5722",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 24.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 24.99,
+              "paymentMode": "Cash",
+              "cashAmount": 24.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:08:16.563+02:00",
+              "items": [
+                {
+                  "itemName": "CHIPS SMALL",
+                  "qty": 1,
+                  "price": 24.99,
+                  "lineTotal": 24.99,
+                  "categoryName": "CHIPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11446,
+              "invoiceNo": "INV5721",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 25,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 25,
+              "paymentMode": "Cash",
+              "cashAmount": 25,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:05:28.503+02:00",
+              "items": [
+                {
+                  "itemName": "COCA COLA DRINK 500ML",
+                  "qty": 1,
+                  "price": 13,
+                  "lineTotal": 13,
+                  "categoryName": "COLD DRINK"
+                },
+                {
+                  "itemName": "SPRITE CAN 500ML",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11445,
+              "invoiceNo": "INV5720",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 29.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:04:16.707+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN GRILL WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11444,
+              "invoiceNo": "INV5719",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 89.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 89.98,
+              "paymentMode": "Cash",
+              "cashAmount": 89.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T16:03:03.093+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN GRILL WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                },
+                {
+                  "itemName": "ZINGER MEAL",
+                  "qty": 1,
+                  "price": 59.99,
+                  "lineTotal": 59.99,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11443,
+              "invoiceNo": "INV5718",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 24.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 24.99,
+              "paymentMode": "Cash",
+              "cashAmount": 24.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:57:42.690+02:00",
+              "items": [
+                {
+                  "itemName": "CHIPS SMALL",
+                  "qty": 1,
+                  "price": 24.99,
+                  "lineTotal": 24.99,
+                  "categoryName": "CHIPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11442,
+              "invoiceNo": "INV5717",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 34.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 34.99,
+              "paymentMode": "Cash",
+              "cashAmount": 34.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:55:18.160+02:00",
+              "items": [
+                {
+                  "itemName": "MEDIUM CHIPS",
+                  "qty": 1,
+                  "price": 34.99,
+                  "lineTotal": 34.99,
+                  "categoryName": "CHIPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11441,
+              "invoiceNo": "INV5716",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 24,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 24,
+              "paymentMode": "Cash",
+              "cashAmount": 24,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:55:01.013+02:00",
+              "items": [
+                {
+                  "itemName": "PEPSI SOFT DRINK 500ML",
+                  "qty": 2,
+                  "price": 12,
+                  "lineTotal": 24,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11440,
+              "invoiceNo": "INV5715",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 15,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 15,
+              "paymentMode": "Cash",
+              "cashAmount": 15,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:51:35.187+02:00",
+              "items": [
+                {
+                  "itemName": "CLOVER KRUSH ORANGE FUSSION JUICE 300ML",
+                  "qty": 1,
+                  "price": 15,
+                  "lineTotal": 15,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11439,
+              "invoiceNo": "INV5714",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 79.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 79.99,
+              "paymentMode": "Cash",
+              "cashAmount": 79.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:50:23.660+02:00",
+              "items": [
+                {
+                  "itemName": "COMBO DEAL 2",
+                  "qty": 1,
+                  "price": 79.99,
+                  "lineTotal": 79.99,
+                  "categoryName": "FISH"
+                }
+              ]
+            },
+            {
+              "orderId": 11438,
+              "invoiceNo": "INV5713",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 25,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 25,
+              "paymentMode": "Cash",
+              "cashAmount": 25,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:48:49.540+02:00",
+              "items": [
+                {
+                  "itemName": "KOTA",
+                  "qty": 1,
+                  "price": 25,
+                  "lineTotal": 25,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11437,
+              "invoiceNo": "INV5712",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 72.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 72.98,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 72.98,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:48:14.493+02:00",
+              "items": [
+                {
+                  "itemName": "CRISPY CHICKEN ZINGER WRAP",
+                  "qty": 2,
+                  "price": 29.99,
+                  "lineTotal": 59.98,
+                  "categoryName": "WRAPS"
+                },
+                {
+                  "itemName": "COCA COLA DRINK 440ML",
+                  "qty": 1,
+                  "price": 13,
+                  "lineTotal": 13,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11436,
+              "invoiceNo": "INV5711",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 6,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 6,
+              "paymentMode": "Cash",
+              "cashAmount": 6,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:46:52.680+02:00",
+              "items": [
+                {
+                  "itemName": "COCA COLA DRINK 250ML",
+                  "qty": 1,
+                  "price": 6,
+                  "lineTotal": 6,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11435,
+              "invoiceNo": "INV5710",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:46:14.120+02:00",
+              "items": [
+                {
+                  "itemName": "CRISPY CHICKEN ZINGER WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11434,
+              "invoiceNo": "INV5709",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 29.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:46:07.293+02:00",
+              "items": [
+                {
+                  "itemName": "CRISPY CHICKEN ZINGER WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11433,
+              "invoiceNo": "INV5708",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 24.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 24.99,
+              "paymentMode": "Cash",
+              "cashAmount": 24.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:42:21.037+02:00",
+              "items": [
+                {
+                  "itemName": "CHIPS SMALL",
+                  "qty": 1,
+                  "price": 24.99,
+                  "lineTotal": 24.99,
+                  "categoryName": "CHIPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11432,
+              "invoiceNo": "INV5707",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 49.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 49.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 49.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:40:32.747+02:00",
+              "items": [
+                {
+                  "itemName": "COMBO DEAL",
+                  "qty": 1,
+                  "price": 49.99,
+                  "lineTotal": 49.99,
+                  "categoryName": "FISH"
+                }
+              ]
+            },
+            {
+              "orderId": 11431,
+              "invoiceNo": "INV5706",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 19.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 19.99,
+              "paymentMode": "Cash",
+              "cashAmount": 19.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:38:35.983+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN TENDER POPS",
+                  "qty": 1,
+                  "price": 19.99,
+                  "lineTotal": 19.99,
+                  "categoryName": "SNACKS"
+                }
+              ]
+            },
+            {
+              "orderId": 11430,
+              "invoiceNo": "INV5705",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 119.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 119.98,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 119.98,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:35:37.153+02:00",
+              "items": [
+                {
+                  "itemName": "ZINGER MEAL",
+                  "qty": 2,
+                  "price": 59.99,
+                  "lineTotal": 119.98,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11429,
+              "invoiceNo": "INV5704",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:31:33.753+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN GRILL WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11428,
+              "invoiceNo": "INV5703",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 129.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 129.99,
+              "paymentMode": "Cash",
+              "cashAmount": 129.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:31:09.573+02:00",
+              "items": [
+                {
+                  "itemName": "HOT WINGS 20PC",
+                  "qty": 1,
+                  "price": 129.99,
+                  "lineTotal": 129.99,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11427,
+              "invoiceNo": "INV5702",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 22,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 22,
+              "paymentMode": "Cash",
+              "cashAmount": 22,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:30:54.067+02:00",
+              "items": [
+                {
+                  "itemName": "LEMON TWIST COLDRINK 2.25L",
+                  "qty": 1,
+                  "price": 22,
+                  "lineTotal": 22,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11426,
+              "invoiceNo": "INV5701",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 40,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 40,
+              "paymentMode": "Cash",
+              "cashAmount": 40,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:30:39.147+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN MAYO SANDWICH",
+                  "qty": 2,
+                  "price": 20,
+                  "lineTotal": 40,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11425,
+              "invoiceNo": "INV5700",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 99.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 99.99,
+              "paymentMode": "Cash",
+              "cashAmount": 99.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:28:19.080+02:00",
+              "items": [
+                {
+                  "itemName": "8PCS CRISPY CHICKEN",
+                  "qty": 1,
+                  "price": 99.99,
+                  "lineTotal": 99.99,
+                  "categoryName": "CHICKEN"
+                }
+              ]
+            },
+            {
+              "orderId": 11424,
+              "invoiceNo": "INV5699",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 44.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 44.99,
+              "paymentMode": "Cash",
+              "cashAmount": 44.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:25:45.813+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN ZINGER BURGER MEAL",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11423,
+              "invoiceNo": "INV5698",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 34.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 34.99,
+              "paymentMode": "Cash",
+              "cashAmount": 34.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:25:16.160+02:00",
+              "items": [
+                {
+                  "itemName": "MEDIUM CHIPS",
+                  "qty": 1,
+                  "price": 34.99,
+                  "lineTotal": 34.99,
+                  "categoryName": "CHIPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11422,
+              "invoiceNo": "INV5697",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 94.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 94.98,
+              "paymentMode": "Cash",
+              "cashAmount": 94.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:21:34.107+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN ZINGER BURGER MEAL",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "BURGERS"
+                },
+                {
+                  "itemName": "COMBO DEAL",
+                  "qty": 1,
+                  "price": 49.99,
+                  "lineTotal": 49.99,
+                  "categoryName": "FISH"
+                }
+              ]
+            },
+            {
+              "orderId": 11421,
+              "invoiceNo": "INV5696",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 22,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 22,
+              "paymentMode": "Cash",
+              "cashAmount": 22,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:15:20.740+02:00",
+              "items": [
+                {
+                  "itemName": "COCA COLA DRINK 1LTR",
+                  "qty": 1,
+                  "price": 22,
+                  "lineTotal": 22,
+                  "categoryName": "COLD DRINK"
+                }
+              ]
+            },
+            {
+              "orderId": 11420,
+              "invoiceNo": "INV5695",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 59.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 59.99,
+              "paymentMode": "Cash",
+              "cashAmount": 59.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:14:29+02:00",
+              "items": [
+                {
+                  "itemName": "MEGA KRIZMA CHICKEN BURGER MEAL",
+                  "qty": 1,
+                  "price": 59.99,
+                  "lineTotal": 59.99,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11419,
+              "invoiceNo": "INV5694",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:13:49.203+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN GRILL WRAP",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11418,
+              "invoiceNo": "INV5693",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 59.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 59.98,
+              "paymentMode": "Cash",
+              "cashAmount": 59.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:13:09.613+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN GRILL WRAP",
+                  "qty": 2,
+                  "price": 29.99,
+                  "lineTotal": 59.98,
+                  "categoryName": "WRAPS"
+                }
+              ]
+            },
+            {
+              "orderId": 11417,
+              "invoiceNo": "INV5692",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 44.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 44.99,
+              "paymentMode": "Cash",
+              "cashAmount": 44.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:04:45.057+02:00",
+              "items": [
+                {
+                  "itemName": "CHICKEN ZINGER BURGER MEAL",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "BURGERS"
+                }
+              ]
+            },
+            {
+              "orderId": 11416,
+              "invoiceNo": "INV5691",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 54.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 54.99,
+              "paymentMode": "Cash",
+              "cashAmount": 54.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:03:45.737+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 54.99,
+                  "lineTotal": 54.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11415,
+              "invoiceNo": "INV5690",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 16,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 16,
+              "paymentMode": "Cash",
+              "cashAmount": 16,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T15:02:54.313+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 16,
+                  "lineTotal": 16,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11414,
+              "invoiceNo": "INV5689",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 36.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 36.99,
+              "paymentMode": "Cash",
+              "cashAmount": 36.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:57:14.630+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 36.99,
+                  "lineTotal": 36.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11413,
+              "invoiceNo": "INV5688",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:52:19.037+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11412,
+              "invoiceNo": "INV5687",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 26,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 26,
+              "paymentMode": "Cash",
+              "cashAmount": 26,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:51:21.797+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 26,
+                  "lineTotal": 26,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11411,
+              "invoiceNo": "INV5686",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 69.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 69.99,
+              "paymentMode": "Cash",
+              "cashAmount": 69.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:50:15.060+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 69.99,
+                  "lineTotal": 69.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11410,
+              "invoiceNo": "INV5685",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 59.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 59.98,
+              "paymentMode": "Cash",
+              "cashAmount": 59.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:42:48.200+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 59.98,
+                  "lineTotal": 59.98,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11409,
+              "invoiceNo": "INV5684",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 119.96,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 119.96,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 119.95,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:40:12.487+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 119.96,
+                  "lineTotal": 119.96,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11408,
+              "invoiceNo": "INV5683",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 12,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 12,
+              "paymentMode": "Cash",
+              "cashAmount": 12,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:39:09.913+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11407,
+              "invoiceNo": "INV5682",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 34.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 34.99,
+              "paymentMode": "Cash",
+              "cashAmount": 34.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:38:43.247+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 34.99,
+                  "lineTotal": 34.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11406,
+              "invoiceNo": "INV5681",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 49.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 49.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 49.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:37:42.677+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 49.99,
+                  "lineTotal": 49.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11405,
+              "invoiceNo": "INV5680",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:36:57.770+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11404,
+              "invoiceNo": "INV5679",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 129.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 129.99,
+              "paymentMode": "Split Payment (Cash: 29.99, Card: 100.00)",
+              "cashAmount": 29.99,
+              "cardAmount": 100,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:34:11.210+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 129.99,
+                  "lineTotal": 129.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11403,
+              "invoiceNo": "INV5678",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 25,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 25,
+              "paymentMode": "Cash",
+              "cashAmount": 25,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:31:35.387+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 25,
+                  "lineTotal": 25,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11402,
+              "invoiceNo": "INV5677",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 6,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 6,
+              "paymentMode": "Cash",
+              "cashAmount": 6,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:30:32.473+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 6,
+                  "lineTotal": 6,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11401,
+              "invoiceNo": "INV5676",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 59.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 59.99,
+              "paymentMode": "Cash",
+              "cashAmount": 59.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:30:04.487+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 59.99,
+                  "lineTotal": 59.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11400,
+              "invoiceNo": "INV5675",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 54.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 54.99,
+              "paymentMode": "Cash",
+              "cashAmount": 54.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:26:44.147+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 54.99,
+                  "lineTotal": 54.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11399,
+              "invoiceNo": "INV5674",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 75.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 75.98,
+              "paymentMode": "Cash",
+              "cashAmount": 75.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:24:42.717+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 75.98,
+                  "lineTotal": 75.98,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11398,
+              "invoiceNo": "INV5673",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 122.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 122.98,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 122.98,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:23:13.517+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 122.98,
+                  "lineTotal": 122.98,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11397,
+              "invoiceNo": "INV5672",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 44.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 44.99,
+              "paymentMode": "Cash",
+              "cashAmount": 44.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:21:30.277+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11396,
+              "invoiceNo": "INV5671",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 99.97,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 99.97,
+              "paymentMode": "Cash",
+              "cashAmount": 99.97,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:21:01.217+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 99.97,
+                  "lineTotal": 99.97,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11395,
+              "invoiceNo": "INV5670",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 44.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 44.99,
+              "paymentMode": "Cash",
+              "cashAmount": 44.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:19:12.983+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11394,
+              "invoiceNo": "INV5669",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 24.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 24.99,
+              "paymentMode": "Cash",
+              "cashAmount": 24.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:17:46.993+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 24.99,
+                  "lineTotal": 24.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11393,
+              "invoiceNo": "INV5668",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 20,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 20,
+              "paymentMode": "Cash",
+              "cashAmount": 20,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:16:29.397+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 20,
+                  "lineTotal": 20,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11392,
+              "invoiceNo": "INV5667",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 44.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 44.99,
+              "paymentMode": "Cash",
+              "cashAmount": 44.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:15:27.053+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11391,
+              "invoiceNo": "INV5666",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 54.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 54.98,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 54.98,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:14:24.237+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 54.98,
+                  "lineTotal": 54.98,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11390,
+              "invoiceNo": "INV5665",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:13:11.577+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11389,
+              "invoiceNo": "INV5664",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 26,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 26,
+              "paymentMode": "Cash",
+              "cashAmount": 26,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:12:38.817+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 26,
+                  "lineTotal": 26,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11388,
+              "invoiceNo": "INV5663",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 29.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:11:43.740+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11387,
+              "invoiceNo": "INV5662",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 29.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:09:44.750+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11386,
+              "invoiceNo": "INV5661",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 29.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:09:16.387+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11385,
+              "invoiceNo": "INV5660",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 44.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 44.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 44.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:05:27.027+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11384,
+              "invoiceNo": "INV5659",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 49.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 49.99,
+              "paymentMode": "Cash",
+              "cashAmount": 49.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:04:58.237+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 49.99,
+                  "lineTotal": 49.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11383,
+              "invoiceNo": "INV5658",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 71.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 71.98,
+              "paymentMode": "Cash",
+              "cashAmount": 71.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:04:08.403+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 71.98,
+                  "lineTotal": 71.98,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11382,
+              "invoiceNo": "INV5657",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 59.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 59.98,
+              "paymentMode": "Cash",
+              "cashAmount": 59.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T14:00:51.153+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 59.98,
+                  "lineTotal": 59.98,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11381,
+              "invoiceNo": "INV5656",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 12,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 12,
+              "paymentMode": "Cash",
+              "cashAmount": 12,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:58:43.210+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11380,
+              "invoiceNo": "INV5655",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 69.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 69.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 69.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:58:25.273+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 69.99,
+                  "lineTotal": 69.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11379,
+              "invoiceNo": "INV5654",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 24.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 24.99,
+              "paymentMode": "Cash",
+              "cashAmount": 24.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:57:40.377+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 24.99,
+                  "lineTotal": 24.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11378,
+              "invoiceNo": "INV5653",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 44.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 44.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 44.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:54:47.610+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11377,
+              "invoiceNo": "INV5652",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 25,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 25,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 25,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:51:24.687+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 25,
+                  "lineTotal": 25,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11376,
+              "invoiceNo": "INV5651",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 26,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 26,
+              "paymentMode": "Cash",
+              "cashAmount": 26,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:49:58.707+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 26,
+                  "lineTotal": 26,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11375,
+              "invoiceNo": "INV5650",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:47:47.450+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11374,
+              "invoiceNo": "INV5649",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 25,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 25,
+              "paymentMode": "Cash",
+              "cashAmount": 25,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:45:25.727+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 25,
+                  "lineTotal": 25,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11373,
+              "invoiceNo": "INV5648",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 147.97,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 147.97,
+              "paymentMode": "Cash",
+              "cashAmount": 147.97,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:43:08.683+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 147.97,
+                  "lineTotal": 147.97,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11372,
+              "invoiceNo": "INV5647",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 12,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 12,
+              "paymentMode": "Cash",
+              "cashAmount": 12,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:37:32.547+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11371,
+              "invoiceNo": "INV5646",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 78.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 78.99,
+              "paymentMode": "Cash",
+              "cashAmount": 78.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:37:13.657+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 78.99,
+                  "lineTotal": 78.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11370,
+              "invoiceNo": "INV5645",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 109.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 109.98,
+              "paymentMode": "Cash",
+              "cashAmount": 109.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:34:04.380+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 109.98,
+                  "lineTotal": 109.98,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11369,
+              "invoiceNo": "INV5644",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:32:26.270+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11368,
+              "invoiceNo": "INV5643",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 49.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 49.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 49.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:32:04.237+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 49.99,
+                  "lineTotal": 49.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11367,
+              "invoiceNo": "INV5642",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 16,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 16,
+              "paymentMode": "Cash",
+              "cashAmount": 16,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:31:12.357+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 16,
+                  "lineTotal": 16,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11366,
+              "invoiceNo": "INV5641",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:30:53.180+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11365,
+              "invoiceNo": "INV5640",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 59.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 59.98,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 59.98,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:29:55.433+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 59.98,
+                  "lineTotal": 59.98,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11364,
+              "invoiceNo": "INV5639",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 44.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 44.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 44.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:29:15.587+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11363,
+              "invoiceNo": "INV5638",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 19,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 19,
+              "paymentMode": "Cash",
+              "cashAmount": 19,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:28:29.913+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 19,
+                  "lineTotal": 19,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11362,
+              "invoiceNo": "INV5637",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:27:57.117+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11361,
+              "invoiceNo": "INV5636",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 44.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 44.99,
+              "paymentMode": "Cash",
+              "cashAmount": 44.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:27:25.493+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11360,
+              "invoiceNo": "INV5635",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 12,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 12,
+              "paymentMode": "Cash",
+              "cashAmount": 12,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:26:09.990+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11359,
+              "invoiceNo": "INV5634",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 12,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 12,
+              "paymentMode": "Cash",
+              "cashAmount": 12,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:25:30.063+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11358,
+              "invoiceNo": "INV5633",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:24:47.890+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11357,
+              "invoiceNo": "INV5632",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 24.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 24.99,
+              "paymentMode": "Cash",
+              "cashAmount": 24.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:22:52.957+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 24.99,
+                  "lineTotal": 24.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11356,
+              "invoiceNo": "INV5631",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 27,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 27,
+              "paymentMode": "Cash",
+              "cashAmount": 27,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:20:02.403+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 27,
+                  "lineTotal": 27,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11355,
+              "invoiceNo": "INV5630",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 89.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 89.98,
+              "paymentMode": "Cash",
+              "cashAmount": 89.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:17:25.013+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 89.98,
+                  "lineTotal": 89.98,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11354,
+              "invoiceNo": "INV5629",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 39.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 39.99,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 39.99,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:16:33.077+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 39.99,
+                  "lineTotal": 39.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11353,
+              "invoiceNo": "INV5628",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 25,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 25,
+              "paymentMode": "Cash",
+              "cashAmount": 25,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:13:45.910+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 25,
+                  "lineTotal": 25,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11352,
+              "invoiceNo": "INV5627",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 25,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 25,
+              "paymentMode": "Cash",
+              "cashAmount": 25,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:12:24.313+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 25,
+                  "lineTotal": 25,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11351,
+              "invoiceNo": "INV5626",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 25,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 25,
+              "paymentMode": "Cash",
+              "cashAmount": 25,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:11:48.447+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 25,
+                  "lineTotal": 25,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11350,
+              "invoiceNo": "INV5625",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 25,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 25,
+              "paymentMode": "Cash",
+              "cashAmount": 25,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:11:36.897+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 25,
+                  "lineTotal": 25,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11349,
+              "invoiceNo": "INV5624",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 34.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 34.99,
+              "paymentMode": "Cash",
+              "cashAmount": 34.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:11:00.770+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 34.99,
+                  "lineTotal": 34.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11348,
+              "invoiceNo": "INV5623",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 10,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 10,
+              "paymentMode": "Cash",
+              "cashAmount": 10,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:10:29.647+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 10,
+                  "lineTotal": 10,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11347,
+              "invoiceNo": "INV5622",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 24.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 24.99,
+              "paymentMode": "Cash",
+              "cashAmount": 24.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:09:42.690+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 24.99,
+                  "lineTotal": 24.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11346,
+              "invoiceNo": "INV5621",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 224.96,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 224.96,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 224.96,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:05:39.273+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 224.96,
+                  "lineTotal": 224.96,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11345,
+              "invoiceNo": "INV5620",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 44.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 44.99,
+              "paymentMode": "Cash",
+              "cashAmount": 44.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:03:43.943+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11344,
+              "invoiceNo": "INV5619",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 24.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 24.99,
+              "paymentMode": "Cash",
+              "cashAmount": 24.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:02:52.667+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 24.99,
+                  "lineTotal": 24.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11343,
+              "invoiceNo": "INV5618",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 15,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 15,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 15,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T13:00:28.523+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 15,
+                  "lineTotal": 15,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11342,
+              "invoiceNo": "INV5617",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 50,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 50,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 50,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:58:02.950+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 50,
+                  "lineTotal": 50,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11341,
+              "invoiceNo": "INV5616",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 44.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 44.99,
+              "paymentMode": "Cash",
+              "cashAmount": 44.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:56:58.767+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 44.99,
+                  "lineTotal": 44.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11340,
+              "invoiceNo": "INV5615",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 13,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 13,
+              "paymentMode": "Cash",
+              "cashAmount": 13,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:55:58.907+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 13,
+                  "lineTotal": 13,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11339,
+              "invoiceNo": "INV5614",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 99.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 99.98,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 99.98,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:55:40.807+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 99.98,
+                  "lineTotal": 99.98,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11338,
+              "invoiceNo": "INV5613",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 13,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 13,
+              "paymentMode": "Cash",
+              "cashAmount": 13,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:54:16.750+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 13,
+                  "lineTotal": 13,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11337,
+              "invoiceNo": "INV5612",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 95.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 95.98,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 95.98,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:53:41.320+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 95.98,
+                  "lineTotal": 95.98,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11336,
+              "invoiceNo": "INV5611",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 52.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 52.99,
+              "paymentMode": "Cash",
+              "cashAmount": 52.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:52:43.620+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 52.99,
+                  "lineTotal": 52.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11335,
+              "invoiceNo": "INV5610",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 89.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 89.98,
+              "paymentMode": "Cash",
+              "cashAmount": 89.98,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:51:05.273+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 89.98,
+                  "lineTotal": 89.98,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11334,
+              "invoiceNo": "INV5609",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 24,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 24,
+              "paymentMode": "Cash",
+              "cashAmount": 24,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:48:35.907+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 24,
+                  "lineTotal": 24,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11333,
+              "invoiceNo": "INV5608",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 12,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 12,
+              "paymentMode": "Cash",
+              "cashAmount": 12,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:48:00.703+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11332,
+              "invoiceNo": "INV5607",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 22,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 22,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 22,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:37:48.543+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 22,
+                  "lineTotal": 22,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11331,
+              "invoiceNo": "INV5606",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 59.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 59.99,
+              "paymentMode": "Cash",
+              "cashAmount": 59.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:35:46.010+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 59.99,
+                  "lineTotal": 59.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11330,
+              "invoiceNo": "INV5605",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:35:10.983+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11329,
+              "invoiceNo": "INV5604",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 25,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 25,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 25,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:34:51.837+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 25,
+                  "lineTotal": 25,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11328,
+              "invoiceNo": "INV5603",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 59.98,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 59.98,
+              "paymentMode": "Card",
+              "cashAmount": 0,
+              "cardAmount": 59.98,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:34:16.293+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 59.98,
+                  "lineTotal": 59.98,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11327,
+              "invoiceNo": "INV5602",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 34.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 34.99,
+              "paymentMode": "Cash",
+              "cashAmount": 34.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:33:15.273+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 34.99,
+                  "lineTotal": 34.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11326,
+              "invoiceNo": "INV5601",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 12,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 12,
+              "paymentMode": "Cash",
+              "cashAmount": 12,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:29:25.867+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 12,
+                  "lineTotal": 12,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11325,
+              "invoiceNo": "INV5600",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 6,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 6,
+              "paymentMode": "Cash",
+              "cashAmount": 6,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:23:56.113+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 6,
+                  "lineTotal": 6,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11324,
+              "invoiceNo": "INV5599",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 29.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 29.99,
+              "paymentMode": "Cash",
+              "cashAmount": 29.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:23:31.427+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 29.99,
+                  "lineTotal": 29.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11323,
+              "invoiceNo": "INV5598",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 13,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 13,
+              "paymentMode": "Cash",
+              "cashAmount": 13,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:23:14.950+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 13,
+                  "lineTotal": 13,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11322,
+              "invoiceNo": "INV5597",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 30,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 30,
+              "paymentMode": "Cash",
+              "cashAmount": 30,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:22:57.710+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 30,
+                  "lineTotal": 30,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11321,
+              "invoiceNo": "INV5596",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 6,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 6,
+              "paymentMode": "Cash",
+              "cashAmount": 6,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:22:16.600+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 6,
+                  "lineTotal": 6,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11320,
+              "invoiceNo": "INV5595",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 24.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 24.99,
+              "paymentMode": "Cash",
+              "cashAmount": 24.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:21:22.150+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 24.99,
+                  "lineTotal": 24.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11319,
+              "invoiceNo": "INV5594",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 8,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 8,
+              "paymentMode": "Cash",
+              "cashAmount": 8,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:19:24.520+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 8,
+                  "lineTotal": 8,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11318,
+              "invoiceNo": "INV5593",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 34.99,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 34.99,
+              "paymentMode": "Cash",
+              "cashAmount": 34.99,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:17:45.757+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 34.99,
+                  "lineTotal": 34.99,
+                  "categoryName": "General"
+                }
+              ]
+            },
+            {
+              "orderId": 11317,
+              "invoiceNo": "INV5592",
+              "orderType": "PickUp",
+              "tableName": "Counter",
+              "customerName": "Walk-in",
+              "waiterName": "Self / Counter",
+              "cashierName": "t1",
+              "subTotal": 25,
+              "discountAmount": 0,
+              "taxAmount": 0,
+              "taxName": "VAT",
+              "grandTotal": 25,
+              "paymentMode": "Cash",
+              "cashAmount": 25,
+              "cardAmount": 0,
+              "upiAmount": 0,
+              "settledDate": "2026-10-06T12:16:23.083+02:00",
+              "items": [
+                {
+                  "itemName": "Meal Item",
+                  "qty": 1,
+                  "price": 25,
+                  "lineTotal": 25,
+                  "categoryName": "General"
+                }
+              ]
+            }
+          ],
           "returns": [],
           "inwards": [],
           "suppliers": []
