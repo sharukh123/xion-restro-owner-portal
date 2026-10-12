@@ -808,260 +808,30 @@
           "storePhone": "0792153627",
           "currency": "R",
           "liveSummary": {
-            "totalGrossSales": 4250,
-            "salesCash": 3050,
-            "salesCard": 1200,
+            "totalGrossSales": 0,
+            "salesCash": 0,
+            "salesCard": 0,
             "salesUpi": 0,
             "salesDue": 0,
-            "netCash": 3050,
-            "netCard": 1200,
+            "netCash": 0,
+            "netCard": 0,
             "netUpi": 0,
             "netDue": 0,
-            "netTotalCollection": 4250,
-            "drawerCash": 3050,
-            "totalBillsCount": 4,
-            "totalSalesInvoices": 4,
+            "netTotalCollection": 0,
+            "drawerCash": 0,
+            "totalBillsCount": 0,
+            "totalSalesInvoices": 0,
             "dineInSales": 0,
-            "takeawaySales": 4250,
+            "takeawaySales": 0,
             "totalDiscounts": 0,
-            "totalTaxes": 554.3499999999999,
-            "totalRefundAmount": 0,
-            "returnCash": 0,
-            "supplierCash": 0,
-            "activeTablesCount": 0,
-            "voidCount": 0,
+            "totalTaxes": 0,
             "businessDate": "2026-10-12",
-            "lastUpdated": "2026-10-12T10:17:29.581Z"
+            "lastUpdated": "2026-10-12T10:26:30.910Z"
           },
-          "bills": [
-            {
-              "orderId": 301,
-              "invoiceNo": "SNP-101",
-              "tableName": "Takeaway Counter",
-              "orderType": "Takeaway",
-              "customerName": "Walk-in Customer",
-              "customerPhone": "",
-              "paymentMode": "Cash",
-              "cashAmount": 1450,
-              "cardAmount": 0,
-              "bankAmount": 0,
-              "upiAmount": 0,
-              "otherAmount": 0,
-              "subTotal": 1450,
-              "discountAmount": 0,
-              "taxAmount": 189.13,
-              "grandTotal": 1450,
-              "settledDate": "2026-10-12T13:30:00+02:00",
-              "cashierName": "Cashier 1",
-              "waiterName": "Counter",
-              "items": [
-                {
-                  "itemName": "Full Chicken 'N Chips Combo",
-                  "qty": 2,
-                  "price": 450,
-                  "lineTotal": 900,
-                  "categoryName": "Chicken Meals",
-                  "isVeg": false
-                },
-                {
-                  "itemName": "Salt 'N Pepper Loaded Burger",
-                  "qty": 3,
-                  "price": 150,
-                  "lineTotal": 450,
-                  "categoryName": "Burgers",
-                  "isVeg": false
-                },
-                {
-                  "itemName": "Cold Soft Drink 500ml",
-                  "qty": 4,
-                  "price": 25,
-                  "lineTotal": 100,
-                  "categoryName": "Beverages",
-                  "isVeg": true
-                }
-              ]
-            },
-            {
-              "orderId": 302,
-              "invoiceNo": "SNP-102",
-              "tableName": "Takeaway Counter",
-              "orderType": "Takeaway",
-              "customerName": "Tariq M.",
-              "customerPhone": "0792153627",
-              "paymentMode": "Card",
-              "cashAmount": 0,
-              "cardAmount": 1200,
-              "bankAmount": 0,
-              "upiAmount": 0,
-              "otherAmount": 0,
-              "subTotal": 1200,
-              "discountAmount": 0,
-              "taxAmount": 156.52,
-              "grandTotal": 1200,
-              "settledDate": "2026-10-12T14:15:00+02:00",
-              "cashierName": "Cashier 1",
-              "waiterName": "Counter",
-              "items": [
-                {
-                  "itemName": "Family Feast Bucket (12 Pcs)",
-                  "qty": 1,
-                  "price": 950,
-                  "lineTotal": 950,
-                  "categoryName": "Buckets",
-                  "isVeg": false
-                },
-                {
-                  "itemName": "Spicy Peri Fries (Large)",
-                  "qty": 2,
-                  "price": 80,
-                  "lineTotal": 160,
-                  "categoryName": "Sides",
-                  "isVeg": true
-                },
-                {
-                  "itemName": "Garlic Mayo Dip",
-                  "qty": 3,
-                  "price": 30,
-                  "lineTotal": 90,
-                  "categoryName": "Sauces",
-                  "isVeg": true
-                }
-              ]
-            },
-            {
-              "orderId": 303,
-              "invoiceNo": "SNP-103",
-              "tableName": "Takeaway Counter",
-              "orderType": "Takeaway",
-              "customerName": "Amina K.",
-              "customerPhone": "",
-              "paymentMode": "Cash",
-              "cashAmount": 980,
-              "cardAmount": 0,
-              "bankAmount": 0,
-              "upiAmount": 0,
-              "otherAmount": 0,
-              "subTotal": 980,
-              "discountAmount": 0,
-              "taxAmount": 127.83,
-              "grandTotal": 980,
-              "settledDate": "2026-10-12T15:00:00+02:00",
-              "cashierName": "Cashier 2",
-              "waiterName": "Counter",
-              "items": [
-                {
-                  "itemName": "Salt 'N Pepper Shawarma Wrap",
-                  "qty": 3,
-                  "price": 180,
-                  "lineTotal": 540,
-                  "categoryName": "Wraps",
-                  "isVeg": false
-                },
-                {
-                  "itemName": "Crispy Chicken Tenders (6 Pcs)",
-                  "qty": 2,
-                  "price": 160,
-                  "lineTotal": 320,
-                  "categoryName": "Snacks",
-                  "isVeg": false
-                },
-                {
-                  "itemName": "Fresh Fruit Juice",
-                  "qty": 2,
-                  "price": 60,
-                  "lineTotal": 120,
-                  "categoryName": "Beverages",
-                  "isVeg": true
-                }
-              ]
-            },
-            {
-              "orderId": 304,
-              "invoiceNo": "SNP-104",
-              "tableName": "Takeaway Counter",
-              "orderType": "Takeaway",
-              "customerName": "Guest",
-              "customerPhone": "",
-              "paymentMode": "Cash",
-              "cashAmount": 620,
-              "cardAmount": 0,
-              "bankAmount": 0,
-              "upiAmount": 0,
-              "otherAmount": 0,
-              "subTotal": 620,
-              "discountAmount": 0,
-              "taxAmount": 80.87,
-              "grandTotal": 620,
-              "settledDate": "2026-10-12T15:35:00+02:00",
-              "cashierName": "Cashier 1",
-              "waiterName": "Counter",
-              "items": [
-                {
-                  "itemName": "Double Cheese Burger",
-                  "qty": 2,
-                  "price": 190,
-                  "lineTotal": 380,
-                  "categoryName": "Burgers",
-                  "isVeg": false
-                },
-                {
-                  "itemName": "Large Salt 'N Pepper Wedges",
-                  "qty": 2,
-                  "price": 85,
-                  "lineTotal": 170,
-                  "categoryName": "Sides",
-                  "isVeg": true
-                },
-                {
-                  "itemName": "Soda Can 330ml",
-                  "qty": 2,
-                  "price": 35,
-                  "lineTotal": 70,
-                  "categoryName": "Beverages",
-                  "isVeg": true
-                }
-              ]
-            },
-            {
-              "orderId": 305,
-              "invoiceNo": "SNP-095",
-              "tableName": "Takeaway Counter",
-              "orderType": "Takeaway",
-              "customerName": "Previous Customer",
-              "customerPhone": "",
-              "paymentMode": "Cash",
-              "cashAmount": 600,
-              "cardAmount": 0,
-              "bankAmount": 0,
-              "upiAmount": 0,
-              "otherAmount": 0,
-              "subTotal": 600,
-              "discountAmount": 0,
-              "taxAmount": 78.26,
-              "grandTotal": 600,
-              "settledDate": "2026-09-27T18:10:00+02:00",
-              "cashierName": "Cashier 1",
-              "waiterName": "Counter",
-              "items": [
-                {
-                  "itemName": "Full Chicken 'N Chips Combo",
-                  "qty": 1,
-                  "price": 450,
-                  "lineTotal": 450,
-                  "categoryName": "Chicken Meals",
-                  "isVeg": false
-                },
-                {
-                  "itemName": "Cold Soft Drink 500ml",
-                  "qty": 6,
-                  "price": 25,
-                  "lineTotal": 150,
-                  "categoryName": "Beverages",
-                  "isVeg": true
-                }
-              ]
-            }
-          ]
+          "bills": [],
+          "returns": [],
+          "inwards": [],
+          "suppliers": []
         }
       }
     }
