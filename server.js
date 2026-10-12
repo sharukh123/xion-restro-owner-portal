@@ -328,11 +328,27 @@ const server = http.createServer((req, res) => {
                     ownerEntry = findOwnerEntry(cleanPhone.replace(/^0+/, ''));
                 }
 
+                // 4. Instant Onboarding: Auto-provision new owner on default PIN 1234 if not yet synced from POS
+                if (!ownerEntry) {
+                    const defaultOwnerKey = Object.keys(db.owners)[0];
+                    if (defaultOwnerKey && db.owners[defaultOwnerKey] && cleanPin === '1234') {
+                        const targetKey = cleanPhone;
+                        db.owners[targetKey] = {
+                            ownerPhone: targetKey,
+                            ownerName: 'XRestro Executive Owner',
+                            pin: '1234',
+                            stores: JSON.parse(JSON.stringify(db.owners[defaultOwnerKey].stores || {}))
+                        };
+                        saveDb();
+                        ownerEntry = { key: targetKey, owner: db.owners[targetKey] };
+                    }
+                }
+
                 if (!ownerEntry) {
                     res.writeHead(403, { 'Content-Type': 'application/json' });
                     res.end(JSON.stringify({ 
                         success: false, 
-                        error: 'Mobile number not found. Please enter the authorized owner mobile number configured in desktop POS.' 
+                        error: 'Mobile number not found. Please enter the authorized owner mobile number or default PIN 1234.' 
                     }));
                     return;
                 }
