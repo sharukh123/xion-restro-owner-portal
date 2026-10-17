@@ -835,7 +835,7 @@
             "netBusinessRevenue": 324856.1699999848,
             "voidsCount": 0,
             "businessDate": "2026-10-17",
-            "lastUpdated": "2026-10-17T17:17:44.471Z"
+            "lastUpdated": "2026-10-17T18:28:01.443Z"
           },
           "bills": [
             {
@@ -173112,7 +173112,7 @@
           "voidLogs": [],
           "inwards": [],
           "suppliers": [],
-          "lastPing": "2026-10-17T17:17:44.474Z"
+          "lastPing": "2026-10-17T18:28:01.526Z"
         },
         "STORE_SALT_PEPPER": {
           "storeId": "STORE_SALT_PEPPER",
@@ -173146,7 +173146,7 @@
             "netBusinessRevenue": 324856.1699999848,
             "voidsCount": 0,
             "businessDate": "2026-10-17",
-            "lastUpdated": "2026-10-17T17:17:44.471Z"
+            "lastUpdated": "2026-10-17T18:28:01.443Z"
           },
           "bills": [
             {
@@ -345423,7 +345423,7 @@
           "voidLogs": [],
           "inwards": [],
           "suppliers": [],
-          "lastPing": "2026-10-17T17:17:44.474Z"
+          "lastPing": "2026-10-17T18:28:01.526Z"
         }
       }
     }

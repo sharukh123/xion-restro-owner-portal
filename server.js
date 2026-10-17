@@ -37,12 +37,26 @@ function loadDb() {
     }
 }
 
-function saveDb() {
-    try {
-        fs.writeFileSync(DATA_FILE, JSON.stringify(db, null, 2), 'utf8');
-    } catch (e) {
-        console.error('Error saving store_data.json:', e);
+let _saveDbTimer = null;
+function saveDb(immediate = false) {
+    if (immediate) {
+        try {
+            fs.writeFileSync(DATA_FILE, JSON.stringify(db, null, 2), 'utf8');
+        } catch (e) {
+            console.error('Error saving store_data.json:', e);
+        }
+        return;
     }
+    if (_saveDbTimer) clearTimeout(_saveDbTimer);
+    _saveDbTimer = setTimeout(() => {
+        try {
+            fs.writeFile(DATA_FILE, JSON.stringify(db, null, 2), 'utf8', (err) => {
+                if (err) console.error('Error saving store_data.json:', err);
+            });
+        } catch (e) {
+            console.error('Error in debounced saveDb:', e);
+        }
+    }, 1500);
 }
 
 loadDb();
@@ -535,6 +549,38 @@ const server = http.createServer((req, res) => {
             currency: owner.currency || detectCurrencyByPhone(ownerEntry.key),
             stores: owner.stores || {}
         }));
+        return;
+    }
+
+    // 7. GET SINGLE BILL DETAILS (GET /api/v1/owner/bill-details?phone=...&invoiceNo=...)
+    if (pathname === '/api/v1/owner/bill-details' && req.method === 'GET') {
+        const phone = (parsedUrl.query.phone || '').toString().trim();
+        const invoiceNo = (parsedUrl.query.invoiceNo || '').toString().trim();
+
+        const ownerEntry = findOwnerEntry(phone);
+        if (!ownerEntry) {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ success: false, error: 'Owner not found' }));
+            return;
+        }
+
+        const owner = ownerEntry.owner;
+        let foundBill = null;
+        for (const store of Object.values(owner.stores || {})) {
+            if (Array.isArray(store.bills)) {
+                foundBill = store.bills.find(b => b.invoiceNo === invoiceNo);
+                if (foundBill) break;
+            }
+        }
+
+        if (!foundBill) {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ success: false, error: 'Bill not found' }));
+            return;
+        }
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, bill: foundBill }));
         return;
     }
 

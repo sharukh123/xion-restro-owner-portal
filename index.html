@@ -876,6 +876,19 @@
         itemsCont.appendChild(row);
       });
 
+      // Lazy load full itemization from server if not already in memory
+      if (!bill.items || bill.items.length === 0) {
+        fetch(`/api/v1/owner/bill-details?phone=${encodeURIComponent(state.ownerPhone)}&invoiceNo=${encodeURIComponent(bill.invoiceNo)}`)
+          .then(r => r.json())
+          .then(d => {
+            if (d.success && d.bill && Array.isArray(d.bill.items) && d.bill.items.length > 0) {
+              bill.items = d.bill.items;
+              openReceiptModal(invoiceNo);
+            }
+          })
+          .catch(() => {});
+      }
+
       document.getElementById('receiptSubtotal').innerText = fmtCurr(bill.subTotal || bill.grandTotal);
       document.getElementById('receiptDiscount').innerText = fmtCurr(bill.discountAmount || 0);
       document.getElementById('receiptTaxLabel').innerText = bill.taxName || 'VAT';
