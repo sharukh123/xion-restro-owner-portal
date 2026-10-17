@@ -248,9 +248,19 @@ const server = http.createServer((req, res) => {
                     };
                 }
 
-                if (!db.owners[ownerKey].stores[storeId]) {
-                    db.owners[ownerKey].stores[storeId] = {
-                        storeId: storeId,
+                // Resilient store mapping: if owner has existing store and storeId is an alias
+                let targetStoreId = storeId;
+                const existingStoreKeys = Object.keys(db.owners[ownerKey].stores);
+                if (!db.owners[ownerKey].stores[targetStoreId] && existingStoreKeys.length > 0) {
+                    // Check if existing store has same name or is single store
+                    if (existingStoreKeys.length === 1) {
+                        targetStoreId = existingStoreKeys[0];
+                    }
+                }
+
+                if (!db.owners[ownerKey].stores[targetStoreId]) {
+                    db.owners[ownerKey].stores[targetStoreId] = {
+                        storeId: targetStoreId,
                         storeName: payload.storeName || 'My Restaurant',
                         storePhone: storePhone,
                         currency: db.owners[ownerKey].currency || detectCurrencyByPhone(ownerPhone),
@@ -263,7 +273,7 @@ const server = http.createServer((req, res) => {
                     };
                 }
 
-                const store = db.owners[ownerKey].stores[storeId];
+                const store = db.owners[ownerKey].stores[targetStoreId];
                 if (payload.storeName) store.storeName = payload.storeName;
                 if (storePhone) store.storePhone = storePhone;
                 if (payload.taxName) store.taxName = payload.taxName;
@@ -272,30 +282,42 @@ const server = http.createServer((req, res) => {
                 if (!store.inwards) store.inwards = [];
                 if (!store.suppliers) store.suppliers = [];
 
-                // Handle Bill
+                // Handle Bill (Single or Batch)
                 const isBill = (payloadType === 'BILL' || payloadType === 'BILL_SETTLED' || (payload.eventType && payload.eventType.indexOf('BILL') >= 0));
+                const isBatchBills = (payloadType === 'BATCH_BILLS' || Array.isArray(payload.bills));
                 const isSummary = (payloadType === 'SUMMARY' || payloadType === 'DAY_SUMMARY' || (payload.eventType && payload.eventType.indexOf('SUMMARY') >= 0));
                 const isReturn = (payloadType === 'RETURN' || (payload.eventType && payload.eventType.indexOf('RETURN') >= 0));
                 const isInward = (payloadType === 'INWARD' || (payload.eventType && payload.eventType.indexOf('INWARD') >= 0));
                 const isSupplier = (payloadType === 'SUPPLIER_PAYMENT' || (payload.eventType && payload.eventType.indexOf('SUPPLIER') >= 0));
 
-                if (isBill) {
+                if (isBatchBills && Array.isArray(payload.bills)) {
+                    for (const b of payload.bills) {
+                        if (!b || !b.invoiceNo) continue;
+                        const idx = store.bills.findIndex(x => x.invoiceNo === b.invoiceNo);
+                        if (idx >= 0) {
+                            store.bills[idx] = b;
+                        } else {
+                            store.bills.unshift(b);
+                        }
+                    }
+                    if (store.bills.length > 50000) store.bills.length = 50000;
+                } else if (isBill) {
                     const existsIndex = store.bills.findIndex(b => b.invoiceNo === payload.invoiceNo);
                     if (existsIndex >= 0) {
                         store.bills[existsIndex] = payload;
                     } else {
                         store.bills.unshift(payload);
                     }
-                    if (store.bills.length > 500) store.bills.pop();
+                    if (store.bills.length > 50000) store.bills.length = 50000;
                 } else if (isReturn) {
                     store.returns.unshift(payload);
-                    if (store.returns.length > 100) store.returns.pop();
+                    if (store.returns.length > 1000) store.returns.pop();
                 } else if (isInward) {
                     store.inwards.unshift(payload);
-                    if (store.inwards.length > 100) store.inwards.pop();
+                    if (store.inwards.length > 1000) store.inwards.pop();
                 } else if (isSupplier) {
                     store.suppliers.unshift(payload);
-                    if (store.suppliers.length > 100) store.suppliers.pop();
+                    if (store.suppliers.length > 1000) store.suppliers.pop();
                 } else if (isSummary) {
                     store.liveSummary = payload;
                 } else if (payloadType === 'PING') {

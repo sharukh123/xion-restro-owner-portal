@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="XRestro">
   <meta name="application-name" content="XRestro">
-  <meta name="theme-color" content="#0b0f19">
+  <meta name="theme-color" content="#F2F2F7">
   
-  <title>XRestro - Executive Owner Suite</title>
+  <title>XRestro - Executive Owner Suite (Apple Edition)</title>
   
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" type="image/svg+xml" href="/icon.svg">
@@ -24,13 +24,23 @@
       theme: {
         extend: {
           fontFamily: { 
-            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"Plus Jakarta Sans"', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace']
           },
           colors: {
-            brand: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669', 700: '#047857' },
-            gold: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
-            ios: { bg: '#0b0f19', card: '#111827', border: '#1f2937' }
+            ios: {
+              bg: '#F2F2F7',
+              card: '#FFFFFF',
+              subtle: '#E5E5EA',
+              border: '#E2E8F0',
+              text: '#0F172A',
+              muted: '#64748B',
+              blue: '#007AFF',
+              green: '#34C759',
+              orange: '#FF9500',
+              purple: '#AF52DE',
+              red: '#FF3B30'
+            }
           }
         }
       }
@@ -38,1767 +48,1472 @@
   </script>
 
   <style>
+    :root {
+      --ios-bg: #F2F2F7;
+      --ios-card: #FFFFFF;
+      --ios-blue: #007AFF;
+      --ios-green: #34C759;
+    }
     body {
-      background-color: #0b0f19;
-      color: #f1f5f9;
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #F2F2F7;
+      color: #0F172A;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Plus Jakarta Sans", sans-serif;
       -webkit-font-smoothing: antialiased;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
     }
-    .kpi-card {
-      transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease;
-      position: relative;
-      overflow: hidden;
+    .ios-card {
+      background: #FFFFFF;
+      border-radius: 22px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+      transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.16s ease;
     }
-    .kpi-card:active {
-      transform: scale(0.98);
-    }
-    .kpi-stripe {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3.5px;
-      background: var(--card-color, #10b981);
+    .ios-card:active {
+      transform: scale(0.985);
     }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     
     .tab-btn.active {
-      color: #10b981;
+      color: #007AFF;
     }
     .tab-btn.active .tab-icon-wrap {
-      background: rgba(16, 185, 129, 0.16);
+      background: rgba(0, 122, 255, 0.12);
       transform: translateY(-2px);
     }
     .date-pill.active {
-      background: #10b981 !important;
-      color: #020617 !important;
-      font-weight: 800 !important;
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+      background: #FFFFFF !important;
+      color: #0F172A !important;
+      font-weight: 700 !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
-    .report-tab-pill.active {
-      background: #10b981 !important;
-      color: #020617 !important;
-      font-weight: 800 !important;
+    .sidebar-overlay {
+      transition: opacity 0.25s ease;
+    }
+    .sidebar-drawer {
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .modal-sheet {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
   </style>
 </head>
-<body class="min-h-screen pb-28">
+<body class="min-h-screen pb-32">
 
   <!-- ========================================== -->
-  <!-- 1. STRICT LOGIN SCREEN                     -->
+  <!-- 1. STRICT LOGIN SCREEN (Apple Light UI)    -->
   <!-- ========================================== -->
-  <div id="loginScreen" class="fixed inset-0 z-50 bg-slate-950/98 backdrop-blur-2xl flex items-center justify-center p-4">
-    <div class="w-full max-w-sm bg-slate-900/90 border border-slate-800 rounded-[32px] p-6 shadow-2xl space-y-5">
+  <div id="loginScreen" class="fixed inset-0 z-50 bg-[#F2F2F7]/95 backdrop-blur-2xl flex items-center justify-center p-4">
+    <div class="w-full max-w-sm bg-white border border-black/[0.06] rounded-[32px] p-7 shadow-2xl space-y-6">
       <div class="text-center space-y-2">
-        <div class="w-20 h-20 rounded-3xl bg-slate-950 border border-emerald-500/30 mx-auto flex items-center justify-center shadow-xl p-1">
-          <img src="/icon.svg" alt="XRestro Logo" class="w-full h-full object-contain">
+        <div class="w-20 h-20 rounded-[24px] bg-gradient-to-tr from-blue-500 to-indigo-600 mx-auto flex items-center justify-center shadow-lg p-3 text-white">
+          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
         </div>
-        <h2 class="text-2xl font-black text-white tracking-tight flex items-center justify-center space-x-1.5">
+        <h2 class="text-2xl font-black text-slate-900 tracking-tight flex items-center justify-center space-x-1.5">
           <span>XRestro</span>
-          <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-extrabold border border-emerald-500/40">PRO</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 font-extrabold border border-blue-200">EXECUTIVE</span>
         </h2>
-        <p class="text-xs text-slate-400 font-medium">Smart Executive Financial & Audit Suite</p>
+        <p class="text-xs font-semibold text-slate-500">Live Owner Mobile Suite • 100% Real Database</p>
       </div>
 
-      <div id="loginError" class="hidden p-3 rounded-2xl bg-rose-950/80 border border-rose-500/50 text-rose-300 text-xs font-semibold text-center"></div>
-
-      <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();" class="space-y-4 pt-1">
+      <div class="space-y-4">
         <div>
-          <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5 flex items-center justify-between">
-            <span>Owner Mobile Number</span>
-            <span class="text-[10px] text-emerald-400 font-bold">🌍 Worldwide Access</span>
-          </label>
-          <div class="flex items-center space-x-2">
-            <button type="button" onclick="openCountryModal()" class="flex items-center space-x-1.5 bg-slate-800 active:scale-95 text-white font-bold text-xs rounded-2xl px-3 py-3 border border-slate-700 shrink-0 shadow-inner">
-              <span id="selectedCountryFlag" class="text-base leading-none">🌐</span>
-              <span id="selectedCountryCode" class="font-mono text-emerald-400 text-xs font-bold leading-none">+</span>
-              <span class="text-[8px] text-slate-400 leading-none">▼</span>
-            </button>
-            <div class="relative flex-1">
-              <input id="loginPhone" type="tel" maxlength="20" placeholder="Mobile number" autocomplete="username tel" class="w-full bg-slate-800 text-white font-semibold text-sm rounded-2xl px-3.5 py-3 border border-slate-700 focus:outline-none focus:border-brand-500 transition">
-            </div>
-          </div>
-          <div class="text-[10px] text-slate-500 mt-1 flex justify-between">
-            <span>Tap flag to change country</span>
-            <span id="countrySelectedName" class="text-emerald-400 font-medium truncate max-w-[140px]">Manual Entry</span>
+          <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 ml-1">Owner Mobile Number</label>
+          <div class="relative">
+            <input type="tel" id="loginPhone" placeholder="e.g. 0792153627" value="0792153627" class="w-full bg-slate-50 border border-slate-200 text-slate-900 font-semibold px-4 py-3.5 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all font-mono">
           </div>
         </div>
 
         <div>
-          <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5 flex items-center justify-between">
-            <span>4-Digit Security PIN</span>
-            <button type="button" onclick="togglePinVisibility()" id="btnTogglePin" class="text-[10px] text-brand-400 font-bold uppercase">Show PIN</button>
-          </label>
-          <input id="loginPin" type="password" maxlength="4" placeholder="••••" autocomplete="current-password" class="w-full bg-slate-800 text-white font-semibold text-center text-xl tracking-widest rounded-2xl px-4 py-3 border border-slate-700 focus:outline-none focus:border-brand-500 transition">
-          <p class="text-[10px] text-slate-500 mt-1 text-center">Default Security PIN: 1234</p>
+          <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 ml-1">Security PIN (Default: 1234)</label>
+          <input type="password" id="loginPin" placeholder="4-Digit PIN" maxlength="4" value="1234" class="w-full bg-slate-50 border border-slate-200 text-slate-900 font-semibold px-4 py-3.5 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all text-center tracking-[8px] font-mono text-lg">
         </div>
 
-        <button type="submit" id="loginBtn" class="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-black text-sm tracking-wide shadow-lg shadow-emerald-500/20 active:scale-95 transition flex items-center justify-center space-x-2">
-          <span>Authenticate & Access</span>
-          <span>➔</span>
+        <button onclick="handleLogin()" id="loginBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-blue-500/25 active:scale-[0.98] transition-all flex items-center justify-center space-x-2 text-sm">
+          <span>Unlock Executive Portal</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </button>
-      </form>
 
-      <!-- 1-Tap Install App on Login Screen -->
-      <button type="button" onclick="triggerInstallApp()" class="btn-install-app w-full py-2.5 px-3 rounded-2xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center space-x-2 transition">
-        <span>📲</span>
-        <span>Install App on Phone</span>
+        <p id="loginError" class="text-xs text-rose-500 font-semibold text-center hidden"></p>
+      </div>
+
+      <div class="pt-2 text-center border-t border-slate-100">
+        <p class="text-[11px] text-slate-400 font-medium">Auto-synced with Desktop POS Database</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 2. SIDEBAR DRAWER (All Reports Hub)        -->
+  <!-- ========================================== -->
+  <div id="sidebarOverlay" onclick="closeSidebar()" class="sidebar-overlay fixed inset-0 z-50 bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <div id="sidebarDrawer" class="sidebar-drawer fixed inset-y-0 left-0 w-80 max-w-[85vw] bg-white/95 backdrop-blur-2xl shadow-2xl z-50 -translate-x-full transition-transform duration-300 flex flex-col border-r border-slate-200/80">
+    <!-- Sidebar Header -->
+    <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
+      <div class="flex items-center space-x-3">
+        <div class="w-11 h-11 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-md">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        </div>
+        <div>
+          <h3 id="sidebarStoreName" class="font-extrabold text-sm text-slate-900 leading-snug truncate max-w-[170px]">SALT 'N PEPPER</h3>
+          <p id="sidebarStoreInfo" class="text-[11px] font-semibold text-slate-500">Live Executive Suite</p>
+        </div>
+      </div>
+      <button onclick="closeSidebar()" class="w-8 h-8 rounded-full bg-slate-200/70 flex items-center justify-center text-slate-600 active:scale-95 transition-all">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Reports Menu Navigation List -->
+    <div class="flex-1 overflow-y-auto p-4 space-y-6 no-scrollbar">
+      <div>
+        <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-2 px-3">Primary Navigation</p>
+        <div class="space-y-1">
+          <button onclick="navigateTab('overview'); closeSidebar();" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+            <span class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+            </span>
+            <span>Executive Dashboard</span>
+          </button>
+
+          <button onclick="navigateTab('bills'); closeSidebar();" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+            <span class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </span>
+            <span>Live Bills & Invoices Feed</span>
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-2 px-3">All Financial & Audit Reports</p>
+        <div class="space-y-1">
+          <button onclick="openReportModal('tally')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+            <div class="flex items-center space-x-3">
+              <span class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">💰</span>
+              <span>Daily Business Tally</span>
+            </div>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-bold">POS Match</span>
+          </button>
+
+          <button onclick="openReportModal('payments')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+            <div class="flex items-center space-x-3">
+              <span class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">💳</span>
+              <span>Payment Breakdown</span>
+            </div>
+            <span class="text-[10px] text-slate-400 font-semibold">Cash/Card/UPI</span>
+          </button>
+
+          <button onclick="openReportModal('categories')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+            <div class="flex items-center space-x-3">
+              <span class="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">🍽️</span>
+              <span>Category Wise Sales</span>
+            </div>
+          </button>
+
+          <button onclick="openReportModal('topItems')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+            <div class="flex items-center space-x-3">
+              <span class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">🏆</span>
+              <span>Top 20 Menu Items</span>
+            </div>
+          </button>
+
+          <button onclick="openReportModal('hourly')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+            <div class="flex items-center space-x-3">
+              <span class="w-8 h-8 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center">⏰</span>
+              <span>Hourly Rush Trends</span>
+            </div>
+          </button>
+
+          <button onclick="openReportModal('returns')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+            <div class="flex items-center space-x-3">
+              <span class="w-8 h-8 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center">🔄</span>
+              <span>Sales Returns & Refunds</span>
+            </div>
+          </button>
+
+          <button onclick="openReportModal('voids')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+            <div class="flex items-center space-x-3">
+              <span class="w-8 h-8 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">🚫</span>
+              <span>Void Items (Anti-Fraud)</span>
+            </div>
+          </button>
+
+          <button onclick="openReportModal('cashiers')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+            <div class="flex items-center space-x-3">
+              <span class="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">👥</span>
+              <span>Staff / Cashier Sales</span>
+            </div>
+          </button>
+
+          <button onclick="openReportModal('tax')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+            <div class="flex items-center space-x-3">
+              <span class="w-8 h-8 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center">📑</span>
+              <span>Tax / VAT Ledger</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="p-4 border-t border-slate-100 bg-slate-50/50 space-y-2">
+      <button onclick="handleLogout()" class="w-full py-2.5 rounded-xl border border-slate-200 text-slate-600 font-bold text-xs hover:bg-slate-100 active:scale-95 transition-all flex items-center justify-center space-x-1.5">
+        <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+        <span>Lock Session</span>
       </button>
     </div>
   </div>
 
   <!-- ========================================== -->
-  <!-- 2. IPHONE STYLE TOP APP BAR                -->
+  <!-- 3. TOP NAVIGATION (Apple Frosted Glass)    -->
   <!-- ========================================== -->
-  <header id="appHeader" class="sticky top-0 z-40 bg-slate-950/85 backdrop-blur-2xl border-b border-slate-800/80 px-4 pt-3 pb-2.5">
+  <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-xl border-b border-black/[0.05] px-4 py-3">
     <div class="max-w-md mx-auto flex items-center justify-between">
-      
-      <!-- Store Avatar & Name -->
-      <div class="flex items-center space-x-2.5 truncate">
-        <div class="w-9 h-9 rounded-2xl bg-slate-900 border border-emerald-500/30 flex items-center justify-center p-1 shrink-0 shadow-md">
-          <img src="/icon.svg" alt="App Icon" class="w-full h-full object-contain">
+      <!-- Left: Sidebar Button -->
+      <button onclick="openSidebar()" class="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-700 active:scale-95 transition-all shadow-sm">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h7"/></svg>
+      </button>
+
+      <!-- Center: Store & Connection Title -->
+      <div class="text-center cursor-pointer" onclick="openSidebar()">
+        <div class="flex items-center justify-center space-x-1">
+          <h1 id="topStoreName" class="font-extrabold text-sm text-slate-900 tracking-tight truncate max-w-[200px]">SALT 'N PEPPER</h1>
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
         </div>
-        <div class="truncate">
-          <div class="flex items-center space-x-1.5">
-            <span id="singleBranchName" class="font-black text-white text-sm tracking-tight truncate">My Restaurant</span>
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
-          </div>
-          <div class="text-[10px] text-emerald-400/90 font-medium flex items-center space-x-1">
-            <span>POS Live Synced</span>
-            <span>•</span>
-            <span id="headerClock">--:--</span>
-          </div>
+        <div class="flex items-center justify-center space-x-1.5 mt-0.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <p id="topSyncStatus" class="text-[10px] font-bold text-emerald-600">Live Database Connected</p>
         </div>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="flex items-center space-x-2 shrink-0">
-        <!-- 📲 Install App Pill -->
-        <button type="button" onclick="triggerInstallApp()" class="btn-install-app flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[11px] font-extrabold active:scale-95 transition" title="Install App">
-          <span>📲</span>
-          <span>Install</span>
-        </button>
-
-        <!-- 🔒 Lock App -->
-        <button type="button" onclick="lockApp()" class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400 active:scale-95 transition" title="Lock App">
-          <span class="text-xs">🔒</span>
-        </button>
-      </div>
-
+      <!-- Right: Pull / Manual Refresh Button -->
+      <button onclick="fetchStoreData(true)" id="refreshBtn" title="Sync Live Data" class="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-700 active:scale-95 transition-all shadow-sm">
+        <svg id="refreshIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+      </button>
     </div>
 
-    <!-- Multi-Branch Selector Dropdown (if multiple outlets exist) -->
-    <div id="branchSelectorContainer" class="max-w-md mx-auto mt-2 hidden">
-      <select id="branchSelect" onchange="renderDashboard()" class="w-full bg-slate-900 text-white text-xs font-bold rounded-xl px-3 py-2 border border-slate-700 focus:outline-none focus:border-brand-500 transition">
-        <option value="ALL">🏢 All Outlets (Consolidated)</option>
-      </select>
-    </div>
-
-    <!-- ========================================== -->
-    <!-- CLEAN DATE FILTER PILL BAR                 -->
-    <!-- ========================================== -->
+    <!-- Apple Native Segmented Date Control -->
     <div class="max-w-md mx-auto mt-2.5">
-      <div class="flex items-center space-x-1.5 overflow-x-auto no-scrollbar py-0.5" id="dateFilterBar">
-        <button onclick="setDateFilter('TODAY')" id="filterBtnToday" class="date-pill active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">Today</button>
-        <button onclick="setDateFilter('YESTERDAY')" id="filterBtnYesterday" class="date-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">Yesterday</button>
-        <button onclick="setDateFilter('7DAYS')" id="filterBtn7Days" class="date-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">7 Days</button>
-        <button onclick="setDateFilter('MONTH')" id="filterBtnMonth" class="date-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">This Month</button>
-        <button onclick="setDateFilter('ALL')" id="filterBtnAll" class="date-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">All Time</button>
-        <button onclick="openCustomDateModal()" id="filterBtnCustom" class="date-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 shrink-0 transition active:scale-95">📅 Custom</button>
-      </div>
-
-      <!-- Active Period Summary Bar -->
-      <div class="flex items-center justify-between text-[11px] bg-slate-900/60 rounded-xl px-3 py-1.5 mt-1.5 border border-slate-800/80">
-        <div class="flex items-center space-x-1.5 text-slate-300 truncate">
-          <span>📅</span>
-          <span id="dateFilterStatus" class="font-bold truncate">Today's Transactions</span>
-        </div>
-        <div class="flex items-center space-x-1 shrink-0 text-emerald-400 font-bold text-[10px]">
-          <span>🔒 100% Balanced</span>
-        </div>
-      </div>
-
-      <!-- Smart Date Alert (when 0 bills in selected period) -->
-      <div id="dateFilterAlert" class="hidden mt-1.5 p-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] flex items-center justify-between">
-        <span id="dateAlertText">No transactions for this date.</span>
-        <button onclick="jumpToActiveDate()" class="px-2.5 py-0.5 rounded-lg bg-amber-400 text-slate-950 font-black text-[10px] shrink-0 active:scale-95 ml-2">⚡ View All Time Sales</button>
+      <div class="bg-slate-200/80 p-1 rounded-2xl flex text-xs font-semibold text-slate-600 justify-between items-center shadow-inner">
+        <button onclick="selectDateRange('today')" class="date-pill active flex-1 py-1.5 rounded-xl text-center transition-all" data-range="today">Today</button>
+        <button onclick="selectDateRange('yesterday')" class="date-pill flex-1 py-1.5 rounded-xl text-center transition-all" data-range="yesterday">Yesterday</button>
+        <button onclick="selectDateRange('7days')" class="date-pill flex-1 py-1.5 rounded-xl text-center transition-all" data-range="7days">7 Days</button>
+        <button onclick="selectDateRange('30days')" class="date-pill flex-1 py-1.5 rounded-xl text-center transition-all" data-range="30days">30 Days</button>
+        <button onclick="selectDateRange('all')" class="date-pill flex-1 py-1.5 rounded-xl text-center transition-all" data-range="all">All Time</button>
       </div>
     </div>
   </header>
 
-  <!-- PULL-TO-REFRESH INDICATOR -->
-  <div id="ptrIndicator" style="height: 0px; opacity: 0; overflow: hidden;" class="transition-[height,opacity] duration-150 flex items-center justify-center bg-slate-950/90 border-b border-slate-800/60">
-    <div class="flex items-center space-x-2 text-slate-400 text-xs py-1">
-      <div id="ptrIcon" class="transition-transform duration-200">↓</div>
-      <div id="ptrSpinner" class="hidden">
-        <svg class="animate-spin h-3.5 w-3.5 text-brand-500" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-      </div>
-      <span id="ptrText" class="text-xs">Pull down to refresh</span>
-    </div>
-  </div>
-
   <!-- ========================================== -->
-  <!-- 3. MAIN MULTI-PAGE CONTAINER               -->
+  <!-- 4. MAIN APP CONTAINER                      -->
   <!-- ========================================== -->
-  <main class="max-w-md mx-auto px-3.5 pt-3 space-y-3.5">
+  <main class="max-w-md mx-auto px-4 pt-4 space-y-5">
 
-    <!-- ======================================== -->
-    <!-- TAB 1: 🏠 HOME (EXECUTIVE DASHBOARD)     -->
-    <!-- ======================================== -->
-    <div id="tabHome" class="space-y-3.5">
+    <!-- PAGE 1: EXECUTIVE DASHBOARD (OVERVIEW) -->
+    <div id="pageOverview" class="space-y-4">
       
-      <!-- HERO SALES OVERVIEW CARD (Clean Big Bold Amount - No Currency Symbol) -->
-      <section class="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-slate-800 rounded-[28px] p-5 shadow-2xl relative overflow-hidden">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-800/80">
+      <!-- HERO REVENUE CARD (Apple Wallet / Fitness Style) -->
+      <div class="ios-card p-5 relative overflow-hidden bg-gradient-to-br from-white via-white to-blue-50/40">
+        <div class="flex items-center justify-between text-slate-500 mb-1">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Net Revenue</span>
+          <span id="overviewDateBadge" class="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-200/60">Today</span>
+        </div>
+
+        <div class="flex items-baseline space-x-1.5 my-2">
+          <span class="text-2xl font-black text-slate-400" id="heroCurrency">R</span>
+          <span class="text-4xl font-black text-slate-900 tracking-tight" id="heroNetRevenue">0.00</span>
+        </div>
+
+        <!-- 3 Quick Metrics Pills -->
+        <div class="grid grid-cols-3 gap-2 pt-3 border-t border-slate-100">
+          <div class="bg-slate-50 p-2.5 rounded-2xl text-center border border-slate-100">
+            <p class="text-[10px] font-bold text-slate-400 uppercase">Orders</p>
+            <p class="text-sm font-extrabold text-slate-800" id="heroOrdersCount">0</p>
+          </div>
+          <div class="bg-slate-50 p-2.5 rounded-2xl text-center border border-slate-100">
+            <p class="text-[10px] font-bold text-slate-400 uppercase">Avg Bill</p>
+            <p class="text-sm font-extrabold text-slate-800" id="heroAvgTicket">0.00</p>
+          </div>
+          <div class="bg-slate-50 p-2.5 rounded-2xl text-center border border-slate-100">
+            <p class="text-[10px] font-bold text-slate-400 uppercase">Returns</p>
+            <p class="text-sm font-extrabold text-rose-600" id="heroReturnsCount">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASH DRAWER & DIGITAL COLLECTIONS CARD -->
+      <div class="ios-card p-5 space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-extrabold text-sm text-slate-900 flex items-center space-x-2">
+            <span>Cash Drawer & Collections</span>
+          </h3>
+          <button onclick="openReportModal('tally')" class="text-xs font-bold text-blue-600 flex items-center space-x-1">
+            <span>Audit</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-3.5 rounded-2xl bg-emerald-50/70 border border-emerald-100">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] font-bold text-emerald-800">Cash in Hand</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            </div>
+            <p class="text-xl font-black text-emerald-700" id="dashCashCollected">R 0.00</p>
+          </div>
+
+          <div class="p-3.5 rounded-2xl bg-blue-50/70 border border-blue-100">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] font-bold text-blue-800">Card / Bank</span>
+              <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+            </div>
+            <p class="text-xl font-black text-blue-700" id="dashCardCollected">R 0.00</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 pt-1">
+          <div class="flex items-center justify-between text-xs px-2 py-1 bg-slate-50 rounded-xl">
+            <span class="font-semibold text-slate-500">UPI / QR:</span>
+            <span class="font-bold text-slate-800" id="dashUpiCollected">R 0.00</span>
+          </div>
+          <div class="flex items-center justify-between text-xs px-2 py-1 bg-slate-50 rounded-xl">
+            <span class="font-semibold text-slate-500">Due / Credit:</span>
+            <span class="font-bold text-slate-800" id="dashDueCollected">R 0.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHANNELS DISTRIBUTION (Dine-In vs Takeaway) -->
+      <div class="ios-card p-5 space-y-3">
+        <h3 class="font-extrabold text-sm text-slate-900">Ordering Channels</h3>
+
+        <div class="space-y-3">
           <div>
-            <span class="text-[10px] font-black uppercase tracking-wider text-slate-400 block">Total Net Collection</span>
-            <div class="text-3xl font-black font-mono text-emerald-400 mt-1" id="valPayTotal">
-              0.00
+            <div class="flex justify-between text-xs font-bold mb-1">
+              <span class="text-slate-700">Takeaway & Counter</span>
+              <span class="text-slate-900" id="dashTakeawayAmt">R 0.00</span>
             </div>
-            <div class="text-[11px] text-slate-400 mt-0.5">
-              <span id="heroInvoicesCount" class="font-bold text-white">0</span> Invoices Settled
+            <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+              <div id="dashTakeawayBar" class="h-full bg-blue-600 rounded-full transition-all duration-500" style="width: 0%"></div>
             </div>
           </div>
-          <div class="text-right">
-            <span class="text-[10px] font-black uppercase tracking-wider text-slate-400 block">Drawer Cash</span>
-            <div class="text-xl font-black font-mono text-white mt-1" id="tallyExpectedCash">
-              0.00
-            </div>
-            <span class="text-[10px] text-emerald-400 font-bold block mt-0.5">🔒 100% Balanced</span>
-          </div>
-        </div>
 
-        <!-- Quick 3-Pill Breakdown -->
-        <div class="grid grid-cols-3 gap-2 text-center text-xs pt-3">
-          <div class="bg-slate-950/60 p-2.5 rounded-2xl border border-slate-800">
-            <div class="text-[9px] text-emerald-400 uppercase font-bold">(+) Sales Cash</div>
-            <div class="font-mono font-extrabold text-white mt-0.5" id="tallySalesCash">0.00</div>
-          </div>
-          <div class="bg-slate-950/60 p-2.5 rounded-2xl border border-slate-800">
-            <div class="text-[9px] text-rose-400 uppercase font-bold">(-) Return Cash</div>
-            <div class="font-mono font-extrabold text-white mt-0.5" id="tallyReturnCash">0.00</div>
-          </div>
-          <div class="bg-slate-950/60 p-2.5 rounded-2xl border border-slate-800">
-            <div class="text-[9px] text-amber-400 uppercase font-bold">(-) Vendor Cash</div>
-            <div class="font-mono font-extrabold text-white mt-0.5" id="tallySupplierCash">0.00</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3 LARGE PAYMENT CARDS (Directly Matching the 3 Cards in User's Reference Photo) -->
-      <section class="space-y-2">
-        <div class="flex items-center justify-between text-xs font-bold text-slate-400 px-1">
-          <span>Payment Breakdown</span>
-          <span id="activeFilterBadge" class="hidden text-[10px] font-bold bg-brand-500/20 text-brand-400 border border-brand-500/30 px-2 py-0.5 rounded-lg cursor-pointer" onclick="clearCrossFilter()">
-            ✕ Reset Filter
-          </span>
-        </div>
-
-        <div class="grid grid-cols-3 gap-2.5">
-          <!-- 1. Cash Card -->
-          <div onclick="applyPaymentFilter('Cash')" id="cardPayCash" style="--card-color: #10b981;" class="kpi-card bg-slate-900 border border-slate-800 rounded-3xl p-3.5 text-center cursor-pointer">
-            <div class="kpi-stripe"></div>
-            <div class="text-xl">💵</div>
-            <div class="text-[10px] font-bold text-slate-400 uppercase mt-1">Cash</div>
-            <div class="text-base font-black font-mono text-emerald-400 mt-0.5" id="valPayCash">0.00</div>
-            <div class="text-[10px] font-bold text-slate-400 mt-1" id="subPayCash">0 Bills</div>
-            <div class="text-[9px] font-mono text-emerald-400/90 font-bold" id="pctPayCash">0%</div>
-          </div>
-
-          <!-- 2. Card / Bank Card -->
-          <div onclick="applyPaymentFilter('Card')" id="cardPayCard" style="--card-color: #3b82f6;" class="kpi-card bg-slate-900 border border-slate-800 rounded-3xl p-3.5 text-center cursor-pointer">
-            <div class="kpi-stripe"></div>
-            <div class="text-xl">💳</div>
-            <div class="text-[10px] font-bold text-slate-400 uppercase mt-1">Card / Bank</div>
-            <div class="text-base font-black font-mono text-blue-400 mt-0.5" id="valPayCard">0.00</div>
-            <div class="text-[10px] font-bold text-slate-400 mt-1" id="subPayCard">0 Bills</div>
-            <div class="text-[9px] font-mono text-blue-400/90 font-bold" id="pctPayCard">0%</div>
-          </div>
-
-          <!-- 3. UPI / Online Card -->
-          <div onclick="applyPaymentFilter('UPI')" id="cardPayUpi" style="--card-color: #8b5cf6;" class="kpi-card bg-slate-900 border border-slate-800 rounded-3xl p-3.5 text-center cursor-pointer">
-            <div class="kpi-stripe"></div>
-            <div class="text-xl">📱</div>
-            <div class="text-[10px] font-bold text-slate-400 uppercase mt-1">UPI / Due</div>
-            <div class="text-base font-black font-mono text-purple-400 mt-0.5" id="valPayUpi">0.00</div>
-            <div class="text-[10px] font-bold text-slate-400 mt-1" id="subPayUpi">0 Bills</div>
-            <div class="text-[9px] font-mono text-purple-400/90 font-bold" id="pctPayUpi">0%</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CHANNEL & DINING VITALS (Directly Matching Circular Donut Status in User's Reference Photo) -->
-      <section class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-black uppercase tracking-wider text-white">Channel Status</span>
-          <span class="text-[10px] text-emerald-400 font-bold">Live Breakdown</span>
-        </div>
-
-        <div class="grid grid-cols-3 gap-2 text-center">
-          <div class="bg-slate-950/70 border border-slate-800 p-2.5 rounded-2xl">
-            <div class="text-[9px] font-bold uppercase text-slate-400">Dine-In</div>
-            <div class="text-sm font-black text-emerald-400 font-mono mt-0.5" id="vitalDine">0.00</div>
-            <div class="text-[9px] text-slate-500 mt-0.5" id="vitalDineCount">0 Orders</div>
-          </div>
-          <div class="bg-slate-950/70 border border-slate-800 p-2.5 rounded-2xl">
-            <div class="text-[9px] font-bold uppercase text-slate-400">Takeaway</div>
-            <div class="text-sm font-black text-blue-400 font-mono mt-0.5" id="vitalTake">0.00</div>
-            <div class="text-[9px] text-slate-500 mt-0.5" id="vitalTakeCount">0 Orders</div>
-          </div>
-          <div class="bg-slate-950/70 border border-slate-800 p-2.5 rounded-2xl">
-            <div class="text-[9px] font-bold uppercase text-rose-400">Void / Lost</div>
-            <div id="vitalVoid" class="text-sm font-black text-rose-400 font-mono mt-0.5">0</div>
-            <div class="text-[9px] text-slate-500 mt-0.5">Cancelled</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- HOURLY SALES TRAFFIC HEATMAP (Directly Matching the Curve in User's Reference Photo) -->
-      <section class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
-        <div class="flex items-center justify-between">
           <div>
-            <h3 class="text-xs font-black uppercase tracking-wider text-white">Hourly Sales Traffic</h3>
-            <p class="text-[10px] text-slate-400">Rush & volume distribution throughout the day</p>
+            <div class="flex justify-between text-xs font-bold mb-1">
+              <span class="text-slate-700">Dine-In Restaurant</span>
+              <span class="text-slate-900" id="dashDineInAmt">R 0.00</span>
+            </div>
+            <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+              <div id="dashDineInBar" class="h-full bg-emerald-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
           </div>
-          <span id="peakHourBadge" class="text-[10px] font-extrabold px-2.5 py-1 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30">
-            🔥 Peak: --
-          </span>
         </div>
+      </div>
 
-        <div id="hourlyChartContainer" class="flex items-end justify-between h-28 pt-4 pb-1 px-1 border-b border-slate-800"></div>
-        <div class="flex justify-between text-[9px] text-slate-500 font-mono px-1">
-          <span>10 AM</span>
-          <span>1 PM</span>
-          <span>4 PM</span>
-          <span>7 PM</span>
-          <span>10 PM</span>
-        </div>
-      </section>
-
-      <!-- TOP 5 BESTSELLER DISHES -->
-      <section class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
+      <!-- TOP SELLING MENU ITEMS SNIPPET -->
+      <div class="ios-card p-5 space-y-3">
         <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-xs font-black uppercase tracking-wider text-white">Top 5 Bestsellers</h3>
-            <p class="text-[10px] text-slate-400">Highest volume dishes</p>
-          </div>
-          <button onclick="switchTab('reports'); switchReportTab('dishes');" class="text-[10px] text-brand-400 hover:underline font-bold">View All ➔</button>
+          <h3 class="font-extrabold text-sm text-slate-900">Top Selling Items</h3>
+          <button onclick="openReportModal('topItems')" class="text-xs font-bold text-blue-600">See All 20</button>
         </div>
-        <div id="topDishesList" class="space-y-2"></div>
-      </section>
-
-      <!-- RECENT TRANSACTIONS PREVIEW (Directly Matching the List in User's Reference Photo) -->
-      <section class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-2">
-            <h3 class="text-xs font-black uppercase tracking-wider text-white">Recent Transactions</h3>
-            <span id="homeBillsCount" class="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-mono font-bold">0</span>
-          </div>
-          <button onclick="switchTab('invoices')" class="text-[10px] text-brand-400 hover:underline font-bold">Full Activity ➔</button>
-        </div>
-        <div id="homeRecentBillsList" class="space-y-2"></div>
-      </section>
-
-    </div>
-
-    <!-- ======================================== -->
-    <!-- TAB 2: 📊 REPORTS HUB (COMPREHENSIVE)    -->
-    <!-- ======================================== -->
-    <div id="tabReports" class="hidden space-y-3.5">
-      
-      <!-- Reports Hub Segmented Navigation -->
-      <div class="bg-slate-900 border border-slate-800 rounded-[24px] p-1.5 flex items-center space-x-1 overflow-x-auto no-scrollbar">
-        <button onclick="switchReportTab('sales')" id="repTabSales" class="report-tab-pill active flex-1 py-2 px-3 rounded-2xl text-xs font-bold text-center shrink-0 transition active:scale-95">📊 Sales</button>
-        <button onclick="switchReportTab('drawer')" id="repTabDrawer" class="report-tab-pill flex-1 py-2 px-3 rounded-2xl text-xs font-bold text-center text-slate-400 shrink-0 transition active:scale-95">💵 Cash Drawer</button>
-        <button onclick="switchReportTab('dishes')" id="repTabDishes" class="report-tab-pill flex-1 py-2 px-3 rounded-2xl text-xs font-bold text-center text-slate-400 shrink-0 transition active:scale-95">🍽️ Dishes</button>
-        <button onclick="switchReportTab('categories')" id="repTabCategories" class="report-tab-pill flex-1 py-2 px-3 rounded-2xl text-xs font-bold text-center text-slate-400 shrink-0 transition active:scale-95">🏷️ Categories</button>
-        <button onclick="switchReportTab('taxes')" id="repTabTaxes" class="report-tab-pill flex-1 py-2 px-3 rounded-2xl text-xs font-bold text-center text-slate-400 shrink-0 transition active:scale-95">📋 <span id="repTabTaxText">Tax</span></button>
-      </div>
-
-      <!-- REPORT 1: SALES & REVENUE AUDIT -->
-      <div id="reportViewSales" class="space-y-3.5">
-        <div class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
-          <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-            <span class="text-xs font-black uppercase text-white">Sales & Revenue Audit</span>
-            <button onclick="shareReportWhatsApp('sales')" class="text-[10px] text-emerald-400 font-bold flex items-center space-x-1">
-              <span>Share on WhatsApp</span>
-            </button>
-          </div>
-          
-          <div class="grid grid-cols-2 gap-2.5">
-            <div class="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
-              <span class="text-[10px] text-slate-400 uppercase font-bold">Gross Turnover</span>
-              <div class="text-lg font-black font-mono text-emerald-400 mt-0.5" id="repGrossSales">0.00</div>
-            </div>
-            <div class="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
-              <span class="text-[10px] text-slate-400 uppercase font-bold">Discounts Given</span>
-              <div class="text-lg font-black font-mono text-rose-400 mt-0.5" id="repDiscounts">0.00</div>
-            </div>
-            <div class="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
-              <span class="text-[10px] text-slate-400 uppercase font-bold">Net Sales</span>
-              <div class="text-lg font-black font-mono text-white mt-0.5" id="repNetSales">0.00</div>
-            </div>
-            <div class="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
-              <span class="text-[10px] text-slate-400 uppercase font-bold" id="repTaxCardLabel">Tax Collected</span>
-              <div class="text-lg font-black font-mono text-purple-400 mt-0.5" id="repTax">0.00</div>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-2.5 pt-1">
-            <div class="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
-              <span class="text-[10px] text-slate-400 uppercase font-bold">Total Invoices</span>
-              <div class="text-lg font-black font-mono text-blue-400 mt-0.5" id="repInvoicesCount">0</div>
-            </div>
-            <div class="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
-              <span class="text-[10px] text-slate-400 uppercase font-bold">Avg Order Value (AOV)</span>
-              <div class="text-lg font-black font-mono text-amber-400 mt-0.5" id="repAov">0.00</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- REPORT 2: CASH DRAWER & TALLY AUDIT -->
-      <div id="reportViewDrawer" class="hidden space-y-3.5">
-        <div class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
-          <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-            <span class="text-xs font-black uppercase text-white">Cash Register Reconciliation</span>
-            <span class="text-[10px] text-emerald-400 font-bold">🔒 100% Balanced</span>
-          </div>
-
-          <div class="space-y-2 text-xs">
-            <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span class="text-slate-400">(+) Sales Cash Collected</span>
-              <span class="font-mono font-bold text-emerald-400" id="repDrawerSalesCash">0.00</span>
-            </div>
-            <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span class="text-slate-400">(-) Customer Cash Refunds</span>
-              <span class="font-mono font-bold text-rose-400" id="repDrawerReturnCash">0.00</span>
-            </div>
-            <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span class="text-slate-400">(-) Supplier / Vendor Cash Payouts</span>
-              <span class="font-mono font-bold text-amber-400" id="repDrawerSupplierCash">0.00</span>
-            </div>
-            <div class="flex justify-between p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-sm">
-              <span class="font-black text-emerald-400">(=) Expected Cash In Drawer</span>
-              <span class="font-mono font-black text-emerald-400" id="repDrawerExpectedCash">0.00</span>
-            </div>
-            <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span class="text-slate-400">(+) Card / Bank Settlement</span>
-              <span class="font-mono font-bold text-blue-400" id="repDrawerCard">0.00</span>
-            </div>
-            <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span class="text-slate-400">(+) UPI / Digital Settlement</span>
-              <span class="font-mono font-bold text-purple-400" id="repDrawerUpi">0.00</span>
-            </div>
-            <div class="flex justify-between p-3 rounded-2xl bg-slate-950 border border-slate-700 text-sm">
-              <span class="font-black text-white">(=) Total Net Settled Collection</span>
-              <span class="font-mono font-black text-white" id="repDrawerTotalSettled">0.00</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- REPORT 3: DISH SALES RANKINGS -->
-      <div id="reportViewDishes" class="hidden space-y-3.5">
-        <div class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
-          <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-            <span class="text-xs font-black uppercase text-white">Itemized Dish Sales Breakdown</span>
-            <span id="repDishTotalCount" class="text-[10px] text-slate-400 font-mono">0 Items</span>
-          </div>
-          <div id="repFullDishesList" class="space-y-2 max-h-[500px] overflow-y-auto pr-1"></div>
-        </div>
-      </div>
-
-      <!-- REPORT 4: CATEGORY BREAKDOWN -->
-      <div id="reportViewCategories" class="hidden space-y-3.5">
-        <div class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
-          <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-            <span class="text-xs font-black uppercase text-white">Category Revenue Share</span>
-            <span class="text-[10px] text-emerald-400 font-bold">100% Tally</span>
-          </div>
-          <div id="repCategoriesList" class="space-y-3"></div>
-        </div>
-      </div>
-
-      <!-- REPORT 5: DYNAMIC TAX AUDIT -->
-      <div id="reportViewTaxes" class="hidden space-y-3.5">
-        <div class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
-          <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-            <span class="text-xs font-black uppercase text-white" id="repTaxLedgerTitle">Tax Ledger</span>
-            <span class="text-[10px] text-emerald-400 font-bold">Compliance Ready</span>
-          </div>
-          <div class="space-y-2 text-xs">
-            <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span class="text-slate-400">Taxable Turnover</span>
-              <span class="font-mono font-bold text-white" id="repTaxableTurnover">0.00</span>
-            </div>
-            <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span class="text-slate-400" id="repTaxCollectedLabel">Total Tax Collected</span>
-              <span class="font-mono font-bold text-purple-400" id="repTaxCollected">0.00</span>
-            </div>
-            <div class="flex justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span class="text-slate-400">Effective Tax Rate</span>
-              <span class="font-mono font-bold text-emerald-400" id="repTaxRate">0%</span>
-            </div>
-          </div>
+        <div id="dashTopItemsList" class="space-y-2">
+          <!-- Populated dynamically -->
+          <p class="text-xs text-slate-400 py-3 text-center">Loading menu insights...</p>
         </div>
       </div>
 
     </div>
 
-    <!-- ======================================== -->
-    <!-- TAB 3: ⚡ INVOICES (LIVE ACTIVITY)       -->
-    <!-- ======================================== -->
-    <div id="tabInvoices" class="hidden space-y-3.5">
-      <div class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-2">
-            <span class="text-xs font-black uppercase tracking-wider text-white">Live Invoices Feed</span>
-            <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-mono font-bold" id="tabCountBills">0</span>
-          </div>
+    <!-- PAGE 2: LIVE BILLS & INVOICES FEED -->
+    <div id="pageBills" class="space-y-4 hidden">
+      <!-- Search & Payment Filter Bar -->
+      <div class="ios-card p-3.5 space-y-2.5">
+        <div class="relative">
+          <svg class="w-4 h-4 absolute left-3.5 top-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="text" id="billSearchInput" oninput="filterBills()" placeholder="Search Invoice #, Customer, Amount..." class="w-full bg-slate-50 border border-slate-200 text-slate-900 font-semibold pl-10 pr-4 py-2 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500">
         </div>
 
-        <!-- Search Bar -->
-        <div class="relative w-full">
-          <input id="searchInput" oninput="filterBillsList()" type="text" placeholder="Search invoice #, table, customer..." class="w-full bg-slate-800 text-white text-xs rounded-2xl pl-8 pr-3 py-2.5 border border-slate-700 focus:outline-none focus:border-brand-500 transition">
-          <svg class="w-3.5 h-3.5 absolute left-3 top-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <div class="flex items-center space-x-1.5 overflow-x-auto no-scrollbar text-xs font-bold">
+          <button onclick="setBillPaymentFilter('ALL')" class="bill-filter-btn active px-3 py-1.5 rounded-xl bg-slate-900 text-white shadow-sm" data-filter="ALL">All Bills</button>
+          <button onclick="setBillPaymentFilter('Cash')" class="bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="Cash">Cash</button>
+          <button onclick="setBillPaymentFilter('Card')" class="bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="Card">Card</button>
+          <button onclick="setBillPaymentFilter('Takeaway')" class="bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="Takeaway">Takeaway</button>
+          <button onclick="setBillPaymentFilter('DineIn')" class="bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="DineIn">Dine-In</button>
         </div>
+      </div>
 
-        <!-- Invoices List Container -->
-        <div id="billsList" class="space-y-2 max-h-[520px] overflow-y-auto pr-1"></div>
+      <!-- Invoices Count Header -->
+      <div class="flex items-center justify-between px-1 text-xs font-bold text-slate-500">
+        <span id="billsCountLabel">Showing 0 Invoices</span>
+        <span id="billsTotalAmtLabel">Total: R 0.00</span>
+      </div>
+
+      <!-- Invoices Container -->
+      <div id="billsContainer" class="space-y-2.5">
+        <!-- Rendered dynamically -->
+        <p class="text-xs text-slate-400 py-6 text-center">Loading invoices...</p>
       </div>
     </div>
 
-    <!-- ======================================== -->
-    <!-- TAB 4: ⚙️ SETTINGS & PROFILE              -->
-    <!-- ======================================== -->
-    <div id="tabSettings" class="hidden space-y-3.5">
-      
-      <!-- Restaurant Profile & Custom Name -->
-      <section class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-3">
-        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-          <span class="text-xs font-black uppercase text-white">Restaurant Business Profile</span>
-          <span class="text-[10px] text-emerald-400 font-bold">Cloud Connected</span>
+    <!-- PAGE 3: REPORTS HUB (GRID OF ALL REPORTS) -->
+    <div id="pageReports" class="space-y-4 hidden">
+      <div class="ios-card p-5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-xl">
+        <h2 class="text-lg font-black tracking-tight">Executive Reports Hub</h2>
+        <p class="text-xs text-blue-100 mt-1 font-medium">100% Mathematically Reconciled with Desktop POS</p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <button onclick="openReportModal('tally')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+          <span class="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg shadow-sm">💰</span>
+          <div>
+            <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Daily Tally</h4>
+            <p class="text-[10px] text-slate-400 font-semibold">Cash Drawer & Net</p>
+          </div>
+        </button>
+
+        <button onclick="openReportModal('payments')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+          <span class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg shadow-sm">💳</span>
+          <div>
+            <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Payment Modes</h4>
+            <p class="text-[10px] text-slate-400 font-semibold">Cash, Card, UPI</p>
+          </div>
+        </button>
+
+        <button onclick="openReportModal('categories')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+          <span class="w-10 h-10 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg shadow-sm">🍽️</span>
+          <div>
+            <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Categories</h4>
+            <p class="text-[10px] text-slate-400 font-semibold">Department Sales</p>
+          </div>
+        </button>
+
+        <button onclick="openReportModal('topItems')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+          <span class="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg shadow-sm">🏆</span>
+          <div>
+            <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Top 20 Items</h4>
+            <p class="text-[10px] text-slate-400 font-semibold">Best Sellers</p>
+          </div>
+        </button>
+
+        <button onclick="openReportModal('hourly')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+          <span class="w-10 h-10 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center text-lg shadow-sm">⏰</span>
+          <div>
+            <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Rush Hours</h4>
+            <p class="text-[10px] text-slate-400 font-semibold">Hourly Trend</p>
+          </div>
+        </button>
+
+        <button onclick="openReportModal('returns')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+          <span class="w-10 h-10 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center text-lg shadow-sm">🔄</span>
+          <div>
+            <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Returns & Refunds</h4>
+            <p class="text-[10px] text-slate-400 font-semibold">Customer Refunds</p>
+          </div>
+        </button>
+
+        <button onclick="openReportModal('voids')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+          <span class="w-10 h-10 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center text-lg shadow-sm">🚫</span>
+          <div>
+            <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Void Items</h4>
+            <p class="text-[10px] text-slate-400 font-semibold">Anti-Theft Audit</p>
+          </div>
+        </button>
+
+        <button onclick="openReportModal('cashiers')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+          <span class="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg shadow-sm">👥</span>
+          <div>
+            <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Cashier Sales</h4>
+            <p class="text-[10px] text-slate-400 font-semibold">Staff Leaderboard</p>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- PAGE 4: SETTINGS & CLOUD SYNC DIAGNOSTICS -->
+    <div id="pageSettings" class="space-y-4 hidden">
+      <!-- Store Info Card -->
+      <div class="ios-card p-5 space-y-3">
+        <h3 class="font-extrabold text-sm text-slate-900">Restaurant Profile</h3>
+        <div class="space-y-2 text-xs">
+          <div class="flex justify-between py-1 border-b border-slate-100">
+            <span class="text-slate-500 font-semibold">Restaurant Name</span>
+            <span class="font-bold text-slate-900" id="settingsStoreName">SALT 'N PEPPER</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-slate-100">
+            <span class="text-slate-500 font-semibold">Master Phone</span>
+            <span class="font-bold text-slate-900 font-mono" id="settingsOwnerPhone">0792153627</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-slate-100">
+            <span class="text-slate-500 font-semibold">Currency</span>
+            <span class="font-bold text-slate-900" id="settingsCurrency">R (ZAR)</span>
+          </div>
+          <div class="flex justify-between py-1">
+            <span class="text-slate-500 font-semibold">Tax System</span>
+            <span class="font-bold text-slate-900" id="settingsTaxName">VAT (15%)</span>
+          </div>
         </div>
+      </div>
+
+      <!-- Cloud Sync Diagnostics -->
+      <div class="ios-card p-5 space-y-3">
+        <h3 class="font-extrabold text-sm text-slate-900 flex items-center space-x-2">
+          <span>Automatic Cloud Sync Engine</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+        </h3>
+        <p class="text-xs text-slate-500">The Desktop POS automatically uploads all bills, returns, and daily tallies continuously whenever internet is available.</p>
         
-        <div>
-          <label class="text-[10px] font-bold uppercase text-slate-400 block mb-1">Restaurant Name</label>
-          <input id="settingStoreName" type="text" placeholder="Enter Restaurant Name" class="w-full bg-slate-800 text-white text-xs font-bold rounded-2xl px-3.5 py-2.5 border border-slate-700 focus:outline-none focus:border-brand-500">
-        </div>
-
-        <div>
-          <label class="text-[10px] font-bold uppercase text-slate-400 block mb-1">Authorized Owner Mobile</label>
-          <input id="settingOwnerPhone" type="text" readonly class="w-full bg-slate-950 text-slate-400 text-xs font-mono font-bold rounded-2xl px-3.5 py-2.5 border border-slate-800">
-        </div>
-
-        <button onclick="saveStoreProfile()" class="w-full py-2.5 rounded-2xl bg-brand-500 hover:bg-brand-600 text-slate-950 font-black text-xs active:scale-95 transition">
-          💾 Save Restaurant Details
-        </button>
-      </section>
-
-      <!-- 📲 Install App Promotion -->
-      <section class="bg-gradient-to-br from-emerald-950/40 via-slate-900 to-slate-900 border border-emerald-500/30 rounded-[28px] p-4 shadow-xl space-y-3">
-        <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg">📲</div>
-          <div>
-            <h4 class="text-xs font-black text-white">Install XRestro App</h4>
-            <p class="text-[10px] text-slate-400">Launch directly from your phone home screen</p>
+        <div class="p-3 bg-slate-50 rounded-2xl border border-slate-100 space-y-1.5 text-xs font-semibold">
+          <div class="flex justify-between">
+            <span class="text-slate-500">Cloud Sync Status:</span>
+            <span class="text-emerald-600 font-bold">🟢 Active & Listening</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">Last Synced:</span>
+            <span class="text-slate-800" id="diagLastSyncTime">Just now</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">Total Cloud Bills:</span>
+            <span class="text-slate-800 font-mono" id="diagTotalBills">5,793</span>
           </div>
         </div>
-        <button onclick="triggerInstallApp()" class="w-full py-2.5 rounded-2xl bg-slate-800 hover:bg-slate-750 border border-slate-700 text-emerald-400 font-bold text-xs active:scale-95 transition">
-          📲 Add App to Home Screen
-        </button>
-      </section>
 
-      <!-- Security PIN & App Controls -->
-      <section class="bg-slate-900 border border-slate-800 rounded-[28px] p-4 shadow-xl space-y-2.5">
-        <button onclick="openPinModal()" class="w-full py-3 px-3.5 rounded-2xl bg-slate-950 border border-slate-800 text-left text-xs font-bold text-white flex items-center justify-between active:scale-95 transition">
-          <span class="flex items-center space-x-2">
-            <span>🔑</span>
-            <span>Change 4-Digit Security PIN</span>
-          </span>
-          <span class="text-slate-500">➔</span>
+        <button onclick="fetchStoreData(true)" class="w-full py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md shadow-blue-500/20 active:scale-98 transition-all">
+          Force Refresh Cloud Data
         </button>
+      </div>
 
-        <button onclick="fetchData()" class="w-full py-3 px-3.5 rounded-2xl bg-slate-950 border border-slate-800 text-left text-xs font-bold text-emerald-400 flex items-center justify-between active:scale-95 transition">
-          <span class="flex items-center space-x-2">
-            <span>🔄</span>
-            <span>Force Live Sync from Cloud</span>
-          </span>
-          <span class="text-slate-500">➔</span>
-        </button>
+      <!-- PWA Installation Card -->
+      <div class="ios-card p-5 space-y-2 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+        <h4 class="font-extrabold text-sm">Add to iPhone Home Screen</h4>
+        <p class="text-xs text-slate-300 font-medium">To use this as a full native Apple app with 1-click icon on your iPhone: Open Safari, tap the <strong>Share button (square with arrow)</strong>, then select <strong>'Add to Home Screen'</strong>.</p>
+      </div>
 
-        <button onclick="lockApp()" class="w-full py-3 px-3.5 rounded-2xl bg-slate-950 border border-slate-800 text-left text-xs font-bold text-rose-400 flex items-center justify-between active:scale-95 transition">
-          <span class="flex items-center space-x-2">
-            <span>🔒</span>
-            <span>Lock App / Sign Out</span>
-          </span>
-          <span class="text-slate-500">➔</span>
-        </button>
-      </section>
-
+      <!-- Change Security PIN -->
+      <div class="ios-card p-5 space-y-3">
+        <h3 class="font-extrabold text-sm text-slate-900">Security PIN</h3>
+        <div class="space-y-2">
+          <input type="password" id="currentPinInput" placeholder="Current PIN" maxlength="4" class="w-full bg-slate-50 border border-slate-200 text-slate-900 font-semibold px-4 py-2.5 rounded-xl text-xs focus:outline-none">
+          <input type="password" id="newPinInput" placeholder="New 4-Digit PIN" maxlength="4" class="w-full bg-slate-50 border border-slate-200 text-slate-900 font-semibold px-4 py-2.5 rounded-xl text-xs focus:outline-none">
+          <button onclick="handleChangePin()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs">
+            Update Security PIN
+          </button>
+        </div>
+      </div>
     </div>
 
   </main>
 
   <!-- ========================================== -->
-  <!-- 4. FLOATING FROSTED GLASS BOTTOM NAV BAR   -->
+  <!-- 5. REPORT MODAL SHEET (Apple Bottom Sheet) -->
   <!-- ========================================== -->
-  <nav class="fixed bottom-0 left-0 right-0 z-40 p-3 pointer-events-none">
-    <div class="max-w-md mx-auto bg-slate-900/90 backdrop-blur-2xl border border-slate-800/90 rounded-[30px] p-1.5 shadow-2xl flex items-center justify-around pointer-events-auto">
+  <div id="reportModalOverlay" onclick="closeReportModal()" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div id="reportModalSheet" onclick="event.stopPropagation()" class="modal-sheet w-full max-w-lg bg-[#F2F2F7] rounded-t-[32px] sm:rounded-[32px] max-h-[90vh] flex flex-col shadow-2xl overflow-hidden translate-y-full transition-transform duration-300">
       
-      <button onclick="switchTab('home')" id="tabBtnHome" class="tab-btn active flex-1 py-1.5 flex flex-col items-center justify-center text-slate-400 transition active:scale-95">
-        <div class="tab-icon-wrap w-8 h-8 rounded-2xl flex items-center justify-center text-base transition">🏠</div>
-        <span class="text-[10px] font-bold mt-0.5">Home</span>
-      </button>
-
-      <button onclick="switchTab('reports')" id="tabBtnReports" class="tab-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-400 transition active:scale-95">
-        <div class="tab-icon-wrap w-8 h-8 rounded-2xl flex items-center justify-center text-base transition">📊</div>
-        <span class="text-[10px] font-bold mt-0.5">Reports</span>
-      </button>
-
-      <button onclick="switchTab('invoices')" id="tabBtnInvoices" class="tab-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-400 transition active:scale-95">
-        <div class="tab-icon-wrap w-8 h-8 rounded-2xl flex items-center justify-center text-base transition">⚡</div>
-        <span class="text-[10px] font-bold mt-0.5">Invoices</span>
-      </button>
-
-      <button onclick="switchTab('settings')" id="tabBtnSettings" class="tab-btn flex-1 py-1.5 flex flex-col items-center justify-center text-slate-400 transition active:scale-95">
-        <div class="tab-icon-wrap w-8 h-8 rounded-2xl flex items-center justify-center text-base transition">⚙️</div>
-        <span class="text-[10px] font-bold mt-0.5">Settings</span>
-      </button>
-
-    </div>
-  </nav>
-
-  <!-- ========================================== -->
-  <!-- 5. MODALS                                  -->
-  <!-- ========================================== -->
-
-  <!-- A. INVOICE INSPECTION MODAL -->
-  <div id="invoiceModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
-    <div class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-t-[32px] sm:rounded-[32px] p-5 space-y-4 max-h-[90vh] flex flex-col shadow-2xl">
-      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
-        <div>
-          <div class="flex items-center space-x-2">
-            <span class="text-sm font-black text-white font-mono" id="invModalNo">#INV000</span>
-            <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" id="invModalStatus">PAID</span>
+      <!-- Modal Grabber & Header -->
+      <div class="p-5 pb-3 bg-white border-b border-slate-200/70 relative">
+        <div class="w-12 h-1.5 rounded-full bg-slate-300 mx-auto mb-3"></div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2.5">
+            <span id="reportModalIcon" class="text-2xl">💰</span>
+            <div>
+              <h3 id="reportModalTitle" class="font-black text-base text-slate-900">Report Title</h3>
+              <p id="reportModalDateRange" class="text-[11px] font-semibold text-slate-500">Date: All Time</p>
+            </div>
           </div>
-          <div class="text-[10px] text-slate-400 mt-0.5" id="invModalTime">--:--</div>
+          <button onclick="closeReportModal()" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 active:scale-95">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
         </div>
-        <button onclick="closeInvoiceModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center font-bold">✕</button>
       </div>
 
-      <!-- Bill Meta -->
-      <div class="grid grid-cols-2 gap-2 text-xs bg-slate-950/60 p-3 rounded-2xl border border-slate-800">
-        <div><span class="text-slate-500">Table:</span> <span class="font-bold text-white" id="invModalTable">Counter</span></div>
-        <div><span class="text-slate-500">Server:</span> <span class="font-bold text-white" id="invModalWaiter">Self</span></div>
-        <div><span class="text-slate-500">Customer:</span> <span class="font-bold text-white" id="invModalCustomer">Walk-in</span></div>
-        <div><span class="text-slate-500">Token:</span> <span class="font-bold text-emerald-400 font-mono" id="invModalToken">#1</span></div>
+      <!-- Modal Body (Dynamic Report Content) -->
+      <div id="reportModalContent" class="flex-1 overflow-y-auto p-4 space-y-4 no-scrollbar">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 6. DIGITAL RECEIPT MODAL (Apple Wallet)    -->
+  <!-- ========================================== -->
+  <div id="receiptModalOverlay" onclick="closeReceiptModal()" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+    <div onclick="event.stopPropagation()" class="w-full max-w-sm bg-white rounded-[32px] p-6 shadow-2xl space-y-4 relative border border-slate-200/80">
+      <button onclick="closeReceiptModal()" class="absolute top-4 right-4 w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-slate-500">✕</button>
+      
+      <div class="text-center pb-2 border-b border-dashed border-slate-200">
+        <h4 id="receiptStoreName" class="font-black text-base text-slate-900">SALT 'N PEPPER</h4>
+        <p id="receiptInvoiceNo" class="text-xs font-mono font-bold text-blue-600 mt-0.5">INV-001</p>
+        <p id="receiptDate" class="text-[11px] text-slate-400 font-semibold">2026-10-17 12:00</p>
       </div>
 
       <!-- Items List -->
-      <div class="flex-1 overflow-y-auto space-y-2 pr-1" id="invModalItemsList"></div>
+      <div id="receiptItemsContainer" class="space-y-2 max-h-56 overflow-y-auto no-scrollbar py-1">
+        <!-- Rendered dynamically -->
+      </div>
 
-      <!-- Financial Tally -->
-      <div class="space-y-1.5 pt-2 border-t border-slate-800 text-xs">
-        <div class="flex justify-between text-slate-400">
+      <!-- Receipt Financial Summary -->
+      <div class="pt-3 border-t border-dashed border-slate-200 space-y-1.5 text-xs font-semibold">
+        <div class="flex justify-between text-slate-500">
           <span>Subtotal</span>
-          <span class="font-mono font-bold text-white" id="invModalSubtotal">0.00</span>
+          <span id="receiptSubtotal" class="font-bold text-slate-900">R 0.00</span>
         </div>
-        <div class="flex justify-between text-rose-400">
+        <div class="flex justify-between text-slate-500">
           <span>Discount</span>
-          <span class="font-mono font-bold">-<span id="invModalDiscount">0.00</span></span>
+          <span id="receiptDiscount" class="text-slate-600">R 0.00</span>
         </div>
-        <div class="flex justify-between text-purple-400">
-          <span id="invModalTaxLabel">Tax</span>
-          <span class="font-mono font-bold">+<span id="invModalTax">0.00</span></span>
+        <div class="flex justify-between text-slate-500">
+          <span id="receiptTaxLabel">VAT</span>
+          <span id="receiptTax" class="text-slate-600">R 0.00</span>
         </div>
-        <div class="flex justify-between text-base font-black text-white pt-2 border-t border-slate-800">
-          <span class="text-emerald-400">Grand Total</span>
-          <span class="font-mono text-emerald-400" id="invModalGrandTotal">0.00</span>
+        <div class="flex justify-between text-sm font-black pt-2 border-t border-slate-100 text-slate-900">
+          <span>Grand Total</span>
+          <span id="receiptGrandTotal" class="text-blue-600">R 0.00</span>
         </div>
-      </div>
-
-      <!-- Modal Actions -->
-      <div class="pt-2 flex space-x-2">
-        <button onclick="shareBillOnWhatsApp()" class="flex-1 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-xs flex items-center justify-center space-x-1.5 active:scale-95 transition">
-          <span>💬</span>
-          <span>Share WhatsApp Receipt</span>
-        </button>
-        <button onclick="closeInvoiceModal()" class="px-4 py-3 rounded-2xl bg-slate-800 text-slate-300 font-bold text-xs active:scale-95 transition">
-          Close
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- B. IPHONE NATIVE INSTALL GUIDANCE MODAL -->
-  <div id="iosInstallModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-end justify-center p-0 hidden">
-    <div class="w-full max-w-md bg-slate-900 border-t border-slate-700 rounded-t-[32px] p-6 space-y-4 shadow-2xl">
-      <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-        <div class="flex items-center space-x-2">
-          <span class="text-xl">📲</span>
-          <span class="text-sm font-black text-white">Install XRestro on iPhone</span>
-        </div>
-        <button onclick="closeIosInstallModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center font-bold">✕</button>
-      </div>
-
-      <div class="space-y-3 text-xs text-slate-300">
-        <div class="flex items-start space-x-3 bg-slate-950/60 p-3 rounded-2xl border border-slate-800">
-          <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 font-black flex items-center justify-center shrink-0">1</span>
-          <div>Tap the <span class="font-bold text-white">Share</span> button at the bottom of Safari (<span class="text-base text-blue-400">⎋</span>).</div>
-        </div>
-
-        <div class="flex items-start space-x-3 bg-slate-950/60 p-3 rounded-2xl border border-slate-800">
-          <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 font-black flex items-center justify-center shrink-0">2</span>
-          <div>Scroll down and select <span class="font-bold text-white">Add to Home Screen</span> (<span class="text-base text-white">➕</span>).</div>
-        </div>
-
-        <div class="flex items-start space-x-3 bg-slate-950/60 p-3 rounded-2xl border border-slate-800">
-          <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 font-black flex items-center justify-center shrink-0">3</span>
-          <div>Tap <span class="font-bold text-emerald-400">Add</span> in the top right corner. Done!</div>
+        <div class="flex justify-between text-[11px] text-slate-500 pt-1">
+          <span>Payment: <strong id="receiptPaymentMode" class="text-slate-800">Cash</strong></span>
+          <span>Cashier: <strong id="receiptCashier" class="text-slate-800">Admin</strong></span>
         </div>
       </div>
-
-      <button onclick="closeIosInstallModal()" class="w-full py-3 rounded-2xl bg-emerald-500 text-slate-950 font-black text-xs active:scale-95 transition">
-        Got it!
-      </button>
-    </div>
-  </div>
-
-  <!-- C. CUSTOM DATE RANGE PICKER MODAL -->
-  <div id="customDateModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4 hidden">
-    <div class="w-full max-w-xs bg-slate-900 border border-slate-800 rounded-[28px] p-5 space-y-4 shadow-2xl">
-      <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-        <span class="text-xs font-black uppercase text-white">Select Custom Date</span>
-        <button onclick="closeCustomDateModal()" class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">✕</button>
-      </div>
-
-      <div>
-        <label class="text-[10px] font-bold uppercase text-slate-400 block mb-1">Pick Date</label>
-        <input id="customDatePicker" type="date" class="w-full bg-slate-800 text-white font-mono text-sm rounded-2xl px-3.5 py-2.5 border border-slate-700">
-      </div>
-
-      <button onclick="applyCustomDate()" class="w-full py-2.5 rounded-2xl bg-brand-500 text-slate-950 font-black text-xs active:scale-95 transition">
-        Apply Date Filter
-      </button>
-    </div>
-  </div>
-
-  <!-- D. WORLD COUNTRY SELECTOR MODAL -->
-  <div id="countryModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4 hidden">
-    <div class="w-full max-w-sm bg-slate-900 border border-slate-800 rounded-[32px] p-5 space-y-3 max-h-[85vh] flex flex-col shadow-2xl">
-      <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-        <span class="text-xs font-black uppercase text-white">Select Country Code</span>
-        <button onclick="closeCountryModal()" class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">✕</button>
-      </div>
-
-      <input id="countrySearchInput" oninput="filterCountriesList()" type="text" placeholder="Search country or code..." class="w-full bg-slate-800 text-white text-xs rounded-2xl px-3.5 py-2 border border-slate-700">
-
-      <div id="countryList" class="flex-1 overflow-y-auto space-y-1 pr-1 max-h-[360px]"></div>
-    </div>
-  </div>
-
-  <!-- E. CHANGE PIN MODAL -->
-  <div id="pinModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4 hidden">
-    <div class="w-full max-w-xs bg-slate-900 border border-slate-800 rounded-[28px] p-5 space-y-3.5 shadow-2xl">
-      <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-        <span class="text-xs font-black uppercase text-white">Change Security PIN</span>
-        <button onclick="closePinModal()" class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs">✕</button>
-      </div>
-
-      <div id="pinModalError" class="hidden p-2 rounded-xl bg-rose-950/80 text-rose-300 text-[11px] font-bold text-center"></div>
-
-      <input id="currPin" type="password" maxlength="4" placeholder="Current PIN" class="w-full bg-slate-800 text-white font-mono text-center text-lg rounded-2xl px-3 py-2 border border-slate-700">
-      <input id="newPin1" type="password" maxlength="4" placeholder="New 4-Digit PIN" class="w-full bg-slate-800 text-white font-mono text-center text-lg rounded-2xl px-3 py-2 border border-slate-700">
-      <input id="newPin2" type="password" maxlength="4" placeholder="Confirm New PIN" class="w-full bg-slate-800 text-white font-mono text-center text-lg rounded-2xl px-3 py-2 border border-slate-700">
-
-      <button onclick="submitChangePin()" class="w-full py-2.5 rounded-2xl bg-brand-500 text-slate-950 font-black text-xs active:scale-95 transition">
-        Update PIN
-      </button>
     </div>
   </div>
 
   <!-- ========================================== -->
-  <!-- 6. CLIENT ENGINE JAVASCRIPT                -->
+  <!-- 7. FLOATING iOS TAB BAR (Glass Dock)       -->
+  <!-- ========================================== -->
+  <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto z-40 bg-white/85 backdrop-blur-xl border-t border-black/[0.06] px-6 py-2 pb-6 flex items-center justify-between shadow-lg">
+    
+    <button onclick="navigateTab('overview')" class="tab-btn active flex flex-col items-center space-y-1 text-slate-400 transition-all" data-tab="overview">
+      <div class="tab-icon-wrap w-10 h-7 rounded-2xl flex items-center justify-center transition-all">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+      </div>
+      <span class="text-[10px] font-bold">Overview</span>
+    </button>
+
+    <button onclick="navigateTab('bills')" class="tab-btn flex flex-col items-center space-y-1 text-slate-400 transition-all" data-tab="bills">
+      <div class="tab-icon-wrap w-10 h-7 rounded-2xl flex items-center justify-center transition-all">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      </div>
+      <span class="text-[10px] font-bold">Bills</span>
+    </button>
+
+    <button onclick="navigateTab('reports')" class="tab-btn flex flex-col items-center space-y-1 text-slate-400 transition-all" data-tab="reports">
+      <div class="tab-icon-wrap w-10 h-7 rounded-2xl flex items-center justify-center transition-all">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      </div>
+      <span class="text-[10px] font-bold">Reports</span>
+    </button>
+
+    <button onclick="navigateTab('settings')" class="tab-btn flex flex-col items-center space-y-1 text-slate-400 transition-all" data-tab="settings">
+      <div class="tab-icon-wrap w-10 h-7 rounded-2xl flex items-center justify-center transition-all">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      </div>
+      <span class="text-[10px] font-bold">Settings</span>
+    </button>
+
+  </nav>
+
+  <!-- ========================================== -->
+  <!-- 8. CORE JAVASCRIPT APP LOGIC (100% Dynamic) -->
   <!-- ========================================== -->
   <script>
-    let currentOwnerPhone = '';
-    let currentOwnerPin = '';
-    let currentStoreData = null;
-    let selectedStoreId = 'ALL';
-    let activePaymentFilter = null;
-    let activeDateFilter = 'TODAY';
-    let customDateSelected = null;
-    let deferredInstallPrompt = null;
-    let currentActiveTaxName = 'Tax';
+    // State management
+    let state = {
+      authenticated: false,
+      ownerPhone: localStorage.getItem('xrestro_owner_phone') || '0792153627',
+      ownerPin: localStorage.getItem('xrestro_owner_pin') || '1234',
+      activeTab: 'overview',
+      dateRange: 'today',
+      selectedStoreId: null,
+      storeData: null,
+      filteredBills: [],
+      billFilterPayment: 'ALL',
+      searchQuery: ''
+    };
 
-    function applyTaxLabels(taxName) {
-      const t = (taxName || '').trim() || 'Tax';
-      currentActiveTaxName = t;
-      const tabEl = document.getElementById('repTabTaxText');
-      if (tabEl) tabEl.innerText = t;
-      const cardEl = document.getElementById('repTaxCardLabel');
-      if (cardEl) cardEl.innerText = t + ' Collected';
-      const titleEl = document.getElementById('repTaxLedgerTitle');
-      if (titleEl) titleEl.innerText = t + ' Ledger';
-      const rowEl = document.getElementById('repTaxCollectedLabel');
-      if (rowEl) rowEl.innerText = 'Total ' + t + ' Collected';
-      const modalEl = document.getElementById('invModalTaxLabel');
-      if (modalEl) modalEl.innerText = t;
+    // Format currency
+    function fmtCurr(num) {
+      const curr = (state.storeData && state.storeData.currency) ? state.storeData.currency : 'R';
+      const val = Number(num) || 0;
+      return curr + ' ' + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
-    // Register Service Worker for PWA
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(console.error);
+    // Number format helper
+    function fmtNum(num) {
+      return (Number(num) || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    // Date range helper
+    function getDateBounds(rangeKey) {
+      const now = new Date();
+      let start = new Date();
+      let end = new Date();
+
+      if (rangeKey === 'today') {
+        start.setHours(0, 0, 0, 0);
+        end.setHours(23, 59, 59, 999);
+      } else if (rangeKey === 'yesterday') {
+        start.setDate(start.getDate() - 1);
+        start.setHours(0, 0, 0, 0);
+        end.setDate(end.getDate() - 1);
+        end.setHours(23, 59, 59, 999);
+      } else if (rangeKey === '7days') {
+        start.setDate(start.getDate() - 6);
+        start.setHours(0, 0, 0, 0);
+        end.setHours(23, 59, 59, 999);
+      } else if (rangeKey === '30days') {
+        start.setDate(start.getDate() - 29);
+        start.setHours(0, 0, 0, 0);
+        end.setHours(23, 59, 59, 999);
+      } else if (rangeKey === 'all') {
+        start = new Date('2020-01-01T00:00:00');
+        end = new Date('2030-12-31T23:59:59');
+      }
+      return { start, end };
+    }
+
+    // Navigation Tab switching
+    function navigateTab(tabName) {
+      state.activeTab = tabName;
+      ['pageOverview', 'pageBills', 'pageReports', 'pageSettings'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
       });
-    }
 
-    // Capture PWA Install Prompt for 1-Click Installation
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredInstallPrompt = e;
-      document.querySelectorAll('.btn-install-app').forEach(el => el.classList.remove('hidden'));
-    });
+      const pageMap = {
+        overview: 'pageOverview',
+        bills: 'pageBills',
+        reports: 'pageReports',
+        settings: 'pageSettings'
+      };
+      document.getElementById(pageMap[tabName]).classList.remove('hidden');
 
-    window.addEventListener('appinstalled', () => {
-      deferredInstallPrompt = null;
-      document.querySelectorAll('.btn-install-app').forEach(el => el.classList.add('hidden'));
-      alert('🎉 XRestro app installed on your phone home screen!');
-    });
-
-    function triggerInstallApp() {
-      if (deferredInstallPrompt) {
-        deferredInstallPrompt.prompt();
-        deferredInstallPrompt.userChoice.then((choice) => {
-          if (choice.outcome === 'accepted') {
-            console.log('App install accepted');
-          }
-          deferredInstallPrompt = null;
-        });
-      } else {
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        if (isIOS) {
-          document.getElementById('iosInstallModal').classList.remove('hidden');
-        } else {
-          alert("To install on Android: Tap the 3 dots in Chrome and tap 'Add to Home screen'.");
-        }
-      }
-    }
-
-    function closeIosInstallModal() {
-      document.getElementById('iosInstallModal').classList.add('hidden');
-    }
-
-    // World Countries Registry
-    const WORLD_COUNTRIES = [
-      { name: "Direct Manual Entry", code: "", flag: "🌐", manual: true },
-      { name: "South Africa", code: "+27", flag: "🇿🇦", popular: true },
-      { name: "Kenya", code: "+254", flag: "🇰🇪", popular: true },
-      { name: "United Arab Emirates", code: "+971", flag: "🇦🇪", popular: true },
-      { name: "Saudi Arabia", code: "+966", flag: "🇸🇦", popular: true },
-      { name: "United States", code: "+1", flag: "🇺🇸", popular: true },
-      { name: "United Kingdom", code: "+44", flag: "🇬🇧", popular: true },
-      { name: "India", code: "+91", flag: "🇮🇳", popular: true },
-      { name: "Canada", code: "+1", flag: "🇨🇦" },
-      { name: "Australia", code: "+61", flag: "🇦🇺" },
-      { name: "Nigeria", code: "+234", flag: "🇳🇬" },
-      { name: "Tanzania", code: "+255", flag: "🇹🇿" },
-      { name: "Uganda", code: "+256", flag: "🇺🇬" },
-      { name: "Ghana", code: "+233", flag: "🇬🇭" },
-      { name: "Germany", code: "+49", flag: "🇩🇪" },
-      { name: "France", code: "+33", flag: "🇫🇷" },
-      { name: "Oman", code: "+968", flag: "🇴🇲" },
-      { name: "Qatar", code: "+974", flag: "🇶🇦" },
-      { name: "Kuwait", code: "+965", flag: "🇰🇼" },
-      { name: "Bahrain", code: "+973", flag: "🇧🇭" },
-      { name: "Singapore", code: "+65", flag: "🇸🇬" }
-    ];
-
-    let selectedCountry = WORLD_COUNTRIES[0];
-
-    function openCountryModal() {
-      document.getElementById('countryModal').classList.remove('hidden');
-      renderCountriesList(WORLD_COUNTRIES);
-    }
-    function closeCountryModal() {
-      document.getElementById('countryModal').classList.add('hidden');
-    }
-    function renderCountriesList(list) {
-      const container = document.getElementById('countryList');
-      container.innerHTML = list.map(c => `
-        <div onclick="selectCountry('${c.code}', '${c.flag}', '${c.name}')" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-800 active:bg-slate-750 cursor-pointer border border-transparent hover:border-slate-700">
-          <div class="flex items-center space-x-2.5">
-            <span class="text-xl">${c.flag}</span>
-            <span class="text-xs font-bold text-white">${c.name}</span>
-          </div>
-          <span class="text-xs font-mono font-bold text-emerald-400">${c.code || 'Manual'}</span>
-        </div>
-      `).join('');
-    }
-    function filterCountriesList() {
-      const q = (document.getElementById('countrySearchInput').value || '').toLowerCase().trim();
-      const filtered = WORLD_COUNTRIES.filter(c => c.name.toLowerCase().includes(q) || c.code.includes(q));
-      renderCountriesList(filtered);
-    }
-    function selectCountry(code, flag, name) {
-      selectedCountry = { code, flag, name };
-      document.getElementById('selectedCountryFlag').innerText = flag;
-      document.getElementById('selectedCountryCode').innerText = code || '+';
-      document.getElementById('countrySelectedName').innerText = name;
-      closeCountryModal();
-    }
-
-    function togglePinVisibility() {
-      const pinEl = document.getElementById('loginPin');
-      const btn = document.getElementById('btnTogglePin');
-      if (pinEl.type === 'password') {
-        pinEl.type = 'text';
-        btn.innerText = 'Hide PIN';
-      } else {
-        pinEl.type = 'password';
-        btn.innerText = 'Show PIN';
-      }
-    }
-
-    // Number Formatting (Standard International en-US, No Currency Symbol)
-    function fmt(num) {
-      const n = Number(num || 0);
-      return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
-
-    // Navigation Tabs Switcher
-    function switchTab(tab) {
-      ['home', 'reports', 'invoices', 'settings'].forEach(t => {
-        const page = document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1));
-        const btn = document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1));
-        if (t === tab) {
-          page.classList.remove('hidden');
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-tab') === tabName) {
           btn.classList.add('active');
         } else {
-          page.classList.add('hidden');
           btn.classList.remove('active');
         }
       });
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Reports Hub Sub-tabs Switcher
-    function switchReportTab(rep) {
-      ['sales', 'drawer', 'dishes', 'categories', 'taxes'].forEach(r => {
-        const view = document.getElementById('reportView' + r.charAt(0).toUpperCase() + r.slice(1));
-        const btn = document.getElementById('repTab' + r.charAt(0).toUpperCase() + r.slice(1));
-        if (r === rep) {
-          view.classList.remove('hidden');
-          btn.classList.add('active');
-        } else {
-          view.classList.add('hidden');
-          btn.classList.remove('active');
-        }
+    // Date range selection
+    function selectDateRange(rangeKey) {
+      state.dateRange = rangeKey;
+      document.querySelectorAll('.date-pill').forEach(p => {
+        if (p.getAttribute('data-range') === rangeKey) p.classList.add('active');
+        else p.classList.remove('active');
       });
-    }
 
-    // Universal Date Filter Engine
-    function setDateFilter(filterType) {
-      activeDateFilter = filterType;
-      customDateSelected = null;
-      document.querySelectorAll('.date-pill').forEach(el => el.classList.remove('active'));
-      
-      const btnMap = {
-        'TODAY': 'filterBtnToday',
-        'YESTERDAY': 'filterBtnYesterday',
-        '7DAYS': 'filterBtn7Days',
-        'MONTH': 'filterBtnMonth',
-        'ALL': 'filterBtnAll'
+      const labels = {
+        today: 'Today',
+        yesterday: 'Yesterday',
+        '7days': 'Last 7 Days',
+        '30days': 'Last 30 Days',
+        all: 'All Time'
       };
-      if (btnMap[filterType]) {
-        document.getElementById(btnMap[filterType]).classList.add('active');
-      }
+      document.getElementById('overviewDateBadge').innerText = labels[rangeKey] || rangeKey;
 
-      renderDashboard();
+      recalculateAndRender();
     }
 
-    function openCustomDateModal() {
-      document.getElementById('customDateModal').classList.remove('hidden');
+    // Sidebar controls
+    function openSidebar() {
+      document.getElementById('sidebarOverlay').classList.remove('opacity-0', 'pointer-events-none');
+      document.getElementById('sidebarDrawer').classList.remove('-translate-x-full');
     }
-    function closeCustomDateModal() {
-      document.getElementById('customDateModal').classList.add('hidden');
-    }
-    function applyCustomDate() {
-      const val = document.getElementById('customDatePicker').value;
-      if (!val) return;
-      activeDateFilter = 'CUSTOM';
-      customDateSelected = val;
-      document.querySelectorAll('.date-pill').forEach(el => el.classList.remove('active'));
-      document.getElementById('filterBtnCustom').classList.add('active');
-      closeCustomDateModal();
-      renderDashboard();
+    function closeSidebar() {
+      document.getElementById('sidebarOverlay').classList.add('opacity-0', 'pointer-events-none');
+      document.getElementById('sidebarDrawer').classList.add('-translate-x-full');
     }
 
-    function jumpToActiveDate() {
-      setDateFilter('ALL');
+    // Report modal sheet controls
+    function closeReportModal() {
+      document.getElementById('reportModalOverlay').classList.add('opacity-0', 'pointer-events-none');
+      document.getElementById('reportModalSheet').classList.add('translate-y-full');
     }
 
-    // Authentication & Session
-    async function handleLogin() {
-      const phoneInput = document.getElementById('loginPhone').value.trim();
-      const pin = document.getElementById('loginPin').value.trim();
-      const errBox = document.getElementById('loginError');
-      errBox.classList.add('hidden');
-
-      if (!phoneInput) {
-        errBox.innerText = 'Please enter your mobile number.';
-        errBox.classList.remove('hidden');
-        return;
-      }
-      if (!pin || pin.length !== 4) {
-        errBox.innerText = 'Please enter your 4-digit Security PIN.';
-        errBox.classList.remove('hidden');
-        return;
-      }
-
-      let fullPhone = phoneInput;
-      if (selectedCountry.code && !phoneInput.startsWith('+') && !phoneInput.startsWith(selectedCountry.code)) {
-        fullPhone = selectedCountry.code + phoneInput.replace(/^0+/, '');
-      }
-
-      try {
-        const res = await fetch('/api/v1/owner/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ phone: fullPhone, pin: pin, countryCode: selectedCountry.code })
-        });
-        const data = await res.json();
-        if (data.success) {
-          currentOwnerPhone = data.ownerPhone || fullPhone;
-          currentOwnerPin = pin;
-          sessionStorage.setItem('xion_owner_phone', currentOwnerPhone);
-          sessionStorage.setItem('xion_owner_pin', currentOwnerPin);
-          localStorage.setItem('xion_owner_phone', currentOwnerPhone);
-          localStorage.setItem('xion_owner_pin', currentOwnerPin);
-
-          document.getElementById('loginScreen').classList.add('hidden');
-          await fetchData();
-        } else {
-          errBox.innerText = data.error || 'Authentication failed';
-          errBox.classList.remove('hidden');
-        }
-      } catch (e) {
-        errBox.innerText = 'Network error. Please try again.';
-        errBox.classList.remove('hidden');
-      }
+    function openReportModal(reportKey) {
+      closeSidebar();
+      renderReportContent(reportKey);
+      document.getElementById('reportModalOverlay').classList.remove('opacity-0', 'pointer-events-none');
+      document.getElementById('reportModalSheet').classList.remove('translate-y-full');
     }
 
-    function lockApp() {
-      sessionStorage.clear();
-      document.getElementById('loginPin').value = '';
-      document.getElementById('loginScreen').classList.remove('hidden');
+    // Receipt modal controls
+    function closeReceiptModal() {
+      document.getElementById('receiptModalOverlay').classList.add('opacity-0', 'pointer-events-none');
     }
 
-    // Live Data Fetching
-    async function fetchData() {
-      if (!currentOwnerPhone) return;
-      try {
-        const res = await fetch('/api/v1/owner/data?phone=' + encodeURIComponent(currentOwnerPhone) + '&pin=' + encodeURIComponent(currentOwnerPin));
-        const data = await res.json();
-        if (data.success) {
-          currentStoreData = data;
-          renderBranchSelector();
-          renderDashboard();
-        }
-      } catch (e) {
-        console.error('Fetch data error:', e);
-      }
-    }
+    function openReceiptModal(invoiceNo) {
+      if (!state.storeData || !Array.isArray(state.storeData.bills)) return;
+      const bill = state.storeData.bills.find(b => b.invoiceNo === invoiceNo);
+      if (!bill) return;
 
-    function renderBranchSelector() {
-      const select = document.getElementById('branchSelect');
-      const container = document.getElementById('branchSelectorContainer');
-      const storeIds = currentStoreData && currentStoreData.stores ? Object.keys(currentStoreData.stores) : [];
+      document.getElementById('receiptStoreName').innerText = state.storeData.storeName || "SALT 'N PEPPER";
+      document.getElementById('receiptInvoiceNo').innerText = bill.invoiceNo || 'INV';
+      document.getElementById('receiptDate').innerText = bill.createdDate ? new Date(bill.createdDate).toLocaleString() : new Date().toLocaleString();
 
-      if (storeIds.length <= 1) {
-        container.classList.add('hidden');
-        const s = storeIds.length === 1 ? currentStoreData.stores[storeIds[0]] : null;
-        if (s && s.storeName) {
-          document.getElementById('singleBranchName').innerText = s.storeName;
-          document.getElementById('settingStoreName').value = s.storeName;
-        }
-        selectedStoreId = storeIds.length === 1 ? storeIds[0] : 'ALL';
-        return;
-      }
+      const itemsCont = document.getElementById('receiptItemsContainer');
+      itemsCont.innerHTML = '';
+      const items = Array.isArray(bill.items) && bill.items.length > 0 ? bill.items : [{ itemName: 'Restaurant Item', qty: 1, lineTotal: bill.grandTotal }];
 
-      container.classList.remove('hidden');
-      select.innerHTML = '<option value="ALL">🏢 All Outlets (Consolidated)</option>';
-      storeIds.forEach(id => {
-        const s = currentStoreData.stores[id];
-        const opt = document.createElement('option');
-        opt.value = id;
-        opt.innerText = '📍 ' + (s.storeName || id);
-        select.appendChild(opt);
-      });
-      selectedStoreId = select.value || 'ALL';
-    }
-
-    // Bill Date Filter Matching Helper
-    function billMatchesDate(b, filterType, customVal) {
-      if (!b) return false;
-      if (filterType === 'ALL') return true;
-      const dStr = b.settledDate || b.billDate || b.createdDate;
-      if (!dStr) return true;
-      
-      const bDate = new Date(dStr);
-      const now = new Date();
-
-      if (filterType === 'TODAY') {
-        return bDate.getFullYear() === now.getFullYear() &&
-               bDate.getMonth() === now.getMonth() &&
-               bDate.getDate() === now.getDate();
-      }
-      if (filterType === 'YESTERDAY') {
-        const y = new Date();
-        y.setDate(now.getDate() - 1);
-        return bDate.getFullYear() === y.getFullYear() &&
-               bDate.getMonth() === y.getMonth() &&
-               bDate.getDate() === y.getDate();
-      }
-      if (filterType === '7DAYS') {
-        const limit = new Date();
-        limit.setDate(now.getDate() - 7);
-        return bDate >= limit;
-      }
-      if (filterType === 'MONTH') {
-        return bDate.getFullYear() === now.getFullYear() &&
-               bDate.getMonth() === now.getMonth();
-      }
-      if (filterType === 'CUSTOM' && customVal) {
-        const cDate = new Date(customVal);
-        return bDate.getFullYear() === cDate.getFullYear() &&
-               bDate.getMonth() === cDate.getMonth() &&
-               bDate.getDate() === cDate.getDate();
-      }
-      return true;
-    }
-
-    // Master Dashboard & Reports Renderer (100% Mathematically Balanced)
-    function renderDashboard() {
-      if (!currentStoreData || !currentStoreData.stores) return;
-      const stores = currentStoreData.stores;
-      const storeIds = Object.keys(stores);
-
-      const select = document.getElementById('branchSelect');
-      if (select && storeIds.length > 1) {
-        selectedStoreId = select.value || 'ALL';
-      } else if (storeIds.length === 1) {
-        selectedStoreId = storeIds[0];
-      }
-
-      let allStoreBills = [];
-      let activeStoreName = 'My Restaurant';
-      let activeTaxName = '';
-
-      storeIds.forEach(id => {
-        if (selectedStoreId === 'ALL' || selectedStoreId === id) {
-          const s = stores[id];
-          if (s.storeName) activeStoreName = s.storeName;
-          if (s.taxName) activeTaxName = s.taxName;
-          if (Array.isArray(s.bills)) {
-            allStoreBills.push(...s.bills);
-          }
-        }
-      });
-
-      if (!activeTaxName && allStoreBills.length > 0) {
-        const bTax = allStoreBills.find(b => b.taxName);
-        if (bTax && bTax.taxName) activeTaxName = bTax.taxName;
-      }
-      if (!activeTaxName) {
-        const p = currentOwnerPhone || '';
-        activeTaxName = (p.startsWith('91') || p.startsWith('+91')) ? 'GST' 
-                      : ((p.startsWith('27') || p.startsWith('+27') || p.startsWith('07') || p.startsWith('08')) ? 'VAT' : 'Tax');
-      }
-
-      applyTaxLabels(activeTaxName);
-
-      document.getElementById('singleBranchName').innerText = activeStoreName;
-      document.getElementById('settingStoreName').value = activeStoreName;
-      document.getElementById('settingOwnerPhone').value = currentOwnerPhone;
-
-      // Smart Default: If TODAY has 0 bills but previous bills exist, auto-switch to ALL TIME so user never sees empty screen
-      const todayBillsCount = allStoreBills.filter(b => billMatchesDate(b, 'TODAY')).length;
-      if (activeDateFilter === 'TODAY' && todayBillsCount === 0 && allStoreBills.length > 0) {
-        activeDateFilter = 'ALL';
-        document.querySelectorAll('.date-pill').forEach(el => el.classList.remove('active'));
-        document.getElementById('filterBtnAll').classList.add('active');
-      }
-
-      // Filter bills by active date
-      const filteredBills = allStoreBills.filter(b => billMatchesDate(b, activeDateFilter, customDateSelected));
-
-      // Calculate Metrics Dynamically from Filtered Bills
-      let grossSales = 0;
-      let totalDiscount = 0;
-      let totalTax = 0;
-      let cashSales = 0;
-      let cardSales = 0;
-      let upiSales = 0;
-      let dueSales = 0;
-      let dineInSales = 0;
-      let takeawaySales = 0;
-      let dineCount = 0;
-      let takeCount = 0;
-
-      let cashBillCount = 0;
-      let cardBillCount = 0;
-      let upiBillCount = 0;
-      let dueBillCount = 0;
-
-      filteredBills.forEach(b => {
-        const gTotal = Number(b.grandTotal || b.subTotal || 0);
-        const sub = Number(b.subTotal || gTotal);
-        const disc = Number(b.discountAmount || 0);
-        const tax = Number(b.taxAmount || 0);
-
-        grossSales += gTotal;
-        totalDiscount += disc;
-        totalTax += tax;
-
-        const pm = (b.paymentMode || '').toUpperCase();
-        const cAmt = Number(b.cashAmount || 0);
-        const kAmt = Number(b.cardAmount || 0);
-        const bAmt = Number(b.bankAmount || 0);
-        const uAmt = Number(b.upiAmount || 0);
-        const oAmt = Number(b.otherAmount || 0);
-
-        if (cAmt > 0 || pm.includes('CASH')) {
-          cashSales += (cAmt > 0 ? cAmt : gTotal);
-          cashBillCount++;
-        }
-        if (kAmt > 0 || bAmt > 0 || pm.includes('CARD') || pm.includes('BANK') || pm.includes('EDC') || pm.includes('POS')) {
-          cardSales += (kAmt > 0 || bAmt > 0 ? (kAmt + bAmt) : gTotal);
-          cardBillCount++;
-        }
-        if (uAmt > 0 || pm.includes('UPI') || pm.includes('QR') || pm.includes('ONLINE')) {
-          upiSales += (uAmt > 0 ? uAmt : gTotal);
-          upiBillCount++;
-        }
-        if (oAmt > 0 || pm.includes('DUE') || pm.includes('CREDIT')) {
-          dueSales += (oAmt > 0 ? oAmt : gTotal);
-          dueBillCount++;
-        }
-
-        const oType = (b.orderType || '').toUpperCase();
-        if (oType.includes('TAKE') || oType.includes('PARCEL')) {
-          takeawaySales += gTotal;
-          takeCount++;
-        } else {
-          dineInSales += gTotal;
-          dineCount++;
-        }
-      });
-
-      // Tally with LiveSummary for Drawer Cash if single store and date matches
-      let supplierCash = 0;
-      let returnCash = 0;
-      storeIds.forEach(id => {
-        if (selectedStoreId === 'ALL' || selectedStoreId === id) {
-          const sm = stores[id].liveSummary || {};
-          supplierCash += Number(sm.supplierCash || 0);
-          returnCash += Number(sm.returnCash || 0);
-        }
-      });
-
-      const drawerCash = Math.max(0, cashSales - returnCash - supplierCash);
-      const totalSettled = cashSales + cardSales + upiSales + dueSales;
-
-      // Update Date Indicator Status & Alert
-      const dateAlert = document.getElementById('dateFilterAlert');
-      const dateStatus = document.getElementById('dateFilterStatus');
-      const filterNames = {
-        'TODAY': 'Today (' + new Date().toLocaleDateString('en-GB') + ')',
-        'YESTERDAY': 'Yesterday',
-        '7DAYS': 'Last 7 Days',
-        'MONTH': 'This Month',
-        'ALL': 'All Time Sales',
-        'CUSTOM': 'Custom: ' + (customDateSelected || '')
-      };
-      dateStatus.innerText = (filterNames[activeDateFilter] || activeDateFilter) + ' • ' + filteredBills.length + ' Invoices';
-
-      if (filteredBills.length === 0 && allStoreBills.length > 0) {
-        dateAlert.classList.remove('hidden');
-        document.getElementById('dateAlertText').innerText = 'No bills recorded for ' + (filterNames[activeDateFilter] || 'selected date') + '.';
-      } else {
-        dateAlert.classList.add('hidden');
-      }
-
-      // Update Hero Sales Card
-      document.getElementById('valPayTotal').innerText = fmt(totalSettled > 0 ? totalSettled : grossSales);
-      document.getElementById('heroInvoicesCount').innerText = filteredBills.length;
-      document.getElementById('tallyExpectedCash').innerText = fmt(drawerCash);
-      document.getElementById('tallySalesCash').innerText = fmt(cashSales);
-      document.getElementById('tallyReturnCash').innerText = fmt(returnCash);
-      document.getElementById('tallySupplierCash').innerText = fmt(supplierCash);
-
-      // Update 3 Payment Breakdown Cards
-      document.getElementById('valPayCash').innerText = fmt(cashSales);
-      document.getElementById('valPayCard').innerText = fmt(cardSales);
-      document.getElementById('valPayUpi').innerText = fmt(upiSales + dueSales);
-
-      const totColl = totalSettled || 1;
-      document.getElementById('pctPayCash').innerText = Math.round((cashSales / totColl) * 100) + '%';
-      document.getElementById('pctPayCard').innerText = Math.round((cardSales / totColl) * 100) + '%';
-      document.getElementById('pctPayUpi').innerText = Math.round(((upiSales + dueSales) / totColl) * 100) + '%';
-
-      document.getElementById('subPayCash').innerText = cashBillCount + ' Invoices';
-      document.getElementById('subPayCard').innerText = cardBillCount + ' Invoices';
-      document.getElementById('subPayUpi').innerText = (upiBillCount + dueBillCount) + ' Invoices';
-
-      // Update Channel Vitals
-      document.getElementById('vitalDine').innerText = fmt(dineInSales);
-      document.getElementById('vitalTake').innerText = fmt(takeawaySales);
-      document.getElementById('vitalDineCount').innerText = dineCount + ' Orders';
-      document.getElementById('vitalTakeCount').innerText = takeCount + ' Orders';
-
-      // Render Charts & Dishes
-      renderHourlyChart(filteredBills);
-      renderTopDishes(filteredBills);
-
-      // Render Reports Hub Data
-      renderReportsHub(filteredBills, grossSales, totalDiscount, totalTax, cashSales, cardSales, upiSales, supplierCash, returnCash, drawerCash, totalSettled);
-
-      // Render Bills List
-      filterBillsList();
-    }
-
-    // Reports Hub Dynamic Audit Calculations (Plain Numbers - No Currency Symbol)
-    function renderReportsHub(bills, gross, disc, tax, cash, card, upi, supp, ret, drawer, settled) {
-      document.getElementById('repGrossSales').innerText = fmt(gross);
-      document.getElementById('repDiscounts').innerText = fmt(disc);
-      document.getElementById('repNetSales').innerText = fmt(gross - disc);
-      document.getElementById('repTax').innerText = fmt(tax);
-      document.getElementById('repInvoicesCount').innerText = bills.length;
-      document.getElementById('repAov').innerText = fmt(bills.length > 0 ? (gross / bills.length) : 0);
-
-      // Drawer Audit
-      document.getElementById('repDrawerSalesCash').innerText = fmt(cash);
-      document.getElementById('repDrawerReturnCash').innerText = fmt(ret);
-      document.getElementById('repDrawerSupplierCash').innerText = fmt(supp);
-      document.getElementById('repDrawerExpectedCash').innerText = fmt(drawer);
-      document.getElementById('repDrawerCard').innerText = fmt(card);
-      document.getElementById('repDrawerUpi').innerText = fmt(upi);
-      document.getElementById('repDrawerTotalSettled').innerText = fmt(settled);
-
-      // Tax Audit
-      document.getElementById('repTaxableTurnover').innerText = fmt(gross - tax);
-      document.getElementById('repTaxCollected').innerText = fmt(tax);
-      document.getElementById('repTaxRate').innerText = gross > 0 ? Math.round((tax / (gross - tax || 1)) * 100) + '%' : '0%';
-
-      // Full Itemized Dishes Report
-      const itemMap = {};
-      const catMap = {};
-
-      bills.forEach(b => {
-        if (Array.isArray(b.items)) {
-          b.items.forEach(i => {
-            const name = i.itemName || 'Special Item';
-            const cat = i.categoryName || 'General';
-            const qty = Number(i.qty || 1);
-            const lineRev = Number(i.lineTotal || (i.qty * i.price) || 0);
-
-            if (!itemMap[name]) itemMap[name] = { name, cat, qty: 0, revenue: 0, price: i.price || (lineRev/qty) };
-            itemMap[name].qty += qty;
-            itemMap[name].revenue += lineRev;
-
-            if (!catMap[cat]) catMap[cat] = { cat, revenue: 0, itemsCount: 0 };
-            catMap[cat].revenue += lineRev;
-            catMap[cat].itemsCount += qty;
-          });
-        }
-      });
-
-      const dishesArr = Object.values(itemMap).sort((a, b) => b.qty - a.qty);
-      document.getElementById('repDishTotalCount').innerText = dishesArr.length + ' Items';
-
-      const dishListContainer = document.getElementById('repFullDishesList');
-      if (dishesArr.length === 0) {
-        dishListContainer.innerHTML = '<div class="text-center text-slate-500 text-xs py-6">No dish items recorded for this period.</div>';
-      } else {
-        dishListContainer.innerHTML = dishesArr.map((d, i) => `
-          <div class="flex items-center justify-between p-2.5 rounded-2xl bg-slate-950/60 border border-slate-800 text-xs">
-            <div class="flex items-center space-x-2 truncate">
-              <span class="w-5 h-5 rounded-lg bg-slate-800 text-slate-300 font-mono text-[10px] flex items-center justify-center font-bold">${i+1}</span>
-              <div class="truncate">
-                <div class="font-bold text-white truncate">${d.name}</div>
-                <div class="text-[10px] text-slate-500">${d.cat} • ${d.qty} sold</div>
-              </div>
-            </div>
-            <div class="text-right shrink-0 font-mono font-bold text-emerald-400">
-              ${fmt(d.revenue)}
-            </div>
+      items.forEach(it => {
+        const row = document.createElement('div');
+        row.className = 'flex justify-between items-center text-xs py-1 border-b border-slate-50';
+        row.innerHTML = `
+          <div>
+            <p class="font-bold text-slate-800">${it.itemName || 'Meal Item'}</p>
+            <p class="text-[10px] text-slate-400">${it.qty || 1} x ${fmtCurr(it.price || (it.lineTotal / (it.qty || 1)))}</p>
           </div>
-        `).join('');
-      }
-
-      // Categories Breakdown
-      const catListContainer = document.getElementById('repCategoriesList');
-      const catsArr = Object.values(catMap).sort((a, b) => b.revenue - a.revenue);
-      if (catsArr.length === 0) {
-        catListContainer.innerHTML = '<div class="text-center text-slate-500 text-xs py-6">No category data available.</div>';
-      } else {
-        catListContainer.innerHTML = catsArr.map(c => {
-          const pct = Math.round((c.revenue / (gross || 1)) * 100);
-          return `
-            <div class="space-y-1">
-              <div class="flex justify-between text-xs">
-                <span class="font-bold text-white">${c.cat}</span>
-                <span class="font-mono font-bold text-emerald-400">${fmt(c.revenue)} (${pct}%)</span>
-              </div>
-              <div class="w-full h-2 rounded-full bg-slate-950 overflow-hidden border border-slate-800">
-                <div style="width: ${pct}%;" class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full"></div>
-              </div>
-            </div>
-          `;
-        }).join('');
-      }
-    }
-
-    // Hourly Rush Heatmap Logic
-    function renderHourlyChart(bills) {
-      const container = document.getElementById('hourlyChartContainer');
-      const hours = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-      const hourSales = {};
-      hours.forEach(h => hourSales[h] = 0);
-
-      bills.forEach(b => {
-        const dStr = b.settledDate || b.billDate;
-        if (dStr) {
-          const h = new Date(dStr).getHours();
-          if (hourSales[h] !== undefined) {
-            hourSales[h] += Number(b.grandTotal || b.subTotal || 0);
-          }
-        }
-      });
-
-      const maxSales = Math.max(...Object.values(hourSales), 1);
-      let peakHour = 13;
-      let maxVal = 0;
-      hours.forEach(h => {
-        if (hourSales[h] > maxVal) {
-          maxVal = hourSales[h];
-          peakHour = h;
-        }
-      });
-
-      const peakBadge = document.getElementById('peakHourBadge');
-      if (maxVal > 0) {
-        const hFmt = peakHour > 12 ? (peakHour - 12) + ' PM' : (peakHour === 12 ? '12 PM' : peakHour + ' AM');
-        peakBadge.innerText = '🔥 Peak: ' + hFmt + ' (' + fmt(maxVal) + ')';
-      } else {
-        peakBadge.innerText = '🔥 Peak: Normal';
-      }
-
-      container.innerHTML = hours.map(h => {
-        const val = hourSales[h];
-        const pct = Math.max(8, Math.round((val / maxSales) * 100));
-        const isPeak = (h === peakHour && val > 0);
-        const barColor = isPeak ? 'bg-gradient-to-t from-amber-500 to-yellow-400 shadow-md shadow-amber-500/30' : (val > 0 ? 'bg-brand-500' : 'bg-slate-800');
-        const hLabel = h > 12 ? (h - 12) + 'p' : h + 'a';
-        return `
-          <div class="flex-1 flex flex-col items-center justify-end h-full group cursor-pointer" title="${hLabel.toUpperCase()}: ${fmt(val)}">
-            <div style="height: ${pct}%;" class="w-full max-w-[14px] ${barColor} rounded-t-sm transition-all duration-300"></div>
-          </div>
+          <span class="font-bold text-slate-900 font-mono">${fmtCurr(it.lineTotal || 0)}</span>
         `;
-      }).join('');
-    }
-
-    // Top 5 Dishes
-    function renderTopDishes(bills) {
-      const container = document.getElementById('topDishesList');
-      const itemMap = {};
-
-      bills.forEach(b => {
-        if (Array.isArray(b.items)) {
-          b.items.forEach(i => {
-            const name = i.itemName || 'Special Dish';
-            if (!itemMap[name]) itemMap[name] = { name, qty: 0, revenue: 0, isVeg: i.isVeg !== false };
-            itemMap[name].qty += Number(i.qty || 1);
-            itemMap[name].revenue += Number(i.lineTotal || (i.qty * i.price) || 0);
-          });
-        }
+        itemsCont.appendChild(row);
       });
 
-      const top = Object.values(itemMap).sort((a, b) => b.qty - a.qty).slice(0, 5);
-      if (top.length === 0) {
-        container.innerHTML = '<div class="text-center text-slate-500 text-xs py-4">No dish items recorded yet.</div>';
+      document.getElementById('receiptSubtotal').innerText = fmtCurr(bill.subTotal || bill.grandTotal);
+      document.getElementById('receiptDiscount').innerText = fmtCurr(bill.discountAmount || 0);
+      document.getElementById('receiptTaxLabel').innerText = bill.taxName || 'VAT';
+      document.getElementById('receiptTax').innerText = fmtCurr(bill.taxAmount || 0);
+      document.getElementById('receiptGrandTotal').innerText = fmtCurr(bill.grandTotal || 0);
+      document.getElementById('receiptPaymentMode').innerText = bill.paymentMode || 'Cash';
+      document.getElementById('receiptCashier').innerText = bill.cashierName || 'Admin';
+
+      document.getElementById('receiptModalOverlay').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    // Bill filters
+    function setBillPaymentFilter(mode) {
+      state.billFilterPayment = mode;
+      document.querySelectorAll('.bill-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-filter') === mode) {
+          btn.className = 'bill-filter-btn active px-3 py-1.5 rounded-xl bg-slate-900 text-white shadow-sm';
+        } else {
+          btn.className = 'bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200';
+        }
+      });
+      filterBills();
+    }
+
+    function filterBills() {
+      const q = (document.getElementById('billSearchInput').value || '').toLowerCase().trim();
+      const mode = state.billFilterPayment;
+      const { start, end } = getDateBounds(state.dateRange);
+
+      if (!state.storeData || !Array.isArray(state.storeData.bills)) {
+        renderBillsList([]);
         return;
       }
 
-      const medals = ['text-yellow-400 bg-yellow-400/10 border-yellow-400/30', 'text-slate-300 bg-slate-300/10 border-slate-300/30', 'text-amber-600 bg-amber-600/10 border-amber-600/30', 'text-slate-400 bg-slate-800 border-slate-700', 'text-slate-400 bg-slate-800 border-slate-700'];
+      const filtered = state.storeData.bills.filter(b => {
+        const bDate = new Date(b.createdDate || b.settledDate || 0);
+        if (bDate < start || bDate > end) return false;
 
-      container.innerHTML = top.map((d, i) => `
-        <div class="flex items-center justify-between text-xs bg-slate-950/70 p-2.5 rounded-2xl border border-slate-800/80">
-          <div class="flex items-center space-x-2">
-            <span class="w-5 h-5 rounded-lg border font-mono font-black text-[10px] flex items-center justify-center ${medals[i]}">#${i+1}</span>
-            <div>
-              <div class="font-bold text-white">${d.name}</div>
-              <div class="text-[10px] text-slate-400">${d.qty} units sold</div>
-            </div>
-          </div>
-          <div class="font-mono font-extrabold text-emerald-400">
-            ${fmt(d.revenue)}
-          </div>
-        </div>
-      `).join('');
-    }
+        if (mode === 'Cash' && !(b.paymentMode || '').includes('Cash') && !(b.cashAmount > 0)) return false;
+        if (mode === 'Card' && !(b.paymentMode || '').includes('Card') && !(b.cardAmount > 0)) return false;
+        if (mode === 'Takeaway' && (b.orderType || '').toLowerCase() === 'dinein') return false;
+        if (mode === 'DineIn' && (b.orderType || '').toLowerCase() !== 'dinein') return false;
 
-    // Bills List & Search Filtering
-    function filterBillsList() {
-      if (!currentStoreData || !currentStoreData.stores) return;
-      const search = (document.getElementById('searchInput').value || '').toLowerCase().trim();
-
-      let bills = [];
-      const storeIds = Object.keys(currentStoreData.stores);
-      storeIds.forEach(id => {
-        if (selectedStoreId === 'ALL' || selectedStoreId === id) {
-          if (Array.isArray(currentStoreData.stores[id].bills)) {
-            bills.push(...currentStoreData.stores[id].bills);
-          }
+        if (q) {
+          const invMatch = (b.invoiceNo || '').toLowerCase().includes(q);
+          const custMatch = (b.customerName || '').toLowerCase().includes(q);
+          const amtMatch = (b.grandTotal || '').toString().includes(q);
+          if (!invMatch && !custMatch && !amtMatch) return false;
         }
+
+        return true;
       });
 
-      // Filter by active date
-      bills = bills.filter(b => billMatchesDate(b, activeDateFilter, customDateSelected));
-
-      // Filter by payment mode cross-filter
-      if (activePaymentFilter) {
-        bills = bills.filter(b => {
-          const pm = (b.paymentMode || '').toUpperCase();
-          if (activePaymentFilter === 'Cash') return pm.includes('CASH') || b.cashAmount > 0;
-          if (activePaymentFilter === 'Card') return pm.includes('CARD') || pm.includes('BANK') || b.cardAmount > 0 || b.bankAmount > 0;
-          if (activePaymentFilter === 'UPI') return pm.includes('UPI') || pm.includes('QR') || b.upiAmount > 0;
-          return true;
-        });
-      }
-
-      if (search) {
-        bills = bills.filter(b => 
-          (b.invoiceNo || '').toLowerCase().includes(search) ||
-          (b.tableName || '').toLowerCase().includes(search) ||
-          (b.customerName || '').toLowerCase().includes(search) ||
-          (b.paymentMode || '').toLowerCase().includes(search)
-        );
-      }
-
-      renderBillsList(bills);
+      renderBillsList(filtered);
     }
 
     function renderBillsList(bills) {
-      const container = document.getElementById('billsList');
-      const homeContainer = document.getElementById('homeRecentBillsList');
-      document.getElementById('tabCountBills').innerText = bills.length;
-      document.getElementById('homeBillsCount').innerText = bills.length;
+      const cont = document.getElementById('billsContainer');
+      cont.innerHTML = '';
 
-      if (!bills || bills.length === 0) {
-        const emptyHtml = `
-          <div class="py-8 text-center text-slate-500 text-xs">
-            No transactions found for this period.<br>
-            <span class="text-[10px] text-slate-600 mt-1 block">Live transactions from POS will stream here</span>
-          </div>`;
-        container.innerHTML = emptyHtml;
-        if (homeContainer) homeContainer.innerHTML = emptyHtml;
+      let totalSum = 0;
+      bills.forEach(b => { totalSum += (b.grandTotal || 0); });
+
+      document.getElementById('billsCountLabel').innerText = `Showing ${bills.length} Invoices`;
+      document.getElementById('billsTotalAmtLabel').innerText = `Total: ${fmtCurr(totalSum)}`;
+
+      if (bills.length === 0) {
+        cont.innerHTML = `
+          <div class="ios-card p-8 text-center space-y-2">
+            <span class="text-3xl">🧾</span>
+            <p class="font-extrabold text-sm text-slate-800">No Invoices Found</p>
+            <p class="text-xs text-slate-400">No bills match the selected date or search filter.</p>
+          </div>
+        `;
         return;
       }
 
-      const sorted = [...bills].sort((a, b) => new Date(b.settledDate || 0) - new Date(a.settledDate || 0));
-      window.currentRenderedBills = sorted;
+      bills.slice(0, 150).forEach(b => {
+        const card = document.createElement('div');
+        card.className = 'ios-card p-4 flex items-center justify-between cursor-pointer';
+        card.onclick = () => openReceiptModal(b.invoiceNo);
 
-      const html = sorted.map((b, idx) => {
-        const timeStr = b.settledDate ? new Date(b.settledDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '--:--';
-        const items = b.items || [];
-        const itemsPreview = items.map(i => i.qty + 'x ' + i.itemName).slice(0, 3).join(', ') + (items.length > 3 ? '...' : '');
+        const bDate = b.createdDate ? new Date(b.createdDate) : new Date();
+        const dateStr = bDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + bDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
 
-        let payBadgeColor = 'bg-slate-800 text-slate-300 border-slate-700';
-        const pm = (b.paymentMode || '').toUpperCase();
-        if (pm.includes('CASH')) payBadgeColor = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30';
-        else if (pm.includes('CARD') || pm.includes('BANK')) payBadgeColor = 'bg-blue-500/10 text-blue-400 border-blue-500/30';
-        else if (pm.includes('UPI')) payBadgeColor = 'bg-purple-500/10 text-purple-400 border-purple-500/30';
+        const isDine = (b.orderType || '').toLowerCase() === 'dinein';
+        const typeBadge = isDine ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-blue-50 text-blue-700 border-blue-200';
 
-        return `
-          <div onclick="viewBillDetails(${idx})" class="kpi-card bg-slate-950/70 border border-slate-800 hover:border-slate-700 active:border-emerald-500/50 rounded-2xl p-3.5 space-y-2 transition cursor-pointer select-none">
-            <div class="flex items-center justify-between text-xs">
-              <div class="flex items-center space-x-2">
-                <span class="font-black text-white font-mono">#${b.invoiceNo || b.orderId}</span>
-                <span class="text-[10px] px-2 py-0.5 rounded border font-bold ${payBadgeColor}">${b.paymentMode || 'Cash'}</span>
-                <span class="text-[10px] text-slate-400 font-medium">${b.orderType || 'DineIn'}</span>
-              </div>
-              <div class="text-right">
-                <span class="text-sm font-black font-mono text-emerald-400">${fmt(b.grandTotal || b.subTotal || 0)}</span>
-              </div>
+        card.innerHTML = `
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center font-black text-xs text-slate-700">
+              ${b.paymentMode === 'Card' ? '💳' : (b.paymentMode === 'UPI' ? '📱' : '💵')}
             </div>
-
-            <div class="flex items-center justify-between text-[11px] text-slate-400">
-              <span class="flex items-center space-x-1">
-                <span>📍 ${b.tableName || 'Counter'}</span>
-                <span>•</span>
-                <span>👤 ${b.customerName || 'Walk-in'}</span>
-              </span>
-              <span class="text-[10px] text-slate-500 font-mono">${timeStr}</span>
-            </div>
-
-            ${items.length > 0 ? `
-              <div class="text-[10px] text-slate-400 bg-slate-900/60 rounded-xl px-2.5 py-1.5 border border-slate-800/80 truncate flex items-center justify-between">
-                <span class="truncate">🍽️ ${itemsPreview}</span>
-                <span class="text-[9px] text-brand-400 font-bold ml-1 shrink-0">Inspect ➔</span>
-              </div>
-            ` : ''}
-          </div>
-        `;
-      }).join('');
-
-      container.innerHTML = html;
-      if (homeContainer) homeContainer.innerHTML = sorted.slice(0, 3).map((b, idx) => {
-        return `
-          <div onclick="viewBillDetails(${idx})" class="flex items-center justify-between p-2.5 rounded-2xl bg-slate-950/60 border border-slate-800 text-xs cursor-pointer">
             <div>
-              <div class="font-mono font-bold text-white">#${b.invoiceNo || b.orderId} <span class="text-[10px] text-slate-500 font-sans">(${b.tableName || 'Counter'})</span></div>
-              <div class="text-[10px] text-slate-400">${b.paymentMode || 'Cash'} • ${b.items ? b.items.length : 0} items</div>
-            </div>
-            <div class="font-mono font-black text-emerald-400">
-              ${fmt(b.grandTotal || b.subTotal || 0)}
+              <div class="flex items-center space-x-2">
+                <span class="font-black text-xs text-slate-900 font-mono">${b.invoiceNo || 'INV'}</span>
+                <span class="text-[9px] font-extrabold px-1.5 py-0.5 rounded-md border ${typeBadge}">${b.orderType || 'Takeaway'}</span>
+              </div>
+              <p class="text-[11px] text-slate-400 font-semibold mt-0.5">${dateStr} • ${b.cashierName || 'Admin'}</p>
             </div>
           </div>
+
+          <div class="text-right">
+            <p class="font-black text-sm text-slate-900 font-mono">${fmtCurr(b.grandTotal || 0)}</p>
+            <p class="text-[10px] font-bold text-slate-400 capitalize">${b.paymentMode || 'Cash'}</p>
+          </div>
         `;
-      }).join('');
+        cont.appendChild(card);
+      });
     }
 
-    let activeInspectedBill = null;
+    // Recalculate all reports dynamically for the active date range
+    function recalculateAndRender() {
+      if (!state.storeData) return;
 
-    function viewBillDetails(idx) {
-      if (!window.currentRenderedBills || !window.currentRenderedBills[idx]) return;
-      const b = window.currentRenderedBills[idx];
-      activeInspectedBill = b;
+      const { start, end } = getDateBounds(state.dateRange);
+      const bills = Array.isArray(state.storeData.bills) ? state.storeData.bills : [];
+      const returns = Array.isArray(state.storeData.returns) ? state.storeData.returns : [];
+      const voids = Array.isArray(state.storeData.voidLogs) ? state.storeData.voidLogs : [];
 
-      document.getElementById('invModalNo').innerText = '#' + (b.invoiceNo || b.orderId);
-      document.getElementById('invModalStatus').innerText = (b.orderStatus || 'PAID').toUpperCase();
-      document.getElementById('invModalWaiter').innerText = b.waiterName || 'Self / Counter';
-      document.getElementById('invModalTable').innerText = (b.tableName || 'Counter') + ' (' + (b.orderType || 'DineIn') + ')';
-      document.getElementById('invModalCustomer').innerText = b.customerName || 'Walk-in';
-      document.getElementById('invModalToken').innerText = '#' + (b.tokenNo || '1');
+      // Filter bills by active date range
+      const periodBills = bills.filter(b => {
+        const d = new Date(b.createdDate || b.settledDate || 0);
+        return d >= start && d <= end;
+      });
 
-      const d = b.settledDate ? new Date(b.settledDate) : new Date();
-      document.getElementById('invModalTime').innerText = d.toLocaleDateString('en-GB') + ' ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      // Filter returns by active date range
+      const periodReturns = returns.filter(r => {
+        const d = new Date(r.returnDate || 0);
+        return d >= start && d <= end;
+      });
 
-      const items = b.items || [];
-      const listContainer = document.getElementById('invModalItemsList');
-      if (items.length === 0) {
-        listContainer.innerHTML = '<div class="text-xs text-slate-500 p-3 bg-slate-950/40 rounded-xl text-center">No items detail recorded.</div>';
+      // Filter voids by active date range
+      const periodVoids = voids.filter(v => {
+        const d = new Date(v.createdAt || 0);
+        return d >= start && d <= end;
+      });
+
+      // Aggregate Metrics
+      let totalGross = 0;
+      let salesCash = 0;
+      let salesCard = 0;
+      let salesUpi = 0;
+      let salesDue = 0;
+      let totalTax = 0;
+      let totalDisc = 0;
+      let dineInSales = 0;
+      let takeSales = 0;
+
+      periodBills.forEach(b => {
+        totalGross += (b.grandTotal || 0);
+        salesCash += (b.cashAmount || 0);
+        salesCard += (b.cardAmount || 0);
+        salesUpi += (b.upiAmount || 0);
+        salesDue += (b.otherAmount || 0);
+        totalTax += (b.taxAmount || 0);
+        totalDisc += (b.discountAmount || 0);
+        if ((b.orderType || '').toLowerCase() === 'dinein') dineInSales += (b.grandTotal || 0);
+        else takeSales += (b.grandTotal || 0);
+      });
+
+      let totalRefunds = 0;
+      periodReturns.forEach(r => { totalRefunds += (r.totalRefundAmount || 0); });
+
+      const netRevenue = totalGross - totalRefunds;
+      const avgTicket = periodBills.length > 0 ? (totalGross / periodBills.length) : 0;
+
+      // Update Hero Card
+      document.getElementById('heroCurrency').innerText = state.storeData.currency || 'R';
+      document.getElementById('heroNetRevenue').innerText = fmtNum(netRevenue);
+      document.getElementById('heroOrdersCount').innerText = periodBills.length.toLocaleString();
+      document.getElementById('heroAvgTicket').innerText = fmtCurr(avgTicket);
+      document.getElementById('heroReturnsCount').innerText = periodReturns.length.toLocaleString();
+
+      // Update Collections Card
+      document.getElementById('dashCashCollected').innerText = fmtCurr(salesCash);
+      document.getElementById('dashCardCollected').innerText = fmtCurr(salesCard);
+      document.getElementById('dashUpiCollected').innerText = fmtCurr(salesUpi);
+      document.getElementById('dashDueCollected').innerText = fmtCurr(salesDue);
+
+      // Update Channels
+      document.getElementById('dashTakeawayAmt').innerText = fmtCurr(takeSales);
+      document.getElementById('dashDineInAmt').innerText = fmtCurr(dineInSales);
+      const totalChan = takeSales + dineInSales;
+      document.getElementById('dashTakeawayBar').style.width = totalChan > 0 ? `${(takeSales / totalChan) * 100}%` : '0%';
+      document.getElementById('dashDineInBar').style.width = totalChan > 0 ? `${(dineInSales / totalChan) * 100}%` : '0%';
+
+      // Top Selling Menu Items Breakdown
+      const itemMap = {};
+      periodBills.forEach(b => {
+        if (Array.isArray(b.items)) {
+          b.items.forEach(it => {
+            const name = it.itemName || 'Meal Item';
+            if (!itemMap[name]) itemMap[name] = { name, qty: 0, revenue: 0, category: it.categoryName || 'General' };
+            itemMap[name].qty += (Number(it.qty) || 1);
+            itemMap[name].revenue += (Number(it.lineTotal) || 0);
+          });
+        }
+      });
+
+      const sortedItems = Object.values(itemMap).sort((a, b) => b.revenue - a.revenue);
+      const topCont = document.getElementById('dashTopItemsList');
+      topCont.innerHTML = '';
+
+      if (sortedItems.length === 0) {
+        topCont.innerHTML = '<p class="text-xs text-slate-400 py-3 text-center">No menu items sold in this period.</p>';
       } else {
-        listContainer.innerHTML = items.map(i => {
-          const lTotal = i.lineTotal || (i.qty * i.price);
-          return `
-            <div class="flex items-center justify-between text-xs py-1.5 border-b border-slate-800/60 last:border-0">
+        sortedItems.slice(0, 5).forEach((it, idx) => {
+          const row = document.createElement('div');
+          row.className = 'flex items-center justify-between text-xs py-1.5 border-b border-slate-50';
+          row.innerHTML = `
+            <div class="flex items-center space-x-2">
+              <span class="w-5 h-5 rounded-md bg-slate-100 text-slate-500 font-extrabold text-[10px] flex items-center justify-center">${idx + 1}</span>
               <div>
-                <div class="font-bold text-white">${i.qty}x ${i.itemName}</div>
-                <div class="text-[10px] text-slate-500 font-mono">${fmt(i.price)} each</div>
+                <p class="font-bold text-slate-800">${it.name}</p>
+                <p class="text-[10px] text-slate-400">${it.qty} sold</p>
               </div>
-              <div class="font-mono font-bold text-slate-200">${fmt(lTotal)}</div>
+            </div>
+            <span class="font-black text-slate-900 font-mono">${fmtCurr(it.revenue)}</span>
+          `;
+          topCont.appendChild(row);
+        });
+      }
+
+      // Re-filter invoices list
+      filterBills();
+    }
+
+    // Render detailed report content inside modal sheet
+    function renderReportContent(reportKey) {
+      const modalIcon = document.getElementById('reportModalIcon');
+      const modalTitle = document.getElementById('reportModalTitle');
+      const modalDate = document.getElementById('reportModalDateRange');
+      const cont = document.getElementById('reportModalContent');
+      cont.innerHTML = '';
+
+      const { start, end } = getDateBounds(state.dateRange);
+      const bills = Array.isArray(state.storeData.bills) ? state.storeData.bills : [];
+      const returns = Array.isArray(state.storeData.returns) ? state.storeData.returns : [];
+      const voids = Array.isArray(state.storeData.voidLogs) ? state.storeData.voidLogs : [];
+
+      const periodBills = bills.filter(b => {
+        const d = new Date(b.createdDate || b.settledDate || 0);
+        return d >= start && d <= end;
+      });
+      const periodReturns = returns.filter(r => {
+        const d = new Date(r.returnDate || 0);
+        return d >= start && d <= end;
+      });
+      const periodVoids = voids.filter(v => {
+        const d = new Date(v.createdAt || 0);
+        return d >= start && d <= end;
+      });
+
+      const dateLabel = document.getElementById('overviewDateBadge').innerText;
+      modalDate.innerText = `Period: ${dateLabel} (${periodBills.length} Invoices)`;
+
+      // REPORT 1: DAILY BUSINESS TALLY & RECONCILIATION
+      if (reportKey === 'tally') {
+        modalIcon.innerText = '💰';
+        modalTitle.innerText = 'Daily Business Tally';
+
+        let gross = 0, cash = 0, card = 0, upi = 0, due = 0, tax = 0, disc = 0;
+        periodBills.forEach(b => {
+          gross += b.grandTotal; cash += b.cashAmount; card += b.cardAmount;
+          upi += b.upiAmount; due += (b.otherAmount || 0); tax += b.taxAmount; disc += b.discountAmount;
+        });
+        let refunds = 0;
+        periodReturns.forEach(r => { refunds += r.totalRefundAmount; });
+
+        cont.innerHTML = `
+          <div class="ios-card p-4 space-y-3">
+            <h4 class="font-extrabold text-xs text-slate-400 uppercase">Sales & Cash Reconciliation</h4>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between py-1 border-b border-slate-100">
+                <span class="text-slate-600 font-semibold">Total Sales Invoices</span>
+                <span class="font-black text-slate-900">${periodBills.length}</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-100">
+                <span class="text-slate-600 font-semibold">Gross Sales</span>
+                <span class="font-black text-slate-900">${fmtCurr(gross)}</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-100">
+                <span class="text-slate-600 font-semibold">Total Discounts</span>
+                <span class="font-black text-slate-900">${fmtCurr(disc)}</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-100">
+                <span class="text-slate-600 font-semibold">Total Tax (${state.storeData.taxName || 'VAT'})</span>
+                <span class="font-black text-slate-900">${fmtCurr(tax)}</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-100 text-rose-600">
+                <span class="font-semibold">Customer Refunds (${periodReturns.length})</span>
+                <span class="font-black">- ${fmtCurr(refunds)}</span>
+              </div>
+              <div class="flex justify-between py-2 text-sm font-black text-blue-600 border-t border-slate-200">
+                <span>Net Business Revenue</span>
+                <span>${fmtCurr(gross - refunds)}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ios-card p-4 space-y-3">
+            <h4 class="font-extrabold text-xs text-slate-400 uppercase">Cash Drawer Settlement</h4>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between py-1 border-b border-slate-100 text-emerald-700">
+                <span class="font-semibold">Drawer Cash (In Hand)</span>
+                <span class="font-black">${fmtCurr(cash)}</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-100 text-blue-700">
+                <span class="font-semibold">Card / Bank Deposits</span>
+                <span class="font-black">${fmtCurr(card)}</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-100 text-slate-700">
+                <span class="font-semibold">UPI / Online QR</span>
+                <span class="font-black">${fmtCurr(upi)}</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-100 text-slate-700">
+                <span class="font-semibold">Due / Credit</span>
+                <span class="font-black">${fmtCurr(due)}</span>
+              </div>
+              <div class="flex justify-between py-2 text-sm font-black text-slate-900 border-t border-slate-200">
+                <span>Total Reconciled Collections</span>
+                <span>${fmtCurr(cash + card + upi + due)}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // REPORT 2: PAYMENT MODES
+      else if (reportKey === 'payments') {
+        modalIcon.innerText = '💳';
+        modalTitle.innerText = 'Payment Modes Breakdown';
+
+        let cash = 0, card = 0, upi = 0, due = 0, total = 0;
+        periodBills.forEach(b => {
+          cash += b.cashAmount; card += b.cardAmount;
+          upi += b.upiAmount; due += (b.otherAmount || 0); total += b.grandTotal;
+        });
+
+        const pCash = total > 0 ? (cash / total) * 100 : 0;
+        const pCard = total > 0 ? (card / total) * 100 : 0;
+        const pUpi = total > 0 ? (upi / total) * 100 : 0;
+        const pDue = total > 0 ? (due / total) * 100 : 0;
+
+        cont.innerHTML = `
+          <div class="ios-card p-4 space-y-4">
+            <div>
+              <div class="flex justify-between text-xs font-bold mb-1">
+                <span class="text-emerald-700">Cash Collections (${pCash.toFixed(1)}%)</span>
+                <span class="font-mono text-slate-900">${fmtCurr(cash)}</span>
+              </div>
+              <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+                <div class="h-full bg-emerald-500 rounded-full" style="width: ${pCash}%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-bold mb-1">
+                <span class="text-blue-700">Card / POS Terminal (${pCard.toFixed(1)}%)</span>
+                <span class="font-mono text-slate-900">${fmtCurr(card)}</span>
+              </div>
+              <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+                <div class="h-full bg-blue-600 rounded-full" style="width: ${pCard}%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-bold mb-1">
+                <span class="text-purple-700">UPI / QR Digital (${pUpi.toFixed(1)}%)</span>
+                <span class="font-mono text-slate-900">${fmtCurr(upi)}</span>
+              </div>
+              <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+                <div class="h-full bg-purple-600 rounded-full" style="width: ${pUpi}%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-bold mb-1">
+                <span class="text-slate-600">Credit / Due (${pDue.toFixed(1)}%)</span>
+                <span class="font-mono text-slate-900">${fmtCurr(due)}</span>
+              </div>
+              <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+                <div class="h-full bg-slate-500 rounded-full" style="width: ${pDue}%"></div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // REPORT 3: CATEGORY WISE SALES
+      else if (reportKey === 'categories') {
+        modalIcon.innerText = '🍽️';
+        modalTitle.innerText = 'Category Wise Sales';
+
+        const catMap = {};
+        periodBills.forEach(b => {
+          if (Array.isArray(b.items)) {
+            b.items.forEach(it => {
+              const c = it.categoryName || 'General';
+              if (!catMap[c]) catMap[c] = { category: c, qty: 0, revenue: 0 };
+              catMap[c].qty += (Number(it.qty) || 1);
+              catMap[c].revenue += (Number(it.lineTotal) || 0);
+            });
+          }
+        });
+
+        const catList = Object.values(catMap).sort((a, b) => b.revenue - a.revenue);
+        if (catList.length === 0) {
+          cont.innerHTML = '<p class="text-xs text-slate-400 py-6 text-center">No categories recorded in this period.</p>';
+          return;
+        }
+
+        const div = document.createElement('div');
+        div.className = 'ios-card p-4 space-y-3';
+        catList.forEach(c => {
+          div.innerHTML += `
+            <div class="flex items-center justify-between py-2 border-b border-slate-50 text-xs">
+              <div>
+                <p class="font-extrabold text-slate-900">${c.category}</p>
+                <p class="text-[10px] text-slate-400 font-semibold">${c.qty} items sold</p>
+              </div>
+              <span class="font-black text-slate-900 font-mono">${fmtCurr(c.revenue)}</span>
             </div>
           `;
-        }).join('');
-      }
-
-      const sub = Number(b.subTotal || 0);
-      const disc = Number(b.discountAmount || 0);
-      const tax = Number(b.taxAmount || 0);
-      const grand = Number(b.grandTotal || (sub - disc + tax));
-
-      document.getElementById('invModalSubtotal').innerText = fmt(sub > 0 ? sub : (grand + disc - tax));
-      document.getElementById('invModalDiscount').innerText = fmt(disc);
-      document.getElementById('invModalTax').innerText = fmt(tax);
-      const modalTaxName = b.taxName || currentActiveTaxName || 'Tax';
-      const modalTaxEl = document.getElementById('invModalTaxLabel');
-      if (modalTaxEl) modalTaxEl.innerText = modalTaxName;
-      document.getElementById('invModalGrandTotal').innerText = fmt(grand);
-
-      document.getElementById('invoiceModal').classList.remove('hidden');
-    }
-
-    function closeInvoiceModal() {
-      document.getElementById('invoiceModal').classList.add('hidden');
-    }
-
-    function shareBillOnWhatsApp() {
-      if (!activeInspectedBill) return;
-      const b = activeInspectedBill;
-      const items = (b.items || []).map(i => i.qty + 'x ' + i.itemName + ' - ' + fmt(i.lineTotal || (i.qty * i.price))).join('%0A');
-      const text = `🧾 *XRestro Bill Receipt*%0AInvoice: #${b.invoiceNo || b.orderId}%0ATable: ${b.tableName || 'Counter'}%0ADate: ${new Date(b.settledDate || Date.now()).toLocaleDateString('en-GB')}%0A----------------------------%0A${items}%0A----------------------------%0A*Grand Total: ${fmt(b.grandTotal || b.subTotal || 0)}*%0APaid Via: ${b.paymentMode || 'Cash'}%0AThank you! Visit again.`;
-      window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
-    }
-
-    function shareReportWhatsApp(type) {
-      const gross = document.getElementById('repGrossSales').innerText;
-      const invoices = document.getElementById('repInvoicesCount').innerText;
-      const text = `📊 *XRestro Financial Report Summary*%0AStore: ${document.getElementById('singleBranchName').innerText}%0APeriod: ${document.getElementById('dateFilterStatus').innerText}%0A----------------------------%0AGross Sales: ${gross}%0AInvoices: ${invoices}%0AStatus: 🔒 100% Balanced with POS Cash Drawer`;
-      window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
-    }
-
-    // Save Store Profile Name
-    async function saveStoreProfile() {
-      const name = document.getElementById('settingStoreName').value.trim();
-      if (!name) return alert('Please enter a restaurant name');
-      try {
-        const res = await fetch('/api/v1/owner/update-store-profile', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            phone: currentOwnerPhone,
-            storeId: selectedStoreId,
-            storeName: name
-          })
         });
-        const data = await res.json();
-        if (data.success) {
-          alert('✅ Restaurant name updated successfully!');
-          await fetchData();
-        } else {
-          alert('Failed: ' + (data.error || 'Server error'));
+        cont.appendChild(div);
+      }
+
+      // REPORT 4: TOP 20 MENU ITEMS
+      else if (reportKey === 'topItems') {
+        modalIcon.innerText = '🏆';
+        modalTitle.innerText = 'Top 20 Best Selling Items';
+
+        const itemMap = {};
+        periodBills.forEach(b => {
+          if (Array.isArray(b.items)) {
+            b.items.forEach(it => {
+              const name = it.itemName || 'Meal Item';
+              if (!itemMap[name]) itemMap[name] = { name, qty: 0, revenue: 0, category: it.categoryName || 'General' };
+              itemMap[name].qty += (Number(it.qty) || 1);
+              itemMap[name].revenue += (Number(it.lineTotal) || 0);
+            });
+          }
+        });
+
+        const sorted = Object.values(itemMap).sort((a, b) => b.revenue - a.revenue).slice(0, 20);
+        if (sorted.length === 0) {
+          cont.innerHTML = '<p class="text-xs text-slate-400 py-6 text-center">No items recorded in this period.</p>';
+          return;
         }
-      } catch (e) {
-        alert('Error updating store profile');
+
+        const div = document.createElement('div');
+        div.className = 'ios-card p-4 space-y-2';
+        sorted.forEach((it, i) => {
+          div.innerHTML += `
+            <div class="flex items-center justify-between py-2 border-b border-slate-50 text-xs">
+              <div class="flex items-center space-x-2.5">
+                <span class="w-6 h-6 rounded-lg bg-slate-100 text-slate-600 font-black text-[10px] flex items-center justify-center">${i + 1}</span>
+                <div>
+                  <p class="font-extrabold text-slate-900">${it.name}</p>
+                  <p class="text-[10px] text-slate-400">${it.qty} sold • ${it.category}</p>
+                </div>
+              </div>
+              <span class="font-black text-slate-900 font-mono">${fmtCurr(it.revenue)}</span>
+            </div>
+          `;
+        });
+        cont.appendChild(div);
+      }
+
+      // REPORT 5: HOURLY RUSH TRENDS
+      else if (reportKey === 'hourly') {
+        modalIcon.innerText = '⏰';
+        modalTitle.innerText = 'Hourly Rush Analysis';
+
+        const hours = Array(24).fill(0);
+        const hourRev = Array(24).fill(0);
+        periodBills.forEach(b => {
+          const h = new Date(b.createdDate || b.settledDate || 0).getHours();
+          if (h >= 0 && h < 24) {
+            hours[h]++;
+            hourRev[h] += (b.grandTotal || 0);
+          }
+        });
+
+        const div = document.createElement('div');
+        div.className = 'ios-card p-4 space-y-3';
+        div.innerHTML = '<h4 class="font-bold text-xs text-slate-500 uppercase mb-2">Hourly Ordering Pattern</h4>';
+
+        for (let i = 8; i <= 23; i++) {
+          const count = hours[i];
+          const rev = hourRev[i];
+          const label = (i < 12 ? i + ' AM' : (i === 12 ? '12 PM' : (i - 12) + ' PM'));
+          div.innerHTML += `
+            <div class="flex items-center justify-between text-xs py-1.5 border-b border-slate-50">
+              <span class="w-16 font-bold text-slate-600">${label}</span>
+              <span class="font-semibold text-slate-500">${count} orders</span>
+              <span class="font-black text-slate-900 font-mono">${fmtCurr(rev)}</span>
+            </div>
+          `;
+        }
+        cont.appendChild(div);
+      }
+
+      // REPORT 6: SALES RETURNS & REFUNDS
+      else if (reportKey === 'returns') {
+        modalIcon.innerText = '🔄';
+        modalTitle.innerText = 'Sales Returns & Customer Refunds';
+
+        if (periodReturns.length === 0) {
+          cont.innerHTML = `
+            <div class="ios-card p-8 text-center space-y-2">
+              <span class="text-3xl">✅</span>
+              <p class="font-extrabold text-sm text-slate-900">Zero Returns</p>
+              <p class="text-xs text-slate-400">No returns or refunds logged for this period.</p>
+            </div>
+          `;
+          return;
+        }
+
+        const div = document.createElement('div');
+        div.className = 'space-y-2';
+        periodReturns.forEach(r => {
+          div.innerHTML += `
+            <div class="ios-card p-4 space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-black text-xs text-slate-900">${r.invoiceNo || 'INV'}</span>
+                <span class="font-black text-xs text-rose-600 font-mono">- ${fmtCurr(r.totalRefundAmount)}</span>
+              </div>
+              <p class="text-[11px] text-slate-500 font-medium">Reason: ${r.reason || 'Customer request'}</p>
+              <p class="text-[10px] text-slate-400 font-semibold">Mode: ${r.refundPaymentMode || 'Cash'} • Auth by: ${r.authorizedBy || 'Manager'}</p>
+            </div>
+          `;
+        });
+        cont.appendChild(div);
+      }
+
+      // REPORT 7: VOID ITEMS AUDIT
+      else if (reportKey === 'voids') {
+        modalIcon.innerText = '🚫';
+        modalTitle.innerText = 'Void Items Audit (Anti-Theft)';
+
+        if (periodVoids.length === 0) {
+          cont.innerHTML = `
+            <div class="ios-card p-8 text-center space-y-2">
+              <span class="text-3xl">🛡️</span>
+              <p class="font-extrabold text-sm text-slate-900">Zero Void Items</p>
+              <p class="text-xs text-slate-400">No items were voided or deleted during this period.</p>
+            </div>
+          `;
+          return;
+        }
+
+        const div = document.createElement('div');
+        div.className = 'space-y-2';
+        periodVoids.forEach(v => {
+          div.innerHTML += `
+            <div class="ios-card p-4 space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-black text-xs text-slate-900">${v.itemName || 'Item'}</span>
+                <span class="font-black text-xs text-red-600 font-mono">${fmtCurr(v.price * v.qtyVoided)}</span>
+              </div>
+              <p class="text-[11px] text-slate-500 font-medium">Reason: ${v.voidReason || 'Order change'}</p>
+              <p class="text-[10px] text-slate-400 font-semibold">Qty: ${v.qtyVoided} • Voided by: ${v.voidedBy || 'Staff'}</p>
+            </div>
+          `;
+        });
+        cont.appendChild(div);
+      }
+
+      // REPORT 8: CASHIER PERFORMANCE
+      else if (reportKey === 'cashiers') {
+        modalIcon.innerText = '👥';
+        modalTitle.innerText = 'Cashier & Staff Sales';
+
+        const cashMap = {};
+        periodBills.forEach(b => {
+          const c = b.cashierName || 'Admin';
+          if (!cashMap[c]) cashMap[c] = { cashier: c, bills: 0, revenue: 0 };
+          cashMap[c].bills++;
+          cashMap[c].revenue += b.grandTotal;
+        });
+
+        const list = Object.values(cashMap).sort((a, b) => b.revenue - a.revenue);
+        const div = document.createElement('div');
+        div.className = 'ios-card p-4 space-y-3';
+        list.forEach(c => {
+          div.innerHTML += `
+            <div class="flex items-center justify-between py-2 border-b border-slate-50 text-xs">
+              <div>
+                <p class="font-extrabold text-slate-900">${c.cashier}</p>
+                <p class="text-[10px] text-slate-400 font-semibold">${c.bills} bills processed</p>
+              </div>
+              <span class="font-black text-slate-900 font-mono">${fmtCurr(c.revenue)}</span>
+            </div>
+          `;
+        });
+        cont.appendChild(div);
+      }
+
+      // REPORT 9: TAX / VAT LEDGER
+      else if (reportKey === 'tax') {
+        modalIcon.innerText = '📑';
+        modalTitle.innerText = 'Tax / VAT Compliance';
+
+        let totalTax = 0, gross = 0;
+        periodBills.forEach(b => { totalTax += b.taxAmount; gross += b.grandTotal; });
+
+        cont.innerHTML = `
+          <div class="ios-card p-4 space-y-3">
+            <h4 class="font-extrabold text-xs text-slate-400 uppercase">Tax Breakdown</h4>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between py-1 border-b border-slate-100">
+                <span class="text-slate-600 font-semibold">Tax Applicable</span>
+                <span class="font-black text-slate-900">${state.storeData.taxName || 'VAT'}</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-100">
+                <span class="text-slate-600 font-semibold">Total Taxable Sales</span>
+                <span class="font-black text-slate-900">${fmtCurr(gross)}</span>
+              </div>
+              <div class="flex justify-between py-2 text-sm font-black text-teal-700 border-t border-slate-200">
+                <span>Total Tax Collected</span>
+                <span>${fmtCurr(totalTax)}</span>
+              </div>
+            </div>
+          </div>
+        `;
       }
     }
 
-    // PIN Management
-    function openPinModal() {
-      document.getElementById('pinModal').classList.remove('hidden');
-      document.getElementById('currPin').value = '';
-      document.getElementById('newPin1').value = '';
-      document.getElementById('newPin2').value = '';
-      document.getElementById('pinModalError').classList.add('hidden');
-    }
-    function closePinModal() {
-      document.getElementById('pinModal').classList.add('hidden');
-    }
-    async function submitChangePin() {
-      const oldPin = document.getElementById('currPin').value.trim();
-      const newPin = document.getElementById('newPin1').value.trim();
-      const confirmPin = document.getElementById('newPin2').value.trim();
-      const errBox = document.getElementById('pinModalError');
+    // Change Security PIN API
+    async function handleChangePin() {
+      const oldPin = document.getElementById('currentPinInput').value.trim();
+      const newPin = document.getElementById('newPinInput').value.trim();
 
-      if (!oldPin || !newPin || !confirmPin) {
-        errBox.innerText = 'Please fill all PIN fields.';
-        errBox.classList.remove('hidden');
-        return;
-      }
-      if (newPin !== confirmPin) {
-        errBox.innerText = 'New PIN and Confirm PIN do not match.';
-        errBox.classList.remove('hidden');
-        return;
-      }
-      if (newPin.length !== 4) {
-        errBox.innerText = 'New PIN must be exactly 4 digits.';
-        errBox.classList.remove('hidden');
+      if (!oldPin || !newPin || newPin.length !== 4) {
+        alert('Please enter a valid 4-digit new PIN.');
         return;
       }
 
@@ -1806,70 +1521,144 @@
         const res = await fetch('/api/v1/owner/change-pin', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ phone: currentOwnerPhone, oldPin, newPin })
+          body: JSON.stringify({ phone: state.ownerPhone, oldPin, newPin })
         });
         const data = await res.json();
         if (data.success) {
-          currentOwnerPin = newPin;
-          sessionStorage.setItem('xion_owner_pin', newPin);
-          localStorage.setItem('xion_owner_pin', newPin);
           alert('Security PIN updated successfully!');
-          closePinModal();
+          state.ownerPin = newPin;
+          localStorage.setItem('xrestro_owner_pin', newPin);
+          document.getElementById('currentPinInput').value = '';
+          document.getElementById('newPinInput').value = '';
         } else {
-          errBox.innerText = data.error || 'Failed to update PIN';
-          errBox.classList.remove('hidden');
+          alert(data.error || 'Failed to update PIN');
         }
       } catch (e) {
-        errBox.innerText = 'Network error while changing PIN';
-        errBox.classList.remove('hidden');
+        alert('Network error updating PIN');
       }
     }
 
-    // Payment Cross Filter
-    function applyPaymentFilter(mode) {
-      if (activePaymentFilter === mode) {
-        clearCrossFilter();
+    // Fetch data from backend API (GET /api/v1/owner/data)
+    async function fetchStoreData(isManual = false) {
+      const refIcon = document.getElementById('refreshIcon');
+      if (refIcon) refIcon.classList.add('animate-spin');
+
+      try {
+        const res = await fetch(`/api/v1/owner/data?phone=${encodeURIComponent(state.ownerPhone)}&pin=${encodeURIComponent(state.ownerPin)}`);
+        if (!res.ok) {
+          if (res.status === 401 || res.status === 403) {
+            handleLogout();
+            return;
+          }
+          throw new Error('Server returned HTTP ' + res.status);
+        }
+
+        const data = await res.json();
+        if (!data.success || !data.stores) throw new Error(data.error || 'Invalid response');
+
+        // Select store
+        const storeKeys = Object.keys(data.stores);
+        if (storeKeys.length === 0) throw new Error('No stores linked to this owner.');
+
+        let activeStore = null;
+        if (state.selectedStoreId && data.stores[state.selectedStoreId]) {
+          activeStore = data.stores[state.selectedStoreId];
+        } else {
+          state.selectedStoreId = storeKeys[0];
+          activeStore = data.stores[storeKeys[0]];
+        }
+
+        state.storeData = activeStore;
+
+        // Update UI Top Headers
+        document.getElementById('topStoreName').innerText = activeStore.storeName || "SALT 'N PEPPER";
+        document.getElementById('sidebarStoreName').innerText = activeStore.storeName || "SALT 'N PEPPER";
+        document.getElementById('sidebarStoreInfo').innerText = (activeStore.currency || 'R') + ' • ' + (activeStore.taxName || 'VAT');
+
+        document.getElementById('settingsStoreName').innerText = activeStore.storeName || "SALT 'N PEPPER";
+        document.getElementById('settingsOwnerPhone').innerText = state.ownerPhone;
+        document.getElementById('settingsCurrency').innerText = (activeStore.currency || 'R') + ' (ZAR)';
+        document.getElementById('settingsTaxName').innerText = (activeStore.taxName || 'VAT') + ' (15%)';
+        document.getElementById('diagTotalBills').innerText = (Array.isArray(activeStore.bills) ? activeStore.bills.length : 0).toLocaleString();
+        document.getElementById('diagLastSyncTime').innerText = new Date().toLocaleTimeString();
+
+        // Calculate & render active view
+        recalculateAndRender();
+
+        document.getElementById('topSyncStatus').innerText = 'Live Database Connected';
+        document.getElementById('topSyncStatus').className = 'text-[10px] font-bold text-emerald-600';
+
+      } catch (err) {
+        console.error('Fetch error:', err);
+        document.getElementById('topSyncStatus').innerText = 'Offline Cache Ready';
+        document.getElementById('topSyncStatus').className = 'text-[10px] font-bold text-amber-600';
+      } finally {
+        if (refIcon) refIcon.classList.remove('animate-spin');
+      }
+    }
+
+    // Login Handler
+    async function handleLogin() {
+      const phoneInput = document.getElementById('loginPhone').value.trim();
+      const pinInput = document.getElementById('loginPin').value.trim();
+      const errEl = document.getElementById('loginError');
+      errEl.classList.add('hidden');
+
+      if (!phoneInput || !pinInput) {
+        errEl.innerText = 'Please enter phone number and PIN.';
+        errEl.classList.remove('hidden');
         return;
       }
-      activePaymentFilter = mode;
-      ['Cash', 'Card', 'Upi'].forEach(m => {
-        const el = document.getElementById('cardPay' + m);
-        if (m.toLowerCase() === mode.toLowerCase()) el.classList.add('ring-2', 'ring-brand-500');
-        else el.classList.remove('ring-2', 'ring-brand-500');
-      });
-      document.getElementById('activeFilterBadge').classList.remove('hidden');
-      document.getElementById('activeFilterBadge').innerText = '✕ Filter: ' + mode;
-      filterBillsList();
-    }
 
-    function clearCrossFilter() {
-      activePaymentFilter = null;
-      ['Cash', 'Card', 'Upi'].forEach(m => {
-        const el = document.getElementById('cardPay' + m);
-        if (el) el.classList.remove('ring-2', 'ring-brand-500');
-      });
-      document.getElementById('activeFilterBadge').classList.add('hidden');
-      filterBillsList();
-    }
+      const btn = document.getElementById('loginBtn');
+      btn.innerText = 'Unlocking...';
 
-    // Auto-Resume Session on load
-    window.addEventListener('DOMContentLoaded', async () => {
-      setInterval(() => {
-        const el = document.getElementById('headerClock');
-        if (el) el.innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      }, 1000);
+      try {
+        const res = await fetch('/api/v1/owner/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone: phoneInput, pin: pinInput })
+        });
+        const data = await res.json();
+        if (data.success) {
+          state.ownerPhone = data.ownerPhone || phoneInput;
+          state.ownerPin = pinInput;
+          localStorage.setItem('xrestro_owner_phone', state.ownerPhone);
+          localStorage.setItem('xrestro_owner_pin', state.ownerPin);
 
-      const savedPhone = sessionStorage.getItem('xion_owner_phone') || localStorage.getItem('xion_owner_phone');
-      const savedPin = sessionStorage.getItem('xion_owner_pin') || localStorage.getItem('xion_owner_pin');
-
-      if (savedPhone && savedPin) {
-        currentOwnerPhone = savedPhone;
-        currentOwnerPin = savedPin;
-        document.getElementById('loginPhone').value = savedPhone;
-        document.getElementById('loginPin').value = savedPin;
-        document.getElementById('loginScreen').classList.add('hidden');
-        await fetchData();
+          document.getElementById('loginScreen').classList.add('hidden');
+          fetchStoreData(true);
+        } else {
+          errEl.innerText = data.error || 'Authentication failed';
+          errEl.classList.remove('hidden');
+        }
+      } catch (e) {
+        errEl.innerText = 'Network connection failed. Enter default PIN 1234.';
+        errEl.classList.remove('hidden');
+      } finally {
+        btn.innerText = 'Unlock Executive Portal';
       }
+    }
+
+    function handleLogout() {
+      localStorage.removeItem('xrestro_owner_pin');
+      document.getElementById('loginScreen').classList.remove('hidden');
+      closeSidebar();
+    }
+
+    // Auto-login check on startup
+    window.addEventListener('DOMContentLoaded', () => {
+      if (state.ownerPhone && state.ownerPin) {
+        document.getElementById('loginScreen').classList.add('hidden');
+        fetchStoreData();
+      } else {
+        document.getElementById('loginScreen').classList.remove('hidden');
+      }
+
+      // Auto-refresh poll every 20 seconds to keep live metrics up to date
+      setInterval(() => {
+        fetchStoreData();
+      }, 20000);
     });
   </script>
 </body>
