@@ -190,6 +190,9 @@
       </button>
     </div>
 
+    <!-- Multi-Branch Switcher (Shown if owner has >1 branch) -->
+    <div id="sidebarBranchSwitcher" class="hidden px-4 pt-3 pb-2 border-b border-slate-100"></div>
+
     <!-- Reports Menu Navigation List -->
     <div class="flex-1 overflow-y-auto p-4 space-y-6 no-scrollbar">
       <div>
@@ -2174,6 +2177,22 @@
         document.getElementById('diagTotalBills').innerText = (Array.isArray(activeStore.bills) ? activeStore.bills.length : 0).toLocaleString();
         document.getElementById('diagLastSyncTime').innerText = new Date().toLocaleTimeString();
 
+        // Render Branch Switcher if multi-branch
+        const branchCont = document.getElementById('sidebarBranchSwitcher');
+        if (branchCont) {
+          if (storeKeys.length > 1) {
+            branchCont.classList.remove('hidden');
+            branchCont.innerHTML = '<p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-2 px-1">Select Branch</p><div class="space-y-1.5">' +
+              storeKeys.map(k => {
+                const s = data.stores[k];
+                const active = (k === state.selectedStoreId);
+                return `<button onclick="switchStore('${k}')" class="w-full flex items-center justify-between p-2.5 rounded-xl text-xs font-bold ${active ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-slate-50 text-slate-700 hover:bg-slate-100'} transition-all"><span>${s.storeName}</span>${active ? '<span class="text-[9px] px-1.5 py-0.5 rounded bg-blue-600 text-white font-black">ACTIVE</span>' : ''}</button>`;
+              }).join('') + '</div>';
+          } else {
+            branchCont.classList.add('hidden');
+          }
+        }
+
         // Calculate & render active view
         recalculateAndRender();
 
@@ -2236,6 +2255,13 @@
     function handleLogout() {
       localStorage.removeItem('xrestro_owner_pin');
       document.getElementById('loginScreen').classList.remove('hidden');
+      closeSidebar();
+    }
+
+    function switchStore(storeId) {
+      playHaptic();
+      state.selectedStoreId = storeId;
+      fetchStoreData(true);
       closeSidebar();
     }
 
