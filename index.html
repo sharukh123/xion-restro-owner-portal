@@ -97,6 +97,28 @@
     .modal-sheet {
       transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
+    /* Thermal Slip Print Styles */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #thermalPrintArea, #thermalPrintArea * {
+        visibility: visible;
+      }
+      #thermalPrintArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 80mm;
+        margin: 0;
+        padding: 8px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        color: #000;
+        background: #fff;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen pb-32">
@@ -173,14 +195,14 @@
       <div>
         <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-2 px-3">Primary Navigation</p>
         <div class="space-y-1">
-          <button onclick="navigateTab('overview'); closeSidebar();" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+          <button onclick="playHaptic(); navigateTab('overview'); closeSidebar();" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
             <span class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
             </span>
             <span>Executive Dashboard</span>
           </button>
 
-          <button onclick="navigateTab('bills'); closeSidebar();" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+          <button onclick="playHaptic(); navigateTab('bills'); closeSidebar();" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
             <span class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             </span>
@@ -192,7 +214,7 @@
       <div>
         <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-2 px-3">All Financial & Audit Reports</p>
         <div class="space-y-1">
-          <button onclick="openReportModal('tally')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+          <button onclick="playHaptic(); openReportModal('tally')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
             <div class="flex items-center space-x-3">
               <span class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">💰</span>
               <span>Daily Business Tally</span>
@@ -200,7 +222,7 @@
             <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-bold">POS Match</span>
           </button>
 
-          <button onclick="openReportModal('payments')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+          <button onclick="playHaptic(); openReportModal('payments')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
             <div class="flex items-center space-x-3">
               <span class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">💳</span>
               <span>Payment Breakdown</span>
@@ -208,49 +230,49 @@
             <span class="text-[10px] text-slate-400 font-semibold">Cash/Card/UPI</span>
           </button>
 
-          <button onclick="openReportModal('categories')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+          <button onclick="playHaptic(); openReportModal('categories')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
             <div class="flex items-center space-x-3">
               <span class="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">🍽️</span>
               <span>Category Wise Sales</span>
             </div>
           </button>
 
-          <button onclick="openReportModal('topItems')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+          <button onclick="playHaptic(); openReportModal('topItems')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
             <div class="flex items-center space-x-3">
               <span class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">🏆</span>
               <span>Top 20 Menu Items</span>
             </div>
           </button>
 
-          <button onclick="openReportModal('hourly')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+          <button onclick="playHaptic(); openReportModal('hourly')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
             <div class="flex items-center space-x-3">
               <span class="w-8 h-8 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center">⏰</span>
               <span>Hourly Rush Trends</span>
             </div>
           </button>
 
-          <button onclick="openReportModal('returns')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+          <button onclick="playHaptic(); openReportModal('returns')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
             <div class="flex items-center space-x-3">
               <span class="w-8 h-8 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center">🔄</span>
               <span>Sales Returns & Refunds</span>
             </div>
           </button>
 
-          <button onclick="openReportModal('voids')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+          <button onclick="playHaptic(); openReportModal('voids')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
             <div class="flex items-center space-x-3">
               <span class="w-8 h-8 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">🚫</span>
               <span>Void Items (Anti-Fraud)</span>
             </div>
           </button>
 
-          <button onclick="openReportModal('cashiers')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+          <button onclick="playHaptic(); openReportModal('cashiers')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
             <div class="flex items-center space-x-3">
               <span class="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">👥</span>
               <span>Staff / Cashier Sales</span>
             </div>
           </button>
 
-          <button onclick="openReportModal('tax')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+          <button onclick="playHaptic(); openReportModal('tax')" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
             <div class="flex items-center space-x-3">
               <span class="w-8 h-8 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center">📑</span>
               <span>Tax / VAT Ledger</span>
@@ -258,11 +280,20 @@
           </button>
         </div>
       </div>
+
+      <!-- Quick Actions -->
+      <div>
+        <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-2 px-3">Data Operations</p>
+        <button onclick="exportBillsCSV(); closeSidebar();" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-2xl font-bold text-xs text-slate-800 hover:bg-slate-100 active:scale-[0.98] transition-all">
+          <span class="w-8 h-8 rounded-xl bg-green-50 text-green-600 flex items-center justify-center">📥</span>
+          <span>Export Excel / CSV Report</span>
+        </button>
+      </div>
     </div>
 
     <!-- Sidebar Footer -->
     <div class="p-4 border-t border-slate-100 bg-slate-50/50 space-y-2">
-      <button onclick="handleLogout()" class="w-full py-2.5 rounded-xl border border-slate-200 text-slate-600 font-bold text-xs hover:bg-slate-100 active:scale-95 transition-all flex items-center justify-center space-x-1.5">
+      <button onclick="playHaptic(); handleLogout()" class="w-full py-2.5 rounded-xl border border-slate-200 text-slate-600 font-bold text-xs hover:bg-slate-100 active:scale-95 transition-all flex items-center justify-center space-x-1.5">
         <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
         <span>Lock Session</span>
       </button>
@@ -275,7 +306,7 @@
   <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-xl border-b border-black/[0.05] px-4 py-3">
     <div class="max-w-md mx-auto flex items-center justify-between">
       <!-- Left: Sidebar Button -->
-      <button onclick="openSidebar()" class="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-700 active:scale-95 transition-all shadow-sm">
+      <button onclick="playHaptic(); openSidebar()" class="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-700 active:scale-95 transition-all shadow-sm">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h7"/></svg>
       </button>
 
@@ -292,19 +323,23 @@
       </div>
 
       <!-- Right: Pull / Manual Refresh Button -->
-      <button onclick="fetchStoreData(true)" id="refreshBtn" title="Sync Live Data" class="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-700 active:scale-95 transition-all shadow-sm">
+      <button onclick="playHaptic(); fetchStoreData(true)" id="refreshBtn" title="Sync Live Data" class="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-700 active:scale-95 transition-all shadow-sm">
         <svg id="refreshIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
       </button>
     </div>
 
-    <!-- Apple Native Segmented Date Control -->
+    <!-- Apple Native Segmented Date Control + Custom Picker -->
     <div class="max-w-md mx-auto mt-2.5">
-      <div class="bg-slate-200/80 p-1 rounded-2xl flex text-xs font-semibold text-slate-600 justify-between items-center shadow-inner">
-        <button onclick="selectDateRange('today')" class="date-pill flex-1 py-1.5 rounded-xl text-center transition-all" data-range="today">Today</button>
-        <button onclick="selectDateRange('yesterday')" class="date-pill flex-1 py-1.5 rounded-xl text-center transition-all" data-range="yesterday">Yesterday</button>
-        <button onclick="selectDateRange('7days')" class="date-pill flex-1 py-1.5 rounded-xl text-center transition-all" data-range="7days">7 Days</button>
-        <button onclick="selectDateRange('30days')" class="date-pill flex-1 py-1.5 rounded-xl text-center transition-all" data-range="30days">30 Days</button>
-        <button onclick="selectDateRange('all')" class="date-pill active flex-1 py-1.5 rounded-xl text-center transition-all" data-range="all">All Time</button>
+      <div class="bg-slate-200/80 p-1 rounded-2xl flex text-xs font-semibold text-slate-600 justify-between items-center shadow-inner overflow-x-auto no-scrollbar space-x-1">
+        <button onclick="playHaptic(); selectDateRange('today')" class="date-pill flex-1 py-1.5 px-2 rounded-xl text-center transition-all whitespace-nowrap" data-range="today">Today</button>
+        <button onclick="playHaptic(); selectDateRange('yesterday')" class="date-pill flex-1 py-1.5 px-2 rounded-xl text-center transition-all whitespace-nowrap" data-range="yesterday">Yesterday</button>
+        <button onclick="playHaptic(); selectDateRange('7days')" class="date-pill flex-1 py-1.5 px-2 rounded-xl text-center transition-all whitespace-nowrap" data-range="7days">7 Days</button>
+        <button onclick="playHaptic(); selectDateRange('30days')" class="date-pill flex-1 py-1.5 px-2 rounded-xl text-center transition-all whitespace-nowrap" data-range="30days">30 Days</button>
+        <button onclick="playHaptic(); selectDateRange('all')" class="date-pill active flex-1 py-1.5 px-2 rounded-xl text-center transition-all whitespace-nowrap" data-range="all">All Time</button>
+        <button onclick="playHaptic(); openCustomRangeModal()" class="date-pill flex-none py-1.5 px-3 rounded-xl text-center transition-all text-blue-600 whitespace-nowrap flex items-center space-x-1" data-range="custom">
+          <span>Custom</span>
+          <span>📅</span>
+        </button>
       </div>
     </div>
   </header>
@@ -346,13 +381,63 @@
         </div>
       </div>
 
+      <!-- INTERACTIVE APPLE STOCKS STYLE REVENUE TRAJECTORY GRAPH -->
+      <div class="ios-card p-5 space-y-3">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="font-extrabold text-sm text-slate-900 flex items-center space-x-1.5">
+              <span>Sales Trajectory</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-ping"></span>
+            </h3>
+            <p id="chartActiveMetric" class="text-[11px] text-slate-400 font-semibold">Touch & drag to inspect revenue curve</p>
+          </div>
+          <div class="flex items-center bg-slate-100 p-0.5 rounded-xl text-[10px] font-bold text-slate-600">
+            <button onclick="playHaptic(); setChartMode('hourly')" id="chartBtnHourly" class="px-2 py-1 rounded-lg bg-white shadow-xs text-blue-600">Hourly</button>
+            <button onclick="playHaptic(); setChartMode('daily')" id="chartBtnDaily" class="px-2 py-1 rounded-lg text-slate-500">Daily</button>
+          </div>
+        </div>
+
+        <!-- SVG Interactive Bezier Curve Chart -->
+        <div class="relative w-full h-44 select-none touch-none" id="chartContainer">
+          <svg id="salesSvgChart" class="w-full h-full overflow-visible" viewBox="0 0 400 160" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#007AFF" stop-opacity="0.28" />
+                <stop offset="100%" stop-color="#007AFF" stop-opacity="0.0" />
+              </linearGradient>
+            </defs>
+            <path id="chartAreaPath" fill="url(#chartGradient)" d="" />
+            <path id="chartLinePath" fill="none" stroke="#007AFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" d="" />
+            <!-- Interactive Scrubber Marker -->
+            <g id="chartScrubber" class="opacity-0 transition-opacity duration-150">
+              <line id="scrubberLine" x1="0" y1="0" x2="0" y2="160" stroke="#007AFF" stroke-width="1.5" stroke-dasharray="3,3" />
+              <circle id="scrubberDot" cx="0" cy="0" r="5" fill="#007AFF" stroke="#FFFFFF" stroke-width="2.5" />
+            </g>
+          </svg>
+
+          <!-- Floating Info Pill over Chart -->
+          <div id="chartTooltip" class="absolute top-2 left-1/2 -translate-x-1/2 pointer-events-none opacity-0 transition-opacity bg-slate-900/90 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-lg flex items-center space-x-2">
+            <span id="tooltipTime">--</span>
+            <span class="w-1 h-1 rounded-full bg-slate-400"></span>
+            <span id="tooltipVal" class="text-blue-400 font-mono">--</span>
+          </div>
+        </div>
+
+        <!-- Axis Labels -->
+        <div class="flex justify-between text-[10px] text-slate-400 font-semibold px-1" id="chartAxisLabels">
+          <span>Start</span>
+          <span>Mid</span>
+          <span>Peak</span>
+        </div>
+      </div>
+
       <!-- CASH DRAWER & DIGITAL COLLECTIONS CARD -->
       <div class="ios-card p-5 space-y-4">
         <div class="flex items-center justify-between">
           <h3 class="font-extrabold text-sm text-slate-900 flex items-center space-x-2">
             <span>Cash Drawer & Collections</span>
           </h3>
-          <button onclick="openReportModal('tally')" class="text-xs font-bold text-blue-600 flex items-center space-x-1">
+          <button onclick="playHaptic(); openReportModal('tally')" class="text-xs font-bold text-blue-600 flex items-center space-x-1">
             <span>Audit</span>
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
           </button>
@@ -419,7 +504,7 @@
       <div class="ios-card p-5 space-y-3">
         <div class="flex items-center justify-between">
           <h3 class="font-extrabold text-sm text-slate-900">Top Selling Items</h3>
-          <button onclick="openReportModal('topItems')" class="text-xs font-bold text-blue-600">See All 20</button>
+          <button onclick="playHaptic(); openReportModal('topItems')" class="text-xs font-bold text-blue-600">See All 20</button>
         </div>
         <div id="dashTopItemsList" class="space-y-2">
           <!-- Populated dynamically -->
@@ -435,22 +520,29 @@
       <div class="ios-card p-3.5 space-y-2.5">
         <div class="relative">
           <svg class="w-4 h-4 absolute left-3.5 top-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-          <input type="text" id="billSearchInput" oninput="filterBills()" placeholder="Search Invoice #, Customer, Amount..." class="w-full bg-slate-50 border border-slate-200 text-slate-900 font-semibold pl-10 pr-4 py-2 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500">
+          <input type="text" id="billSearchInput" oninput="filterBills()" placeholder="Search Invoice #, Cashier, Amount..." class="w-full bg-slate-50 border border-slate-200 text-slate-900 font-semibold pl-10 pr-4 py-2 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500">
         </div>
 
         <div class="flex items-center space-x-1.5 overflow-x-auto no-scrollbar text-xs font-bold">
-          <button onclick="setBillPaymentFilter('ALL')" class="bill-filter-btn active px-3 py-1.5 rounded-xl bg-slate-900 text-white shadow-sm" data-filter="ALL">All Bills</button>
-          <button onclick="setBillPaymentFilter('Cash')" class="bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="Cash">Cash</button>
-          <button onclick="setBillPaymentFilter('Card')" class="bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="Card">Card</button>
-          <button onclick="setBillPaymentFilter('Takeaway')" class="bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="Takeaway">Takeaway</button>
-          <button onclick="setBillPaymentFilter('DineIn')" class="bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="DineIn">Dine-In</button>
+          <button onclick="playHaptic(); setBillPaymentFilter('ALL')" class="bill-filter-btn active px-3 py-1.5 rounded-xl bg-slate-900 text-white shadow-sm whitespace-nowrap" data-filter="ALL">All Bills</button>
+          <button onclick="playHaptic(); setBillPaymentFilter('Cash')" class="bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap" data-filter="Cash">Cash</button>
+          <button onclick="playHaptic(); setBillPaymentFilter('Card')" class="bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap" data-filter="Card">Card</button>
+          <button onclick="playHaptic(); setBillPaymentFilter('Takeaway')" class="bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap" data-filter="Takeaway">Takeaway</button>
+          <button onclick="playHaptic(); setBillPaymentFilter('DineIn')" class="bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap" data-filter="DineIn">Dine-In</button>
+          <button onclick="playHaptic(); setBillPaymentFilter('HighValue')" class="bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap" data-filter="HighValue">> R 200</button>
         </div>
       </div>
 
-      <!-- Invoices Count Header -->
+      <!-- Invoices Count Header & Export Action -->
       <div class="flex items-center justify-between px-1 text-xs font-bold text-slate-500">
         <span id="billsCountLabel">Showing 0 Invoices</span>
-        <span id="billsTotalAmtLabel">Total: R 0.00</span>
+        <div class="flex items-center space-x-3">
+          <span id="billsTotalAmtLabel">Total: R 0.00</span>
+          <button onclick="playHaptic(); exportBillsCSV()" title="Export Invoices as CSV" class="text-blue-600 hover:text-blue-700 flex items-center space-x-0.5">
+            <span>CSV</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          </button>
+        </div>
       </div>
 
       <!-- Invoices Container -->
@@ -462,13 +554,19 @@
 
     <!-- PAGE 3: REPORTS HUB (GRID OF ALL REPORTS) -->
     <div id="pageReports" class="space-y-4 hidden">
-      <div class="ios-card p-5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-xl">
-        <h2 class="text-lg font-black tracking-tight">Executive Reports Hub</h2>
-        <p class="text-xs text-blue-100 mt-1 font-medium">100% Mathematically Reconciled with Desktop POS</p>
+      <div class="ios-card p-5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-xl flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-black tracking-tight">Executive Reports Hub</h2>
+          <p class="text-xs text-blue-100 mt-0.5 font-medium">100% Mathematically Reconciled with POS</p>
+        </div>
+        <button onclick="playHaptic(); exportBillsCSV()" class="px-3 py-1.5 bg-white/20 hover:bg-white/30 rounded-xl text-xs font-bold backdrop-blur-sm transition-all flex items-center space-x-1">
+          <span>Export</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        </button>
       </div>
 
       <div class="grid grid-cols-2 gap-3">
-        <button onclick="openReportModal('tally')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+        <button onclick="playHaptic(); openReportModal('tally')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
           <span class="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg shadow-sm">💰</span>
           <div>
             <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Daily Tally</h4>
@@ -476,7 +574,7 @@
           </div>
         </button>
 
-        <button onclick="openReportModal('payments')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+        <button onclick="playHaptic(); openReportModal('payments')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
           <span class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg shadow-sm">💳</span>
           <div>
             <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Payment Modes</h4>
@@ -484,7 +582,7 @@
           </div>
         </button>
 
-        <button onclick="openReportModal('categories')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+        <button onclick="playHaptic(); openReportModal('categories')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
           <span class="w-10 h-10 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg shadow-sm">🍽️</span>
           <div>
             <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Categories</h4>
@@ -492,7 +590,7 @@
           </div>
         </button>
 
-        <button onclick="openReportModal('topItems')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+        <button onclick="playHaptic(); openReportModal('topItems')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
           <span class="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg shadow-sm">🏆</span>
           <div>
             <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Top 20 Items</h4>
@@ -500,7 +598,7 @@
           </div>
         </button>
 
-        <button onclick="openReportModal('hourly')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+        <button onclick="playHaptic(); openReportModal('hourly')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
           <span class="w-10 h-10 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center text-lg shadow-sm">⏰</span>
           <div>
             <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Rush Hours</h4>
@@ -508,7 +606,7 @@
           </div>
         </button>
 
-        <button onclick="openReportModal('returns')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+        <button onclick="playHaptic(); openReportModal('returns')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
           <span class="w-10 h-10 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center text-lg shadow-sm">🔄</span>
           <div>
             <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Returns & Refunds</h4>
@@ -516,7 +614,7 @@
           </div>
         </button>
 
-        <button onclick="openReportModal('voids')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+        <button onclick="playHaptic(); openReportModal('voids')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
           <span class="w-10 h-10 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center text-lg shadow-sm">🚫</span>
           <div>
             <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Void Items</h4>
@@ -524,11 +622,19 @@
           </div>
         </button>
 
-        <button onclick="openReportModal('cashiers')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+        <button onclick="playHaptic(); openReportModal('cashiers')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
           <span class="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg shadow-sm">👥</span>
           <div>
             <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Cashier Sales</h4>
             <p class="text-[10px] text-slate-400 font-semibold">Staff Leaderboard</p>
+          </div>
+        </button>
+
+        <button onclick="playHaptic(); openReportModal('tax')" class="ios-card p-4 text-left space-y-2 group hover:border-blue-400">
+          <span class="w-10 h-10 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg shadow-sm">📑</span>
+          <div>
+            <h4 class="font-extrabold text-xs text-slate-900 group-hover:text-blue-600">Tax Ledger</h4>
+            <p class="text-[10px] text-slate-400 font-semibold">VAT / Tax Total</p>
           </div>
         </button>
       </div>
@@ -582,8 +688,19 @@
           </div>
         </div>
 
-        <button onclick="fetchStoreData(true)" class="w-full py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md shadow-blue-500/20 active:scale-98 transition-all">
+        <button onclick="playHaptic(); fetchStoreData(true)" class="w-full py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md shadow-blue-500/20 active:scale-98 transition-all">
           Force Refresh Cloud Data
+        </button>
+      </div>
+
+      <!-- Native Audio & Haptics Toggle -->
+      <div class="ios-card p-5 flex items-center justify-between">
+        <div>
+          <h4 class="font-extrabold text-sm text-slate-900">Apple Sound & Haptics</h4>
+          <p class="text-xs text-slate-400">Play subtle click sound and vibrations on tap</p>
+        </div>
+        <button onclick="toggleHaptics()" id="hapticToggleBtn" class="w-12 h-7 rounded-full bg-blue-600 p-0.5 transition-colors relative">
+          <div id="hapticToggleThumb" class="w-6 h-6 rounded-full bg-white shadow-md transform translate-x-5 transition-transform"></div>
         </button>
       </div>
 
@@ -625,7 +742,7 @@
               <p id="reportModalDateRange" class="text-[11px] font-semibold text-slate-500">Date: All Time</p>
             </div>
           </div>
-          <button onclick="closeReportModal()" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 active:scale-95">
+          <button onclick="playHaptic(); closeReportModal()" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 active:scale-95">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
@@ -643,7 +760,7 @@
   <!-- ========================================== -->
   <div id="receiptModalOverlay" onclick="closeReceiptModal()" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
     <div onclick="event.stopPropagation()" class="w-full max-w-sm bg-white rounded-[32px] p-6 shadow-2xl space-y-4 relative border border-slate-200/80">
-      <button onclick="closeReceiptModal()" class="absolute top-4 right-4 w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-slate-500">✕</button>
+      <button onclick="playHaptic(); closeReceiptModal()" class="absolute top-4 right-4 w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-slate-500">✕</button>
       
       <div class="text-center pb-2 border-b border-dashed border-slate-200">
         <h4 id="receiptStoreName" class="font-black text-base text-slate-900">SALT 'N PEPPER</h4>
@@ -652,7 +769,7 @@
       </div>
 
       <!-- Items List -->
-      <div id="receiptItemsContainer" class="space-y-2 max-h-56 overflow-y-auto no-scrollbar py-1">
+      <div id="receiptItemsContainer" class="space-y-2 max-h-52 overflow-y-auto no-scrollbar py-1">
         <!-- Rendered dynamically -->
       </div>
 
@@ -679,36 +796,86 @@
           <span>Cashier: <strong id="receiptCashier" class="text-slate-800">Admin</strong></span>
         </div>
       </div>
+
+      <!-- Action Buttons: WhatsApp Share & Print Thermal -->
+      <div class="pt-2 grid grid-cols-2 gap-2">
+        <button onclick="shareReceiptWhatsApp()" class="py-2.5 px-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center space-x-1.5 shadow-sm active:scale-95 transition-all">
+          <span>WhatsApp</span>
+          <span>💬</span>
+        </button>
+        <button onclick="printThermalSlip()" class="py-2.5 px-3 rounded-2xl bg-slate-900 hover:bg-black text-white font-bold text-xs flex items-center justify-center space-x-1.5 shadow-sm active:scale-95 transition-all">
+          <span>Print Slip</span>
+          <span>🖨️</span>
+        </button>
+      </div>
     </div>
   </div>
 
   <!-- ========================================== -->
-  <!-- 7. FLOATING iOS TAB BAR (Glass Dock)       -->
+  <!-- 7. CUSTOM DATE RANGE PICKER MODAL SHEET   -->
+  <!-- ========================================== -->
+  <div id="customDateModalOverlay" onclick="closeCustomRangeModal()" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div onclick="event.stopPropagation()" class="modal-sheet w-full max-w-sm bg-white rounded-t-[32px] sm:rounded-[32px] p-6 shadow-2xl space-y-4 translate-y-full transition-transform duration-300">
+      <div class="w-12 h-1.5 rounded-full bg-slate-300 mx-auto mb-1"></div>
+      <div class="flex items-center justify-between">
+        <h3 class="font-black text-base text-slate-900">Custom Date Range</h3>
+        <button onclick="playHaptic(); closeCustomRangeModal()" class="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-slate-500">✕</button>
+      </div>
+
+      <!-- Quick Preset Buttons -->
+      <div class="grid grid-cols-3 gap-2 text-xs font-bold text-slate-600">
+        <button onclick="setCustomQuickPreset('thisMonth')" class="p-2 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-center">This Month</button>
+        <button onclick="setCustomQuickPreset('lastMonth')" class="p-2 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-center">Last Month</button>
+        <button onclick="setCustomQuickPreset('last14')" class="p-2 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-center">Last 14D</button>
+      </div>
+
+      <div class="space-y-3 pt-2">
+        <div>
+          <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">From Date</label>
+          <input type="date" id="customStartDate" class="w-full bg-slate-50 border border-slate-200 text-slate-900 font-bold px-3 py-2.5 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">To Date</label>
+          <input type="date" id="customEndDate" class="w-full bg-slate-50 border border-slate-200 text-slate-900 font-bold px-3 py-2.5 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+        </div>
+      </div>
+
+      <button onclick="applyCustomDateRange()" class="w-full py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md shadow-blue-500/20 active:scale-98 transition-all">
+        Apply Date Range
+      </button>
+    </div>
+  </div>
+
+  <!-- Hidden Printable Thermal Receipt Container -->
+  <div id="thermalPrintArea" class="hidden"></div>
+
+  <!-- ========================================== -->
+  <!-- 8. FLOATING iOS TAB BAR (Glass Dock)       -->
   <!-- ========================================== -->
   <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto z-40 bg-white/85 backdrop-blur-xl border-t border-black/[0.06] px-6 py-2 pb-6 flex items-center justify-between shadow-lg">
     
-    <button onclick="navigateTab('overview')" class="tab-btn active flex flex-col items-center space-y-1 text-slate-400 transition-all" data-tab="overview">
+    <button onclick="playHaptic(); navigateTab('overview')" class="tab-btn active flex flex-col items-center space-y-1 text-slate-400 transition-all" data-tab="overview">
       <div class="tab-icon-wrap w-10 h-7 rounded-2xl flex items-center justify-center transition-all">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
       </div>
       <span class="text-[10px] font-bold">Overview</span>
     </button>
 
-    <button onclick="navigateTab('bills')" class="tab-btn flex flex-col items-center space-y-1 text-slate-400 transition-all" data-tab="bills">
+    <button onclick="playHaptic(); navigateTab('bills')" class="tab-btn flex flex-col items-center space-y-1 text-slate-400 transition-all" data-tab="bills">
       <div class="tab-icon-wrap w-10 h-7 rounded-2xl flex items-center justify-center transition-all">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
       </div>
       <span class="text-[10px] font-bold">Bills</span>
     </button>
 
-    <button onclick="navigateTab('reports')" class="tab-btn flex flex-col items-center space-y-1 text-slate-400 transition-all" data-tab="reports">
+    <button onclick="playHaptic(); navigateTab('reports')" class="tab-btn flex flex-col items-center space-y-1 text-slate-400 transition-all" data-tab="reports">
       <div class="tab-icon-wrap w-10 h-7 rounded-2xl flex items-center justify-center transition-all">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
       </div>
       <span class="text-[10px] font-bold">Reports</span>
     </button>
 
-    <button onclick="navigateTab('settings')" class="tab-btn flex flex-col items-center space-y-1 text-slate-400 transition-all" data-tab="settings">
+    <button onclick="playHaptic(); navigateTab('settings')" class="tab-btn flex flex-col items-center space-y-1 text-slate-400 transition-all" data-tab="settings">
       <div class="tab-icon-wrap w-10 h-7 rounded-2xl flex items-center justify-center transition-all">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
       </div>
@@ -718,7 +885,7 @@
   </nav>
 
   <!-- ========================================== -->
-  <!-- 8. CORE JAVASCRIPT APP LOGIC (100% Dynamic) -->
+  <!-- 9. CORE JAVASCRIPT APP LOGIC (100% Dynamic) -->
   <!-- ========================================== -->
   <script>
     // State management
@@ -728,12 +895,64 @@
       ownerPin: localStorage.getItem('xrestro_owner_pin') || '1234',
       activeTab: 'overview',
       dateRange: 'all',
+      customStart: null,
+      customEnd: null,
       selectedStoreId: null,
       storeData: null,
       filteredBills: [],
       billFilterPayment: 'ALL',
-      searchQuery: ''
+      searchQuery: '',
+      chartMode: 'hourly',
+      chartDataPoints: [],
+      activeReceiptBill: null,
+      hapticsEnabled: localStorage.getItem('xrestro_haptics') !== 'false'
     };
+
+    // Synthesized Audio & Haptic engine
+    let _audioCtx = null;
+    function playHaptic() {
+      if (!state.hapticsEnabled) return;
+      try {
+        if (navigator.vibrate) navigator.vibrate(12);
+        if (!_audioCtx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) _audioCtx = new AudioContext();
+        }
+        if (_audioCtx) {
+          if (_audioCtx.state === 'suspended') _audioCtx.resume();
+          const osc = _audioCtx.createOscillator();
+          const gain = _audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(1400, _audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(800, _audioCtx.currentTime + 0.02);
+          gain.gain.setValueAtTime(0.04, _audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.0001, _audioCtx.currentTime + 0.02);
+          osc.connect(gain);
+          gain.connect(_audioCtx.destination);
+          osc.start();
+          osc.stop(_audioCtx.currentTime + 0.02);
+        }
+      } catch(e) {}
+    }
+
+    function toggleHaptics() {
+      state.hapticsEnabled = !state.hapticsEnabled;
+      localStorage.setItem('xrestro_haptics', state.hapticsEnabled ? 'true' : 'false');
+      updateHapticUI();
+      if (state.hapticsEnabled) playHaptic();
+    }
+
+    function updateHapticUI() {
+      const btn = document.getElementById('hapticToggleBtn');
+      const thumb = document.getElementById('hapticToggleThumb');
+      if (state.hapticsEnabled) {
+        btn.className = 'w-12 h-7 rounded-full bg-blue-600 p-0.5 transition-colors relative';
+        thumb.className = 'w-6 h-6 rounded-full bg-white shadow-md transform translate-x-5 transition-transform';
+      } else {
+        btn.className = 'w-12 h-7 rounded-full bg-slate-300 p-0.5 transition-colors relative';
+        thumb.className = 'w-6 h-6 rounded-full bg-white shadow-md transform translate-x-0 transition-transform';
+      }
+    }
 
     // Format currency
     function fmtCurr(num) {
@@ -769,6 +988,11 @@
         start.setDate(start.getDate() - 29);
         start.setHours(0, 0, 0, 0);
         end.setHours(23, 59, 59, 999);
+      } else if (rangeKey === 'custom' && state.customStart && state.customEnd) {
+        start = new Date(state.customStart);
+        start.setHours(0, 0, 0, 0);
+        end = new Date(state.customEnd);
+        end.setHours(23, 59, 59, 999);
       } else if (rangeKey === 'all') {
         start = new Date('2020-01-01T00:00:00');
         end = new Date('2030-12-31T23:59:59');
@@ -800,6 +1024,9 @@
       });
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (tabName === 'overview') {
+        setTimeout(renderSvgChart, 50);
+      }
     }
 
     // Date range selection
@@ -815,11 +1042,62 @@
         yesterday: 'Yesterday',
         '7days': 'Last 7 Days',
         '30days': 'Last 30 Days',
-        all: 'All Time'
+        all: 'All Time',
+        custom: (state.customStart && state.customEnd) ? `${state.customStart} to ${state.customEnd}` : 'Custom Range'
       };
       document.getElementById('overviewDateBadge').innerText = labels[rangeKey] || rangeKey;
 
       recalculateAndRender();
+    }
+
+    // Custom Date Range Modal
+    function openCustomRangeModal() {
+      const todayStr = new Date().toISOString().split('T')[0];
+      if (!document.getElementById('customStartDate').value) {
+        document.getElementById('customStartDate').value = todayStr;
+        document.getElementById('customEndDate').value = todayStr;
+      }
+      document.getElementById('customDateModalOverlay').classList.remove('opacity-0', 'pointer-events-none');
+      document.querySelector('#customDateModalOverlay .modal-sheet').classList.remove('translate-y-full');
+    }
+
+    function closeCustomRangeModal() {
+      document.getElementById('customDateModalOverlay').classList.add('opacity-0', 'pointer-events-none');
+      document.querySelector('#customDateModalOverlay .modal-sheet').classList.add('translate-y-full');
+    }
+
+    function setCustomQuickPreset(preset) {
+      playHaptic();
+      const now = new Date();
+      let start = new Date();
+      let end = new Date();
+
+      if (preset === 'thisMonth') {
+        start = new Date(now.getFullYear(), now.getMonth(), 1);
+        end = now;
+      } else if (preset === 'lastMonth') {
+        start = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+        end = new Date(now.getFullYear(), now.getMonth(), 0);
+      } else if (preset === 'last14') {
+        start.setDate(start.getDate() - 13);
+      }
+
+      document.getElementById('customStartDate').value = start.toISOString().split('T')[0];
+      document.getElementById('customEndDate').value = end.toISOString().split('T')[0];
+    }
+
+    function applyCustomDateRange() {
+      playHaptic();
+      const s = document.getElementById('customStartDate').value;
+      const e = document.getElementById('customEndDate').value;
+      if (!s || !e) {
+        alert('Please select both start and end dates.');
+        return;
+      }
+      state.customStart = s;
+      state.customEnd = e;
+      closeCustomRangeModal();
+      selectDateRange('custom');
     }
 
     // Sidebar controls
@@ -855,13 +1133,15 @@
       const bill = state.storeData.bills.find(b => b.invoiceNo === invoiceNo);
       if (!bill) return;
 
+      state.activeReceiptBill = bill;
+
       document.getElementById('receiptStoreName').innerText = state.storeData.storeName || "SALT 'N PEPPER";
       document.getElementById('receiptInvoiceNo').innerText = bill.invoiceNo || 'INV';
       document.getElementById('receiptDate').innerText = bill.createdDate ? new Date(bill.createdDate).toLocaleString() : new Date().toLocaleString();
 
       const itemsCont = document.getElementById('receiptItemsContainer');
       itemsCont.innerHTML = '';
-      const items = Array.isArray(bill.items) && bill.items.length > 0 ? bill.items : [{ itemName: 'Restaurant Item', qty: 1, lineTotal: bill.grandTotal }];
+      const items = Array.isArray(bill.items) && bill.items.length > 0 ? bill.items : [{ itemName: 'Restaurant Meal Item', qty: 1, lineTotal: bill.grandTotal }];
 
       items.forEach(it => {
         const row = document.createElement('div');
@@ -883,6 +1163,7 @@
           .then(d => {
             if (d.success && d.bill && Array.isArray(d.bill.items) && d.bill.items.length > 0) {
               bill.items = d.bill.items;
+              state.activeReceiptBill = bill;
               openReceiptModal(invoiceNo);
             }
           })
@@ -900,14 +1181,134 @@
       document.getElementById('receiptModalOverlay').classList.remove('opacity-0', 'pointer-events-none');
     }
 
+    // Share Receipt on WhatsApp
+    function shareReceiptWhatsApp() {
+      playHaptic();
+      const bill = state.activeReceiptBill;
+      if (!bill) return;
+
+      const storeName = state.storeData ? state.storeData.storeName : "SALT 'N PEPPER";
+      const items = Array.isArray(bill.items) && bill.items.length > 0 ? bill.items : [{ itemName: 'Meal Order', qty: 1, lineTotal: bill.grandTotal }];
+
+      let text = `🧾 *${storeName} - DIGITAL RECEIPT*\n`;
+      text += `Invoice #: ${bill.invoiceNo || 'INV'}\n`;
+      text += `Date: ${new Date(bill.createdDate || Date.now()).toLocaleString()}\n`;
+      text += `Cashier: ${bill.cashierName || 'Admin'} | Order: ${bill.orderType || 'Takeaway'}\n`;
+      text += `--------------------------------\n`;
+      items.forEach(it => {
+        text += `• ${it.qty || 1}x ${it.itemName} = ${fmtCurr(it.lineTotal)}\n`;
+      });
+      text += `--------------------------------\n`;
+      text += `*Subtotal:* ${fmtCurr(bill.subTotal || bill.grandTotal)}\n`;
+      if (bill.discountAmount > 0) text += `*Discount:* -${fmtCurr(bill.discountAmount)}\n`;
+      text += `*${bill.taxName || 'VAT'}:* ${fmtCurr(bill.taxAmount || 0)}\n`;
+      text += `*GRAND TOTAL:* ${fmtCurr(bill.grandTotal || 0)}\n`;
+      text += `*Payment Mode:* ${bill.paymentMode || 'Cash'}\n\n`;
+      text += `_Thank you for dining with us!_`;
+
+      const waUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+      window.open(waUrl, '_blank');
+    }
+
+    // Print Thermal Slip (80mm)
+    function printThermalSlip() {
+      playHaptic();
+      const bill = state.activeReceiptBill;
+      if (!bill) return;
+
+      const storeName = state.storeData ? state.storeData.storeName : "SALT 'N PEPPER";
+      const items = Array.isArray(bill.items) && bill.items.length > 0 ? bill.items : [{ itemName: 'Meal Order', qty: 1, lineTotal: bill.grandTotal }];
+
+      let html = `
+        <div style="text-align: center; font-weight: bold; font-size: 14px; margin-bottom: 4px;">${storeName}</div>
+        <div style="text-align: center; font-size: 10px; margin-bottom: 8px;">TAX INVOICE</div>
+        <div style="font-size: 10px; margin-bottom: 4px;">Invoice #: ${bill.invoiceNo || 'INV'}</div>
+        <div style="font-size: 10px; margin-bottom: 4px;">Date: ${new Date(bill.createdDate || Date.now()).toLocaleString()}</div>
+        <div style="font-size: 10px; margin-bottom: 6px;">Cashier: ${bill.cashierName || 'Admin'} | ${bill.orderType || 'Takeaway'}</div>
+        <div style="border-top: 1px dashed #000; margin: 6px 0;"></div>
+        <table style="width: 100%; font-size: 10px; border-collapse: collapse;">
+      `;
+
+      items.forEach(it => {
+        html += `
+          <tr>
+            <td style="padding: 2px 0;">${it.qty || 1}x ${it.itemName}</td>
+            <td style="text-align: right; padding: 2px 0;">${fmtCurr(it.lineTotal)}</td>
+          </tr>
+        `;
+      });
+
+      html += `
+        </table>
+        <div style="border-top: 1px dashed #000; margin: 6px 0;"></div>
+        <div style="display: flex; justify-content: space-between; font-size: 10px;">
+          <span>Subtotal:</span>
+          <span>${fmtCurr(bill.subTotal || bill.grandTotal)}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 10px;">
+          <span>${bill.taxName || 'VAT'}:</span>
+          <span>${fmtCurr(bill.taxAmount || 0)}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-top: 4px;">
+          <span>GRAND TOTAL:</span>
+          <span>${fmtCurr(bill.grandTotal || 0)}</span>
+        </div>
+        <div style="font-size: 10px; margin-top: 4px;">Payment: ${bill.paymentMode || 'Cash'}</div>
+        <div style="border-top: 1px dashed #000; margin: 8px 0;"></div>
+        <div style="text-align: center; font-size: 10px;">*** THANK YOU ***</div>
+      `;
+
+      const printArea = document.getElementById('thermalPrintArea');
+      printArea.innerHTML = html;
+      printArea.classList.remove('hidden');
+      window.print();
+      setTimeout(() => { printArea.classList.add('hidden'); }, 1000);
+    }
+
+    // Export Filtered Bills to CSV
+    function exportBillsCSV() {
+      playHaptic();
+      const { start, end } = getDateBounds(state.dateRange);
+      if (!state.storeData || !Array.isArray(state.storeData.bills)) {
+        alert('No bills available to export.');
+        return;
+      }
+
+      const bills = state.storeData.bills.filter(b => {
+        const d = new Date(b.createdDate || b.settledDate || 0);
+        return d >= start && d <= end;
+      });
+
+      if (bills.length === 0) {
+        alert('No bills found in the selected period to export.');
+        return;
+      }
+
+      let csv = '\uFEFFInvoiceNo,Date,Time,OrderType,Cashier,PaymentMode,SubTotal,Discount,Tax,GrandTotal\n';
+      bills.forEach(b => {
+        const d = b.createdDate ? new Date(b.createdDate) : new Date();
+        const dateStr = d.toISOString().split('T')[0];
+        const timeStr = d.toTimeString().split(' ')[0];
+        csv += `"${b.invoiceNo || ''}","${dateStr}","${timeStr}","${b.orderType || 'Takeaway'}","${b.cashierName || 'Admin'}","${b.paymentMode || 'Cash'}",${b.subTotal || b.grandTotal},${b.discountAmount || 0},${b.taxAmount || 0},${b.grandTotal || 0}\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.setAttribute('download', `XRestro_Bills_${state.dateRange}_${Date.now()}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
     // Bill filters
     function setBillPaymentFilter(mode) {
       state.billFilterPayment = mode;
       document.querySelectorAll('.bill-filter-btn').forEach(btn => {
         if (btn.getAttribute('data-filter') === mode) {
-          btn.className = 'bill-filter-btn active px-3 py-1.5 rounded-xl bg-slate-900 text-white shadow-sm';
+          btn.className = 'bill-filter-btn active px-3 py-1.5 rounded-xl bg-slate-900 text-white shadow-sm whitespace-nowrap';
         } else {
-          btn.className = 'bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200';
+          btn.className = 'bill-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap';
         }
       });
       filterBills();
@@ -931,12 +1332,14 @@
         if (mode === 'Card' && !(b.paymentMode || '').includes('Card') && !(b.cardAmount > 0)) return false;
         if (mode === 'Takeaway' && (b.orderType || '').toLowerCase() === 'dinein') return false;
         if (mode === 'DineIn' && (b.orderType || '').toLowerCase() !== 'dinein') return false;
+        if (mode === 'HighValue' && (b.grandTotal || 0) < 200) return false;
 
         if (q) {
           const invMatch = (b.invoiceNo || '').toLowerCase().includes(q);
           const custMatch = (b.customerName || '').toLowerCase().includes(q);
+          const cashierMatch = (b.cashierName || '').toLowerCase().includes(q);
           const amtMatch = (b.grandTotal || '').toString().includes(q);
-          if (!invMatch && !custMatch && !amtMatch) return false;
+          if (!invMatch && !custMatch && !cashierMatch && !amtMatch) return false;
         }
 
         return true;
@@ -962,7 +1365,7 @@
             <span class="text-4xl">🧾</span>
             <p class="font-extrabold text-sm text-slate-800">No Invoices For This Period</p>
             <p class="text-xs text-slate-500">No transactions recorded for the active filter. Full database holds <strong>${totalStoreBills.toLocaleString()} verified bills</strong>.</p>
-            <button onclick="selectDateRange('all')" class="px-5 py-2.5 rounded-2xl bg-blue-600 text-white font-bold text-xs shadow-md shadow-blue-500/20 active:scale-95 transition-all inline-flex items-center space-x-1.5">
+            <button onclick="playHaptic(); selectDateRange('all')" class="px-5 py-2.5 rounded-2xl bg-blue-600 text-white font-bold text-xs shadow-md shadow-blue-500/20 active:scale-95 transition-all inline-flex items-center space-x-1.5">
               <span>View All-Time Invoices (${totalStoreBills.toLocaleString()})</span>
             </button>
           </div>
@@ -973,7 +1376,7 @@
       bills.slice(0, 150).forEach(b => {
         const card = document.createElement('div');
         card.className = 'ios-card p-4 flex items-center justify-between cursor-pointer';
-        card.onclick = () => openReceiptModal(b.invoiceNo);
+        card.onclick = () => { playHaptic(); openReceiptModal(b.invoiceNo); };
 
         const bDate = b.createdDate ? new Date(b.createdDate) : new Date();
         const dateStr = bDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + bDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
@@ -1003,6 +1406,158 @@
         cont.appendChild(card);
       });
     }
+
+    // Chart Mode Toggle
+    function setChartMode(mode) {
+      state.chartMode = mode;
+      const btnH = document.getElementById('chartBtnHourly');
+      const btnD = document.getElementById('chartBtnDaily');
+      if (mode === 'hourly') {
+        btnH.className = 'px-2 py-1 rounded-lg bg-white shadow-xs text-blue-600';
+        btnD.className = 'px-2 py-1 rounded-lg text-slate-500';
+      } else {
+        btnD.className = 'px-2 py-1 rounded-lg bg-white shadow-xs text-blue-600';
+        btnH.className = 'px-2 py-1 rounded-lg text-slate-500';
+      }
+      renderSvgChart();
+    }
+
+    // Render Apple Stocks Style Bezier Curve Chart
+    function renderSvgChart() {
+      const { start, end } = getDateBounds(state.dateRange);
+      const bills = (state.storeData && Array.isArray(state.storeData.bills)) ? state.storeData.bills : [];
+      
+      const periodBills = bills.filter(b => {
+        const d = new Date(b.createdDate || b.settledDate || 0);
+        return d >= start && d <= end;
+      });
+
+      let dataPoints = [];
+      const axisLabels = document.getElementById('chartAxisLabels');
+
+      if (state.chartMode === 'hourly') {
+        // 24 Hour Buckets
+        const hoursRev = Array(24).fill(0);
+        const hoursCount = Array(24).fill(0);
+        periodBills.forEach(b => {
+          const h = new Date(b.createdDate || b.settledDate || 0).getHours();
+          if (h >= 0 && h < 24) {
+            hoursRev[h] += (b.grandTotal || 0);
+            hoursCount[h]++;
+          }
+        });
+
+        for (let i = 8; i <= 23; i++) {
+          const label = (i < 12 ? i + ' AM' : (i === 12 ? '12 PM' : (i - 12) + ' PM'));
+          dataPoints.push({ label, val: hoursRev[i], count: hoursCount[i] });
+        }
+        axisLabels.innerHTML = '<span>8 AM</span><span>2 PM</span><span>11 PM</span>';
+      } else {
+        // Daily Trajectory (Last 7 or 14 days or aggregated dates)
+        const dayMap = {};
+        periodBills.forEach(b => {
+          const dStr = new Date(b.createdDate || b.settledDate || 0).toISOString().split('T')[0];
+          if (!dayMap[dStr]) dayMap[dStr] = { rev: 0, count: 0 };
+          dayMap[dStr].rev += (b.grandTotal || 0);
+          dayMap[dStr].count++;
+        });
+
+        const sortedKeys = Object.keys(dayMap).sort();
+        if (sortedKeys.length === 0) {
+          dataPoints = [{ label: 'Today', val: 0, count: 0 }];
+        } else {
+          sortedKeys.slice(-14).forEach(k => {
+            const parts = k.split('-');
+            dataPoints.push({ label: `${parts[1]}/${parts[2]}`, val: dayMap[k].rev, count: dayMap[k].count });
+          });
+        }
+        if (dataPoints.length > 2) {
+          axisLabels.innerHTML = `<span>${dataPoints[0].label}</span><span>${dataPoints[Math.floor(dataPoints.length / 2)].label}</span><span>${dataPoints[dataPoints.length - 1].label}</span>`;
+        }
+      }
+
+      state.chartDataPoints = dataPoints;
+
+      // Construct SVG Bezier Curves
+      const width = 400;
+      const height = 150;
+      const maxVal = Math.max(...dataPoints.map(p => p.val), 10);
+      const points = dataPoints.map((p, idx) => {
+        const x = (idx / (dataPoints.length - 1 || 1)) * (width - 20) + 10;
+        const y = height - (p.val / maxVal) * (height - 25) - 10;
+        return { x, y, label: p.label, val: p.val, count: p.count };
+      });
+
+      if (points.length < 2) {
+        document.getElementById('chartLinePath').setAttribute('d', '');
+        document.getElementById('chartAreaPath').setAttribute('d', '');
+        return;
+      }
+
+      // Smooth Catmull-Rom or cubic Bezier
+      let linePath = `M ${points[0].x} ${points[0].y}`;
+      for (let i = 0; i < points.length - 1; i++) {
+        const p0 = points[i === 0 ? 0 : i - 1];
+        const p1 = points[i];
+        const p2 = points[i + 1];
+        const p3 = points[i + 2] || p2;
+        const cp1x = p1.x + (p2.x - p0.x) / 6;
+        const cp1y = p1.y + (p2.y - p0.y) / 6;
+        const cp2x = p2.x - (p3.x - p1.x) / 6;
+        const cp2y = p2.y - (p3.y - p1.y) / 6;
+        linePath += ` C ${cp1x.toFixed(1)} ${cp1y.toFixed(1)}, ${cp2x.toFixed(1)} ${cp2y.toFixed(1)}, ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`;
+      }
+
+      const areaPath = linePath + ` L ${points[points.length - 1].x} ${height + 10} L ${points[0].x} ${height + 10} Z`;
+
+      document.getElementById('chartLinePath').setAttribute('d', linePath);
+      document.getElementById('chartAreaPath').setAttribute('d', areaPath);
+    }
+
+    // Interactive Touch/Mouse Scrubber on Chart
+    const chartContainer = document.getElementById('chartContainer');
+    function handleChartScrub(e) {
+      const rect = chartContainer.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const relX = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      const width = 400;
+      const height = 150;
+
+      const pts = state.chartDataPoints;
+      if (!pts || pts.length < 2) return;
+
+      const idx = Math.round(relX * (pts.length - 1));
+      const pt = pts[idx];
+      if (!pt) return;
+
+      const maxVal = Math.max(...pts.map(p => p.val), 10);
+      const x = (idx / (pts.length - 1)) * (width - 20) + 10;
+      const y = height - (pt.val / maxVal) * (height - 25) - 10;
+
+      // Move Scrubber
+      const scrubber = document.getElementById('chartScrubber');
+      scrubber.classList.remove('opacity-0');
+      document.getElementById('scrubberLine').setAttribute('x1', x);
+      document.getElementById('scrubberLine').setAttribute('x2', x);
+      document.getElementById('scrubberDot').setAttribute('cx', x);
+      document.getElementById('scrubberDot').setAttribute('cy', y);
+
+      // Tooltip
+      const tooltip = document.getElementById('chartTooltip');
+      tooltip.classList.remove('opacity-0');
+      document.getElementById('tooltipTime').innerText = pt.label;
+      document.getElementById('tooltipVal').innerText = `${fmtCurr(pt.val)} (${pt.count})`;
+    }
+
+    function hideChartScrub() {
+      document.getElementById('chartScrubber').classList.add('opacity-0');
+      document.getElementById('chartTooltip').classList.add('opacity-0');
+    }
+
+    chartContainer.addEventListener('mousemove', handleChartScrub);
+    chartContainer.addEventListener('mouseleave', hideChartScrub);
+    chartContainer.addEventListener('touchmove', handleChartScrub, { passive: true });
+    chartContainer.addEventListener('touchend', hideChartScrub);
 
     // Recalculate all reports dynamically for the active date range
     function recalculateAndRender() {
@@ -1117,6 +1672,9 @@
         });
       }
 
+      // Render Chart
+      renderSvgChart();
+
       // Re-filter invoices list
       filterBills();
     }
@@ -1157,7 +1715,7 @@
             <span class="text-4xl">📊</span>
             <h4 class="font-extrabold text-sm text-slate-900">No Sales In Selected Period</h4>
             <p class="text-xs text-slate-500">There are 0 transactions recorded for <strong>${dateLabel}</strong>. Your full database contains <strong>${totalStoreBills.toLocaleString()} verified bills</strong>.</p>
-            <button onclick="selectDateRange('all'); renderReportContent('${reportKey}');" class="px-5 py-2.5 rounded-2xl bg-blue-600 text-white font-bold text-xs shadow-md shadow-blue-500/20 active:scale-95 transition-all inline-flex items-center space-x-2">
+            <button onclick="playHaptic(); selectDateRange('all'); renderReportContent('${reportKey}');" class="px-5 py-2.5 rounded-2xl bg-blue-600 text-white font-bold text-xs shadow-md shadow-blue-500/20 active:scale-95 transition-all inline-flex items-center space-x-2">
               <span>View All-Time Data (${totalStoreBills.toLocaleString()} Bills)</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
@@ -1542,6 +2100,7 @@
 
     // Change Security PIN API
     async function handleChangePin() {
+      playHaptic();
       const oldPin = document.getElementById('currentPinInput').value.trim();
       const newPin = document.getElementById('newPinInput').value.trim();
 
@@ -1632,6 +2191,7 @@
 
     // Login Handler
     async function handleLogin() {
+      playHaptic();
       const phoneInput = document.getElementById('loginPhone').value.trim();
       const pinInput = document.getElementById('loginPin').value.trim();
       const errEl = document.getElementById('loginError');
@@ -1681,6 +2241,7 @@
 
     // Auto-login check on startup
     window.addEventListener('DOMContentLoaded', () => {
+      updateHapticUI();
       if (state.ownerPhone && state.ownerPin) {
         document.getElementById('loginScreen').classList.add('hidden');
         fetchStoreData();
