@@ -300,11 +300,11 @@
     <!-- Apple Native Segmented Date Control -->
     <div class="max-w-md mx-auto mt-2.5">
       <div class="bg-slate-200/80 p-1 rounded-2xl flex text-xs font-semibold text-slate-600 justify-between items-center shadow-inner">
-        <button onclick="selectDateRange('today')" class="date-pill active flex-1 py-1.5 rounded-xl text-center transition-all" data-range="today">Today</button>
+        <button onclick="selectDateRange('today')" class="date-pill flex-1 py-1.5 rounded-xl text-center transition-all" data-range="today">Today</button>
         <button onclick="selectDateRange('yesterday')" class="date-pill flex-1 py-1.5 rounded-xl text-center transition-all" data-range="yesterday">Yesterday</button>
         <button onclick="selectDateRange('7days')" class="date-pill flex-1 py-1.5 rounded-xl text-center transition-all" data-range="7days">7 Days</button>
         <button onclick="selectDateRange('30days')" class="date-pill flex-1 py-1.5 rounded-xl text-center transition-all" data-range="30days">30 Days</button>
-        <button onclick="selectDateRange('all')" class="date-pill flex-1 py-1.5 rounded-xl text-center transition-all" data-range="all">All Time</button>
+        <button onclick="selectDateRange('all')" class="date-pill active flex-1 py-1.5 rounded-xl text-center transition-all" data-range="all">All Time</button>
       </div>
     </div>
   </header>
@@ -321,7 +321,7 @@
       <div class="ios-card p-5 relative overflow-hidden bg-gradient-to-br from-white via-white to-blue-50/40">
         <div class="flex items-center justify-between text-slate-500 mb-1">
           <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Net Revenue</span>
-          <span id="overviewDateBadge" class="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-200/60">Today</span>
+          <span id="overviewDateBadge" class="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-200/60">All Time</span>
         </div>
 
         <div class="flex items-baseline space-x-1.5 my-2">
@@ -727,7 +727,7 @@
       ownerPhone: localStorage.getItem('xrestro_owner_phone') || '0792153627',
       ownerPin: localStorage.getItem('xrestro_owner_pin') || '1234',
       activeTab: 'overview',
-      dateRange: 'today',
+      dateRange: 'all',
       selectedStoreId: null,
       storeData: null,
       filteredBills: [],
@@ -956,11 +956,15 @@
       document.getElementById('billsTotalAmtLabel').innerText = `Total: ${fmtCurr(totalSum)}`;
 
       if (bills.length === 0) {
+        const totalStoreBills = (state.storeData && Array.isArray(state.storeData.bills)) ? state.storeData.bills.length : 0;
         cont.innerHTML = `
-          <div class="ios-card p-8 text-center space-y-2">
-            <span class="text-3xl">🧾</span>
-            <p class="font-extrabold text-sm text-slate-800">No Invoices Found</p>
-            <p class="text-xs text-slate-400">No bills match the selected date or search filter.</p>
+          <div class="ios-card p-8 text-center space-y-3">
+            <span class="text-4xl">🧾</span>
+            <p class="font-extrabold text-sm text-slate-800">No Invoices For This Period</p>
+            <p class="text-xs text-slate-500">No transactions recorded for the active filter. Full database holds <strong>${totalStoreBills.toLocaleString()} verified bills</strong>.</p>
+            <button onclick="selectDateRange('all')" class="px-5 py-2.5 rounded-2xl bg-blue-600 text-white font-bold text-xs shadow-md shadow-blue-500/20 active:scale-95 transition-all inline-flex items-center space-x-1.5">
+              <span>View All-Time Invoices (${totalStoreBills.toLocaleString()})</span>
+            </button>
           </div>
         `;
         return;
@@ -1145,6 +1149,22 @@
 
       const dateLabel = document.getElementById('overviewDateBadge').innerText;
       modalDate.innerText = `Period: ${dateLabel} (${periodBills.length} Invoices)`;
+
+      if (periodBills.length === 0) {
+        const totalStoreBills = bills.length;
+        cont.innerHTML = `
+          <div class="ios-card p-6 text-center space-y-3">
+            <span class="text-4xl">📊</span>
+            <h4 class="font-extrabold text-sm text-slate-900">No Sales In Selected Period</h4>
+            <p class="text-xs text-slate-500">There are 0 transactions recorded for <strong>${dateLabel}</strong>. Your full database contains <strong>${totalStoreBills.toLocaleString()} verified bills</strong>.</p>
+            <button onclick="selectDateRange('all'); renderReportContent('${reportKey}');" class="px-5 py-2.5 rounded-2xl bg-blue-600 text-white font-bold text-xs shadow-md shadow-blue-500/20 active:scale-95 transition-all inline-flex items-center space-x-2">
+              <span>View All-Time Data (${totalStoreBills.toLocaleString()} Bills)</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+        `;
+        return;
+      }
 
       // REPORT 1: DAILY BUSINESS TALLY & RECONCILIATION
       if (reportKey === 'tally') {
